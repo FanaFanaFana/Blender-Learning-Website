@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:serif="http://www.serif.com/" width="100%" height="100%" viewBox="0 0 1600 1600" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="extrude_manifold" transform="matrix(1.29554,0,0,1.29554,-211.081,-240.179)">
+        <g id="White">
+            <path d="M274.705,512.36L274.705,1341.85L1045.47,1341.85L1286.16,1113.64L1286.16,263.932L533.557,263.932L274.705,512.36ZM548.124,286.822L312.979,512.36L521.072,512.36L521.072,543.47L312.979,543.47L312.979,1305.09L1013.56,1305.09L1013.56,1040.12L1045.47,1040.12L1045.47,1297.46L1260.5,1097.69L1260.5,325.666L1210.55,365.898L1210.55,331.909L1260.5,286.822L548.124,286.822Z" style="fill:rgb(229,229,229);"/>
+        </g>
+        <g id="Green">
+            <rect x="709.812" y="356.603" width="478.891" height="504.417" style="fill:rgb(117,255,175);"/>
+            <path d="M675.962,375.47L675.962,868.789L552.216,988.651L552.216,513.089L675.962,375.47Z" style="fill:rgb(117,255,175);"/>
+            <path d="M1170.95,894.315L1048.31,1011.4L581.072,1011.4L703.153,894.315L1170.95,894.315Z" style="fill:rgb(117,255,175);"/>
+        </g>
+    </g>
+</svg>

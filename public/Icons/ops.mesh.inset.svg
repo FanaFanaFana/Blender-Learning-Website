@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:serif="http://www.serif.com/" width="100%" height="100%" viewBox="0 0 1600 1600" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="inset">
+        <g id="Green">
+            <path d="M146.111,461.996L1115.14,461.303L813.4,752.635L447.848,752.635L146.111,461.996Z" style="fill:rgb(117,255,175);"/>
+            <path d="M1151.94,496.766L846.305,790.482L846.305,1137.31L1151.94,1431.02L1151.94,496.766Z" style="fill:rgb(117,255,175);"/>
+            <path d="M812.707,1171.99L446.374,1170.9L146.111,1464.59L1115.14,1464.59L812.707,1171.99Z" style="fill:rgb(117,255,175);"/>
+            <path d="M110.055,496.766L416.027,790.482L416.027,1140.56L110.055,1431.02L110.055,496.766Z" style="fill:rgb(117,255,175);"/>
+        </g>
+        <g id="White">
+            <path d="M146.111,435.804L449.343,135.411L1489.94,135.411L1489.94,1138.55L1176.95,1431.02L1176.95,1370.29L1436.65,1127.9L1436.65,229.818L1176.95,470.431L1176.95,435.804L1144.54,435.804L1402.47,185.869L467.988,185.869L207.843,435.804L146.111,435.804Z" style="fill:rgb(229,229,229);"/>
+        </g>
+    </g>
+</svg>

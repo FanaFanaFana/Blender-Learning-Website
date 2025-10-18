@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 1600.0001 1600"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="ops.armature.extrude_cursor.svg"
+   width="1600"
+   height="1600"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview8"
+     pagecolor="#656565"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="true"
+     inkscape:zoom="0.19919282"
+     inkscape:cx="1134.579"
+     inkscape:cy="936.27873"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Ebene_2">
+    <inkscape:grid
+       id="grid10"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="50.000002"
+       spacingy="50.000002"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="2"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <style
+       id="style1">.cls-1{fill:#75ffaf;}.cls-2{fill:#e5e5e5;}</style>
+  </defs>
+  <g
+     id="Ebene_2"
+     data-name="Ebene 2">
+    <g
+       id="Ebene_2-2"
+       data-name="Ebene 2"
+       transform="matrix(1.3405264,0,0,1.3734498,100.22052,100.0052)">
+      <g
+         id="g8"
+         style="fill:#ffffff">
+        <path
+           class="cls-2"
+           d="M 224.53294,813.64417 61.49967,978.272 h 119.59768 l 65.96319,-152.84871 c 0,0 -12.22085,-6.03679 -22.5276,-11.77912 z"
+           id="path6"
+           style="fill:#ffffff" />
+        <path
+           class="cls-2"
+           d="m 22.42094,937.52593 c 0.12756,13.26624 0,62.75947 0,62.75947 h 59.9532 c 0,0 -32.14512,39.5437 -68.49972,7.6536 -33.67584,-38.65063 3.95436,-70.41307 8.54652,-70.41307 z"
+           id="path4"
+           style="fill:#ffffff" />
+        <path
+           class="cls-2"
+           d="M 214.37343,803.04294 38.993,963.76785 l 0.38661,-116.774 c 0,0 139.92539,-55.77453 164.92712,-65.19271 -0.38729,9.75714 10.0667,21.2418 10.0667,21.2418 z"
+           id="path5"
+           style="fill:#ffffff" />
+      </g>
+      <g
+         id="g9">
+        <path
+           d="m 810.83969,201.865 c 0,0 -136.34356,130.0123 -147.82823,141.497 -18.4049,28.56442 3.38651,63.16565 39.46013,36.22086 41.07975,-41.07975 140.02454,-143.411 140.02454,-143.411 V 201.865 Z"
+           id="path7"
+           style="fill:#000000" />
+      </g>
+      <g
+         id="g10"
+         style="fill:#75ffaf;fill-opacity:1">
+        <polygon
+           class="cls-1"
+           points="81.784,196.344 21.936,256.87 54.84,289.546 115.701,235.98 175.65,294.626 208.999,103.141 15.969,137.153 "
+           id="polygon8"
+           style="fill:#75ffaf;fill-opacity:1" />
+        <circle
+           class="cls-1"
+           cx="679.27521"
+           cy="362.53375"
+           r="77.895752"
+           id="circle6"
+           style="fill:#75ffaf;fill-opacity:1" />
+        <path
+           class="cls-1"
+           d="M 596.93784,426.92025 284.49613,723.46012 286.263,508.4908 c 0,0 251.37423,-93.53374 294.66257,-109.84049 7.73007,15.20245 16.01227,28.26994 16.01227,28.26994 z"
+           id="path2"
+           style="fill:#75ffaf;fill-opacity:1" />
+        <path
+           class="cls-1"
+           d="m 257.58815,667.65644 c 0.22086,22.96933 0,108.66258 0,108.66258 h 103.80368 c 0,0 -55.65644,68.46626 -118.60122,13.25153 -58.30675,-66.92024 6.84662,-121.91411 14.79754,-121.91411 z"
+           id="path1"
+           style="fill:#75ffaf;fill-opacity:1" />
+        <path
+           class="cls-1"
+           d="M 612.65564,448.4908 311.99306,743.55828 H 514.29981 L 646.22619,464.39264 c 0,0 -18.25767,-3.53374 -33.57055,-15.90184 z"
+           id="path3"
+           style="fill:#75ffaf;fill-opacity:1" />
+        <polygon
+           class="cls-1"
+           points="722.386,119.485 842.496,119.485 842.496,0 924.582,0 924.582,119.485 1045.834,119.485 1045.834,202.086 925.245,202.086 925.245,321.35 842.496,322.233 842.496,201.865 722.386,201.975 "
+           id="polygon7"
+           style="fill:#75ffaf;fill-opacity:1;stroke:none" />
+      </g>
+    </g>
+  </g>
+</svg>

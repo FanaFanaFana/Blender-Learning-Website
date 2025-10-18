@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:serif="http://www.serif.com/" width="100%" height="100%" viewBox="0 0 1600 1600" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g id="primitive_torus_add_gizmo">
+        <g id="Green">
+            <ellipse cx="893.819" cy="989.331" rx="635.055" ry="443.692" style="fill:none;stroke:rgb(117,255,175);stroke-width:41.98px;"/>
+            <ellipse cx="893.819" cy="989.331" rx="382.943" ry="184.887" style="fill:none;stroke:rgb(117,255,175);stroke-width:41.98px;"/>
+            <path d="M1276.76,639.079C1163.41,639.079 1098.74,724.038 1148.87,843.304" style="fill:none;stroke:rgb(117,255,175);stroke-width:41.98px;"/>
+            <path d="M1135.17,1138.99C1240.35,1150.13 1301.23,1222.67 1259.15,1343.57" style="fill:none;stroke:rgb(117,255,175);stroke-width:41.98px;"/>
+            <path d="M652.207,1138.99C530.301,1161.77 483.285,1226.86 527.566,1343.57" style="fill:none;stroke:rgb(117,255,175);stroke-width:41.98px;"/>
+            <path d="M633.24,855.497C683.202,747.288 654.196,660.4 510.876,639.079" style="fill:none;stroke:rgb(117,255,175);stroke-width:41.98px;"/>
+            <g transform="matrix(1.01978,1.01978,-1.01978,1.01978,322.413,-320.78)">
+                <path d="M389.276,187.935L443.466,242.125L365.142,320.449L443.466,398.773L389.276,452.963L310.952,374.639L232.627,452.963L178.437,398.773L256.761,320.449L178.437,242.125L232.627,187.935L310.952,266.259L389.276,187.935Z" style="fill:rgb(117,255,175);"/>
+            </g>
+        </g>
+    </g>
+</svg>

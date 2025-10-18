@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 1600 1600"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="ops.armature.extrude_move.svg"
+   width="1600"
+   height="1600"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview5"
+     pagecolor="#6d6d6d"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="true"
+     inkscape:zoom="0.21957172"
+     inkscape:cx="799.28325"
+     inkscape:cy="1521.1431"
+     inkscape:window-width="1914"
+     inkscape:window-height="1000"
+     inkscape:window-x="1913"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="Ebene_2">
+    <inkscape:grid
+       id="grid6"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="50"
+       spacingy="50"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="2"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <style
+       id="style1">.cls-1{fill:#75ffaf;}.cls-2{fill:#e5e5e5;}</style>
+  </defs>
+  <g
+     id="Ebene_2"
+     data-name="Ebene 2">
+    <g
+       id="Ebene_2-2"
+       data-name="Ebene 2"
+       transform="matrix(1.4699263,0,0,1.512396,99.930634,100.19505)">
+      <g
+         id="g6"
+         style="fill:#75ffaf;fill-opacity:1">
+        <polygon
+           class="cls-1"
+           points="85.719,109.061 25.87,169.588 58.774,202.264 119.635,148.698 179.584,207.344 212.933,15.859 19.903,49.871 "
+           id="polygon4"
+           style="fill:#75ffaf;fill-opacity:1" />
+        <path
+           class="cls-1"
+           d="M 789.90989,144.454 357.9272,559.17807 352.22278,264.49085 c 0,0 362.1405,-131.653 420.84662,-152.88957 a 101.25365,101.25365 0 0 0 16.84049,32.85272 z"
+           id="path2"
+           style="fill:#75ffaf;fill-opacity:1" />
+        <path
+           class="cls-1"
+           d="M 807.0135,160.18647 380.56616,575.69558 H 675.52229 L 839.51,176.80986 c 0,0 -11.72971,-0.51617 -32.4965,-16.62339 z"
+           id="path3"
+           style="fill:#75ffaf;fill-opacity:1" />
+        <path
+           class="cls-1"
+           d="m 326.8324,499.192 c 0.2318,23.15039 0,109.51913 0,109.51913 H 435.78 c 0,0 -58.41444,69.006 -124.47839,13.356 C 250.1055,554.61939 318.48748,499.192 326.8324,499.192 Z"
+           id="path1"
+           style="fill:#75ffaf;fill-opacity:1" />
+        <circle
+           class="cls-1"
+           cx="874.30035"
+           cy="77.895752"
+           r="77.895752"
+           id="circle4"
+           style="fill:#75ffaf;fill-opacity:1" />
+      </g>
+      <g
+         id="g5"
+         style="fill:#ffffff">
+        <path
+           class="cls-2"
+           d="m 46.62658,876.56447 176.09816,0.58895 c 0,0 108.51534,-208.93251 108.22086,-208.49079 -0.29448,0.44172 -16.78527,-10.60123 -16.78527,-10.60123 L 210.9456,854.47858 H 91.829 L 304.148,652.17183 287.36272,635.82827 74.30757,837.84054 75.04376,727.41109 276.76155,625.816 270.13579,608.88348 46.62658,712.98164 Z"
+           id="path5"
+           style="fill:#ffffff" />
+        <path
+           class="cls-2"
+           d="m 31.25653,817.066 c 0.163,16.95456 0,80.20813 0,80.20813 h 76.62159 c 0,0 -44.3846,53.91154 -90.84663,13.15538 C -26.007,861.033 25.38764,817.066 31.25653,817.066 Z"
+           id="path4"
+           style="fill:#ffffff" />
+      </g>
+    </g>
+  </g>
+</svg>

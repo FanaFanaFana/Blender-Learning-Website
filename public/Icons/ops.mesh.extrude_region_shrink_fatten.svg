@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="100%"
+   height="100%"
+   viewBox="0 0 1600 1600"
+   version="1.1"
+   xml:space="preserve"
+   style="fill-rule:evenodd;clip-rule:evenodd;stroke-miterlimit:1.5;"
+   id="svg5"
+   sodipodi:docname="ops.mesh.extrude_region_shrink_fatten.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs5" /><sodipodi:namedview
+   id="namedview5"
+   pagecolor="#323232"
+   bordercolor="#000000"
+   borderopacity="0.25"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   inkscape:zoom="0.508125"
+   inkscape:cx="800.98401"
+   inkscape:cy="1103.075"
+   inkscape:window-width="1920"
+   inkscape:window-height="1009"
+   inkscape:window-x="1912"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg5" />
+    <g
+   id="extrude_region_shrink_fatten">
+        <g
+   id="White">
+            <path
+   d="M163.546,793.213L163.546,1442.54L788.009,1442.54"
+   style="fill:none;stroke:rgb(229,229,229);stroke-width:37.73px;"
+   id="path1" />
+        </g>
+        <g
+   id="Green">
+            <path
+   d="M142.73,423.594L1140.78,423.594L781.933,770.601L142.73,770.601L142.73,423.594Z"
+   style="fill:rgb(117,255,175);"
+   id="path2" />
+            <path
+   d="M 1165.52,452.31408 V 1464.6 H 809.06006 l 1.96802,-663.51492 z"
+   style="fill:#75ffaf"
+   id="path3"
+   sodipodi:nodetypes="ccccc" />
+            <path
+   d="m 1194.76,413.65306 261.39,-244.813 V 1219.37 l -261.39,238.66 z"
+   style="fill:#75ffaf"
+   id="path4"
+   sodipodi:nodetypes="ccccc" />
+            <path
+   d="M144.448,385.661L1165.52,385.661L1440.32,134.023L414.843,134.023L144.448,385.661Z"
+   style="fill:rgb(117,255,175);"
+   id="path5" />
+        </g>
+    </g>
+</svg>

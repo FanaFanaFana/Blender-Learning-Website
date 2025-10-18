@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:serif="http://www.serif.com/" width="100%" height="100%" viewBox="0 0 1600 1600" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g id="primitive_cylinder_add_gizmo">
+        <g id="Green">
+            <g transform="matrix(1.01601,1.01601,-1.01601,1.01601,322.262,-286.45)">
+                <path d="M389.276,187.935L443.466,242.125L365.142,320.449L443.466,398.773L389.276,452.963L310.952,374.639L232.627,452.963L178.437,398.773L256.761,320.449L178.437,242.125L232.627,187.935L310.952,266.259L389.276,187.935Z" style="fill:rgb(117,255,175);"/>
+            </g>
+            <g transform="matrix(1,0,0,1,21.1684,20.9859)">
+                <ellipse cx="960.323" cy="521.945" rx="478.934" ry="187.869" style="fill:none;stroke:rgb(117,255,175);stroke-width:40.39px;"/>
+            </g>
+            <path d="M1460.42,980.345C1199.72,1174.85 731.649,1169.7 502.557,980.345L502.557,542.931L502.557,1302.1C707.46,1512.2 1275.28,1502.96 1460.42,1302.1L1460.42,542.931" style="fill:none;stroke:rgb(117,255,175);stroke-width:40.39px;"/>
+            <path d="M1215.12,1429.29L1215.12,709.39" style="fill:none;stroke:rgb(117,255,175);stroke-width:40.39px;"/>
+            <path d="M742.183,709.39L742.183,1429.29" style="fill:none;stroke:rgb(117,255,175);stroke-width:40.39px;"/>
+        </g>
+    </g>
+</svg>

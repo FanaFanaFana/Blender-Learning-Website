@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:serif="http://www.serif.com/" width="100%" height="100%" viewBox="0 0 1600 1600" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g id="primitive_cone_add_gizmo" transform="matrix(1.11112,0,0,1.11112,-58.3861,-39.6272)">
+        <g id="Green">
+            <path d="M899.5,295.822L1323.52,1087.52C1466,1401.6 359.217,1402.66 470.541,1102.56L899.5,295.822Z" style="fill:none;stroke:rgb(117,255,175);stroke-width:36.35px;"/>
+            <path d="M1141.35,1291.15L899.433,295.822L657.654,1291.15" style="fill:none;stroke:rgb(117,255,175);stroke-width:36.35px;"/>
+            <g transform="matrix(0.914404,0.914404,-0.914404,0.914404,342.58,-222.138)">
+                <path d="M389.276,187.935L443.466,242.125L365.142,320.449L443.466,398.773L389.276,452.963L310.952,374.639L232.627,452.963L178.437,398.773L256.761,320.449L178.437,242.125L232.627,187.935L310.952,266.259L389.276,187.935Z" style="fill:rgb(117,255,175);"/>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="100%"
+   height="100%"
+   viewBox="0 0 1600 1600"
+   version="1.1"
+   xml:space="preserve"
+   style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"
+   id="svg5"
+   sodipodi:docname="ops.mesh.extrude_faces_move.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs5" /><sodipodi:namedview
+   id="namedview5"
+   pagecolor="#323232"
+   bordercolor="#000000"
+   borderopacity="0.25"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   inkscape:zoom="0.508125"
+   inkscape:cx="800.98401"
+   inkscape:cy="800"
+   inkscape:window-width="1920"
+   inkscape:window-height="1009"
+   inkscape:window-x="1912"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg5" />
+    <g
+   id="extrude_faces_move"
+   transform="matrix(1.24871,0,0,1.24871,-202.588,-120.994)">
+        <g
+   id="White">
+            <path
+   d="M 249.167,734.59608 H 281.13 V 1262.39 h 505.90483 v 37.04 H 249.167 Z"
+   style="fill:#e5e5e5"
+   id="path1"
+   sodipodi:nodetypes="ccccccc" />
+        </g>
+        <g
+   id="Green">
+            <rect
+   x="807.064"
+   y="731.444"
+   width="304.648"
+   height="567.989"
+   style="fill:rgb(117,255,175);"
+   id="rect1" />
+            <path
+   d="M 1139.366,723.941 1358.65,524.726 v 569.344 l -219.284,200.32 z"
+   style="fill:#75ffaf"
+   id="path2"
+   sodipodi:nodetypes="ccccc" />
+            <path
+   d="M 1353.7702,480.888 1114.8621,698.70313 H 841.17987 L 1079.53,480.888 Z"
+   style="fill:#75ffaf"
+   id="path3"
+   sodipodi:nodetypes="ccccc" />
+            <path
+   d="M 1060.11,199.546 V 455.362 L 817.58475,677.90525 v -258.035 z"
+   style="fill:#75ffaf"
+   id="path4"
+   sodipodi:nodetypes="ccccc" />
+            <rect
+   x="247.155"
+   y="418.737"
+   width="539.377"
+   height="292.995"
+   style="fill:rgb(117,255,175);"
+   id="rect4" />
+            <path
+   d="M 247.155,387.662 H 805.48796 L 1039.57,175.685 H 476.335 Z"
+   style="fill:#75ffaf"
+   id="path5"
+   sodipodi:nodetypes="ccccc" />
+        </g>
+    </g>
+</svg>

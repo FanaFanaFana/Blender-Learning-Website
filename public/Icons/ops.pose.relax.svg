@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="Calque_1"
+   data-name="Calque 1"
+   version="1.1"
+   viewBox="0 0 1600 950"
+   sodipodi:docname="ops.pose.relax.svg"
+   width="1600"
+   height="950"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#4c4c4c"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="true"
+     inkscape:zoom="0.41062701"
+     inkscape:cx="1044.7437"
+     inkscape:cy="756.16068"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Calque_1">
+    <inkscape:grid
+       id="grid1"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="50"
+       spacingy="50"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14902"
+       empspacing="2"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <style
+       id="style1">
+      .cls-1 {
+        fill: #d9aff5;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #e5e5e5;
+      }
+    </style>
+  </defs>
+  <g
+     id="g1"
+     transform="matrix(1.1850222,0,0,1.1850222,-29.177408,-352.20094)">
+    <g
+       id="g2"
+       style="fill:#d9aff5;fill-opacity:1">
+      <path
+         id="d9aff5"
+         class="cls-1"
+         d="M 700,754.69 842.13,896.82 700,1038.95 557.87,896.82 Z M 590.81,464.24 700,622.47 809.19,464.24 h -81.78 v -82.67 h -49.19 v 82.67 z"
+         style="fill:#d9aff5;fill-opacity:1" />
+    </g>
+    <g
+       id="g3"
+       style="fill:#ffffff">
+      <path
+         id="e5e5e5"
+         class="cls-2"
+         d="m 190,977.81 -81,-81 81,-81 81,81 z m 1101,-81 -81,-81 -81,81 81,81 z m -182.28,0 c 0,-9.11 -7.39,-16.5 -16.5,-16.5 h -70 c -9.11,0 -16.5,7.39 -16.5,16.5 0,9.11 7.39,16.5 16.5,16.5 h 70 c 9.11,0 16.5,-7.39 16.5,-16.5 z m -140,0 c 0,-9.11 -7.39,-16.5 -16.5,-16.5 h -70 c -9.11,0 -16.5,7.39 -16.5,16.5 0,9.11 7.39,16.5 16.5,16.5 h 70 c 9.11,0 16.5,-7.39 16.5,-16.5 z m -434.44,0 c 0,-9.11 -7.39,-16.5 -16.5,-16.5 h -70 c -9.11,0 -16.5,7.39 -16.5,16.5 0,9.11 7.39,16.5 16.5,16.5 h 70 c 9.11,0 16.5,-7.39 16.5,-16.5 z m -140,0 c 0,-9.11 -7.39,-16.5 -16.5,-16.5 h -70 c -9.11,0 -16.5,7.39 -16.5,16.5 0,9.11 7.39,16.5 16.5,16.5 h 70 c 9.11,0 16.5,-7.39 16.5,-16.5 z"
+         style="fill:#ffffff" />
+    </g>
+  </g>
+</svg>

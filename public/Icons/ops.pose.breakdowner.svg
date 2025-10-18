@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="Calque_1"
+   data-name="Calque 1"
+   version="1.1"
+   viewBox="0 0 1600 880"
+   sodipodi:docname="ops.pose.breakdowner.svg"
+   width="1600"
+   height="880"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#474747"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="true"
+     inkscape:zoom="0.58071429"
+     inkscape:cx="698.27798"
+     inkscape:cy="562.23862"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Calque_1">
+    <inkscape:grid
+       id="grid1"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="50"
+       spacingy="50"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14902"
+       empspacing="2"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <style
+       id="style1">
+      .cls-1 {
+        fill: #e5e5e5;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #75ffaf;
+      }
+    </style>
+  </defs>
+  <g
+     id="g1"
+     transform="matrix(1.1835653,0,0,1.1835653,-26.896685,-465.19823)">
+    <g
+       id="g2"
+       style="fill:#75ffaf;fill-opacity:1">
+      <path
+         id="_75ffaf"
+         class="cls-2"
+         transform="rotate(45)"
+         style="fill:#75ffaf;stroke-width:0px;fill-opacity:1"
+         d="m 1036.5273,46.575321 h 201 V 247.57532 h -201 z" />
+    </g>
+    <g
+       id="g3"
+       style="fill:#ffffff">
+      <path
+         id="e5e5e5"
+         class="cls-1"
+         d="m 190,641.81 -81,-81 81,-81 81,81 z m 1101,-81 -81,-81 -81,81 81,81 z m -762.83,354.2 c 4.09,-8.14 0.81,-18.06 -7.33,-22.15 -21.87,-10.99 -42.98,-22.64 -62.74,-34.62 -7.79,-4.73 -17.94,-2.24 -22.66,5.55 -4.73,7.79 -2.24,17.94 5.55,22.67 20.51,12.44 42.39,24.51 65.04,35.89 2.38,1.19 4.91,1.76 7.4,1.76 6.04,0 11.86,-3.33 14.76,-9.1 z M 402.19,841.54 c 5.44,-7.31 3.91,-17.65 -3.4,-23.08 -19.45,-14.45 -37.87,-29.73 -54.76,-45.43 -6.68,-6.21 -17.12,-5.82 -23.32,0.86 -6.2,6.67 -5.82,17.12 0.85,23.32 17.77,16.51 37.13,32.57 57.54,47.74 2.96,2.2 6.41,3.26 9.83,3.26 5.04,0 10.02,-2.3 13.26,-6.66 z M 293.1,744.93 c 6.99,-5.85 7.91,-16.26 2.06,-23.24 -15.25,-18.21 -29.26,-37.43 -41.63,-57.13 -4.85,-7.72 -15.03,-10.04 -22.75,-5.2 -7.72,4.85 -10.04,15.03 -5.2,22.75 13.17,20.96 28.06,41.41 44.27,60.76 3.26,3.9 7.94,5.91 12.66,5.91 3.74,0 7.5,-1.26 10.58,-3.85 z m 600.88,177.41 c 22.65,-11.38 44.53,-23.46 65.04,-35.89 7.79,-4.73 10.28,-14.87 5.55,-22.67 -4.73,-7.8 -14.87,-10.28 -22.67,-5.55 -19.76,11.99 -40.87,23.64 -62.74,34.62 -8.14,4.09 -11.43,14.01 -7.33,22.15 2.9,5.77 8.71,9.1 14.76,9.1 2.49,0 5.02,-0.57 7.4,-1.76 z m 126.92,-77.4 c 20.41,-15.16 39.76,-31.22 57.54,-47.74 6.67,-6.2 7.06,-16.64 0.85,-23.32 -6.2,-6.68 -16.64,-7.06 -23.32,-0.86 -16.89,15.7 -35.32,30.98 -54.76,45.43 -7.31,5.43 -8.84,15.77 -3.4,23.08 3.24,4.36 8.21,6.66 13.26,6.66 3.42,0 6.87,-1.06 9.83,-3.26 z m 109.25,-102.07 c 16.21,-19.36 31.11,-39.8 44.27,-60.76 4.85,-7.72 2.52,-17.9 -5.2,-22.75 -7.72,-4.85 -17.9,-2.52 -22.75,5.2 -12.37,19.69 -26.38,38.92 -41.63,57.13 -5.85,6.99 -4.93,17.39 2.06,23.24 3.09,2.59 6.85,3.85 10.58,3.85 4.71,0 9.4,-2.01 12.66,-5.91 z"
+         style="fill:#ffffff" />
+    </g>
+  </g>
+</svg>

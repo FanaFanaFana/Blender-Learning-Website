@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 1600 1600"
+   version="1.1"
+   id="svg3"
+   sodipodi:docname="ops.armature.bone.roll.svg"
+   width="1600"
+   height="1600"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview3"
+     pagecolor="#3d3d3d"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="true"
+     inkscape:zoom="0.23202878"
+     inkscape:cx="566.74004"
+     inkscape:cy="825.32865"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Ebene_2">
+    <inkscape:grid
+       id="grid4"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="50"
+       spacingy="50"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14902"
+       empspacing="2"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <style
+       id="style1">.cls-1{fill:#e5e5e5;}.cls-2{fill:#d9aff5;}</style>
+  </defs>
+  <g
+     id="Ebene_2"
+     data-name="Ebene 2"
+     transform="matrix(1.5545456,0,0,1.598826,100.20308,100.20307)">
+    <g
+       id="g4"
+       style="fill:#ffffff">
+      <polygon
+         class="cls-1"
+         points="105.994,744.736 105.11,378.552 672.717,166.528 661.675,142.675 77.282,357.791 77.282,798.184 526.067,799.951 755.319,236.761 731.024,227.043 503.098,772.123 131.613,773.006 710.264,209.816 682.435,188.172 "
+         id="polygon1"
+         style="fill:#ffffff" />
+      <path
+         class="cls-1"
+         d="m 48.86474,675.681 c -58.38436,38.65991 -64.362,138.29448 -18.40491,175.65644 45.92025,33.16565 129.20245,40.93252 166.23313,-28.41717 -116.6135,3.681 -146.06135,4.71165 -146.06135,4.71165 0,0 0.60954,-7.64998 -1.76687,-151.95092 z"
+         id="path1"
+         style="fill:#ffffff" />
+      <circle
+         class="cls-1"
+         cx="791.98132"
+         cy="109.54601"
+         r="109.54601"
+         id="circle1"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       id="g3"
+       inkscape:label="g3"
+       style="fill:#d9aff5;fill-opacity:1">
+      <path
+         class="cls-2"
+         d="m 730.877,405.93865 c 0,0 68.04736,142.37135 -20.61349,234.40491 7.5092,9.42331 23.70552,26.35583 32.9816,34.30675 C 759.7359,660.589 859.34327,523.43558 754.104,350.94479 c -10.8882,23.15337 -23.227,54.99386 -23.227,54.99386 z"
+         id="path2"
+         style="fill:#d9aff5;fill-opacity:1" />
+      <path
+         class="cls-2"
+         d="m 545.94449,127.65644 c 0,0 -195.23926,-104.46626 -307.8773,-23.411 -5.96319,-7.5092 -68.908,-69.79141 -68.908,-69.79141 l -38.65028,190.60118 191.2638,-31.58282 c 0,0 -47.6319,-47.92638 -53.37423,-53.44785 103.95092,-57.42331 216.80982,9.05521 216.80982,9.05521 z"
+         id="path3"
+         style="fill:#d9aff5;fill-opacity:1" />
+    </g>
+  </g>
+</svg>
