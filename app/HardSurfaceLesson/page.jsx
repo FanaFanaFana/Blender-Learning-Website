@@ -4,6 +4,7 @@
 import { useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import BackButton from '@/components/BackButton'
 
 // 👇 SAME imports every time!
 import { 
@@ -38,7 +39,7 @@ export default function HardSurfaceLesson() {
 
   const tabs = [
     { id: 'overview', icon: '/Icons/info.svg', label: 'Overview' },
-    { id: 'principles', icon: '/Icons/mesh_cube.svg', label: 'Core Principles' },
+    { id: 'principles', icon: '/Icons/mesh_cube.svg', label: 'Principles' },
     { id: 'techniques', icon: '/Icons/tool.svg', label: 'Techniques' },
     { id: 'workflow', icon: '/Icons/modifier.svg', label: 'Workflow' },
     { id: 'practice', icon: '/Icons/view_camera.svg', label: 'Practice' }
@@ -630,12 +631,20 @@ export default function HardSurfaceLesson() {
       <main>
         <LessonHero {...heroConfig} />
         
-        <TabNavigation 
-          tabs={tabs}
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-          activeColor={themeColor}
-        />
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem', marginBottom: '3rem' }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', position: 'relative' }}>
+    <BackButton />
+    
+    <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+      <TabNavigation 
+        tabs={tabs}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        activeColor={themeColor}
+      />
+    </div>
+  </div>
+</div>
 
         {/* Overview Tab */}
         {activeTab === 'overview' && (

@@ -25,24 +25,41 @@ export default function Header() {
           
           <GlobalSearch />
           
-          <nav className="nav" style={{ display: mobileMenuOpen ? 'flex' : '' }}>
-            <Link href="/#home" className="nav-link">
+          <nav className={`nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
+            <Link 
+              href="/#home" 
+              className="nav-link"
+              onClick={() => setMobileMenuOpen(false)}
+            >
               <Image src="/test1.svg" alt="" width={24} height={24} />
               <span>Home</span>
             </Link>
-            <Link href="/#courses" className="nav-link">
+            <Link 
+              href="/#courses" 
+              className="nav-link"
+              onClick={() => setMobileMenuOpen(false)}
+            >
               <Image src="/test2.svg" alt="" width={24} height={24} />
               <span>Courses</span>
             </Link>
-            <Link href="/#about" className="nav-link">
+            <Link 
+              href="/#about" 
+              className="nav-link"
+              onClick={() => setMobileMenuOpen(false)}
+            >
               <Image src="/test3.svg" alt="" width={24} height={24} />
               <span>About</span>
             </Link>
-            <Link href="/#contact" className="nav-link">
+            <Link 
+              href="/#contact" 
+              className="nav-link"
+              onClick={() => setMobileMenuOpen(false)}
+            >
               <Image src="/test4.svg" alt="" width={24} height={24} />
               <span>Contact</span>
             </Link>
           </nav>
+          
           <button 
             className="mobile-menu-btn" 
             aria-label="Toggle menu"

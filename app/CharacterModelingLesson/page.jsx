@@ -4,6 +4,7 @@
 import { useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import BackButton from '@/components/BackButton'
 
 // 👇 SAME imports every time!
 import { 
@@ -16,7 +17,7 @@ import {
 } from '@/components/shared/LessonComponents'
 
 export default function SculptingLesson() {
-  const [activeTab, setActiveTab] = useState('overview')
+  const [activeTab, setActiveTab] = useState('tools')
   const [selectedTool, setSelectedTool] = useState(null)
   const [currentPage, setCurrentPage] = useState(0)
 
@@ -625,12 +626,20 @@ export default function SculptingLesson() {
       <main>
         <LessonHero {...heroConfig} />
         
-        <TabNavigation 
-          tabs={tabs}
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-          activeColor={themeColor}
-        />
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem', marginBottom: '3rem' }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', position: 'relative' }}>
+    <BackButton />
+    
+    <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+      <TabNavigation 
+        tabs={tabs}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        activeColor={themeColor}
+      />
+    </div>
+  </div>
+</div>
 
         {/* Overview Tab */}
         {activeTab === 'overview' && (

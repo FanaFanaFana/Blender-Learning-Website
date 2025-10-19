@@ -4,6 +4,7 @@
 import { useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import BackButton from '@/components/BackButton'
 
 // Import our beautiful reusable components!
 import { 
@@ -16,7 +17,7 @@ import {
 } from '@/components/shared/LessonComponents'
 
 export default function InterfaceLesson() {
-  const [activeTab, setActiveTab] = useState('overview')
+  const [activeTab, setActiveTab] = useState('areas')
   const [selectedArea, setSelectedArea] = useState(null)
   const [currentPage, setCurrentPage] = useState(0)
 
@@ -926,137 +927,145 @@ const shortcuts = [
   // RENDER
   // ============================================
   
-  return (
-    <div className="page-wrapper">
-      <Header />
+ return (
+  <div className="page-wrapper">
+    <Header />
+    
+    <main>
+      <LessonHero {...heroConfig} />
       
-      <main>
-        <LessonHero {...heroConfig} />
-        
-        <TabNavigation 
-          tabs={tabs}
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-          activeColor={themeColor}
-        />
-
-        {/* Overview Tab */}
-        {activeTab === 'overview' && (
-          <section style={{ padding: '4rem 0' }}>
-            <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
-              <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-                <SectionHeader 
-                  title="Understanding Blender's Workspace"
-                  description="Blender's interface is designed to be highly customizable and efficient. Once you understand the basic areas, you'll be able to navigate confidently and work faster."
-                  color={themeColor}
-                />
-
-                <div style={{ display: 'grid', gap: '2rem' }}>
-                  {overviewCards.map((card, idx) => (
-                    <InfoCard key={idx} {...card} />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Interface Areas Tab */}
-        {activeTab === 'areas' && (
-          <section style={{ padding: '4rem 0' }}>
-            <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
-              <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
-                Interface Areas
-              </h2>
-              <p style={{ textAlign: 'center', color: '#8fa9bd', fontSize: '1.25rem', marginBottom: '3rem' }}>
-                Click on any area to learn more about it
-              </p>
-
-              <div style={{ display: 'grid', gap: '3rem' }}>
-                {interfaceAreas.map((category, idx) => (
-                  <div key={idx}>
-                    <h3 style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1.5rem', color: category.color }}>
-                      {category.name}
-                    </h3>
-
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-                      {category.areas.map((area, areaIdx) => (
-                        <ClickableCard
-                          key={areaIdx}
-                          item={area}
-                          color={category.color}
-                          onClick={() => {
-                            setSelectedArea({ ...area, color: category.color })
-                            setCurrentPage(0)
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Shortcuts Tab */}
-        {activeTab === 'shortcuts' && (
-          <section style={{ padding: '4rem 0' }}>
-            <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
-              <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
-                Essential Shortcuts
-              </h2>
-              <p style={{ textAlign: 'center', color: '#8fa9bd', fontSize: '1.25rem', marginBottom: '3rem' }}>
-                Master these keyboard shortcuts to work faster in Blender
-              </p>
-
-              <div style={{ display: 'grid', gap: '2rem', maxWidth: '1100px', margin: '0 auto' }}>
-                {shortcuts.map((section, idx) => (
-                  <div key={idx} style={{ background: 'rgba(21, 35, 47, 0.6)', padding: '2rem', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                    <h3 style={{ fontSize: '1.75rem', marginBottom: '1.5rem', color: themeColor }}>{section.category}</h3>
-                    <div style={{ display: 'grid', gap: '1rem' }}>
-                      {section.items.map((item, itemIdx) => (
-                        <div key={itemIdx} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', background: 'rgba(13, 27, 42, 0.5)', borderRadius: '8px' }}>
-                          <span style={{ color: '#b0c4d4', fontSize: '1.1rem' }}>{item.action}</span>
-                          <code style={{ background: 'rgba(249, 115, 22, 0.2)', color: '#fb923c', padding: '0.5rem 1rem', borderRadius: '6px', fontFamily: 'monospace', fontSize: '1rem', fontWeight: '600' }}>
-                            {item.key}
-                          </code>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Tip Box */}
-              <div style={{ maxWidth: '1100px', margin: '3rem auto 0', background: 'rgba(249, 115, 22, 0.1)', padding: '2rem', borderRadius: '16px', border: `2px solid ${themeColor}40` }}>
-                <div style={{ display: 'flex', alignItems: 'start', gap: '1rem' }}>
-                  <span style={{ fontSize: '2rem' }}>💡</span>
-                  <div>
-                    <h4 style={{ fontSize: '1.3rem', marginBottom: '0.5rem', color: themeColor }}>Pro Tip: Search Everything</h4>
-                    <p style={{ color: '#b0c4d4', margin: 0, lineHeight: '1.6' }}>
-                      Can't remember a shortcut? Press F3 (or Spacebar) to open the search menu. You can search for any command, tool, or menu item. It's the fastest way to find what you need!
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {selectedArea && (
-          <DetailModal
-            item={selectedArea}
-            currentPage={currentPage}
-            onPageChange={setCurrentPage}
-            onClose={() => setSelectedArea(null)}
-          />
-        )}
-      </main>
-
-      <Footer />
+     <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem', marginBottom: '3rem' }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', position: 'relative' }}>
+    <BackButton />
+    
+    <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+      <TabNavigation 
+        tabs={tabs}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        activeColor={themeColor}
+      />
     </div>
-  )
+  </div>
+</div>
+
+      {/* Overview Tab */}
+      {activeTab === 'overview' && (
+        <section style={{ padding: '4rem 0' }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
+            <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+              <SectionHeader 
+                title="Understanding Blender's Workspace"
+                description="Blender's interface is designed to be highly customizable and efficient. Once you understand the basic areas, you'll be able to navigate confidently and work faster."
+                color={themeColor}
+              />
+
+              <div style={{ display: 'grid', gap: '2rem' }}>
+                {overviewCards.map((card, idx) => (
+                  <InfoCard key={idx} {...card} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Interface Areas Tab */}
+      {activeTab === 'areas' && (
+        <section style={{ padding: '4rem 0' }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
+            <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
+              Interface Areas
+            </h2>
+            <p style={{ textAlign: 'center', color: '#8fa9bd', fontSize: '1.25rem', marginBottom: '3rem' }}>
+              Click on any area to learn more about it
+            </p>
+
+            <div style={{ display: 'grid', gap: '3rem' }}>
+              {interfaceAreas.map((category, idx) => (
+                <div key={idx}>
+                  <h3 style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1.5rem', color: category.color }}>
+                    {category.name}
+                  </h3>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+                    {category.areas.map((area, areaIdx) => (
+                      <ClickableCard
+                        key={areaIdx}
+                        item={area}
+                        color={category.color}
+                        onClick={() => {
+                          setSelectedArea({ ...area, color: category.color })
+                          setCurrentPage(0)
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Shortcuts Tab */}
+      {activeTab === 'shortcuts' && (
+        <section style={{ padding: '4rem 0' }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
+            <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
+              Essential Shortcuts
+            </h2>
+            <p style={{ textAlign: 'center', color: '#8fa9bd', fontSize: '1.25rem', marginBottom: '3rem' }}>
+              Master these keyboard shortcuts to work faster in Blender
+            </p>
+
+            <div style={{ display: 'grid', gap: '2rem', maxWidth: '1100px', margin: '0 auto' }}>
+              {shortcuts.map((section, idx) => (
+                <div key={idx} style={{ background: 'rgba(21, 35, 47, 0.6)', padding: '2rem', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                  <h3 style={{ fontSize: '1.75rem', marginBottom: '1.5rem', color: themeColor }}>{section.category}</h3>
+                  <div style={{ display: 'grid', gap: '1rem' }}>
+                    {section.items.map((item, itemIdx) => (
+                      <div key={itemIdx} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', background: 'rgba(13, 27, 42, 0.5)', borderRadius: '8px' }}>
+                        <span style={{ color: '#b0c4d4', fontSize: '1.1rem' }}>{item.action}</span>
+                        <code style={{ background: 'rgba(249, 115, 22, 0.2)', color: '#fb923c', padding: '0.5rem 1rem', borderRadius: '6px', fontFamily: 'monospace', fontSize: '1rem', fontWeight: '600' }}>
+                          {item.key}
+                        </code>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Tip Box */}
+            <div style={{ maxWidth: '1100px', margin: '3rem auto 0', background: 'rgba(249, 115, 22, 0.1)', padding: '2rem', borderRadius: '16px', border: `2px solid ${themeColor}40` }}>
+              <div style={{ display: 'flex', alignItems: 'start', gap: '1rem' }}>
+                <span style={{ fontSize: '2rem' }}>💡</span>
+                <div>
+                  <h4 style={{ fontSize: '1.3rem', marginBottom: '0.5rem', color: themeColor }}>Pro Tip: Search Everything</h4>
+                  <p style={{ color: '#b0c4d4', margin: 0, lineHeight: '1.6' }}>
+                    Can't remember a shortcut? Press F3 (or Spacebar) to open the search menu. You can search for any command, tool, or menu item. It's the fastest way to find what you need!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {selectedArea && (
+        <DetailModal
+          item={selectedArea}
+          currentPage={currentPage}
+          onPageChange={setCurrentPage}
+          onClose={() => setSelectedArea(null)}
+        />
+      )}
+    </main>
+
+    <Footer />
+  </div>
+)
 }
 
 // ============================================

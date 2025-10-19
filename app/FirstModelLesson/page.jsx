@@ -4,6 +4,7 @@
 import { useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import BackButton from '@/components/BackButton'
 
 // Import our beautiful reusable components!
 import { 
@@ -16,7 +17,7 @@ import {
 } from '@/components/shared/LessonComponents'
 
 export default function FirstModelLesson() {
-  const [activeTab, setActiveTab] = useState('overview')
+  const [activeTab, setActiveTab] = useState('steps')
   const [selectedStep, setSelectedStep] = useState(null)
   const [currentPage, setCurrentPage] = useState(0)
 
@@ -358,12 +359,20 @@ export default function FirstModelLesson() {
       <main>
         <LessonHero {...heroConfig} />
         
-        <TabNavigation 
-          tabs={tabs}
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-          activeColor={themeColor}
-        />
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem', marginBottom: '3rem' }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', position: 'relative' }}>
+    <BackButton />
+    
+    <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+      <TabNavigation 
+        tabs={tabs}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        activeColor={themeColor}
+      />
+    </div>
+  </div>
+</div>
 
         {/* Overview Tab */}
         {activeTab === 'overview' && (
