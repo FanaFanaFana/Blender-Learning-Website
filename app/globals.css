@@ -47,13 +47,13 @@ body {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: 1.9rem;
+  font-size: clamp(1.2rem, 3vw, 1.9rem);
   font-weight: 600;
 }
 
 .logo-img {
-  width: 60px;
-  height: 60px;
+  width: clamp(40px, 8vw, 60px);
+  height: clamp(40px, 8vw, 60px);
   object-fit: contain;
 }
 
@@ -68,7 +68,7 @@ body {
   gap: 0.5rem;
   color: #ffffff;
   text-decoration: none;
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 2vw, 1.3rem);
   transition: color 0.3s ease;
 }
 
@@ -83,6 +83,7 @@ body {
   background: none;
   border: none;
   cursor: pointer;
+  padding: 0.5rem;
 }
 
 .mobile-menu-btn span {
@@ -106,14 +107,14 @@ body {
 }
 
 .hero-text h1 {
-  font-size: 5rem;
+  font-size: clamp(2rem, 6vw, 5rem);
   font-weight: 700;
   margin-bottom: 1.5rem;
   line-height: 1.1;
 }
 
 .hero-text p {
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
   color: #b0c4d4;
   margin-bottom: 2.5rem;
   line-height: 1.5;
@@ -123,8 +124,8 @@ body {
   background: #2e6ca7;
   color: #ffffff;
   border: none;
-  padding: 1rem 2.5rem;
-  font-size: 1.25rem;
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2.5rem);
+  font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 600;
   border-radius: 8px;
   cursor: pointer;
@@ -145,8 +146,10 @@ body {
 }
 
 #monitor-canvas {
-  width: 600px;
-  height: 450px;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  aspect-ratio: 4/3;
   cursor: grab;
 }
 
@@ -162,13 +165,13 @@ body {
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
 }
 
 .feature-card {
   background: rgba(21, 35, 47, 0.8);
-  padding: 3rem 2rem;
+  padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2rem);
   border-radius: 16px;
   text-align: center;
   transition: all 0.3s ease;
@@ -191,13 +194,13 @@ body {
 }
 
 .feature-icon img {
-  max-width: 320px;
+  max-width: min(320px, 80vw);
   max-height: 320px;
   object-fit: contain;
 }
 
 .feature-card h3 {
-  font-size: 1.75rem;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
   font-weight: 600;
 }
 
@@ -228,7 +231,7 @@ body {
 }
 
 .learn-hero-title {
-  font-size: 5rem;
+  font-size: clamp(2.5rem, 8vw, 5rem);
   font-weight: 800;
   margin-bottom: 1.5rem;
   line-height: 1.1;
@@ -242,14 +245,14 @@ body {
 }
 
 .learn-hero-subtitle {
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
   color: #b0c4d4;
   margin-bottom: 3rem;
 }
 
 .learn-hero-badges {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   max-width: 900px;
   margin: 0 auto;
@@ -274,7 +277,7 @@ body {
 }
 
 .badge-icon {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
   flex-shrink: 0;
 }
 
@@ -285,13 +288,13 @@ body {
 
 .hero-badge strong {
   display: block;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
   margin-bottom: 0.25rem;
   color: #ffffff;
 }
 
 .hero-badge p {
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
   color: #7a8c9e;
   margin: 0;
 }
@@ -303,7 +306,7 @@ body {
 }
 
 .section-title {
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
   text-align: center;
   margin-bottom: 0.75rem;
@@ -312,7 +315,7 @@ body {
 .section-subtitle {
   text-align: center;
   color: #8fa9bd;
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   margin-bottom: 3rem;
 }
 
@@ -328,12 +331,12 @@ body {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1rem 2rem;
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
   background: rgba(21, 35, 47, 0.6);
   border: 2px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   color: #ffffff;
-  font-size: 1.7rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.7rem);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -341,8 +344,8 @@ body {
 
 /* Learning path button icons */
 .path-button img {
-  max-width: 60px;
-  max-height: 60px;
+  max-width: clamp(40px, 8vw, 60px);
+  max-height: clamp(40px, 8vw, 60px);
   width: auto;
   height: auto;
   object-fit: contain;
@@ -372,13 +375,13 @@ body {
 }
 
 .path-header h3 {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
   margin-bottom: 0.5rem;
 }
 
 .path-header p {
   color: #8fa9bd;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
 }
 
 .lessons-grid {
@@ -411,7 +414,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 700;
   flex-shrink: 0;
 }
@@ -421,7 +424,7 @@ body {
 }
 
 .lesson-info h4 {
-  font-size: 1.15rem;
+  font-size: clamp(1rem, 2vw, 1.15rem);
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
@@ -429,7 +432,8 @@ body {
 .lesson-meta {
   display: flex;
   gap: 1rem;
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+  flex-wrap: wrap;
 }
 
 .lesson-duration {
@@ -439,14 +443,14 @@ body {
 .lesson-difficulty {
   padding: 0.25rem 0.75rem;
   border-radius: 12px;
-  font-size: 0.85rem;
+  font-size: clamp(0.75rem, 1.5vw, 0.85rem);
   font-weight: 600;
 }
 
 .start-lesson-btn {
   background: transparent;
   border: none;
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 2vw, 1.1rem);
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease;
@@ -465,7 +469,7 @@ body {
 
 .resources-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   max-width: 1300px;
   margin: 0 auto;
@@ -499,7 +503,7 @@ body {
 }
 
 .resource-card h3 {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
   margin-bottom: 1.5rem;
   text-align: center;
   font-weight: 700;
@@ -517,12 +521,12 @@ body {
   gap: 0.75rem;
   padding: 0.5rem 0;
   color: #b0c4d4;
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
 }
 
 .resource-list span {
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 2vw, 1.1rem);
 }
 
 .resource-btn {
@@ -532,7 +536,7 @@ body {
   border-radius: 10px;
   color: #ffffff;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -553,107 +557,16 @@ body {
     text-align: center;
   }
 
-  .hero-text h1 {
-    font-size: 4rem;
+  .container {
+    padding: 0 1.5rem;
   }
-
-  .learn-hero-title {
-    font-size: 4rem;
-  }
-  
-
-  .resources-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  
 }
 
 @media (max-width: 768px) {
-  .nav {
-    display: none;
-  }
-
-  .mobile-menu-btn {
-    display: flex;
-  }
-
-  .hero-text h1 {
-    font-size: 3rem;
-  }
-
-  .hero-text p {
-    font-size: 1.25rem;
-  }
-
-  .features-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .learn-hero-title {
-    font-size: 3rem;
-  }
-
-  .learn-hero-badges {
-    grid-template-columns: 1fr;
-  }
-
-  .path-selector {
-    flex-direction: column;
-  }
-
-  .resources-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .section-title {
-    font-size: 2.5rem;
-  }
-}
-
-@media (max-width: 480px) {
   body {
     padding: 1rem;
   }
 
-  .page-wrapper {
-    border-radius: 16px;
-  }
-
-  .hero-text h1 {
-    font-size: 2.5rem;
-  }
-
-  .hero-text p {
-    font-size: 1.1rem;
-  }
-
-  .cta-button {
-    padding: 0.875rem 2rem;
-    font-size: 1.1rem;
-  }
-
-  #monitor-canvas {
-    width: 100%;
-    height: 300px;
-  }
-
-  .learn-hero-title {
-    font-size: 2.5rem;
-  }
-
-  .lesson-card {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .lesson-meta {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 768px) {
   .nav {
     display: none;
     position: absolute;
@@ -686,5 +599,56 @@ body {
 
   .header {
     position: relative;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .path-selector {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .path-button {
+    justify-content: center;
+  }
+
+  .lesson-card:hover {
+    transform: translateX(5px);
+  }
+}
+
+@media (max-width: 480px) {
+  .page-wrapper {
+    border-radius: 16px;
+    max-width: 100%;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .lesson-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .lesson-meta {
+    justify-content: center;
+  }
+
+  .start-lesson-btn:hover {
+    transform: scale(1.1);
+  }
+
+  .hero-badge {
+    flex-direction: column;
+    text-align: center;
   }
 }

@@ -6,6 +6,12 @@ export const metadata = {
   description: 'Master the art of 3D modeling, animation, and rendering with Blender',
 }
 
+// Add this separate viewport export
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={customFont.variable}>
