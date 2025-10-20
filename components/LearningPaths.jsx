@@ -14,14 +14,14 @@ export default function BlenderCompendium() {
       color: '#3b82c4',
       description: 'Comprehensive guides on creating 3D objects and characters',
       topics: [
-        { title: 'Interface Areas', description: 'Understanding Blender\'s workspace layout', icon: '/Icons/OUTLINER.svg', link: '/InterfaceLesson' },
-        { title: 'First 3D Model', description: 'Creating your first object in Blender', icon: '/Icons/MESH_CUBE.svg', link: '/FirstModelLesson' },
-        { title: 'Edit Mode', description: 'Tools and techniques for mesh editing', icon: '/Icons/EDITMODE_HLT.svg', link: '/EditModeLesson' },
-        { title: 'Modifiers', description: 'Non-destructive modeling techniques', icon: '/Icons/MODIFIER.svg', link: '/modifierlesson' },
-        { title: 'Sculpting', description: 'Digital sculpting tools and workflows', icon: '/Icons/SCULPTMODE_HLT.svg', link: '/SculptingLesson' },
-        { title: 'Character Modeling', description: 'Creating character meshes and topology', icon: '/Icons/MESH_MONKEY.svg', link: '/CharacterModelingLesson' },
-        { title: 'Hard Surface Modeling', description: 'Mechanical and architectural modeling', icon: '/Icons/MOD_BEVEL.svg', link: '/HardSurfaceLesson' },
-        { title: 'Product Design', description: 'Design workflows for product visualization', icon: '/Icons/MESH_TORUS.svg', link: '/ProductDesignLesson' }
+        { title: 'Interface Areas', description: 'Understanding Blender\'s workspace layout', icon: '/Icons/Outliner.svg', link: '/InterfaceLesson' },
+        { title: 'First 3D Model', description: 'Creating your first object in Blender', icon: '/Icons/Mesh_cube.svg', link: '/FirstModelLesson' },
+        { title: 'Edit Mode', description: 'Tools and techniques for mesh editing', icon: '/Icons/Editmode_hlt.svg', link: '/EditModeLesson' },
+        { title: 'Modifiers', description: 'Non-destructive modeling techniques', icon: '/Icons/Modifier.svg', link: '/modifierlesson' },
+        { title: 'Sculpting', description: 'Digital sculpting tools and workflows', icon: '/Icons/Sculptmode_hlt.svg', link: '/SculptingLesson' },
+        { title: 'Character Modeling', description: 'Creating character meshes and topology', icon: '/Icons/Mesh_monkey.svg', link: '/CharacterModelingLesson' },
+        { title: 'Hard Surface Modeling', description: 'Mechanical and architectural modeling', icon: '/Icons/Mod_bevel.svg', link: '/HardSurfaceLesson' },
+        { title: 'Product Design', description: 'Design workflows for product visualization', icon: '/Icons/Mesh_torus.svg', link: '/ProductDesignLesson' }
       ]
     },
     rendering: {
@@ -30,14 +30,14 @@ export default function BlenderCompendium() {
       color: '#f59e0b',
       description: 'Techniques and workflows for creating photorealistic images',
       topics: [
-        { title: 'Introduction to Rendering', description: 'Understanding render engines and settings', icon: '/Icons/RENDER_STILL.svg', link: null },
-        { title: 'Lighting Fundamentals', description: 'Light types and lighting theory', icon: '/Icons/LIGHT.svg', link: null },
-        { title: 'Camera Setup & Composition', description: 'Camera settings and framing techniques', icon: '/Icons/CAMERA_DATA.svg', link: null },
-        { title: 'Materials & Shaders', description: 'Creating realistic materials', icon: '/Icons/MATERIAL.svg', link: null },
-        { title: 'PBR Texturing', description: 'Physically-based rendering workflows', icon: '/Icons/TEXTURE.svg', link: null },
-        { title: 'Advanced Lighting', description: 'Complex lighting setups and techniques', icon: '/Icons/LIGHT_SUN.svg', link: null },
-        { title: 'Compositing & Post-Processing', description: 'Final touches and color grading', icon: '/Icons/NODE_COMPOSITING.svg', link: null },
-        { title: 'Portfolio Renders', description: 'Creating professional showcase work', icon: '/Icons/RENDER_RESULT.svg', link: null }
+        { title: 'Introduction to Rendering', description: 'Understanding render engines and settings', icon: '/Icons/Render_still.svg', link: null },
+        { title: 'Lighting Fundamentals', description: 'Light types and lighting theory', icon: '/Icons/Light.svg', link: null },
+        { title: 'Camera Setup & Composition', description: 'Camera settings and framing techniques', icon: '/Icons/Camera_data.svg', link: null },
+        { title: 'Materials & Shaders', description: 'Creating realistic materials', icon: '/Icons/Material.svg', link: null },
+        { title: 'PBR Texturing', description: 'Physically-based rendering workflows', icon: '/Icons/Texture.svg', link: null },
+        { title: 'Advanced Lighting', description: 'Complex lighting setups and techniques', icon: '/Icons/Light_sun.svg', link: null },
+        { title: 'Compositing & Post-Processing', description: 'Final touches and color grading', icon: '/Icons/Node_compositing.svg', link: null },
+        { title: 'Portfolio Renders', description: 'Creating professional showcase work', icon: '/Icons/Render_result.svg', link: null }
       ]
     },
     animation: {
