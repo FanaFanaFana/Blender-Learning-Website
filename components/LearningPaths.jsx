@@ -14,7 +14,7 @@ export default function BlenderCompendium() {
       color: '#3b82c4',
       description: 'Comprehensive guides on creating 3D objects and characters',
       topics: [
-        { title: 'Interface Areas', description: 'Understanding Blender\'s workspace layout', icon: '/Icons/Outliner.svg', link: '/InterfaceLesson' },
+        { title: 'Interface Areas', description: 'Understanding Blender\'s workspace layout', icon: '/Icons/outliner.svg', link: '/InterfaceLesson' },
         { title: 'First 3D Model', description: 'Creating your first object in Blender', icon: '/Icons/Mesh_cube.svg', link: '/FirstModelLesson' },
         { title: 'Edit Mode', description: 'Tools and techniques for mesh editing', icon: '/Icons/Editmode_hlt.svg', link: '/EditModeLesson' },
         { title: 'Modifiers', description: 'Non-destructive modeling techniques', icon: '/Icons/Modifier.svg', link: '/modifierlesson' },
@@ -30,14 +30,14 @@ export default function BlenderCompendium() {
       color: '#f59e0b',
       description: 'Techniques and workflows for creating photorealistic images',
       topics: [
-        { title: 'Introduction to Rendering', description: 'Understanding render engines and settings', icon: './public/Icons/Render_still.svg', link: null },
-        { title: 'Lighting Fundamentals', description: 'Light types and lighting theory', icon: './public/Icons/Light.svg', link: null },
-        { title: 'Camera Setup & Composition', description: 'Camera settings and framing techniques', icon: './public/Icons/Camera_data.svg', link: null },
-        { title: 'Materials & Shaders', description: 'Creating realistic materials', icon: './public/Icons/Material.svg', link: null },
-        { title: 'PBR Texturing', description: 'Physically-based rendering workflows', icon: './public/Icons/Texture.svg', link: null },
-        { title: 'Advanced Lighting', description: 'Complex lighting setups and techniques', icon: './public/Icons/Light_sun.svg', link: null },
-        { title: 'Compositing & Post-Processing', description: 'Final touches and color grading', icon: './public/Icons/Node_compositing.svg', link: null },
-        { title: 'Portfolio Renders', description: 'Creating professional showcase work', icon: './public/Icons/Render_result.svg', link: null }
+        { title: 'Introduction to Rendering', description: 'Understanding render engines and settings', icon: '/Icons/Render_still.svg', link: null },
+        { title: 'Lighting Fundamentals', description: 'Light types and lighting theory', icon: '/Icons/Light.svg', link: null },
+        { title: 'Camera Setup & Composition', description: 'Camera settings and framing techniques', icon: '/Icons/Camera_data.svg', link: null },
+        { title: 'Materials & Shaders', description: 'Creating realistic materials', icon: '/Icons/Material.svg', link: null },
+        { title: 'PBR Texturing', description: 'Physically-based rendering workflows', icon: '/Icons/Texture.svg', link: null },
+        { title: 'Advanced Lighting', description: 'Complex lighting setups and techniques', icon: '/Icons/Light_sun.svg', link: null },
+        { title: 'Compositing & Post-Processing', description: 'Final touches and color grading', icon: '/Icons/Node_compositing.svg', link: null },
+        { title: 'Portfolio Renders', description: 'Creating professional showcase work', icon: '/Icons/Render_result.svg', link: null }
       ]
     },
     animation: {
@@ -46,14 +46,14 @@ export default function BlenderCompendium() {
       color: '#8b5cf6',
       description: 'Guide to bringing your 3D creations to life with motion',
       topics: [
-        { title: 'Animation Principles', description: 'Core concepts of movement and timing', icon: './public/Icons/ANIM.svg', link: null },
-        { title: 'Keyframe Basics', description: 'Creating and editing keyframes', icon: './public/Icons/KEYFRAME.svg', link: null },
-        { title: 'Timeline & Graph Editor', description: 'Animation tools and curve editing', icon: './public/Icons/GRAPH.svg', link: null },
-        { title: 'Rigging for Animation', description: 'Creating bone structures and controls', icon: './public/Icons/ARMATURE_DATA.svg', link: null },
-        { title: 'Walk Cycles', description: 'Animating natural character movement', icon: './public/Icons/POSE_HLT.svg', link: null },
-        { title: 'Facial Animation', description: 'Expression and lip-sync techniques', icon: './public/Icons/SHAPEKEY_DATA.svg', link: null },
-        { title: 'Physics & Simulations', description: 'Dynamic simulations and effects', icon: './public/Icons/PHYSICS.svg', link: null },
-        { title: 'Full Character Animation', description: 'Complete character performance', icon: './public/Icons/ARMATURE_DATA.svg', link: null }
+        { title: 'Animation Principles', description: 'Core concepts of movement and timing', icon: '/Icons/ANIM.svg', link: null },
+        { title: 'Keyframe Basics', description: 'Creating and editing keyframes', icon: '/Icons/KEYFRAME.svg', link: null },
+        { title: 'Timeline & Graph Editor', description: 'Animation tools and curve editing', icon: '/Icons/GRAPH.svg', link: null },
+        { title: 'Rigging for Animation', description: 'Creating bone structures and controls', icon: '/Icons/ARMATURE_DATA.svg', link: null },
+        { title: 'Walk Cycles', description: 'Animating natural character movement', icon: '/Icons/POSE_HLT.svg', link: null },
+        { title: 'Facial Animation', description: 'Expression and lip-sync techniques', icon: '/Icons/SHAPEKEY_DATA.svg', link: null },
+        { title: 'Physics & Simulations', description: 'Dynamic simulations and effects', icon: '/Icons/PHYSICS.svg', link: null },
+        { title: 'Full Character Animation', description: 'Complete character performance', icon: '/Icons/ARMATURE_DATA.svg', link: null }
       ]
     }
   }
