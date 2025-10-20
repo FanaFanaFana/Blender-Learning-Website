@@ -14,13 +14,13 @@ export default function Header() {
         <div className="nav-wrapper">
           <div className="logo">
             <Image 
-              src="/blender.svg" 
+              src="/logo.png" 
               alt="Blender Logo" 
               width={40} 
               height={40}
               className="logo-img" 
             />
-            <span>Blender</span>
+            <span>Blend Docs</span>
           </div>
           
           <GlobalSearch />
