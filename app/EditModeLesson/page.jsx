@@ -22,7 +22,7 @@ export default function EditModeLesson() {
   const [currentPage, setCurrentPage] = useState(0)
 
   // ============================================
-  // CONFIGURATION - FIXED ICON PATHS
+  // CONFIGURATION - ENHANCED WITH MORE TOOLS!
   // ============================================
   
   const heroConfig = {
@@ -31,9 +31,9 @@ export default function EditModeLesson() {
     subtitle: 'Master the art of manipulating vertices, edges, and faces',
     gradientColors: 'linear-gradient(135deg, #10b981, #34d399, #6ee7b7)',
     badges: [
-      { icon: '/Icons/time.svg', title: '25 Minutes', subtitle: 'Lesson duration' },
+      { icon: '/Icons/time.svg', title: '35 Minutes', subtitle: 'Lesson duration' },
       { icon: '/Icons/user.svg', title: 'Beginner', subtitle: 'Skill level' },
-      { icon: '/Icons/editmode_hlt.svg', title: '3 Modes', subtitle: 'Vertex, Edge, Face' }
+      { icon: '/Icons/editmode_hlt.svg', title: '20+ Tools', subtitle: 'Complete toolkit' }
     ]
   }
 
@@ -97,7 +97,7 @@ export default function EditModeLesson() {
             title: 'Merging Vertices',
             content: 'Select multiple vertices and press M to merge them. Choose "At Center", "At Cursor", or "At First/Last". Perfect for closing gaps or fixing duplicate vertices.',
             tips: [
-              'Alt+M is the merge shortcut',
+              'M opens merge menu',
               'Use "By Distance" to auto-merge close vertices',
               'Merging reduces polygon count',
               'Great for cleaning up imported models'
@@ -202,7 +202,6 @@ export default function EditModeLesson() {
           {
             title: 'Basic Extrusion',
             content: 'Select vertices, edges, or faces, press E, move mouse, click. That\'s it! The selected elements move outward while new geometry connects them to the original.',
-            image: '/examples/extrude-basic.gif',
             tips: [
               'E for extrude, G for grab, R for rotate, S for scale',
               'Can extrude multiple times in succession',
@@ -224,42 +223,22 @@ export default function EditModeLesson() {
       }
     },
     {
-      name: 'Knife Tool',
-      icon: '/Icons/ops.mesh.knife_tool.svg',
-      color: '#f59e0b',
-      description: 'Cut new edges into mesh',
-      detailedInfo: {
-        overview: 'The Knife tool lets you draw new edges directly onto your mesh. Click to place vertices, then press Enter to confirm or Esc to cancel.',
-        pages: [
-          {
-            title: 'Using the Knife',
-            content: 'Press K to activate Knife tool. Click on your mesh to place cut points. The tool shows a preview line. Press Enter to confirm cuts, Esc to cancel.',
-            tips: [
-              'C enables angle constraint (45° snapping)',
-              'Hold Ctrl to snap to edge midpoints',
-              'Z enables cut-through (cuts backfaces too)',
-              'Great for adding detail to flat surfaces'
-            ]
-          }
-        ]
-      }
-    },
-    {
-      name: 'Loop Cut',
-      icon: '/Icons/ops.mesh.loopcut_slide.svg',
+      name: 'Inset Faces',
+      icon: '/Icons/ops.mesh.inset.svg',
       color: '#8b5cf6',
-      description: 'Add edge loops to mesh',
+      description: 'Create faces inside faces',
       detailedInfo: {
-        overview: 'Loop Cut adds complete rings of edges around your mesh. Essential for adding subdivision and controlling deformation in organic models.',
+        overview: 'Inset creates smaller faces inside your selected faces. Perfect for adding details like panels, windows, or decorative elements.',
         pages: [
           {
-            title: 'Placing Loop Cuts',
-            content: 'Press Ctrl+R, hover over mesh to preview, click to confirm position, move to place, click again. Scroll wheel adds multiple loops at once!',
+            title: 'Using Inset',
+            content: 'Select faces (press 3), then press I. Move mouse inward and click. A new face appears inside with edges connecting to the original.',
             tips: [
-              'Scroll mouse wheel for multiple loops',
-              'E after placing to evenly space',
-              'Double-click edges to select loops first',
-              'Loops follow mesh topology flow'
+              'I key activates inset',
+              'Works on single or multiple faces',
+              'Hold Ctrl for even thickness',
+              'O toggles individual face inset',
+              'Combine with Extrude for detail'
             ]
           }
         ]
@@ -280,7 +259,52 @@ export default function EditModeLesson() {
               'More segments = smoother result',
               'Hold Shift for precise control',
               'Works on edges and vertices',
-              'Essential for hard-surface modeling'
+              'Essential for hard-surface modeling',
+              'Ctrl+Shift+B for vertex bevel'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      name: 'Loop Cut',
+      icon: '/Icons/ops.mesh.loopcut_slide.svg',
+      color: '#3b82f6',
+      description: 'Add edge loops to mesh',
+      detailedInfo: {
+        overview: 'Loop Cut adds complete rings of edges around your mesh. Essential for adding subdivision and controlling deformation in organic models.',
+        pages: [
+          {
+            title: 'Placing Loop Cuts',
+            content: 'Press Ctrl+R, hover over mesh to preview, click to confirm position, move to place, click again. Scroll wheel adds multiple loops at once!',
+            tips: [
+              'Scroll mouse wheel for multiple loops',
+              'E after placing to evenly space',
+              'Double-click edges to select loops first',
+              'Loops follow mesh topology flow',
+              'Essential for character modeling'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      name: 'Knife Tool',
+      icon: '/Icons/ops.mesh.knife_tool.svg',
+      color: '#f59e0b',
+      description: 'Cut new edges into mesh',
+      detailedInfo: {
+        overview: 'The Knife tool lets you draw new edges directly onto your mesh. Click to place vertices, then press Enter to confirm or Esc to cancel.',
+        pages: [
+          {
+            title: 'Using the Knife',
+            content: 'Press K to activate Knife tool. Click on your mesh to place cut points. The tool shows a preview line. Press Enter to confirm cuts, Esc to cancel.',
+            tips: [
+              'C enables angle constraint (45° snapping)',
+              'Hold Ctrl to snap to edge midpoints',
+              'Z enables cut-through (cuts backfaces too)',
+              'Great for adding detail to flat surfaces',
+              'E starts new cut from last point'
             ]
           }
         ]
@@ -289,7 +313,7 @@ export default function EditModeLesson() {
     {
       name: 'Proportional Editing',
       icon: '/Icons/ops.transform.translate.svg',
-      color: '#3b82f6',
+      color: '#06b6d4',
       description: 'Edit with soft falloff',
       detailedInfo: {
         overview: 'Proportional Editing affects nearby geometry with a soft falloff. Perfect for organic modeling - pull one vertex and nearby ones follow smoothly.',
@@ -301,256 +325,148 @@ export default function EditModeLesson() {
               'O toggles proportional editing on/off',
               'Scroll wheel changes influence size',
               'Shift+O changes falloff shape',
-              'Perfect for sculpting basic forms'
+              'Perfect for sculpting basic forms',
+              'Works with move, rotate, and scale'
             ]
           }
         ]
       }
     },
     {
-    name: 'Spin Tool',
-    icon: '/Icons/ops.mesh.spin.svg',
-    color: '#06b6d4',
-    description: 'Revolve geometry around axis',
-    detailedInfo: {
-      overview: 'Spin tool rotates selected geometry around the 3D cursor, creating lathe-like objects. Perfect for vases, bowls, or any circular objects.',
-      pages: [
-        {
-          title: 'Using Spin',
-          content: 'Position 3D cursor at center point, select edge loop or vertices, Alt+R for Spin tool. Adjust angle and steps for smooth revolution.',
-          tips: [
-            'Place cursor carefully - it\'s the pivot',
-            'Works great for pottery/vases',
-            'Adjust steps for smoothness',
-            'Can create partial revolutions',
-            'Duplicate mesh for more control'
-          ]
-        }
-      ]
-    }
-  },
-   {
-    name: 'Shrink/Fatten',
-    icon: '/Icons/ops.transform.shrink_fatten.svg',
-    color: '#84cc16',
-    description: 'Move along normals',
-    detailedInfo: {
-      overview: 'Shrink/Fatten moves geometry along its normal direction. Perfect for adjusting thickness or creating organic bulges.',
-      pages: [
-        {
-          title: 'Shrink/Fatten',
-          content: 'Select geometry, press Alt+S to shrink or fatten. Positive values expand outward, negative values shrink inward along normals.',
-          tips: [
-            'Alt+S activates tool',
-            'Works on any selection',
-            'Great for organic shapes',
-            'Combine with proportional editing',
-            'Type numbers for precision'
-          ]
-        }
-      ]
-    }
-  },
-  {
-    name: 'Shear',
-    icon: '/Icons/ops.transform.shear.svg',
-    color: '#a855f7',
-    description: 'Slant geometry parallel',
-    detailedInfo: {
-      overview: 'Shear tool slants geometry while keeping opposite sides parallel. Perfect for creating italic text or architectural details.',
-      pages: [
-        {
-          title: 'Shearing Geometry',
-          content: 'Select geometry, Ctrl+Shift+Alt+S for shear. Move mouse to slant, press X/Y/Z to constrain axis. Creates parallelogram effect.',
-          tips: [
-            'Great for italic effects',
-            'Maintains parallel edges',
-            'Useful in architectural modeling',
-            'Combine with proportional edit'
-          ]
-        }
-      ]
-    }
-  },
-  {
-    name: 'To Sphere',
-    icon: '/Icons/ops.transform.tosphere.svg',
-    color: '#14b8a6',
-    description: 'Push geometry toward sphere',
-    detailedInfo: {
-      overview: 'To Sphere pushes selected geometry toward a spherical shape. Great for smoothing corners or creating rounded forms.',
-      pages: [
-        {
-          title: 'To Sphere',
-          content: 'Select geometry, Shift+Alt+S to push toward sphere shape. Adjust factor to control how spherical the result becomes.',
-          tips: [
-            'Shift+Alt+S activates tool',
-            '0-1 controls sphere amount',
-            'Great for rounding corners',
-            'Works well on subdivided meshes',
-            'Useful for organic modeling'
-          ]
-        }
-      ]
-    }
-  },
-  {
-    name: 'Rip',
-    icon: '/Icons/ops.mesh.rip.svg',
-    color: '#fb923c',
-    description: 'Separate connected vertices',
-    detailedInfo: {
-      overview: 'Rip tool splits connected vertices, creating separate geometry. Essential for creating openings or separating mesh parts.',
-      pages: [
-        {
-          title: 'Ripping Geometry',
-          content: 'Select vertices or edges, press V to rip and move. Creates duplicate vertices at selection, breaking connections.',
-          tips: [
-            'V activates rip tool',
-            'Great for creating openings',
-            'Duplicates vertices at split',
-            'Move immediately after ripping',
-            'Alt+V for rip fill (fills gap)'
-          ]
-        }
-      ]
-    }
-  },
-  {
-    name: 'Poke Faces',
-    icon: '/Icons/ops.mesh.poke.svg',
-    color: '#f472b6',
-    description: 'Add center vertex to faces',
-    detailedInfo: {
-      overview: 'Poke Faces adds a vertex in the center of each selected face, splitting them into triangles. Useful for creating center details.',
-      pages: [
-        {
-          title: 'Poking Faces',
-          content: 'Select faces, Alt+P or Mesh > Poke Faces. Adds center vertex and connects to all edges, creating triangular faces.',
-          tips: [
-            'Creates center vertex in each face',
-            'Converts quads to triangles',
-            'Great for star patterns',
-            'Use before inset for details',
-            'Can be undone with limited dissolve'
-          ]
-        }
-      ]
-    }
-  },
-  {
-    name: 'Dissolve',
-    icon: '/Icons/ops.mesh.dissolve.svg',
-    color: '#22d3ee',
-    description: 'Remove geometry cleanly',
-    detailedInfo: {
-      overview: 'Dissolve removes selected geometry while preserving surrounding faces. Unlike delete, it maintains mesh continuity.',
-      pages: [
-        {
-          title: 'Dissolving Elements',
-          content: 'Select vertices/edges/faces, press X > Dissolve. Removes selection while keeping mesh intact. Great for cleanup work.',
-          tips: [
-            'X opens delete menu',
-            'Dissolve keeps mesh connected',
-            'Limited Dissolve removes unnecessary edges',
-            'Better than delete for topology',
-            'Ctrl+X for quick dissolve'
-          ]
-        }
-      ]
-    }
-  },
-  {
-    name: 'Separate',
-    icon: '/Icons/ops.mesh.separate.svg',
-    color: '#fbbf24',
-    description: 'Split mesh into objects',
-    detailedInfo: {
-      overview: 'Separate tool splits selected geometry into a new object. Essential for organizing complex models into manageable parts.',
-      pages: [
-        {
-          title: 'Separating Geometry',
-          content: 'Select geometry, press P to open Separate menu. Choose Selection, By Material, or By Loose Parts to create new objects.',
-          tips: [
-            'P opens separate menu',
-            'Creates new objects from selection',
-            'By Loose Parts splits disconnected mesh',
-            'By Material splits by materials',
-            'Useful for organizing complex models'
-          ]
-        }
-      ]
-    }
-  },
-  {
-    name: 'Merge',
-    icon: '/Icons/ops.mesh.merge.svg',
-    color: '#ec4899',
-    description: 'Combine vertices into one',
-    detailedInfo: {
-      overview: 'Merge combines multiple vertices into a single point. Essential for closing gaps and cleaning up geometry.',
-      pages: [
-        {
-          title: 'Merging Vertices',
-          content: 'Select vertices, press M to open merge menu. Choose At Center, At Cursor, At First, At Last, or By Distance.',
-          tips: [
-            'M opens merge menu',
-            'By Distance auto-merges close vertices',
-            'Great for cleanup',
-            'Reduces polygon count',
-            'At Cursor useful for precise placement'
-          ]
-        }
-      ]
-    }
-  },
-  {
-    name: 'Slide Edge',
-    icon: '/Icons/ops.transform.edge_slide.svg',
-    color: '#10b981',
-    description: 'Slide edges along topology',
-    detailedInfo: {
-      overview: 'Edge Slide moves edges along their connected edges without breaking topology. Perfect for adjusting edge loops.',
-      pages: [
-        {
-          title: 'Sliding Edges',
-          content: 'Select edges, press GG (double-tap G) to slide along edge direction. Great for repositioning edge loops.',
-          tips: [
-            'GG activates edge slide',
-            'C toggles clamping',
-            'E toggles even mode',
-            'Perfect after loop cuts',
-            'Maintains mesh flow'
-          ]
-        }
-      ]
-    }
-  },
-  {
-    name: 'Bridge Edge Loops',
-    icon: '/Icons/ops.mesh.bridge.svg',
-    color: '#f59e0b',
-    description: 'Connect two edge loops',
-    detailedInfo: {
-      overview: 'Bridge Edge Loops connects two separate edge loops with faces. Perfect for connecting body parts or filling gaps.',
-      pages: [
-        {
-          title: 'Bridging Loops',
-          content: 'Select two edge loops, right-click > Bridge Edge Loops. Creates smooth transition between loops with faces.',
-          tips: [
-            'Both loops need same vertex count',
-            'Right-click for context menu',
-            'Adjust smoothness in F9',
-            'Great for character modeling',
-            'Can twist connection'
-          ]
-        }
-      ]
-    }
-  },
+      name: 'Merge',
+      icon: '/Icons/automerge_off.svg',
+      color: '#a855f7',
+      description: 'Combine vertices into one',
+      detailedInfo: {
+        overview: 'Merge combines multiple vertices into a single point. Essential for closing gaps and cleaning up geometry.',
+        pages: [
+          {
+            title: 'Merging Vertices',
+            content: 'Select vertices, press M to open merge menu. Choose At Center, At Cursor, At First, At Last, or By Distance.',
+            tips: [
+              'M opens merge menu',
+              'By Distance auto-merges close vertices',
+              'Great for cleanup work',
+              'Reduces polygon count',
+              'At Cursor useful for precise placement'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      name: 'Spin Tool',
+      icon: '/Icons/ops.mesh.spin.svg',
+      color: '#14b8a6',
+      description: 'Revolve geometry around axis',
+      detailedInfo: {
+        overview: 'Spin tool rotates selected geometry around the 3D cursor, creating lathe-like objects. Perfect for vases, bowls, or any circular objects.',
+        pages: [
+          {
+            title: 'Using Spin',
+            content: 'Position 3D cursor at center point, select edge loop or vertices, Alt+R for Spin tool. Adjust angle and steps for smooth revolution.',
+            tips: [
+              'Place cursor carefully - it\'s the pivot',
+              'Works great for pottery/vases',
+              'Adjust steps for smoothness',
+              'Can create partial revolutions',
+              'Great for symmetric objects'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      name: 'Shrink/Fatten',
+      icon: '/Icons/con_shrinkwrap.svg',
+      color: '#84cc16',
+      description: 'Move along normals',
+      detailedInfo: {
+        overview: 'Shrink/Fatten moves geometry along its normal direction. Perfect for adjusting thickness or creating organic bulges.',
+        pages: [
+          {
+            title: 'Shrink/Fatten',
+            content: 'Select geometry, press Alt+S to shrink or fatten. Positive values expand outward, negative values shrink inward along normals.',
+            tips: [
+              'Alt+S activates tool',
+              'Works on any selection',
+              'Great for organic shapes',
+              'Combine with proportional editing',
+              'Type numbers for precision'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      name: 'Slide Edge',
+      icon: '/Icons/ops.transform.edge_slide.svg',
+      color: '#10b981',
+      description: 'Slide edges along topology',
+      detailedInfo: {
+        overview: 'Edge Slide moves edges along their connected edges without breaking topology. Perfect for adjusting edge loops.',
+        pages: [
+          {
+            title: 'Sliding Edges',
+            content: 'Select edges, press GG (double-tap G) to slide along edge direction. Great for repositioning edge loops.',
+            tips: [
+              'GG activates edge slide',
+              'C toggles clamping',
+              'E toggles even mode',
+              'Perfect after loop cuts',
+              'Maintains mesh flow'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      name: 'Bridge Edge Loops',
+      icon: '/Icons/mod_edgesplit.svg',
+      color: '#f59e0b',
+      description: 'Connect two edge loops',
+      detailedInfo: {
+        overview: 'Bridge Edge Loops connects two separate edge loops with faces. Perfect for connecting body parts or filling gaps.',
+        pages: [
+          {
+            title: 'Bridging Loops',
+            content: 'Select two edge loops, right-click > Bridge Edge Loops. Creates smooth transition between loops with faces.',
+            tips: [
+              'Both loops need same vertex count',
+              'Right-click for context menu',
+              'Adjust smoothness in F9',
+              'Great for character modeling',
+              'Can twist connection'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      name: 'Subdivide',
+      icon: '/Icons/mesh_grid.svg',
+      color: '#8b5cf6',
+      description: 'Add geometry to selection',
+      detailedInfo: {
+        overview: 'Subdivide splits edges and faces, adding new geometry. Essential for adding detail where you need it most.',
+        pages: [
+          {
+            title: 'Subdividing Geometry',
+            content: 'Select edges or faces, right-click > Subdivide. Adds vertices and edges at midpoints, creating denser geometry.',
+            tips: [
+              'Right-click for context menu',
+              'Press F9 to adjust subdivisions',
+              'Works on edges, faces, or vertices',
+              'Great before sculpting',
+              'Don\'t over-subdivide!'
+            ]
+          }
+        ]
+      }
+    },
     {
       name: 'Fill/Grid Fill',
-      icon: '/Icons/facesel.svg',
+      icon: '/Icons/mesh_grid.svg',
       color: '#f43f5e',
       description: 'Create faces from edges',
       detailedInfo: {
@@ -563,7 +479,184 @@ export default function EditModeLesson() {
               'F fills selected vertices/edges',
               'Grid Fill creates perfect quad flow',
               'Works best with even edge counts',
-              'Essential for closing holes'
+              'Essential for closing holes',
+              'Beauty Fill for triangulation'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      name: 'Dissolve',
+      icon: '/Icons/snap_face.svg',
+      color: '#22d3ee',
+      description: 'Remove geometry cleanly',
+      detailedInfo: {
+        overview: 'Dissolve removes selected geometry while preserving surrounding faces. Unlike delete, it maintains mesh continuity.',
+        pages: [
+          {
+            title: 'Dissolving Elements',
+            content: 'Select vertices/edges/faces, press X > Dissolve. Removes selection while keeping mesh intact. Great for cleanup work.',
+            tips: [
+              'X opens delete menu',
+              'Dissolve keeps mesh connected',
+              'Limited Dissolve removes unnecessary edges',
+              'Better than delete for topology',
+              'Ctrl+X for quick dissolve'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      name: 'Separate',
+      icon: '/Icons/split_horizontal.svg',
+      color: '#fbbf24',
+      description: 'Split mesh into objects',
+      detailedInfo: {
+        overview: 'Separate tool splits selected geometry into a new object. Essential for organizing complex models into manageable parts.',
+        pages: [
+          {
+            title: 'Separating Geometry',
+            content: 'Select geometry, press P to open Separate menu. Choose Selection, By Material, or By Loose Parts to create new objects.',
+            tips: [
+              'P opens separate menu',
+              'Creates new objects from selection',
+              'By Loose Parts splits disconnected mesh',
+              'By Material splits by materials',
+              'Useful for organizing complex models'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      name: 'Rip',
+      icon: '/Icons/ops.mesh.rip.svg',
+      color: '#fb923c',
+      description: 'Separate connected vertices',
+      detailedInfo: {
+        overview: 'Rip tool splits connected vertices, creating separate geometry. Essential for creating openings or separating mesh parts.',
+        pages: [
+          {
+            title: 'Ripping Geometry',
+            content: 'Select vertices or edges, press V to rip and move. Creates duplicate vertices at selection, breaking connections.',
+            tips: [
+              'V activates rip tool',
+              'Great for creating openings',
+              'Duplicates vertices at split',
+              'Move immediately after ripping',
+              'Alt+V for rip fill (fills gap)'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      name: 'Poke Faces',
+      icon: '/Icons/panel_close.svg',
+      color: '#f472b6',
+      description: 'Add center vertex to faces',
+      detailedInfo: {
+        overview: 'Poke Faces adds a vertex in the center of each selected face, splitting them into triangles. Useful for creating center details.',
+        pages: [
+          {
+            title: 'Poking Faces',
+            content: 'Select faces, Alt+P or Mesh > Poke Faces. Adds center vertex and connects to all edges, creating triangular faces.',
+            tips: [
+              'Creates center vertex in each face',
+              'Converts quads to triangles',
+              'Great for star patterns',
+              'Use before inset for details',
+              'Can be undone with limited dissolve'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      name: 'Shear',
+      icon: '/Icons/ops.transform.shear.svg',
+      color: '#a855f7',
+      description: 'Slant geometry parallel',
+      detailedInfo: {
+        overview: 'Shear tool slants geometry while keeping opposite sides parallel. Perfect for creating italic text or architectural details.',
+        pages: [
+          {
+            title: 'Shearing Geometry',
+            content: 'Select geometry, Ctrl+Shift+Alt+S for shear. Move mouse to slant, press X/Y/Z to constrain axis. Creates parallelogram effect.',
+            tips: [
+              'Great for italic effects',
+              'Maintains parallel edges',
+              'Useful in architectural modeling',
+              'Combine with proportional edit',
+              'Works on any selection type'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      name: 'To Sphere',
+      icon: '/Icons/ops.transform.tosphere.svg',
+      color: '#14b8a6',
+      description: 'Push geometry toward sphere',
+      detailedInfo: {
+        overview: 'To Sphere pushes selected geometry toward a spherical shape. Great for smoothing corners or creating rounded forms.',
+        pages: [
+          {
+            title: 'To Sphere',
+            content: 'Select geometry, Shift+Alt+S to push toward sphere shape. Adjust factor to control how spherical the result becomes.',
+            tips: [
+              'Shift+Alt+S activates tool',
+              '0-1 controls sphere amount',
+              'Great for rounding corners',
+              'Works well on subdivided meshes',
+              'Useful for organic modeling'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      name: 'Duplicate',
+      icon: '/Icons/split_vertical.svg',
+      color: '#ec4899',
+      description: 'Copy selected geometry',
+      detailedInfo: {
+        overview: 'Duplicate creates a copy of your selection that\'s immediately ready to move. Essential for creating repeated elements.',
+        pages: [
+          {
+            title: 'Duplicating Geometry',
+            content: 'Select geometry, press Shift+D to duplicate. Move your mouse to position, click to confirm. The new geometry stays part of the same object.',
+            tips: [
+              'Shift+D duplicates and moves',
+              'Right-click to cancel movement',
+              'Press X/Y/Z to constrain axis',
+              'Alt+D for linked duplicate',
+              'Great for creating patterns'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      name: 'Smooth Vertices',
+      icon: '/Icons/ops.mesh.vertices_smooth.svg',
+      color: '#06b6d4',
+      description: 'Smooth vertex positions',
+      detailedInfo: {
+        overview: 'Smooth Vertices averages the position of selected vertices with their neighbors, creating smoother surfaces.',
+        pages: [
+          {
+            title: 'Smoothing Vertices',
+            content: 'Select vertices, right-click > Smooth Vertices. Reduces sharp peaks and creates organic flowing shapes.',
+            tips: [
+              'Press F9 to adjust iterations',
+              'More iterations = smoother result',
+              'Works best on dense geometry',
+              'Great for organic shapes',
+              'Doesn\'t add geometry'
             ]
           }
         ]

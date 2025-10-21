@@ -40,7 +40,7 @@ export default function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               <Image src="/test2.svg" alt="" width={24} height={24} />
-              <span>Courses</span>
+              <span>Docs</span>
             </Link>
             <Link 
               href="/#about" 

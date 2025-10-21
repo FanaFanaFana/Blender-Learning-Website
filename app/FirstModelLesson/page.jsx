@@ -169,7 +169,7 @@ export default function FirstModelLesson() {
         {
           name: 'Extrude',
           description: 'Pull out new geometry',
-          icon: '/Icons/tool_extrude.svg',
+          icon: '/Icons/ops.mesh.extrude_region_move.svg',
           detailedInfo: {
             overview: 'Extrude is THE most important modeling tool. It pulls out faces, edges, or vertices to create new geometry. You\'ll use this constantly!',
             pages: [
@@ -199,7 +199,7 @@ export default function FirstModelLesson() {
         {
           name: 'Scale',
           description: 'Make things bigger or smaller',
-          icon: '/Icons/transform.svg',
+          icon: '/Icons/ops.transform.resize.svg',
           detailedInfo: {
             overview: 'Scaling resizes your selection. It\'s essential for proportioning your models and creating variation in size.',
             pages: [
@@ -229,7 +229,7 @@ export default function FirstModelLesson() {
         {
           name: 'Loop Cut',
           description: 'Add edge loops for more detail',
-          icon: '/Icons/tool_loop_cut.svg',
+          icon: '/Icons/ops.mesh.loopcut_slide.svg',
           detailedInfo: {
             overview: 'Loop cuts add rings of edges around your mesh. They\'re perfect for adding detail where you need it and controlling how your model deforms.',
             pages: [
@@ -249,7 +249,7 @@ export default function FirstModelLesson() {
         {
           name: 'Inset Faces',
           description: 'Create faces inside faces',
-          icon: '/Icons/face_maps.svg',
+          icon: '/Icons/ops.mesh.inset.svg',
           detailedInfo: {
             overview: 'Inset creates smaller faces inside your selected faces. Perfect for adding details like panels, windows, or decorative elements.',
             pages: [
@@ -519,6 +519,9 @@ export default function FirstModelLesson() {
 }
 
 // ============================================
-// 🎉 Complete FirstModelLesson matching EditMode style!
-// Clean, consistent, no weird underlines
+// ✅ FIXED ICON PATHS (matching Blender conventions):
+// - Extrude: ops.mesh.extrude_region_move.svg
+// - Scale: ops.transform.resize.svg
+// - Loop Cut: ops.mesh.loopcut_slide.svg
+// - Inset: ops.mesh.inset.svg
 // ============================================
