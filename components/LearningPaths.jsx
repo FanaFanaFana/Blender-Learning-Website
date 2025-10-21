@@ -71,7 +71,7 @@ export default function BlenderCompendium() {
               border: '1px solid rgba(255, 255, 255, 0.08)',
               borderRadius: '8px',
               padding: '0.75rem 1rem',
-              color: '#ffffff',
+              color: rgb(255, 255, 255),
               fontSize: '1.2rem',
               cursor: 'pointer',
               transition: 'all 0.3s ease',
@@ -169,7 +169,7 @@ export default function BlenderCompendium() {
                     </div>
                     <div>
                       <h4 style={{ fontSize: '1.15rem', marginBottom: '0.5rem', fontWeight: 600 }}>{topic.title}</h4>
-                      <p style={{ color: '#8fa9bd', margin: 0, fontSize: '0.9rem', lineHeight: '1.5' }}>{topic.description}</p>
+                      <p style={{ color: rgb(143, 169, 189), margin: 0, fontSize: '0.9rem', lineHeight: '1.5' }}>{topic.description}</p>
                     </div>
                   </div>
                 </TopicWrapper>
