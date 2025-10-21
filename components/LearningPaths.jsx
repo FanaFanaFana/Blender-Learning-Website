@@ -3,6 +3,10 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import BackButton from '@/components/BackButton'
+
+
+
 
 export default function BlenderCompendium() {
   const [selectedCategory, setSelectedCategory] = useState('modeling')
@@ -12,7 +16,7 @@ export default function BlenderCompendium() {
       title: '3D Modeling',
       icon: '/modeling.svg',
       color: '#3b82c4',
-      description: 'Comprehensive guides on creating 3D objects and characters',
+      description: 'Categories and lessons focused on creating and manipulating 3D models in Blender',
       topics: [
         { title: 'Interface Areas', description: 'Understanding Blender\'s workspace layout', icon: '/Icons/outliner.svg', link: '/InterfaceLesson' },
         { title: 'First 3D Model', description: 'Creating your first object in Blender', icon: '/Icons/mesh_cube.svg', link: '/FirstModelLesson' },
@@ -21,7 +25,9 @@ export default function BlenderCompendium() {
         { title: 'Sculpting', description: 'Digital sculpting tools and workflows', icon: '/Icons/sculptmode_hlt.svg', link: '/SculptingLesson' },
         { title: 'Character Modeling', description: 'Creating character meshes and topology', icon: '/Icons/mesh_monkey.svg', link: '/CharacterModelingLesson' },
         { title: 'Hard Surface Modeling', description: 'Mechanical and architectural modeling', icon: '/Icons/mod_bevel.svg', link: '/HardSurfaceLesson' },
-        { title: 'Product Design', description: 'Design workflows for product visualization', icon: '/Icons/mesh_torus.svg', link: '/ProductDesignLesson' }
+        { title: 'Product Design', description: 'Design workflows for product visualization', icon: '/Icons/mesh_torus.svg', link: '/ProductDesignLesson' },
+        { title: 'Materials & Shading', description: 'Creating realistic materials with the Shader Editor', icon: '/Icons/material.svg',  link: '/MaterialLesson' 
+}
       ]
     },
     rendering: {

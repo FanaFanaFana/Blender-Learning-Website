@@ -16,8 +16,8 @@ export default function Header() {
             <Image 
               src="/logo.png" 
               alt="Blender Logo" 
-              width={40} 
-              height={40}
+              width={50} 
+              height={50}
               className="logo-img" 
             />
             <span>Blend Docs</span>
