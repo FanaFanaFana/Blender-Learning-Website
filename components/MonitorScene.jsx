@@ -22,12 +22,13 @@ export default function MonitorScene() {
     sceneRef.current = scene
     
     const camera = new THREE.PerspectiveCamera(
-      45,
+      20,
       canvas.clientWidth / canvas.clientHeight,
-      0.1,
+      0.5,
       1000
     )
-    camera.position.z = 5
+    camera.position.z = 6
+    camera.position.y = 0
     
     const renderer = new THREE.WebGLRenderer({ 
       canvas, 
@@ -70,7 +71,7 @@ export default function MonitorScene() {
         
         const size = box.getSize(new THREE.Vector3())
         const maxDim = Math.max(size.x, size.y, size.z)
-        const scale = 3 / maxDim
+        const scale = 5 / maxDim
         model.scale.multiplyScalar(scale)
         
         // Setup animations if available
@@ -111,10 +112,10 @@ export default function MonitorScene() {
       
       if (modelRef.current) {
         const targetRotationY = mouseRef.current.x * 0.3
-        const targetRotationX = mouseRef.current.y * 0.2
+        const targetRotationX = mouseRef.current.y * -0.3
         
-        modelRef.current.rotation.y += (targetRotationY - modelRef.current.rotation.y) * 0.05
-        modelRef.current.rotation.x += (targetRotationX - modelRef.current.rotation.x) * 0.05
+        modelRef.current.rotation.y += (targetRotationY - modelRef.current.rotation.y) * 0.01
+        modelRef.current.rotation.x += (targetRotationX - modelRef.current.rotation.x) * 0.01
       }
       
       renderer.render(scene, camera)
