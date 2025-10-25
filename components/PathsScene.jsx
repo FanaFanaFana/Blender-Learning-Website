@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
@@ -11,6 +11,8 @@ export default function PathsScene() {
   const modelRef = useRef(null)
   const mixerRef = useRef(null)
   const mouseRef = useRef({ x: 0, y: 0 })
+  const edgesRef = useRef([])
+  const [showTopology, setShowTopology] = useState(false)
 
   useEffect(() => {
     if (!canvasRef.current) return
@@ -22,13 +24,14 @@ export default function PathsScene() {
     sceneRef.current = scene
     
     const camera = new THREE.PerspectiveCamera(
-      20,
+      50,
       canvas.clientWidth / canvas.clientHeight,
-      0.5,
+      0.1,
       1000
     )
-    camera.position.z = 6
-    camera.position.y = 0
+    camera.position.z = 5
+    camera.position.y = 1
+    camera.position.x = 0
     
     const renderer = new THREE.WebGLRenderer({ 
       canvas, 
@@ -60,19 +63,46 @@ export default function PathsScene() {
     loader.load(
       '/test.glb',
       (gltf) => {
+        console.log('GLB loaded successfully!', gltf)
         const model = gltf.scene
         modelRef.current = model
+        
+        // Log initial state
+        console.log('Model position:', model.position)
+        console.log('Model scale:', model.scale)
+        
         scene.add(model)
         
         // Center and scale the model
         const box = new THREE.Box3().setFromObject(model)
         const center = box.getCenter(new THREE.Vector3())
+        const size = box.getSize(new THREE.Vector3())
+        
+        console.log('Bounding box size:', size)
+        console.log('Bounding box center:', center)
+        
         model.position.sub(center)
         
-        const size = box.getSize(new THREE.Vector3())
         const maxDim = Math.max(size.x, size.y, size.z)
-        const scale = 7 / maxDim
+        const scale = 18 / maxDim
         model.scale.multiplyScalar(scale)
+        
+        console.log('Applied scale:', scale)
+        console.log('Final position:', model.position)
+        
+        // Create wireframe geometry for topology view (shows all triangles/quads)
+        model.traverse((child) => {
+          if (child.isMesh) {
+            const wireframe = new THREE.WireframeGeometry(child.geometry)
+            const line = new THREE.LineSegments(
+              wireframe,
+              new THREE.LineBasicMaterial({ color: 0x000000, linewidth: 1 })
+            )
+            line.visible = false
+            child.add(line)
+            edgesRef.current.push(line)
+          }
+        })
         
         // Setup animations if available
         if (gltf.animations && gltf.animations.length) {
@@ -107,7 +137,7 @@ export default function PathsScene() {
       requestAnimationFrame(animate)
       
       if (mixerRef.current) {
-        mixerRef.current.update(clock.getDelta())
+        mixerRef.current.update(clock.getDelta() * 0.15) //Speed of the animation
       }
       
       if (modelRef.current) {
@@ -158,5 +188,47 @@ export default function PathsScene() {
     }
   }, [])
 
-  return <canvas ref={canvasRef} id="paths-canvas" />
+  // Toggle topology visibility
+  useEffect(() => {
+    edgesRef.current.forEach((line) => {
+      line.visible = showTopology
+    })
+  }, [showTopology])
+
+  const toggleTopology = () => {
+    setShowTopology(!showTopology)
+  }
+
+  return (
+    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+      <canvas ref={canvasRef} id="paths-canvas" style={{ width: '100%', height: '100%' }} />
+      <button
+        onClick={toggleTopology}
+        style={{
+          position: 'absolute',
+          top: '20px',
+          right: '20px',
+          padding: '12px 24px',
+          backgroundColor: showTopology ? '#4a9fd8' : '#ffffff',
+          color: showTopology ? '#ffffff' : '#000000',
+          border: '2px solid #4a9fd8',
+          borderRadius: '8px',
+          cursor: 'pointer',
+          fontWeight: '600',
+          fontSize: '14px',
+          transition: 'all 0.3s ease',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          zIndex: 10
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'scale(1.05)'
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'scale(1)'
+        }}
+      >
+        {showTopology ? 'Hide Topology' : 'Show Topology'}
+      </button>
+    </div>
+  )
 }
