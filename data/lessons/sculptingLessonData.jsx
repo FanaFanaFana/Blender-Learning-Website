@@ -2,7 +2,7 @@ export const sculptingLessonData = {
 
   heroConfig: {
     title: 'Sculpting',
-    gradientText: 'Basics',
+    gradientText: 'Mode',
     subtitle: 'Learn the art of digital sculpting and bring your organic creations to life',
     gradientColors: 'linear-gradient(135deg, #ec4899, #f43f5e, #fb923c)',
     badges: [
@@ -46,36 +46,16 @@ export const sculptingLessonData = {
       color: '#ec4899',
       brushes: [
         {
-          name: 'Draw',
-          description: 'Pull geometry outward',
-          icon: '/Icons/draw.png',
+          name: 'Blob',
+          description: 'Push geometry like thick paint',
+          icon: '/Icons/blob.png',
           detailedInfo: {
-            overview: 'The Draw brush is your primary sculpting tool. It pulls the surface outward in the direction of the surface normal, perfect for building up forms and adding volume.',
+            overview: 'Blob moves vertices with a specific falloff, creating thick, paint-like strokes. Combines aspects of Draw and Inflate for unique organic effects.',
             pages: [
               {
-                title: 'Basic Drawing',
-                content: 'Left-click and drag to pull geometry outward. Hold Ctrl to invert and push inward (carving). Adjust brush size with F key, strength with Shift+F.',
-                image: '/examples/sculpt-draw-basic.gif'
-              },
-              {
-                title: 'Stroke Settings',
-                content: 'Use Space stroke method for smooth, continuous strokes. Dots method creates textured surfaces. Adjust spacing for different effects.',
-                image: '/examples/sculpt-draw-strokes.gif'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Draw Sharp',
-          description: 'Create defined edges and creases',
-          icon: '/Icons/drawsharp.png',
-          detailedInfo: {
-            overview: 'Draw Sharp creates hard, defined edges and creases. Essential for mechanical details, armor plates, or any feature that needs sharp definition.',
-            pages: [
-              {
-                title: 'Creating Sharp Features',
-                content: 'Draw Sharp maintains hard edges unlike the regular Draw brush. Perfect for stylized characters, hard surface elements, or creating panel lines.',
-                image: '/examples/sculpt-drawsharp-edges.gif'
+                title: 'Thick Strokes',
+                content: 'Blob creates volumetric, paint-like strokes. Great for organic masses, tree bark texture, or rough terrain. Strength controls how much material builds up.',
+                image: '/examples/sculpt-blob-paint.gif'
               }
             ]
           }
@@ -126,16 +106,66 @@ export const sculptingLessonData = {
           }
         },
         {
-          name: 'Layer',
-          description: 'Add controlled height layers',
-          icon: '/Icons/layer.png',
+          name: 'Crease Polish',
+          description: 'Smooth and polish creases',
+          icon: '/Icons/creasepolish.png',
           detailedInfo: {
-            overview: 'Layer brush adds material up to a specific height. Unlike other brushes, it won\'t keep building infinitely - perfect for creating even, controlled surfaces.',
+            overview: 'Crease Polish smooths and refines existing creases while maintaining their definition.',
             pages: [
               {
-                title: 'Height Control',
-                content: 'Layer brush maintains consistent height, preventing excessive buildup. Ideal for armor plates, scales, or any element needing uniform thickness.',
-                image: '/examples/sculpt-layer-height.gif'
+                title: 'Polishing Creases',
+                content: 'Smooths creases without losing their definition. Perfect for refining hard surface details and panel lines.',
+                image: '/examples/sculpt-creasepolish.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Crease Sharp',
+          description: 'Create sharp, defined creases',
+          icon: '/Icons/creasesharp.png',
+          detailedInfo: {
+            overview: 'Crease Sharp creates extremely sharp, defined creases with hard edges for mechanical details.',
+            pages: [
+              {
+                title: 'Sharp Creases',
+                content: 'Creates ultra-sharp creases for hard surface work. Ideal for mechanical edges and armor details.',
+                image: '/examples/sculpt-creasesharp.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Draw',
+          description: 'Pull geometry outward',
+          icon: '/Icons/draw.png',
+          detailedInfo: {
+            overview: 'The Draw brush is your primary sculpting tool. It pulls the surface outward in the direction of the surface normal, perfect for building up forms and adding volume.',
+            pages: [
+              {
+                title: 'Basic Drawing',
+                content: 'Left-click and drag to pull geometry outward. Hold Ctrl to invert and push inward (carving). Adjust brush size with F key, strength with Shift+F.',
+                image: '/examples/sculpt-draw-basic.gif'
+              },
+              {
+                title: 'Stroke Settings',
+                content: 'Use Space stroke method for smooth, continuous strokes. Dots method creates textured surfaces. Adjust spacing for different effects.',
+                image: '/examples/sculpt-draw-strokes.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Draw Sharp',
+          description: 'Create defined edges and creases',
+          icon: '/Icons/drawsharp.png',
+          detailedInfo: {
+            overview: 'Draw Sharp creates hard, defined edges and creases. Essential for mechanical details, armor plates, or any feature that needs sharp definition.',
+            pages: [
+              {
+                title: 'Creating Sharp Features',
+                content: 'Draw Sharp maintains hard edges unlike the regular Draw brush. Perfect for stylized characters, hard surface elements, or creating panel lines.',
+                image: '/examples/sculpt-drawsharp-edges.gif'
               }
             ]
           }
@@ -156,16 +186,16 @@ export const sculptingLessonData = {
           }
         },
         {
-          name: 'Blob',
-          description: 'Push geometry like thick paint',
-          icon: '/Icons/blob.png',
+          name: 'Layer',
+          description: 'Add controlled height layers',
+          icon: '/Icons/layer.png',
           detailedInfo: {
-            overview: 'Blob moves vertices with a specific falloff, creating thick, paint-like strokes. Combines aspects of Draw and Inflate for unique organic effects.',
+            overview: 'Layer brush adds material up to a specific height. Unlike other brushes, it won\'t keep building infinitely - perfect for creating even, controlled surfaces.',
             pages: [
               {
-                title: 'Thick Strokes',
-                content: 'Blob creates volumetric, paint-like strokes. Great for organic masses, tree bark texture, or rough terrain. Strength controls how much material builds up.',
-                image: '/examples/sculpt-blob-paint.gif'
+                title: 'Height Control',
+                content: 'Layer brush maintains consistent height, preventing excessive buildup. Ideal for armor plates, scales, or any element needing uniform thickness.',
+                image: '/examples/sculpt-layer-height.gif'
               }
             ]
           }
@@ -177,6 +207,81 @@ export const sculptingLessonData = {
       icon: '/Icons/modifier.svg',
       color: '#8b5cf6',
       brushes: [
+        {
+          name: 'Fill',
+          description: 'Fill holes and valleys',
+          icon: '/Icons/fill.png',
+          detailedInfo: {
+            overview: 'Fill raises low areas toward a flat plane, perfect for filling unwanted holes or smoothing valleys.',
+            pages: [
+              {
+                title: 'Filling Cavities',
+                content: 'Fill raises low areas to create even surfaces. Perfect for cleaning up unwanted indentations.',
+                image: '/examples/sculpt-fill-cavity.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Flatten',
+          description: 'Create flat, even surfaces',
+          icon: '/Icons/flatten.png',
+          detailedInfo: {
+            overview: 'Flatten creates planar surfaces by averaging the height of vertices. Perfect for hard surface elements or cleaning up flat areas.',
+            pages: [
+              {
+                title: 'Planar Surfaces',
+                content: 'Flatten calculates an average plane and pushes vertices toward it. Great for armor plates, walls, or any flat architectural element.',
+                image: '/examples/sculpt-flatten-plane.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Plateau',
+          description: 'Create plateau-like flat tops',
+          icon: '/Icons/plateau.png',
+          detailedInfo: {
+            overview: 'Plateau creates flat top surfaces while preserving valleys, like creating mesa formations.',
+            pages: [
+              {
+                title: 'Flat Top Surfaces',
+                content: 'Creates flat plateaus on raised areas. Perfect for stylized forms and architectural elements.',
+                image: '/examples/sculpt-plateau.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Scrape Multiplane',
+          description: 'Create sharp edges',
+          icon: '/Icons/multiplane.png',
+          detailedInfo: {
+            overview: 'Scrape with two angled planes to create sharp edges between surfaces, like a V-shaped chisel.',
+            pages: [
+              {
+                title: 'Sharp Edges',
+                content: 'Creates sharp edges between two planes. Perfect for stylized creases and mechanical edges.',
+                image: '/examples/sculpt-multiplane-edge.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Scrape',
+          description: 'Remove material from peaks',
+          icon: '/Icons/scrape.png',
+          detailedInfo: {
+            overview: 'Scrape removes high points while preserving valleys, like scraping excess clay. Essential for creating clean, refined surfaces.',
+            pages: [
+              {
+                title: 'Peak Removal',
+                content: 'Scrape targets high areas, leaving valleys intact. Perfect for refining forms after rough blocking. Ctrl inverts to peak instead.',
+                image: '/examples/sculpt-scrape-peaks.gif'
+              }
+            ]
+          }
+        },
         {
           name: 'Smooth',
           description: 'Average out surface irregularities',
@@ -198,76 +303,16 @@ export const sculptingLessonData = {
           }
         },
         {
-          name: 'Blend Soft',
-          description: 'Soft surface blending',
-          icon: '/Icons/blendsoft.png',
+          name: 'Trim',
+          description: 'Dynamic boolean trimming',
+          icon: '/Icons/trim.png',
           detailedInfo: {
-            overview: 'Blends surfaces with a softer, more gradual effect than standard smoothing for subtle transitions.',
+            overview: 'Trim dynamically removes geometry using drawn shapes for precise cutting and sculpting operations.',
             pages: [
               {
-                title: 'Soft Blending',
-                content: 'Creates gentler transitions than regular smooth. Perfect for organic forms and subtle surface refinement.',
-                image: '/examples/sculpt-blendsoft.gif'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Flatten',
-          description: 'Create flat, even surfaces',
-          icon: '/Icons/flatten.png',
-          detailedInfo: {
-            overview: 'Flatten creates planar surfaces by averaging the height of vertices. Perfect for hard surface elements or cleaning up flat areas.',
-            pages: [
-              {
-                title: 'Planar Surfaces',
-                content: 'Flatten calculates an average plane and pushes vertices toward it. Great for armor plates, walls, or any flat architectural element.',
-                image: '/examples/sculpt-flatten-plane.gif'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Fill',
-          description: 'Fill holes and valleys',
-          icon: '/Icons/fill.png',
-          detailedInfo: {
-            overview: 'Fill raises low areas toward a flat plane, perfect for filling unwanted holes or smoothing valleys.',
-            pages: [
-              {
-                title: 'Filling Cavities',
-                content: 'Fill raises low areas to create even surfaces. Perfect for cleaning up unwanted indentations.',
-                image: '/examples/sculpt-fill-cavity.gif'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Scrape',
-          description: 'Remove material from peaks',
-          icon: '/Icons/scrape.png',
-          detailedInfo: {
-            overview: 'Scrape removes high points while preserving valleys, like scraping excess clay. Essential for creating clean, refined surfaces.',
-            pages: [
-              {
-                title: 'Peak Removal',
-                content: 'Scrape targets high areas, leaving valleys intact. Perfect for refining forms after rough blocking. Ctrl inverts to peak instead.',
-                image: '/examples/sculpt-scrape-peaks.gif'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Multiplane Scrape',
-          description: 'Create sharp edges',
-          icon: '/Icons/multiplane.png',
-          detailedInfo: {
-            overview: 'Scrape with two angled planes to create sharp edges between surfaces, like a V-shaped chisel.',
-            pages: [
-              {
-                title: 'Sharp Edges',
-                content: 'Creates sharp edges between two planes. Perfect for stylized creases and mechanical edges.',
-                image: '/examples/sculpt-multiplane-edge.gif'
+                title: 'Dynamic Trimming',
+                content: 'Draw shapes to trim away geometry. More flexible than Box Trim with freeform cutting options.',
+                image: '/examples/sculpt-trim.gif'
               }
             ]
           }
@@ -280,6 +325,51 @@ export const sculptingLessonData = {
       color: '#f59e0b',
       brushes: [
         {
+          name: 'Boundary',
+          description: 'Deform mesh boundaries',
+          icon: '/Icons/boundary.png',
+          detailedInfo: {
+            overview: 'Boundary brush manipulates open mesh edges and boundaries with various deformation modes.',
+            pages: [
+              {
+                title: 'Edge Control',
+                content: 'Specialized for transforming mesh boundaries. Multiple deformation modes for edge manipulation.',
+                image: '/examples/sculpt-boundary.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Elastic Grab',
+          description: 'Grab with elastic deformation',
+          icon: '/Icons/elasticgrab.png',
+          detailedInfo: {
+            overview: 'Elastic Grab is Grab with smooth elastic falloff, creating realistic rubber-like deformations.',
+            pages: [
+              {
+                title: 'Elastic Movement',
+                content: 'Creates smooth, elastic deformations. Better for organic forms than regular Grab.',
+                image: '/examples/sculpt-elasticgrab.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Elastic Snake Hook',
+          description: 'Pull with elastic behavior',
+          icon: '/Icons/elasticsnakehook.png',
+          detailedInfo: {
+            overview: 'Snake Hook with elastic deformation for smoother, more natural pulling of elongated forms.',
+            pages: [
+              {
+                title: 'Elastic Pulling',
+                content: 'Pulls geometry with elastic behavior for more natural organic extensions.',
+                image: '/examples/sculpt-elasticsnakehook.gif'
+              }
+            ]
+          }
+        },
+        {
           name: 'Grab',
           description: 'Move large areas freely',
           icon: '/Icons/grab.png',
@@ -290,21 +380,6 @@ export const sculptingLessonData = {
                 title: 'Form Manipulation',
                 content: 'Grab is like grabbing physical clay and moving it. Perfect for adjusting silhouettes, proportions, or repositioning major features.',
                 image: '/examples/sculpt-grab-move.gif'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Grab Silhouette',
-          description: 'Grab along view silhouette',
-          icon: '/Icons/grabsilhouette.png',
-          detailedInfo: {
-            overview: 'Grabs geometry along the silhouette edge from the current view angle, perfect for refining shapes and profiles.',
-            pages: [
-              {
-                title: 'Silhouette Control',
-                content: 'Grab affects only the silhouette from your view. Perfect for refining shapes and character profiles.',
-                image: '/examples/sculpt-grabsilhouette.gif'
               }
             ]
           }
@@ -325,16 +400,106 @@ export const sculptingLessonData = {
           }
         },
         {
-          name: 'Elastic Deform',
-          description: 'Smooth elastic deformation',
-          icon: '/Icons/elastic.png',
+          name: 'Grab Silhouette',
+          description: 'Grab along view silhouette',
+          icon: '/Icons/grabsilhouette.png',
           detailedInfo: {
-            overview: 'Elastic Deform is Grab with smooth falloff, creating realistic rubber-like deformations that preserve volume.',
+            overview: 'Grabs geometry along the silhouette edge from the current view angle, perfect for refining shapes and profiles.',
             pages: [
               {
-                title: 'Elastic Movement',
-                content: 'Creates smooth, elastic deformations. Better for organic forms than regular Grab. Multiple deformation modes available.',
-                image: '/examples/sculpt-elastic-deform.gif'
+                title: 'Silhouette Control',
+                content: 'Grab affects only the silhouette from your view. Perfect for refining shapes and character profiles.',
+                image: '/examples/sculpt-grabsilhouette.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Nudge',
+          description: 'Smear geometry directionally',
+          icon: '/Icons/nudge.png',
+          detailedInfo: {
+            overview: 'Nudge moves vertices in the direction of your stroke, like smearing wet clay. Perfect for adjusting flows and creating directional surface features.',
+            pages: [
+              {
+                title: 'Directional Smearing',
+                content: 'Nudge follows your stroke direction, moving surface detail along your path. Great for adjusting muscle flows or creating directional patterns.',
+                image: '/examples/sculpt-nudge-smear.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Pinch',
+          description: 'Pull vertices together',
+          icon: '/Icons/pinch.png',
+          detailedInfo: {
+            overview: 'Pinch pulls vertices toward the center of the brush, sharpening edges and creating tight, defined features.',
+            pages: [
+              {
+                title: 'Edge Sharpening',
+                content: 'Pinch tightens forms and sharpens edges. Use along ridges to make them more pronounced. Great for noses, ears, and bony protrusions.',
+                image: '/examples/sculpt-pinch-sharpen.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Pose',
+          description: 'Pose without rigging',
+          icon: '/Icons/pose.png',
+          detailedInfo: {
+            overview: 'Pose brush creates automatic IK chains for posing without armatures. Revolutionary for quick character poses.',
+            pages: [
+              {
+                title: 'Auto-IK Posing',
+                content: 'Pose creates automatic bone chains, letting you pose characters without rigging. Perfect for quick iterations.',
+                image: '/examples/sculpt-pose-ik.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Pull',
+          description: 'Pull surfaces outward strongly',
+          icon: '/Icons/pull.png',
+          detailedInfo: {
+            overview: 'Pull aggressively pulls geometry outward with strong directional force.',
+            pages: [
+              {
+                title: 'Strong Pulling',
+                content: 'Creates strong outward pulling motions. Great for dramatic form changes and extrusions.',
+                image: '/examples/sculpt-pull.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Relax Pinch',
+          description: 'Relax with pinch component',
+          icon: '/Icons/relaxpinch.png',
+          detailedInfo: {
+            overview: 'Relaxes surface tension while subtly pinching for controlled smoothing with edge preservation.',
+            pages: [
+              {
+                title: 'Controlled Relaxation',
+                content: 'Relaxes surfaces while maintaining some edge definition through pinching.',
+                image: '/examples/sculpt-relaxpinch.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Relax Slide',
+          description: 'Slide vertices to relax tension',
+          icon: '/Icons/relaxslide.png',
+          detailedInfo: {
+            overview: 'Slides vertices along the surface to relax tension and even out polygon distribution.',
+            pages: [
+              {
+                title: 'Surface Relaxation',
+                content: 'Slides vertices to relax surface tension and improve polygon flow.',
+                image: '/examples/sculpt-relaxslide.gif'
               }
             ]
           }
@@ -375,61 +540,16 @@ export const sculptingLessonData = {
           }
         },
         {
-          name: 'Pose',
-          description: 'Pose without rigging',
-          icon: '/Icons/pose.png',
-          detailedInfo: {
-            overview: 'Pose brush creates automatic IK chains for posing without armatures. Revolutionary for quick character poses.',
-            pages: [
-              {
-                title: 'Auto-IK Posing',
-                content: 'Pose creates automatic bone chains, letting you pose characters without rigging. Perfect for quick iterations.',
-                image: '/examples/sculpt-pose-ik.gif'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Nudge',
-          description: 'Smear geometry directionally',
-          icon: '/Icons/nudge.png',
-          detailedInfo: {
-            overview: 'Nudge moves vertices in the direction of your stroke, like smearing wet clay. Perfect for adjusting flows and creating directional surface features.',
-            pages: [
-              {
-                title: 'Directional Smearing',
-                content: 'Nudge follows your stroke direction, moving surface detail along your path. Great for adjusting muscle flows or creating directional patterns.',
-                image: '/examples/sculpt-nudge-smear.gif'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Rotate',
+          name: 'Twist',
           description: 'Twist vertices around center',
-          icon: '/Icons/rotate.png',
+          icon: '/Icons/twist.png',
           detailedInfo: {
-            overview: 'Rotate twists vertices around the brush center. Create spiral patterns, adjust surface flows, or add rotational detail.',
+            overview: 'Twist rotates vertices around the brush center in a twisting motion.',
             pages: [
               {
                 title: 'Twisting Motion',
-                content: 'Rotate spins vertices around brush center. Drag in circles to twist surface details. Great for creating spiral patterns or adjusting flows.',
-                image: '/examples/sculpt-rotate-twist.gif'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Boundary',
-          description: 'Deform mesh boundaries',
-          icon: '/Icons/boundary.png',
-          detailedInfo: {
-            overview: 'Boundary brush manipulates open mesh edges and boundaries with various deformation modes.',
-            pages: [
-              {
-                title: 'Edge Control',
-                content: 'Specialized for transforming mesh boundaries. Multiple deformation modes for edge manipulation.',
-                image: '/examples/sculpt-boundary.gif'
+                content: 'Twists geometry around the brush center. Great for spiral patterns and rotational effects.',
+                image: '/examples/sculpt-twist.gif'
               }
             ]
           }
@@ -442,58 +562,253 @@ export const sculptingLessonData = {
       color: '#06b6d4',
       brushes: [
         {
-          name: 'Crease',
-          description: 'Create sharp indented lines',
-          icon: '/Icons/crease.png',
+          name: 'Density',
+          description: 'Control mesh density',
+          icon: '/Icons/density.png',
           detailedInfo: {
-            overview: 'Crease creates sharp, indented lines in your surface. Essential for wrinkles, panel lines, or any sharp detail that needs to cut into the form.',
+            overview: 'Density brush controls the concentration of geometry in painted areas.',
             pages: [
               {
-                title: 'Sharp Details',
-                content: 'Crease pinches vertices together and pushes them inward, creating sharp grooves. Perfect for wrinkles, seams, and mechanical panel separation.',
-                image: '/examples/sculpt-crease-lines.gif'
+                title: 'Geometry Density',
+                content: 'Paint to increase or decrease mesh density in specific areas.',
+                image: '/examples/sculpt-density.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Erase Multires Displacement',
+          description: 'Create displacement creases',
+          icon: '/Icons/erasemultiresdisplacement.png',
+          detailedInfo: {
+            overview: 'Creates creases specifically for multiresolution displacement workflows.',
+            pages: [
+              {
+                title: 'Multires Creasing',
+                content: 'Creates sharp creases that work well with multiresolution displacement maps.',
+                image: '/examples/sculpt-creasemultires.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Face Set Paint',
+          description: 'Paint face sets',
+          icon: '/Icons/faceset.png',
+          detailedInfo: {
+            overview: 'Paint face sets to organize your mesh into colored sections for better workflow control.',
+            pages: [
+              {
+                title: 'Face Set Painting',
+                content: 'Paint to create and organize face sets. Each set gets a unique color for easy identification.',
+                image: '/examples/sculpt-faceset-paint.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Mask',
+          description: 'Protect areas from editing',
+          icon: '/Icons/mask.png',
+          detailedInfo: {
+            overview: 'Mask protects areas from being modified by other brushes. Essential for isolating work areas and preserving finished details.',
+            pages: [
+              {
+                title: 'Masking Basics',
+                content: 'Paint to mask areas (darken). Ctrl+Paint to unmask. Alt+Click to clear all masks. Masked areas are protected from all brush strokes.',
+                image: '/examples/sculpt-mask-paint.gif'
               },
               {
-                title: 'Crease vs Pinch',
-                content: 'Crease both pinches and indents, while Pinch only brings vertices together. Use Crease for defined cuts, Pinch for sharpening edges.',
-                image: '/examples/sculpt-crease-comparison.gif'
+                title: 'Mask Operations',
+                content: 'Use Mask menu (A key) for box mask, lasso mask, or mask by cavity. Ctrl+I inverts mask. Essential for controlled sculpting.',
+                image: '/examples/sculpt-mask-operations.gif'
               }
             ]
           }
         },
         {
-          name: 'Pinch',
-          description: 'Pull vertices together',
-          icon: '/Icons/pinch.png',
+          name: 'Smear Multires Displacement',
+          description: 'Smear displacement details',
+          icon: '/Icons/smearmultiresdisplacement.png',
           detailedInfo: {
-            overview: 'Pinch pulls vertices toward the center of the brush, sharpening edges and creating tight, defined features without necessarily indenting.',
+            overview: 'Smears multiresolution displacement details for blended transitions.',
             pages: [
               {
-                title: 'Edge Sharpening',
-                content: 'Pinch tightens forms and sharpens edges. Use along ridges to make them more pronounced. Great for noses, ears, and bony protrusions.',
-                image: '/examples/sculpt-pinch-sharpen.gif'
+                title: 'Displacement Smearing',
+                content: 'Blends and smears displacement map details in multiresolution workflows.',
+                image: '/examples/sculpt-smearmultires.gif'
               }
             ]
           }
         },
         {
-          name: 'Paint',
-          description: 'Paint vertex colors',
-          icon: '/Icons/paint.png',
+          name: 'Airbrush',
+          description: 'Spray paint colors',
+          icon: '/Icons/airbrush.png',
           detailedInfo: {
-            overview: 'Paint applies vertex colors directly in sculpt mode. Quick color blocking without leaving sculpt mode.',
+            overview: 'Airbrush applies colors with soft, gradual falloff like spray paint.',
             pages: [
               {
-                title: 'Vertex Painting',
-                content: 'Paint colors directly onto mesh vertices. Great for color blocking or reference painting.',
-                image: '/examples/sculpt-paint.gif'
+                title: 'Spray Painting',
+                content: 'Creates soft, gradual color application. Perfect for smooth color transitions and gradients.',
+                image: '/examples/sculpt-airbrush.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Blend Hard',
+          description: 'Hard color blending',
+          icon: '/Icons/blendhard.png',
+          detailedInfo: {
+            overview: 'Blends colors with hard edges for defined color transitions.',
+            pages: [
+              {
+                title: 'Hard Blending',
+                content: 'Blends colors while maintaining harder edges for more defined transitions.',
+                image: '/examples/sculpt-blendhard.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Blend Soft',
+          description: 'Soft color blending',
+          icon: '/Icons/blendsoft.png',
+          detailedInfo: {
+            overview: 'Blends colors with soft, gradual transitions.',
+            pages: [
+              {
+                title: 'Soft Blending',
+                content: 'Creates gentle color transitions. Perfect for subtle color variations.',
+                image: '/examples/sculpt-blendsoft.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Blend Square',
+          description: 'Square-shaped color blending',
+          icon: '/Icons/blendsquare.png',
+          detailedInfo: {
+            overview: 'Blends colors using a square brush shape for geometric blending patterns.',
+            pages: [
+              {
+                title: 'Square Blending',
+                content: 'Uses square brush shape for geometric color blending effects.',
+                image: '/examples/sculpt-blendsquare.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Paint Blend',
+          description: 'Paint with blending',
+          icon: '/Icons/paintblend.png',
+          detailedInfo: {
+            overview: 'Paints colors while blending with existing colors.',
+            pages: [
+              {
+                title: 'Blended Painting',
+                content: 'Paints while automatically blending with underlying colors.',
+                image: '/examples/sculpt-paintblend.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Paint Hard',
+          description: 'Hard-edged painting',
+          icon: '/Icons/painthard.png',
+          detailedInfo: {
+            overview: 'Paints colors with hard, defined edges.',
+            pages: [
+              {
+                title: 'Hard Edge Painting',
+                content: 'Creates sharp, defined color edges. Perfect for precise color work.',
+                image: '/examples/sculpt-painthard.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Paint Hard Pressure',
+          description: 'Pressure-sensitive hard painting',
+          icon: '/Icons/painthardpressure.png',
+          detailedInfo: {
+            overview: 'Hard-edged painting with pen pressure sensitivity.',
+            pages: [
+              {
+                title: 'Pressure Hard Painting',
+                content: 'Hard edge painting that responds to pen pressure for variable intensity.',
+                image: '/examples/sculpt-painthardpressure.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Paint Soft',
+          description: 'Soft-edged painting',
+          icon: '/Icons/paintsoft.png',
+          detailedInfo: {
+            overview: 'Paints colors with soft, feathered edges.',
+            pages: [
+              {
+                title: 'Soft Edge Painting',
+                content: 'Creates soft, gradual color transitions. Great for organic painting.',
+                image: '/examples/sculpt-paintsoft.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Paint Soft Pressure',
+          description: 'Pressure-sensitive soft painting',
+          icon: '/Icons/paintsoftpressure.png',
+          detailedInfo: {
+            overview: 'Soft-edged painting with pen pressure sensitivity.',
+            pages: [
+              {
+                title: 'Pressure Soft Painting',
+                content: 'Soft painting that responds to pen pressure for natural color application.',
+                image: '/examples/sculpt-paintsoftpressure.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Paint Square',
+          description: 'Square brush painting',
+          icon: '/Icons/paintsquare.png',
+          detailedInfo: {
+            overview: 'Paints colors using a square brush shape.',
+            pages: [
+              {
+                title: 'Square Painting',
+                content: 'Uses square brush shape for geometric painting patterns.',
+                image: '/examples/sculpt-paintsquare.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Sharpen',
+          description: 'Increase color contrast',
+          icon: '/Icons/sharpen.png',
+          detailedInfo: {
+            overview: 'Sharpens color transitions and increases local contrast.',
+            pages: [
+              {
+                title: 'Color Sharpening',
+                content: 'Increases contrast between colors for sharper, more defined color work.',
+                image: '/examples/sculpt-sharpen.gif'
               }
             ]
           }
         },
         {
           name: 'Smear',
-          description: 'Blend colors',
+          description: 'Blend and smear colors',
           icon: '/Icons/smear.png',
           detailedInfo: {
             overview: 'Smear blends existing vertex colors for smooth color transitions.',
@@ -502,21 +817,6 @@ export const sculptingLessonData = {
                 title: 'Color Blending',
                 content: 'Blends and spreads colors across the surface for soft transitions.',
                 image: '/examples/sculpt-smear.gif'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Color Filter',
-          description: 'Apply color effects globally',
-          icon: '/Icons/colorfilter.png',
-          detailedInfo: {
-            overview: 'Applies color adjustments and effects to the entire mesh as a filter operation.',
-            pages: [
-              {
-                title: 'Global Color Effects',
-                content: 'Apply color adjustments like brightness, saturation, or hue shifts to the entire visible mesh.',
-                image: '/examples/sculpt-colorfilter.gif'
               }
             ]
           }
@@ -529,36 +829,61 @@ export const sculptingLessonData = {
       color: '#10b981',
       brushes: [
         {
-          name: 'Cloth',
-          description: 'Simulate fabric behavior',
-          icon: '/Icons/cloth.png',
+          name: 'Bend Boundary Cloth',
+          description: 'Bend fabric edges',
+          icon: '/Icons/bendboundarycloth.png',
           detailedInfo: {
-            overview: 'Cloth brush simulates fabric dynamics in real-time. Create realistic wrinkles, folds, and drapery without complex physics setups.',
+            overview: 'Bends fabric at boundaries and edges with cloth simulation for edge folding effects.',
             pages: [
               {
-                title: 'Cloth Simulation',
-                content: 'Cloth brush simulates fabric physics as you sculpt. Drag to create natural folds and wrinkles. Perfect for clothing and drapery.',
-                image: '/examples/sculpt-cloth-folds.gif'
-              },
-              {
-                title: 'Cloth Settings',
-                content: 'Adjust Simulation Limit and other cloth parameters for different fabric types. Experiment with settings for silk, leather, or heavy fabric.',
-                image: '/examples/sculpt-cloth-settings.gif'
+                title: 'Edge Bending',
+                content: 'Bends fabric at boundaries. Great for hem folds, edge details, and boundary manipulation.',
+                image: '/examples/sculpt-bendboundarycloth.gif'
               }
             ]
           }
         },
         {
-          name: 'Cloth Filter',
-          description: 'Apply cloth simulation as filter',
-          icon: '/Icons/clothfilter.png',
+          name: 'Bend Cloth',
+          description: 'Bend fabric surfaces',
+          icon: '/Icons/bendcloth.png',
           detailedInfo: {
-            overview: 'Applies cloth simulation as a mesh-wide filter effect, creating natural fabric behavior across the entire surface.',
+            overview: 'Bends fabric with cloth simulation for curved folds and natural draping.',
             pages: [
               {
-                title: 'Global Cloth Effects',
-                content: 'Click and drag to apply cloth simulation to the visible mesh. Creates natural fabric behavior globally.',
-                image: '/examples/sculpt-clothfilter.gif'
+                title: 'Fabric Bending',
+                content: 'Creates curved bends in fabric. Perfect for natural draping and curved folds.',
+                image: '/examples/sculpt-bendcloth.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Drag Cloth',
+          description: 'Drag fabric with simulation',
+          icon: '/Icons/dragcloth.png',
+          detailedInfo: {
+            overview: 'Drags fabric across the surface with realistic cloth physics and natural folding.',
+            pages: [
+              {
+                title: 'Fabric Dragging',
+                content: 'Drags fabric across surfaces creating natural folds and wrinkles as you move.',
+                image: '/examples/sculpt-dragcloth.gif'
+              }
+            ]
+          }
+        },
+        {
+          name: 'Expand Cloth',
+          description: 'Expand fabric outward',
+          icon: '/Icons/expandcloth.png',
+          detailedInfo: {
+            overview: 'Expands cloth geometry outward with simulation for natural fabric stretching and billowing effects.',
+            pages: [
+              {
+                title: 'Fabric Expansion',
+                content: 'Creates outward expansion with cloth physics. Perfect for billowing or wind-blown fabric.',
+                image: '/examples/sculpt-expandcloth.gif'
               }
             ]
           }
@@ -594,31 +919,16 @@ export const sculptingLessonData = {
           }
         },
         {
-          name: 'Snake Hook Cloth',
-          description: 'Pull cloth into shapes',
-          icon: '/Icons/snakehookcloth.png',
+          name: 'Grab Random Cloth',
+          description: 'Random grab with cloth physics',
+          icon: '/Icons/grabrandomcloth.png',
           detailedInfo: {
-            overview: 'Snake Hook combined with cloth simulation for pulling fabric with natural wrinkle formation.',
+            overview: 'Grabs fabric with randomized motion for natural, irregular cloth deformation.',
             pages: [
               {
-                title: 'Fabric Pulling',
-                content: 'Pulls fabric outward with cloth behavior. Creates natural wrinkles along pull direction.',
-                image: '/examples/sculpt-snakehookcloth.gif'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Expand Cloth',
-          description: 'Expand fabric outward',
-          icon: '/Icons/expandcloth.png',
-          detailedInfo: {
-            overview: 'Expands cloth geometry outward with simulation for natural fabric stretching and billowing effects.',
-            pages: [
-              {
-                title: 'Fabric Expansion',
-                content: 'Creates outward expansion with cloth physics. Perfect for billowing or wind-blown fabric.',
-                image: '/examples/sculpt-expandcloth.gif'
+                title: 'Random Fabric Movement',
+                content: 'Creates random, natural-looking fabric deformation. Great for organic, irregular wrinkles.',
+                image: '/examples/sculpt-grabrandomcloth.gif'
               }
             ]
           }
@@ -699,36 +1009,6 @@ export const sculptingLessonData = {
           }
         },
         {
-          name: 'Bend Cloth',
-          description: 'Bend fabric surfaces',
-          icon: '/Icons/bendcloth.png',
-          detailedInfo: {
-            overview: 'Bends fabric with cloth simulation for curved folds and natural draping.',
-            pages: [
-              {
-                title: 'Fabric Bending',
-                content: 'Creates curved bends in fabric. Perfect for natural draping and curved folds.',
-                image: '/examples/sculpt-bendcloth.gif'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Bend Boundary Cloth',
-          description: 'Bend fabric edges',
-          icon: '/Icons/bendboundarycloth.png',
-          detailedInfo: {
-            overview: 'Bends fabric at boundaries and edges with cloth simulation for edge folding effects.',
-            pages: [
-              {
-                title: 'Edge Bending',
-                content: 'Bends fabric at boundaries. Great for hem folds, edge details, and boundary manipulation.',
-                image: '/examples/sculpt-bendboundarycloth.gif'
-              }
-            ]
-          }
-        },
-        {
           name: 'Twist Boundary Cloth',
           description: 'Twist fabric boundaries',
           icon: '/Icons/twistboundarycloth.png',
@@ -744,142 +1024,10 @@ export const sculptingLessonData = {
           }
         }
       ]
-    },
-    {
-      name: 'Masking & Organization',
-      icon: '/Icons/tool.svg',
-      color: '#8b5cf6',
-      brushes: [
-        {
-          name: 'Mask',
-          description: 'Protect areas from editing',
-          icon: '/Icons/mask.png',
-          detailedInfo: {
-            overview: 'Mask protects areas from being modified by other brushes. Essential for isolating work areas and preserving finished details.',
-            pages: [
-              {
-                title: 'Masking Basics',
-                content: 'Paint to mask areas (darken). Ctrl+Paint to unmask. Alt+Click to clear all masks. Masked areas are protected from all brush strokes.',
-                image: '/examples/sculpt-mask-paint.gif'
-              },
-              {
-                title: 'Mask Operations',
-                content: 'Use Mask menu (A key) for box mask, lasso mask, or mask by cavity. Ctrl+I inverts mask. Essential for controlled sculpting.',
-                image: '/examples/sculpt-mask-operations.gif'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Mask By Color',
-          description: 'Mask based on vertex colors',
-          icon: '/Icons/maskbycolor.png',
-          detailedInfo: {
-            overview: 'Creates masks based on vertex color similarity, useful for isolating painted areas.',
-            pages: [
-              {
-                title: 'Color-Based Masking',
-                content: 'Automatically masks areas based on color. Perfect for working on specific painted regions.',
-                image: '/examples/sculpt-maskbycolor.gif'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Face Set',
-          description: 'Organize mesh into sections',
-          icon: '/Icons/faceset.png',
-          detailedInfo: {
-            overview: 'Create and manage face sets - groups of faces for organization, hiding, and isolated editing.',
-            pages: [
-              {
-                title: 'Face Set Organization',
-                content: 'Paint or select faces into sets. Each set gets a color. Hide/show sets with H key. Essential for complex models.',
-                image: '/examples/sculpt-faceset-draw.gif'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Box Trim',
-          description: 'Boolean cut with box',
-          icon: '/Icons/boxtrim.png',
-          detailedInfo: {
-            overview: 'Box Trim performs real-time boolean cuts using a box shape. Quickly remove large sections or create hard surface cuts in your sculpt.',
-            pages: [
-              {
-                title: 'Boolean Cutting',
-                content: 'Draw box to define cut area. Geometry inside box is removed instantly. Perfect for creating hard surface cuts, holes, or mechanical details.',
-                image: '/examples/sculpt-boxtrim-cut.gif'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Trim',
-          description: 'Dynamic boolean trimming',
-          icon: '/Icons/trim.png',
-          detailedInfo: {
-            overview: 'Trim dynamically removes geometry using drawn shapes for precise cutting and sculpting operations.',
-            pages: [
-              {
-                title: 'Dynamic Trimming',
-                content: 'Draw shapes to trim away geometry. More flexible than Box Trim with freeform cutting options.',
-                image: '/examples/sculpt-trim.gif'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Line Project',
-          description: 'Project lines onto surface',
-          icon: '/Icons/lineproject.png',
-          detailedInfo: {
-            overview: 'Line Project cuts or raises along a drawn line. Perfect for creating precise panel lines, seams, or raised details with perfect straightness.',
-            pages: [
-              {
-                title: 'Precise Lines',
-                content: 'Draw line to project onto surface. Creates perfectly straight cuts or raises. Essential for mechanical details and hard surface elements.',
-                image: '/examples/sculpt-lineproject-cut.gif'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Mesh Filter',
-          description: 'Apply filters globally',
-          icon: '/Icons/meshfilter.png',
-          detailedInfo: {
-            overview: 'Apply deformation filters to the entire mesh. Smooth, inflate, or transform the whole model at once.',
-            pages: [
-              {
-                title: 'Global Filters',
-                content: 'Click and drag to apply filters like Smooth, Inflate, Sphere, or Random to entire visible mesh.',
-                image: '/examples/sculpt-meshfilter.gif'
-              }
-            ]
-          }
-        },
-        {
-          name: 'Simplify',
-          description: 'Reduce mesh complexity',
-          icon: '/Icons/simplify.png',
-          detailedInfo: {
-            overview: 'Simplify reduces polygon count in painted areas while preserving overall shape. Great for optimizing high-poly sculpts or cleaning up dense areas.',
-            pages: [
-              {
-                title: 'Mesh Optimization',
-                content: 'Paint over areas to reduce polygon density. Useful for cleaning up over-detailed areas or preparing models for retopology.',
-                image: '/examples/sculpt-simplify-reduce.gif'
-              }
-            ]
-          }
-        }
-      ]
     }
   ],
 
-   techniques : [
+  techniques: [
     {
       name: 'Essential Techniques',
       icon: '/Icons/tool.svg',
@@ -899,12 +1047,12 @@ export const sculptingLessonData = {
               },
               {
                 title: 'Detail Size',
-                content: 'Adjust Detail Size to control resolution. Smaller values : more detail but slower performance. Use R+drag to set detail size interactively.',
+                content: 'Adjust Detail Size to control resolution. Smaller values = more detail but slower performance. Use R+drag to set detail size interactively.',
                 image: '/examples/sculpt-dyntopo-detail.gif'
               },
               {
                 title: 'Detailing Methods',
-                content: 'Relative Detail scales with view distance. ant maintains uniform polygon size. Brush Detail adds geometry only where you sculpt.',
+                content: 'Relative Detail scales with view distance. Constant maintains uniform polygon size. Brush Detail adds geometry only where you sculpt.',
                 image: '/examples/sculpt-dyntopo-methods.gif'
               }
             ]
@@ -933,7 +1081,7 @@ export const sculptingLessonData = {
         {
           name: 'Symmetry',
           description: 'Mirror your sculpting strokes',
-          icon: '/Icons/mirror.svg',
+          icon: '/Icons/ops.gpencil.edit_mirror.svg',
           detailedInfo: {
             overview: 'Symmetry mirrors your strokes across chosen axes. Essential for characters and any symmetrical subject, saving time and ensuring balance.',
             pages: [
@@ -1011,7 +1159,7 @@ export const sculptingLessonData = {
     }
   ],
 
-   practiceProjects: [
+  practiceProjects: [
     { 
       title: 'Sculpt a Stylized Character Head', 
       desc: 'Learn basic forms and proportions',

@@ -51,6 +51,7 @@ export const editModeLessonData = {
           {
             title: 'Selecting Vertices',
             content: 'Click to select individual vertices, or drag to box select. Hold Shift to add to selection, Alt to deselect. Selected vertices turn orange/white.',
+            image: '/examples/edit-mode-vertex-selection.gif',
             tips: [
               'Press 1 on keyboard to switch to Vertex mode',
               'Alt+A deselects all vertices',
@@ -60,7 +61,8 @@ export const editModeLessonData = {
           },
           {
             title: 'Moving Vertices',
-            content: 'Press G to grab/move selected vertices. Move your mouse and click to confirm. Press X, Y, or Z to rain movement to an axis. Type numbers for precise distances.',
+            content: 'Press G to grab/move selected vertices. Move your mouse and click to confirm. Press X, Y, or Z to constrain movement to an axis. Type numbers for precise distances.',
+            image: '/examples/edit-mode-vertex-move.gif',
             tips: [
               'G then X moves only along X axis',
               'Shift+Z moves on XY plane (excludes Z)',
@@ -71,6 +73,7 @@ export const editModeLessonData = {
           {
             title: 'Merging Vertices',
             content: 'Select multiple vertices and press M to merge them. Choose "At Center", "At Cursor", or "At First/Last". Perfect for closing gaps or fixing duplicate vertices.',
+            image: '/examples/edit-mode-vertex-merge.gif',
             tips: [
               'M opens merge menu',
               'Use "By Distance" to auto-merge close vertices',
@@ -92,6 +95,7 @@ export const editModeLessonData = {
           {
             title: 'Selecting Edges',
             content: 'Click to select individual edges. Alt+Click selects an entire edge loop (ring of connected edges). This is incredibly useful for adding detail or making selections.',
+            image: '/examples/edit-mode-edge-selection.gif',
             tips: [
               'Press 2 on keyboard to switch to Edge mode',
               'Alt+Click selects full edge loops',
@@ -102,16 +106,18 @@ export const editModeLessonData = {
           {
             title: 'Subdividing Edges',
             content: 'Right-click selected edges and choose "Subdivide" to split them into multiple segments. Add more geometry where you need extra detail.',
+            image: '/examples/edit-mode-edge-subdivide.gif',
             tips: [
               'Subdivide adds vertices at edge midpoints',
               'Use F9 after subdividing to adjust settings',
-              'More subdivisions : smoother curves',
+              'More subdivisions = smoother curves',
               'Don\'t over-subdivide - keep it clean!'
             ]
           },
           {
             title: 'Loop Cut Tool',
             content: 'Press Ctrl+R to activate Loop Cut tool. Hover over edges to preview, click to place, move to position, click again to confirm. The fastest way to add edge loops!',
+            image: '/examples/edit-mode-edge-loop-cut.gif',
             tips: [
               'Scroll mouse wheel to add multiple loops',
               'Press E after placing to slide loops',
@@ -133,6 +139,7 @@ export const editModeLessonData = {
           {
             title: 'Selecting Faces',
             content: 'Click to select individual faces. The face highlights in a translucent color. You can select multiple faces to work on larger areas of your model.',
+            image: '/examples/edit-mode-face-selection.gif',
             tips: [
               'Press 3 on keyboard to switch to Face mode',
               'Alt+Click selects face loops',
@@ -143,6 +150,7 @@ export const editModeLessonData = {
           {
             title: 'Extruding Faces',
             content: 'Select a face and press E to extrude. Move your mouse outward and click. This creates new geometry extending from the original face - the most used modeling operation!',
+            image: '/examples/edit-mode-face-extrude.gif',
             tips: [
               'E then S scales extruded face',
               'E then right-click cancels extrusion',
@@ -153,6 +161,7 @@ export const editModeLessonData = {
           {
             title: 'Inset Faces',
             content: 'Press I to inset selected faces - creates a smaller face inside the original. Perfect for adding detail like panels, windows, or decorative elements.',
+            image: '/examples/edit-mode-face-inset.gif',
             tips: [
               'I then move mouse to control inset depth',
               'Hold Ctrl for even inset thickness',
@@ -177,6 +186,7 @@ export const editModeLessonData = {
           {
             title: 'Basic Extrusion',
             content: 'Select vertices, edges, or faces, press E, move mouse, click. That\'s it! The selected elements move outward while new geometry connects them to the original.',
+            image: '/examples/edit-mode-tool-extrude-basic.gif',
             tips: [
               'E for extrude, G for grab, R for rotate, S for scale',
               'Can extrude multiple times in succession',
@@ -187,6 +197,7 @@ export const editModeLessonData = {
           {
             title: 'Extrude Along Normals',
             content: 'After pressing E, tap Alt+S to extrude along surface normals. Great for adding uniform thickness or creating organic growth patterns.',
+            image: '/examples/edit-mode-tool-extrude-normals.gif',
             tips: [
               'Works best on curved surfaces',
               'Maintains surface direction',
@@ -208,6 +219,7 @@ export const editModeLessonData = {
           {
             title: 'Using Inset',
             content: 'Select faces (press 3), then press I. Move mouse inward and click. A new face appears inside with edges connecting to the original.',
+            image: '/examples/edit-mode-tool-inset.gif',
             tips: [
               'I key activates inset',
               'Works on single or multiple faces',
@@ -230,8 +242,9 @@ export const editModeLessonData = {
           {
             title: 'Beveling Edges',
             content: 'Select edges (or vertices), press Ctrl+B, move mouse to control width, click to confirm. Scroll wheel adds segments for smoother curves.',
+            image: '/examples/edit-mode-tool-bevel.gif',
             tips: [
-              'More segments : smoother result',
+              'More segments = smoother result',
               'Hold Shift for precise control',
               'Works on edges and vertices',
               'Essential for hard-surface modeling',
@@ -252,6 +265,7 @@ export const editModeLessonData = {
           {
             title: 'Placing Loop Cuts',
             content: 'Press Ctrl+R, hover over mesh to preview, click to confirm position, move to place, click again. Scroll wheel adds multiple loops at once!',
+            image: '/examples/edit-mode-tool-loop-cut.gif',
             tips: [
               'Scroll mouse wheel for multiple loops',
               'E after placing to evenly space',
@@ -274,8 +288,9 @@ export const editModeLessonData = {
           {
             title: 'Using the Knife',
             content: 'Press K to activate Knife tool. Click on your mesh to place cut points. The tool shows a preview line. Press Enter to confirm cuts, Esc to cancel.',
+            image: '/examples/edit-mode-tool-knife.gif',
             tips: [
-              'C enables angle raint (45° snapping)',
+              'C enables angle constraint (45° snapping)',
               'Hold Ctrl to snap to edge midpoints',
               'Z enables cut-through (cuts backfaces too)',
               'Great for adding detail to flat surfaces',
@@ -296,6 +311,7 @@ export const editModeLessonData = {
           {
             title: 'Enabling Proportional Edit',
             content: 'Press O to toggle Proportional Editing. When active, transforming vertices affects surrounding geometry. Scroll wheel adjusts influence radius.',
+            image: '/examples/edit-mode-tool-proportional.gif',
             tips: [
               'O toggles proportional editing on/off',
               'Scroll wheel changes influence size',
@@ -318,6 +334,7 @@ export const editModeLessonData = {
           {
             title: 'Merging Vertices',
             content: 'Select vertices, press M to open merge menu. Choose At Center, At Cursor, At First, At Last, or By Distance.',
+            image: '/examples/edit-mode-tool-merge.gif',
             tips: [
               'M opens merge menu',
               'By Distance auto-merges close vertices',
@@ -340,6 +357,7 @@ export const editModeLessonData = {
           {
             title: 'Using Spin',
             content: 'Position 3D cursor at center point, select edge loop or vertices, Alt+R for Spin tool. Adjust angle and steps for smooth revolution.',
+            image: '/examples/edit-mode-tool-spin.gif',
             tips: [
               'Place cursor carefully - it\'s the pivot',
               'Works great for pottery/vases',
@@ -362,6 +380,7 @@ export const editModeLessonData = {
           {
             title: 'Shrink/Fatten',
             content: 'Select geometry, press Alt+S to shrink or fatten. Positive values expand outward, negative values shrink inward along normals.',
+            image: '/examples/edit-mode-tool-shrink-fatten.gif',
             tips: [
               'Alt+S activates tool',
               'Works on any selection',
@@ -384,6 +403,7 @@ export const editModeLessonData = {
           {
             title: 'Sliding Edges',
             content: 'Select edges, press GG (double-tap G) to slide along edge direction. Great for repositioning edge loops.',
+            image: '/examples/edit-mode-tool-edge-slide.gif',
             tips: [
               'GG activates edge slide',
               'C toggles clamping',
@@ -406,6 +426,7 @@ export const editModeLessonData = {
           {
             title: 'Bridging Loops',
             content: 'Select two edge loops, right-click > Bridge Edge Loops. Creates smooth transition between loops with faces.',
+            image: '/examples/edit-mode-tool-bridge-loops.gif',
             tips: [
               'Both loops need same vertex count',
               'Right-click for context menu',
@@ -428,6 +449,7 @@ export const editModeLessonData = {
           {
             title: 'Subdividing Geometry',
             content: 'Select edges or faces, right-click > Subdivide. Adds vertices and edges at midpoints, creating denser geometry.',
+            image: '/examples/edit-mode-tool-subdivide.gif',
             tips: [
               'Right-click for context menu',
               'Press F9 to adjust subdivisions',
@@ -450,6 +472,7 @@ export const editModeLessonData = {
           {
             title: 'Filling Gaps',
             content: 'Select edges forming a loop, press F to fill with a face. For complex shapes, use Grid Fill (Ctrl+F > Grid Fill) for clean topology.',
+            image: '/examples/edit-mode-tool-fill.gif',
             tips: [
               'F fills selected vertices/edges',
               'Grid Fill creates perfect quad flow',
@@ -472,6 +495,7 @@ export const editModeLessonData = {
           {
             title: 'Dissolving Elements',
             content: 'Select vertices/edges/faces, press X > Dissolve. Removes selection while keeping mesh intact. Great for cleanup work.',
+            image: '/examples/edit-mode-tool-dissolve.gif',
             tips: [
               'X opens delete menu',
               'Dissolve keeps mesh connected',
@@ -494,6 +518,7 @@ export const editModeLessonData = {
           {
             title: 'Separating Geometry',
             content: 'Select geometry, press P to open Separate menu. Choose Selection, By Material, or By Loose Parts to create new objects.',
+            image: '/examples/edit-mode-tool-separate.gif',
             tips: [
               'P opens separate menu',
               'Creates new objects from selection',
@@ -516,6 +541,7 @@ export const editModeLessonData = {
           {
             title: 'Ripping Geometry',
             content: 'Select vertices or edges, press V to rip and move. Creates duplicate vertices at selection, breaking connections.',
+            image: '/examples/edit-mode-tool-rip.gif',
             tips: [
               'V activates rip tool',
               'Great for creating openings',
@@ -538,6 +564,7 @@ export const editModeLessonData = {
           {
             title: 'Poking Faces',
             content: 'Select faces, Alt+P or Mesh > Poke Faces. Adds center vertex and connects to all edges, creating triangular faces.',
+            image: '/examples/edit-mode-tool-poke-faces.gif',
             tips: [
               'Creates center vertex in each face',
               'Converts quads to triangles',
@@ -559,7 +586,8 @@ export const editModeLessonData = {
         pages: [
           {
             title: 'Shearing Geometry',
-            content: 'Select geometry, Ctrl+Shift+Alt+S for shear. Move mouse to slant, press X/Y/Z to rain axis. Creates parallelogram effect.',
+            content: 'Select geometry, Ctrl+Shift+Alt+S for shear. Move mouse to slant, press X/Y/Z to constrain axis. Creates parallelogram effect.',
+            image: '/examples/edit-mode-tool-shear.gif',
             tips: [
               'Great for italic effects',
               'Maintains parallel edges',
@@ -582,6 +610,7 @@ export const editModeLessonData = {
           {
             title: 'To Sphere',
             content: 'Select geometry, Shift+Alt+S to push toward sphere shape. Adjust factor to control how spherical the result becomes.',
+            image: '/examples/edit-mode-tool-to-sphere.gif',
             tips: [
               'Shift+Alt+S activates tool',
               '0-1 controls sphere amount',
@@ -604,10 +633,11 @@ export const editModeLessonData = {
           {
             title: 'Duplicating Geometry',
             content: 'Select geometry, press Shift+D to duplicate. Move your mouse to position, click to confirm. The new geometry stays part of the same object.',
+            image: '/examples/edit-mode-tool-duplicate.gif',
             tips: [
               'Shift+D duplicates and moves',
               'Right-click to cancel movement',
-              'Press X/Y/Z to rain axis',
+              'Press X/Y/Z to constrain axis',
               'Alt+D for linked duplicate',
               'Great for creating patterns'
             ]
@@ -626,9 +656,10 @@ export const editModeLessonData = {
           {
             title: 'Smoothing Vertices',
             content: 'Select vertices, right-click > Smooth Vertices. Reduces sharp peaks and creates organic flowing shapes.',
+            image: '/examples/edit-mode-tool-smooth-vertices.gif',
             tips: [
               'Press F9 to adjust iterations',
-              'More iterations : smoother result',
+              'More iterations = smoother result',
               'Works best on dense geometry',
               'Great for organic shapes',
               'Doesn\'t add geometry'

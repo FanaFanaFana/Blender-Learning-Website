@@ -35,7 +35,7 @@ export default function Header() {
               <span>Home</span>
             </Link>
             <Link 
-              href="/#courses" 
+              href="/learn" 
               className="nav-link"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -43,7 +43,7 @@ export default function Header() {
               <span>Docs</span>
             </Link>
             <Link 
-              href="/#about" 
+              href="/about" 
               className="nav-link"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -51,7 +51,7 @@ export default function Header() {
               <span>About</span>
             </Link>
             <Link 
-              href="/#contact" 
+              href="/contact" 
               className="nav-link"
               onClick={() => setMobileMenuOpen(false)}
             >

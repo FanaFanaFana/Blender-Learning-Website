@@ -20,10 +20,10 @@ export default function BlenderCompendium() {
         { title: 'Edit Mode', description: 'Tools and techniques for mesh editing', icon: '/Icons/editmode_hlt.svg', link: '/EditModeLesson' },
         { title: 'Modifiers', description: 'Non-destructive modeling techniques', icon: '/Icons/modifier.svg', link: '/modifierlesson' },
         { title: 'Sculpting', description: 'Digital sculpting tools and workflows', icon: '/Icons/sculptmode_hlt.svg', link: '/SculptingLesson' },
-        { title: 'Character Modeling', description: 'Creating character meshes and topology', icon: '/Icons/mesh_monkey.svg', link: '/CharacterModelingLesson' },
-        { title: 'Hard Surface Modeling', description: 'Mechanical and architectural modeling', icon: '/Icons/mod_bevel.svg', link: '/HardSurfaceLesson' },
-        { title: 'Product Design', description: 'Design workflows for product visualization', icon: '/Icons/mesh_torus.svg', link: '/ProductDesignLesson' },
-        { title: 'Materials & Shading', description: 'Creating realistic materials with the Shader Editor', icon: '/Icons/material.svg',  link: '/MaterialLesson' }
+       { title: 'Character Modeling', description: 'Creating character meshes and topology', icon: '/Icons/mesh_monkey.svg', link: '/CharacterModelingLesson' },
+       { title: 'Hard Surface Modeling', description: 'Mechanical and architectural modeling', icon: '/Icons/mod_bevel.svg', link: '/HardSurfaceLesson' },
+       { title: 'Product Design', description: 'Design workflows for product visualization', icon: '/Icons/mesh_torus.svg', link: '/ProductDesignLesson' },
+       { title: 'Materials & Shading', description: 'Creating realistic materials with the Shader Editor', icon: '/Icons/material.svg',  link: '/MaterialLesson' }
       ]
     },
     rendering: {
@@ -238,7 +238,7 @@ export default function BlenderCompendium() {
         }
 
         .paths-text-overlay h2 {
-          font-size: clamp(2.5rem, 6vw, 4.5rem);
+          font-size: clamp(3.5rem, 8vw, 5.5rem);
           font-weight: 700;
           margin-bottom: 1rem;
           line-height: 1.1;

@@ -137,7 +137,7 @@ export default function PathsScene() {
       requestAnimationFrame(animate)
       
       if (mixerRef.current) {
-        mixerRef.current.update(clock.getDelta() * 0.15) //Speed of the animation
+        mixerRef.current.update(clock.getDelta() * 0.05) //Speed of the animation
       }
       
       if (modelRef.current) {

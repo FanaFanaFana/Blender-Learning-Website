@@ -114,8 +114,8 @@ export default function MonitorScene() {
         const targetRotationY = mouseRef.current.x * 0.3
         const targetRotationX = mouseRef.current.y * -0.3
         
-        modelRef.current.rotation.y += (targetRotationY - modelRef.current.rotation.y) * 0.01
-        modelRef.current.rotation.x += (targetRotationX - modelRef.current.rotation.x) * 0.01
+        modelRef.current.rotation.y += (targetRotationY - modelRef.current.rotation.y) * 0.005
+        modelRef.current.rotation.x += (targetRotationX - modelRef.current.rotation.x) * 0.005
       }
       
       renderer.render(scene, camera)
