@@ -137,15 +137,15 @@ export default function PathsScene() {
       requestAnimationFrame(animate)
       
       if (mixerRef.current) {
-        mixerRef.current.update(clock.getDelta() * 0.05) //Speed of the animation
+        mixerRef.current.update(clock.getDelta() * 0.15) //Speed of the animation
       }
       
       if (modelRef.current) {
         const targetRotationY = mouseRef.current.x * 0.3
         const targetRotationX = mouseRef.current.y * -0.3
         
-        modelRef.current.rotation.y += (targetRotationY - modelRef.current.rotation.y) * 0.01
-        modelRef.current.rotation.x += (targetRotationX - modelRef.current.rotation.x) * 0.01
+        modelRef.current.rotation.y += (targetRotationY - modelRef.current.rotation.y) * 0.003
+        modelRef.current.rotation.x += (targetRotationX - modelRef.current.rotation.x) * 0.003
       }
       
       renderer.render(scene, camera)

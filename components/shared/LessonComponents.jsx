@@ -112,7 +112,7 @@ export function ClickableCard({ item, color, onClick }) {
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
-        <img src={item.icon} alt={item.name} style={{ width: '30px', height: '30px' }} />
+        <img src={item.icon} alt={item.name} style={{ width: '30px', height: '30px', borderRadius: '8px' }} />
         <h4 style={{ fontSize: '1.25rem', margin: 0, color }}>{item.name}</h4>
       </div>
       <p style={{ color: '#8fa9bd', margin: 0 }}>{item.description}</p>
@@ -223,7 +223,7 @@ export function DetailModal({ item, onClose, currentPage, onPageChange }) {
           {/* Header */}
           <div style={{ padding: '2rem 2rem 1rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
-              <img src={item.icon} alt={item.name} style={{ width: '50px', height: '50px' }} />
+              <img src={item.icon} alt={item.name} style={{ width: '50px', height: '50px', borderRadius: '8px'}} />
               <h2 style={{ fontSize: '2.5rem', margin: 0, color }}>{item.name}</h2>
             </div>
             {currentPageData.overview && (

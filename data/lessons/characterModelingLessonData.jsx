@@ -38,15 +38,16 @@ export const characterModelingLessonData = {
    sculptingTools : [
     {
       name: 'Primary Brushes',
-      icon: '/Icons/tool.svg',
+      icon: '/Icons/ops.sculpt.brush_stroke.svg',
       color: '#ec4899',
       tools: [
         {
           name: 'Draw',
           description: 'Push surface outward or inward',
-          icon: '/Icons/brush.draw.svg',
+          icon: '/Icons/ops.gpencil.draw.svg',
           detailedInfo: {
             overview: 'The Draw brush is your primary sculpting tool. It pulls or pushes the surface in the direction of your brush stroke, perfect for building up forms and adding detail.',
+            image: '/examples/sculpt-draw.gif',
             pages: [
               {
                 title: 'Basic Usage',
@@ -69,9 +70,10 @@ export const characterModelingLessonData = {
         {
           name: 'Grab',
           description: 'Pull and move large areas',
-          icon: '/Icons/brush.grab.svg',
+          icon: '/Icons/brush.uv_sculpt.grab.svg',
           detailedInfo: {
             overview: 'Grab moves geometry as if you\'re pulling clay. Excellent for repositioning major forms, adjusting proportions, and creating large movements.',
+            image: '/examples/sculpt-grab.gif',
             pages: [
               {
                 title: 'Grab Technique',
@@ -89,9 +91,10 @@ export const characterModelingLessonData = {
         {
           name: 'Smooth',
           description: 'Average out surface irregularities',
-          icon: '/Icons/brush.smooth.svg',
+          icon: '/Icons/ops.mesh.vertices_smooth.svg',
           detailedInfo: {
             overview: 'Smooth averages vertex positions to create softer surfaces. Essential for blending harsh edges and refining your sculpt.',
+            image: '/examples/sculpt-smooth.gif',
             pages: [
               {
                 title: 'Smoothing Technique',
@@ -109,9 +112,10 @@ export const characterModelingLessonData = {
         {
           name: 'Crease',
           description: 'Create sharp indentations',
-          icon: '/Icons/brush.crease.svg',
+          icon: '/Icons/edge_crease.svg',
           detailedInfo: {
             overview: 'Crease creates sharp, pinched lines in your surface. Perfect for wrinkles, folds, clothing seams, and any hard-edged details.',
+            image: '/examples/sculpt-crease.gif',
             pages: [
               {
                 title: 'Crease vs Draw',
@@ -129,9 +133,10 @@ export const characterModelingLessonData = {
         {
           name: 'Clay Strips',
           description: 'Build up flat, clay-like strokes',
-          icon: '/Icons/brush.clay_strips.svg',
+          icon: '/Icons/brush.sculpt.clay_strips.svg',
           detailedInfo: {
             overview: 'Clay Strips adds material in flat, ribbon-like strokes. Excellent for building major forms quickly, like a real sculptor adding clay.',
+            image: '/examples/sculpt-claystrips.gif',
             pages: [
               {
                 title: 'Form Building',
@@ -149,9 +154,10 @@ export const characterModelingLessonData = {
         {
           name: 'Inflate',
           description: 'Expand surface uniformly',
-          icon: '/Icons/brush.inflate.svg',
+          icon: '/Icons/brush.sculpt.inflate.svg',
           detailedInfo: {
             overview: 'Inflate pushes the surface outward along vertex normals, creating even expansion. Great for making things puffier or creating organic swelling.',
+            image: '/examples/sculpt-inflate.gif',
             pages: [
               {
                 title: 'Uniform Growth',
@@ -170,15 +176,16 @@ export const characterModelingLessonData = {
     },
     {
       name: 'Detail Brushes',
-      icon: '/Icons/brush.sculpt_draw.svg',
+      icon: '/Icons/brush.sculpt.draw.svg',
       color: '#8b5cf6',
       tools: [
         {
           name: 'Pinch',
           description: 'Squeeze vertices together',
-          icon: '/Icons/brush.pinch.svg',
+          icon: '/Icons/brush.sculpt.pinch.svg',
           detailedInfo: {
             overview: 'Pinch pulls vertices toward the center of your brush stroke, creating sharp ridges or defined edges. Essential for hard-edged details.',
+            image: '/examples/sculpt-pinch.gif',
             pages: [
               {
                 title: 'Edge Definition',
@@ -196,9 +203,10 @@ export const characterModelingLessonData = {
         {
           name: 'Scrape',
           description: 'Flatten and plane surfaces',
-          icon: '/Icons/brush.scrape.svg',
+          icon: '/Icons/brush.sculpt.scrape.svg',
           detailedInfo: {
             overview: 'Scrape flattens the surface, as if scraping excess clay away. Perfect for creating planar surfaces and hard-surface elements on organic forms.',
+            image: '/examples/sculpt-scrape.gif',
             pages: [
               {
                 title: 'Surface Flattening',
@@ -216,9 +224,10 @@ export const characterModelingLessonData = {
         {
           name: 'Layer',
           description: 'Add consistent height layers',
-          icon: '/Icons/brush.layer.svg',
+          icon: '/Icons/brush.sculpt.layer.svg',
           detailedInfo: {
             overview: 'Layer brush adds material up to a specific height, then stops. Perfect for creating consistent raised details like scales or armor plates.',
+            image: '/examples/sculpt-layer.gif',
             pages: [
               {
                 title: 'Consistent Detailing',
@@ -236,9 +245,10 @@ export const characterModelingLessonData = {
         {
           name: 'Blob',
           description: 'Add rounded bulges',
-          icon: '/Icons/brush.blob.svg',
+          icon: '/Icons/brush.sculpt.blob.svg',
           detailedInfo: {
             overview: 'Blob creates soft, rounded protrusions. Excellent for organic bumps, blisters, scales, or any rounded surface detail.',
+            image: '/examples/sculpt-blob.gif',
             pages: [
               {
                 title: 'Organic Details',
@@ -257,15 +267,16 @@ export const characterModelingLessonData = {
     },
     {
       name: 'Advanced Tools',
-      icon: '/Icons/settings.svg',
+      icon: '/Icons/ops.sculpt.dynamic_topology_toggle.svg',
       color: '#6366f1',
       tools: [
         {
           name: 'Mask',
           description: 'Protect areas from sculpting',
-          icon: '/Icons/brush.mask.svg',
+          icon: '/Icons/brush.sculpt.mask.svg',
           detailedInfo: {
             overview: 'Masking protects areas of your model from being affected by sculpting. Essential for working on specific areas without disturbing others.',
+            image: '/examples/sculpt-mask.gif',
             pages: [
               {
                 title: 'Creating Masks',
@@ -288,9 +299,10 @@ export const characterModelingLessonData = {
         {
           name: 'Cloth',
           description: 'Simulate fabric dynamics',
-          icon: '/Icons/brush.cloth.svg',
+          icon: '/Icons/brush.sculpt.cloth.svg',
           detailedInfo: {
             overview: 'Cloth brush simulates fabric physics in real-time as you sculpt. Create natural fabric folds, wrinkles, and draping effects.',
+            image: '/examples/sculpt-cloth.gif',
             pages: [
               {
                 title: 'Fabric Simulation',
@@ -308,9 +320,10 @@ export const characterModelingLessonData = {
         {
           name: 'Pose',
           description: 'Move model like rigged character',
-          icon: '/Icons/brush.pose.svg',
+          icon: '/Icons/brush.sculpt.pose.svg',
           detailedInfo: {
             overview: 'Pose brush automatically segments your model and lets you rotate parts like a rigged character - without actual rigging.',
+            image: '/examples/sculpt-pose.gif',
             pages: [
               {
                 title: 'Automatic Posing',
@@ -328,9 +341,10 @@ export const characterModelingLessonData = {
         {
           name: 'Snake Hook',
           description: 'Pull out tendrils and extrusions',
-          icon: '/Icons/brush.snake_hook.svg',
+          icon: '/Icons/brush.sculpt.snake_hook.svg',
           detailedInfo: {
             overview: 'Snake Hook pulls geometry outward in long extrusions. Perfect for creating tentacles, hair, horns, or any elongated features.',
+            image: '/examples/sculpt-snakehook.gif',
             pages: [
               {
                 title: 'Creating Extrusions',
@@ -361,6 +375,7 @@ export const characterModelingLessonData = {
           icon: '/Icons/mod_remesh.svg',
           detailedInfo: {
             overview: 'Dynamic Topology (Dyntopo) automatically adds and removes geometry as you sculpt, giving you infinite detail where needed without manual subdivision.',
+            image: '/examples/sculpt-dyntopo.gif',
             pages: [
               {
                 title: 'Enabling Dyntopo',
@@ -369,12 +384,12 @@ export const characterModelingLessonData = {
               },
               {
                 title: 'Detail Size',
-                content: 'Adjust Detail Size or Resolution to control how much detail is added. Smaller values : more detail (more polygons). Find balance between detail and performance.',
+                content: 'Adjust Detail Size or Resolution to control how much detail is added. Smaller values = more detail (more polygons). Find balance between detail and performance.',
                 image: '/examples/sculpt-dyntopo-detail.gif'
               },
               {
                 title: 'Detailing Method',
-                content: 'Use ant Detail for uniform density, Brush Detail for varying based on brush size, or Manual for full control. Each suits different workflows.',
+                content: 'Use Constant Detail for uniform density, Brush Detail for varying based on brush size, or Manual for full control. Each suits different workflows.',
                 image: '/examples/sculpt-dyntopo-methods.gif'
               }
             ]
@@ -386,6 +401,7 @@ export const characterModelingLessonData = {
           icon: '/Icons/mod_multires.svg',
           detailedInfo: {
             overview: 'Multiresolution modifier lets you sculpt at high detail while keeping a clean base mesh. Switch between detail levels non-destructively.',
+            image: '/examples/sculpt-multires.gif',
             pages: [
               {
                 title: 'Adding Multires',
@@ -411,6 +427,7 @@ export const characterModelingLessonData = {
           icon: '/Icons/image.svg',
           detailedInfo: {
             overview: 'Reference images help you maintain correct proportions and capture details accurately. Essential for realistic or character sculpting.',
+            image: '/examples/sculpt-reference.gif',
             pages: [
               {
                 title: 'Adding References',
@@ -435,9 +452,10 @@ export const characterModelingLessonData = {
         {
           name: 'Primary Forms',
           description: 'Establish major volumes',
-          icon: '/Icons/brush.clay_strips.svg',
+          icon: '/Icons/brush.sculpt.clay_strips.svg',
           detailedInfo: {
             overview: 'Start with simple shapes and build up major forms before adding any detail. Focus on silhouette and proportions first.',
+            image: '/examples/sculpt-blocking.gif',
             pages: [
               {
                 title: 'Big Shapes First',
@@ -450,8 +468,8 @@ export const characterModelingLessonData = {
                 image: '/examples/sculpt-blocking-symmetry.gif'
               },
               {
-                title: 'ant Refinement',
-                content: 'Rotate view antly - view from all angles. Use Smooth frequently to blend forms. Step back often to check overall proportions.',
+                title: 'Constant Refinement',
+                content: 'Rotate view constantly - view from all angles. Use Smooth frequently to blend forms. Step back often to check overall proportions.',
                 image: '/examples/sculpt-blocking-refine.gif'
               }
             ]
@@ -463,6 +481,7 @@ export const characterModelingLessonData = {
           icon: '/Icons/armature.svg',
           detailedInfo: {
             overview: 'Once primary volumes are correct, add secondary forms like major muscle groups, bone landmarks, and structural details.',
+            image: '/examples/sculpt-secondary.gif',
             pages: [
               {
                 title: 'Anatomical Landmarks',
@@ -486,15 +505,16 @@ export const characterModelingLessonData = {
     },
     {
       name: 'Detailing',
-      icon: '/Icons/brush.sculpt_draw.svg',
+      icon: '/Icons/brush.sculpt.draw.svg',
       color: '#ef4444',
       steps: [
         {
           name: 'Tertiary Details',
           description: 'Add surface variation',
-          icon: '/Icons/brush.crease.svg',
+          icon: '/Icons/brush.sculpt.crease.svg',
           detailedInfo: {
             overview: 'With forms established, add surface details like wrinkles, pores, fabric texture, and small imperfections that bring life to your sculpt.',
+            image: '/examples/sculpt-detail.gif',
             pages: [
               {
                 title: 'Texture & Pores',
@@ -520,6 +540,7 @@ export const characterModelingLessonData = {
           icon: '/Icons/image.svg',
           detailedInfo: {
             overview: 'Alphas are grayscale images that add complex details in single strokes. Perfect for scales, patterns, or any repeating surface detail.',
+            image: '/examples/sculpt-alpha.gif',
             pages: [
               {
                 title: 'Loading Alphas',
@@ -537,9 +558,10 @@ export const characterModelingLessonData = {
         {
           name: 'Final Polish',
           description: 'Refine and perfect',
-          icon: '/Icons/brush.smooth.svg',
+          icon: '/Icons/brush.sculpt.smooth.svg',
           detailedInfo: {
             overview: 'Final pass to ensure all details read well, forms flow naturally, and the overall sculpt achieves your artistic vision.',
+            image: '/examples/sculpt-polish.gif',
             pages: [
               {
                 title: 'Global Smoothing',
