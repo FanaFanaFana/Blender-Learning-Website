@@ -109,11 +109,14 @@ export default function Sidebar() {
   }, {})
 
   // Handle mouse leave with a small delay
-  const handleMouseLeave = () => {
-    // Small delay before closing to prevent accidental closes
-    setTimeout(() => {
-      setIsSidebarOpen(false)
-    }, 200)
+  const handleMouseLeave = (e) => {
+    // Only close if mouse is leaving to the right side (not going up/down/left)
+    const rect = e.currentTarget.getBoundingClientRect()
+    if (e.clientX > rect.right) {
+      setTimeout(() => {
+        setIsSidebarOpen(false)
+      }, 200)
+    }
   }
 
   // Cancel delayed close when mouse re-enters
@@ -126,15 +129,21 @@ export default function Sidebar() {
       {/* Overlay for touch devices - closes sidebar when tapped */}
       {isSidebarOpen && (
         <div
-          onClick={() => setIsSidebarOpen(false)}
-          onTouchEnd={() => setIsSidebarOpen(false)}
+          onClick={(e) => {
+            e.stopPropagation()
+            setIsSidebarOpen(false)
+          }}
+          onTouchEnd={(e) => {
+            e.stopPropagation()
+            setIsSidebarOpen(false)
+          }}
           style={{
             position: 'fixed',
             left: 0,
             top: 0,
             width: '100vw',
             height: '100vh',
-            zIndex: 998,
+            zIndex: 9998,
             background: 'rgba(0, 0, 0, 0.3)',
             pointerEvents: 'auto'
           }}
@@ -151,7 +160,7 @@ export default function Sidebar() {
             top: 0,
             width: '340px',
             height: '100vh',
-            zIndex: 999,
+            zIndex: 9999,
             pointerEvents: 'auto'
           }}
         />
@@ -161,6 +170,8 @@ export default function Sidebar() {
       <div
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onClick={(e) => e.stopPropagation()}
+        onTouchEnd={(e) => e.stopPropagation()}
         style={{
           position: 'fixed',
           left: 0,
@@ -173,7 +184,7 @@ export default function Sidebar() {
           overflowY: 'auto',
           overflowX: 'hidden',
           padding: isSidebarOpen ? '1.5rem' : '0',
-          zIndex: 1000,
+          zIndex: 10000,
           transition: 'all 0.3s ease'
         }}
         className="documentation-sidebar"
@@ -280,13 +291,15 @@ export default function Sidebar() {
       {/* Invisible trigger zone - full left edge */}
       <div
         onMouseEnter={handleMouseEnter}
+        onClick={() => setIsSidebarOpen(true)}
+        onTouchEnd={() => setIsSidebarOpen(true)}
         style={{
           position: 'fixed',
           left: 0,
           top: 0,
           width: '10px',
           height: '100vh',
-          zIndex: 998,
+          zIndex: 9998,
           cursor: 'pointer'
         }}
       />
@@ -294,6 +307,8 @@ export default function Sidebar() {
       {/* Hover Tab - Visual indicator */}
       <div
         onMouseEnter={handleMouseEnter}
+        onClick={() => setIsSidebarOpen(true)}
+        onTouchEnd={() => setIsSidebarOpen(true)}
         style={{
           position: 'fixed',
           left: 0,
@@ -311,7 +326,7 @@ export default function Sidebar() {
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
-          zIndex: 999,
+          zIndex: 9999,
           transition: 'all 0.3s ease',
           backdropFilter: 'blur(10px)'
         }}
