@@ -14,8 +14,8 @@ export default function Hero() {
       {/* Text content overlaid with container for centering */}
       <div className="container">
         <div className="hero-text-overlay">
-          <h1>Learn Blender</h1>
-          <p>Master the art of 3D modeling, animation, and rendering</p>
+          <h1>Blender Visual Documentation</h1>
+          <p>Documentation for 3D modeling, animation, and rendering</p>
         </div>
       </div>
       

@@ -150,7 +150,7 @@ export const modifierLessonData = {
               {
                 title: 'Edge Angle',
                 content: 'Set the angle threshold - edges sharper than this value will be split, creating a hard crease in shading.',
-                image: '/examples/edgesplit-angle.jpg'
+                image: '/examples/edgesplit-angle.gif'
               }
             ]
           }
@@ -165,7 +165,7 @@ export const modifierLessonData = {
               {
                 title: 'Using Vertex Groups',
                 content: 'Create a vertex group, assign vertices with different weights, then select that group in the Mask modifier to show only those vertices.',
-                image: '/examples/mask-groups.jpg'
+                image: '/examples/mask-groups.gif'
               }
             ]
           }
@@ -180,12 +180,12 @@ export const modifierLessonData = {
               {
                 title: 'Axis Selection',
                 content: 'Choose X, Y, or Z axis for mirroring. You can enable multiple axes to mirror across several planes simultaneously.',
-                image: '/examples/mirror-axis.jpg'
+                image: '/examples/mirror-axis.gif'
               },
               {
                 title: 'Clipping & Merge',
                 content: 'Enable Clipping to prevent vertices from crossing the mirror plane. Use Merge to automatically weld center vertices together.',
-                image: '/examples/mirror-clipping.jpg'
+                image: '/examples/mirror-clipping.gif'
               }
             ]
           }

@@ -5,6 +5,7 @@ import { useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import BackButton from '@/components/BackButton'
+import Sidebar from '@/components/Sidebar'
 
 import { 
   LessonHero, 
@@ -64,6 +65,7 @@ export default function LessonTemplate({ lessonData }) {
   return (
     <div className="page-wrapper">
       <Header />
+      <Sidebar />
       
       <main>
         <LessonHero {...heroConfig} />
@@ -476,6 +478,8 @@ export default function LessonTemplate({ lessonData }) {
           </section>
         )}
 
+        
+
         {/* Principles Tab - for Hard Surface Lesson */}
 {activeTab === 'principles' && corePrinciples && (
   <section style={{ padding: '4rem 0' }}>
@@ -514,40 +518,59 @@ export default function LessonTemplate({ lessonData }) {
   </section>
 )}
 
-{/* Techniques Tab - handles both 'items' and 'methods' */}
+{/* Techniques Tab - handles flat arrays and categorized structures */}
 {activeTab === 'techniques' && techniques && (
   <section style={{ padding: '4rem 0' }}>
     <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
       <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
-        {techniques[0]?.items ? 'Sculpting Techniques' : 'Modeling Techniques'}
+        {techniques[0]?.items || techniques[0]?.methods ? 'Advanced Techniques' : 'Essential Techniques'}
       </h2>
       <p style={{ textAlign: 'center', color: '#8fa9bd', fontSize: '1.25rem', marginBottom: '3rem' }}>
-        {techniques[0]?.items ? 'Essential workflows and methods for effective sculpting' : 'Essential methods for hard surface modeling'}
+        Essential methods and workflows for professional results
       </p>
 
-      <div style={{ display: 'grid', gap: '3rem' }}>
-        {techniques.map((category, idx) => (
-          <div key={idx}>
-            <h3 style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1.5rem', color: category.color }}>
-              {category.name}
-            </h3>
+      {/* Check if it's a flat array or categorized */}
+      {(techniques[0]?.items || techniques[0]?.methods) ? (
+        // Categorized structure
+        <div style={{ display: 'grid', gap: '3rem' }}>
+          {techniques.map((category, idx) => (
+            <div key={idx}>
+              <h3 style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1.5rem', color: category.color }}>
+                {category.name}
+              </h3>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-              {(category.items || category.methods)?.map((item, itemIdx) => (
-                <ClickableCard
-                  key={itemIdx}
-                  item={item}
-                  color={category.color}
-                  onClick={() => {
-                    setSelectedItem({ ...item, color: category.color })
-                    setCurrentPage(0)
-                  }}
-                />
-              ))}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+                {(category.items || category.methods)?.map((item, itemIdx) => (
+                  <ClickableCard
+                    key={itemIdx}
+                    item={item}
+                    color={category.color}
+                    onClick={() => {
+                      setSelectedItem({ ...item, color: category.color })
+                      setCurrentPage(0)
+                    }}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        // Flat array - render directly
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+          {techniques.map((technique, idx) => (
+            <ClickableCard
+              key={idx}
+              item={technique}
+              color={technique.color || themeColor}
+              onClick={() => {
+                setSelectedItem({ ...technique, color: technique.color || themeColor })
+                setCurrentPage(0)
+              }}
+            />
+          ))}
+        </div>
+      )}
     </div>
   </section>
 )}
