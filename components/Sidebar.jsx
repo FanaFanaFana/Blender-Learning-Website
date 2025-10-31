@@ -123,7 +123,25 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Invisible buffer zone - helps prevent accidental closure */}
+      {/* Overlay for touch devices - closes sidebar when tapped */}
+      {isSidebarOpen && (
+        <div
+          onClick={() => setIsSidebarOpen(false)}
+          onTouchEnd={() => setIsSidebarOpen(false)}
+          style={{
+            position: 'fixed',
+            left: 0,
+            top: 0,
+            width: '100vw',
+            height: '100vh',
+            zIndex: 998,
+            background: 'rgba(0, 0, 0, 0.3)',
+            pointerEvents: 'auto'
+          }}
+        />
+      )}
+
+      {/* Invisible buffer zone - helps prevent accidental closure on desktop */}
       {isSidebarOpen && (
         <div
           onMouseEnter={handleMouseEnter}
@@ -133,7 +151,7 @@ export default function Sidebar() {
             top: 0,
             width: '340px',
             height: '100vh',
-            zIndex: 998,
+            zIndex: 999,
             pointerEvents: 'auto'
           }}
         />
