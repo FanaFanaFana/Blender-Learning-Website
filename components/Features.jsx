@@ -1,5 +1,8 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { playHover } from '@/app/utils/sounds'
 
 export default function Features() {
   const features = [
@@ -27,11 +30,14 @@ export default function Features() {
     <section className="features">
       <div className="container">
         <div className="features-grid">
+          
           {features.map((feature, index) => (
-            <Link key={index} href={feature.link}>
+            <Link key={index} href={feature.link}  onMouseEnter={playHover}>
+              
               <div className="feature-card">
                 <div className="feature-icon">
                   <Image 
+                 
                     src={feature.icon} 
                     alt={feature.alt}
                     width={120}

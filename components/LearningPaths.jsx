@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import PathsScene from './PathsScene'
+import { playHover } from '@/app/utils/sounds'
 
 export default function BlenderCompendium() {
   const [selectedCategory, setSelectedCategory] = useState('modeling')
@@ -213,6 +214,7 @@ export default function BlenderCompendium() {
           <div className="path-selector">
             {mainCategories.map((key) => (
               <button
+                onMouseEnter={playHover}
                 key={key}
                 className={`path-button ${selectedCategory === key ? 'active' : ''}`}
                 onClick={() => setSelectedCategory(key)}
@@ -226,6 +228,7 @@ export default function BlenderCompendium() {
             {/* Dropdown Button */}
             <div style={{ position: 'relative' }}>
               <button
+                onMouseEnter={playHover}
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="path-button"
                 style={{
@@ -262,6 +265,7 @@ export default function BlenderCompendium() {
                 }}>
                   {['Texturing', 'Lesson', 'printing', 'vfx', 'gameAssets', 'hairFur', 'greaseGencil', 'geometryNodes', 'projectManagement', 'simulation'].map((key) => (
                     <button
+                    
                       key={key}
                       onClick={() => {
                         setSelectedCategory(key)
@@ -318,7 +322,7 @@ export default function BlenderCompendium() {
                 const wrapperProps = topic.link ? { href: topic.link } : {}
                 
                 return (
-                  <TopicWrapper key={index} {...wrapperProps} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <TopicWrapper key={index}   onMouseEnter={playHover} {...wrapperProps} style={{ textDecoration: 'none', color: 'inherit' }}>
                     <div style={{
                       background: 'rgba(21, 35, 47, 0.6)',
                       border: '1px solid rgba(255, 255, 255, 0.05)',

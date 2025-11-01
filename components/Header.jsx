@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import GlobalSearch from '@/components/GlobalSearch'
+import { playHover } from '@/app/utils/sounds'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -13,8 +14,9 @@ export default function Header() {
       <div className="container">
         <div className="nav-wrapper">
           <div className="logo">
-           <Link href="/" className="logo">
-  <Image 
+           <Link href="/" className="logo" onMouseEnter={playHover} >
+  <Image
+  
     src="/logo.png" 
     alt="Blender Logo" 
     width={50} 
@@ -29,6 +31,7 @@ export default function Header() {
           
           <nav className={`nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
             <Link 
+            onMouseEnter={playHover} 
               href="/#home" 
               className="nav-link"
               onClick={() => setMobileMenuOpen(false)}
@@ -37,6 +40,7 @@ export default function Header() {
               <span>Home</span>
             </Link>
             <Link 
+            onMouseEnter={playHover} 
               href="/learn" 
               className="nav-link"
               onClick={() => setMobileMenuOpen(false)}
@@ -45,6 +49,7 @@ export default function Header() {
               <span>Docs</span>
             </Link>
             <Link 
+            onMouseEnter={playHover} 
               href="/about" 
               className="nav-link"
               onClick={() => setMobileMenuOpen(false)}
@@ -53,6 +58,7 @@ export default function Header() {
               <span>About</span>
             </Link>
             <Link 
+            onMouseEnter={playHover} 
               href="/contact" 
               className="nav-link"
               onClick={() => setMobileMenuOpen(false)}

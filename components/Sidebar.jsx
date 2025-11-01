@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { playHover } from '@/app/utils/sounds'
 
 export default function Sidebar() {
   const [searchQuery, setSearchQuery] = useState('')
@@ -129,6 +130,7 @@ export default function Sidebar() {
       {/* Overlay for touch devices - closes sidebar when tapped */}
       {isSidebarOpen && (
         <div
+        
           onClick={(e) => {
             e.stopPropagation()
             setIsSidebarOpen(false)
@@ -168,6 +170,7 @@ export default function Sidebar() {
 
       {/* Sidebar */}
       <div
+      
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={(e) => e.stopPropagation()}
@@ -192,6 +195,7 @@ export default function Sidebar() {
         {/* Search Bar */}
         <div style={{ marginBottom: '1.5rem', opacity: isSidebarOpen ? 1 : 0, transition: 'opacity 0.3s ease' }}>
           <input
+          onMouseEnter={playHover}
             type="text"
             placeholder="Search topics..."
             value={searchQuery}
@@ -210,10 +214,11 @@ export default function Sidebar() {
         </div>
 
         {/* Topics List */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', opacity: isSidebarOpen ? 1 : 0, transition: 'opacity 0.3s ease 0.1s' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', opacity: isSidebarOpen ? 1 : 0, transition: 'opacity 0.3s ease 0.1s'  }}>
           {Object.entries(groupedTopics).map(([category, topics]) => (
-            <div key={category}>
+            <div key={category} >
               <h3 style={{
+                
                 fontSize: '0.85rem',
                 fontWeight: '600',
                 color: topics[0].color,
@@ -222,6 +227,7 @@ export default function Sidebar() {
                 letterSpacing: '0.05em'
               }}>
                 {category}
+                
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 {topics.map((topic, idx) => {
@@ -229,7 +235,7 @@ export default function Sidebar() {
                   const wrapperProps = topic.link ? { href: topic.link } : {}
 
                   return (
-                    <TopicWrapper key={idx} {...wrapperProps} style={{ textDecoration: 'none' }}>
+                    <TopicWrapper key={idx}  onMouseEnter={playHover} {...wrapperProps} style={{ textDecoration: 'none' }}>
                       <div
                         style={{
                           display: 'flex',
@@ -243,10 +249,12 @@ export default function Sidebar() {
                           transition: 'all 0.2s ease',
                           border: '1px solid transparent'
                         }}
+                        
                         onMouseEnter={(e) => {
                           if (topic.link) {
                             e.currentTarget.style.background = 'rgba(28, 45, 60, 0.6)'
                             e.currentTarget.style.borderColor = `${topic.color}40`
+                            
                           }
                         }}
                         onMouseLeave={(e) => {

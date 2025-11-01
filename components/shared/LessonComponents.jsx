@@ -38,7 +38,7 @@ export function LessonHero({ title, gradientText, subtitle, gradientColors }) {
 // ============================================
 // 2. TAB NAVIGATION
 // ============================================
-export function TabNavigation({ tabs, activeTab, onTabChange, activeColor }) {
+export function TabNavigation({ tabs, activeTab, onTabChange, activeColor, onMouseEnter }) {
   return (
     <section style={{ padding: '0rem 0', background: 'transparent' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
@@ -47,6 +47,7 @@ export function TabNavigation({ tabs, activeTab, onTabChange, activeColor }) {
             <button
               key={tab.id}
               onClick={() => onTabChange(tab.id)}
+              onMouseEnter={onMouseEnter}
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -62,6 +63,8 @@ export function TabNavigation({ tabs, activeTab, onTabChange, activeColor }) {
                 backgroundColor: activeTab === tab.id ? `${activeColor}15` : 'rgba(21, 35, 47, 0.6)',
                 transition: 'all 0.3s ease'
               }}
+              onMouseMove={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
             >
               <img src={tab.icon} alt={tab.label} style={{ width: '40px', height: '40px' }} />
               <span>{tab.label}</span>
@@ -76,9 +79,12 @@ export function TabNavigation({ tabs, activeTab, onTabChange, activeColor }) {
 // ============================================
 // 3. INFO CARD (for overview sections)
 // ============================================
-export function InfoCard({ icon, title, content }) {
+export function InfoCard({ icon, title, content, onMouseEnter }) {
   return (
-    <div style={{ background: 'rgba(21, 35, 47, 0.6)', padding: '2rem', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+    <div 
+      onMouseEnter={onMouseEnter}
+      style={{ background: 'rgba(21, 35, 47, 0.6)', padding: '2rem', borderRadius: '16px', border: '1px solid rgba(255, 255, 255, 0.05)', cursor: 'default' }}
+    >
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
         <img src={icon} alt={title} style={{ width: '40px', height: '40px' }} />
         <h3 style={{ fontSize: '1.75rem', margin: 0 }}>{title}</h3>
@@ -93,13 +99,16 @@ export function InfoCard({ icon, title, content }) {
 // ============================================
 // 4. CLICKABLE CARD (with hover effect)
 // ============================================
-export function ClickableCard({ item, color, onClick }) {
+export function ClickableCard({ item, color, onClick, onMouseEnter }) {
   const [isHovered, setIsHovered] = useState(false)
   
   return (
     <div
       onClick={onClick}
-      onMouseEnter={() => setIsHovered(true)}
+      onMouseEnter={(e) => {
+        setIsHovered(true)
+        if (onMouseEnter) onMouseEnter(e)
+      }}
       onMouseLeave={() => setIsHovered(false)}
       style={{
         background: isHovered ? 'rgba(28, 45, 60, 0.8)' : 'rgba(21, 35, 47, 0.6)',
@@ -123,7 +132,7 @@ export function ClickableCard({ item, color, onClick }) {
 /// ============================================
 // 5. DETAIL MODAL (the big popup with fullscreen image!)
 // ============================================
-export function DetailModal({ item, onClose, currentPage, onPageChange }) {
+export function DetailModal({ item, onClose, currentPage, onPageChange, onMouseEnter }) {
   const [isImageFullscreen, setIsImageFullscreen] = useState(false)
   
   if (!item || !item.detailedInfo) return null
@@ -196,6 +205,7 @@ export function DetailModal({ item, onClose, currentPage, onPageChange }) {
           {/* Close button */}
           <button
             onClick={onClose}
+            onMouseEnter={onMouseEnter}
             style={{
               position: 'absolute',
               top: '1.5rem',
@@ -214,7 +224,7 @@ export function DetailModal({ item, onClose, currentPage, onPageChange }) {
               transition: 'all 0.2s ease',
               zIndex: 10
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)')}
+            onMouseMove={(e) => (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)')}
             onMouseLeave={(e) => (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)')}
           >
             ×
@@ -269,6 +279,7 @@ export function DetailModal({ item, onClose, currentPage, onPageChange }) {
                   {/* Fullscreen button overlay */}
                   <button
                     onClick={() => setIsImageFullscreen(true)}
+                    onMouseEnter={onMouseEnter}
                     style={{
                       position: 'absolute',
                       bottom: '1rem',
@@ -285,7 +296,7 @@ export function DetailModal({ item, onClose, currentPage, onPageChange }) {
                       gap: '0.5rem',
                       transition: 'all 0.2s ease'
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(0, 0, 0, 0.9)')}
+                    onMouseMove={(e) => (e.currentTarget.style.background = 'rgba(0, 0, 0, 0.9)')}
                     onMouseLeave={(e) => (e.currentTarget.style.background = 'rgba(0, 0, 0, 0.7)')}
                   >
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -356,6 +367,7 @@ export function DetailModal({ item, onClose, currentPage, onPageChange }) {
               >
                 <button
                   onClick={() => onPageChange(Math.max(0, currentPage - 1))}
+                  onMouseEnter={onMouseEnter}
                   disabled={currentPage === 0}
                   style={{
                     background: currentPage === 0 ? 'rgba(255, 255, 255, 0.05)' : color,
@@ -390,6 +402,7 @@ export function DetailModal({ item, onClose, currentPage, onPageChange }) {
 
                 <button
                   onClick={() => onPageChange(Math.min(totalPages - 1, currentPage + 1))}
+                  onMouseEnter={onMouseEnter}
                   disabled={currentPage === totalPages - 1}
                   style={{
                     background:
@@ -438,6 +451,7 @@ export function DetailModal({ item, onClose, currentPage, onPageChange }) {
               e.stopPropagation()
               setIsImageFullscreen(false)
             }}
+            onMouseEnter={onMouseEnter}
             style={{
               position: 'absolute',
               top: '2rem',
@@ -456,7 +470,7 @@ export function DetailModal({ item, onClose, currentPage, onPageChange }) {
               transition: 'all 0.2s ease',
               zIndex: 10001
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.3)')}
+            onMouseMove={(e) => (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.3)')}
             onMouseLeave={(e) => (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)')}
           >
             ×

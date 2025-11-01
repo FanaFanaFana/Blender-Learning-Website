@@ -6,6 +6,8 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import BackButton from '@/components/BackButton'
 import Sidebar from '@/components/Sidebar'
+import LessonScene from '@/components/LessonScene'
+import { playHover } from '@/app/utils/sounds'
 
 import { 
   LessonHero, 
@@ -17,7 +19,7 @@ import {
 } from '@/components/shared/LessonComponents'
 
 export default function LessonTemplate({ lessonData }) {
-  const [activeTab, setActiveTab] = useState(lessonData.tabs[0].id)
+  const [activeTab, setActiveTab] = useState(lessonData.tabs[1].id)
   const [selectedItem, setSelectedItem] = useState(null)
   const [currentPage, setCurrentPage] = useState(0)
 
@@ -76,7 +78,18 @@ export default function LessonTemplate({ lessonData }) {
       <Sidebar />
       
       <main>
-        <LessonHero {...heroConfig} />
+        {/* Hero with 3D Background */}
+        <section style={{ position: 'relative', padding: '0', margin: '0 -2rem', width: 'calc(100% + 4rem)', minHeight: '50vh', display: 'flex', alignItems: 'center', overflow: 'hidden', marginBottom: '3rem' }}>
+          {/* 3D Scene Background */}
+          <div style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, width: '100%', height: '100%', zIndex: 1, opacity: 0.3 }}>
+            <LessonScene />
+          </div>
+
+          {/* Hero Content Overlay */}
+          <div style={{ position: 'relative', zIndex: 2, width: '100%' }}>
+            <LessonHero {...heroConfig} />
+          </div>
+        </section>
         
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem', marginBottom: '3rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', position: 'relative' }}>
@@ -84,6 +97,7 @@ export default function LessonTemplate({ lessonData }) {
               <div className="tabs-wrapper">
                 <BackButton />
                 <TabNavigation 
+                  onMouseEnter={playHover}
                   tabs={tabs}
                   activeTab={activeTab}
                   onTabChange={setActiveTab}
@@ -107,7 +121,7 @@ export default function LessonTemplate({ lessonData }) {
 
                 <div style={{ display: 'grid', gap: '2rem' }}>
                   {overviewCards.map((card, idx) => (
-                    <InfoCard key={idx} {...card} />
+                    <InfoCard key={idx} {...card} onMouseEnter={playHover} />
                   ))}
                 </div>
               </div>
@@ -136,6 +150,7 @@ export default function LessonTemplate({ lessonData }) {
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
                       {(category.items || category.brushes || []).map((item, itemIdx) => (
                         <ClickableCard
+                          onMouseEnter={playHover}
                           key={itemIdx}
                           item={item}
                           color={category.color}
@@ -174,6 +189,7 @@ export default function LessonTemplate({ lessonData }) {
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
                       {category.items.map((item, itemIdx) => (
                         <ClickableCard
+                          onMouseEnter={playHover}
                           key={itemIdx}
                           item={item}
                           color={category.color}
@@ -210,7 +226,11 @@ export default function LessonTemplate({ lessonData }) {
                     </h3>
                     <div style={{ display: 'grid', gap: '0.75rem' }}>
                       {section.items.map((shortcut, itemIdx) => (
-                        <div key={itemIdx} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.75rem 1rem', background: 'rgba(255, 255, 255, 0.02)', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                        <div 
+                          key={itemIdx} 
+                          onMouseEnter={playHover}
+                          style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.75rem 1rem', background: 'rgba(255, 255, 255, 0.02)', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.05)', cursor: 'default' }}
+                        >
                           <span style={{ color: '#b0c4d4', fontSize: '1rem' }}>{shortcut.action}</span>
                           <code style={{ background: `${themeColor}20`, color: themeColor, padding: '0.4rem 0.8rem', borderRadius: '6px', fontSize: '0.9rem', fontWeight: '600', border: `1px solid ${themeColor}40` }}>
                             {shortcut.key}
@@ -267,9 +287,13 @@ export default function LessonTemplate({ lessonData }) {
                         </div>
                       </div>
                       
-                      <button style={{ background: themeColor, border: 'none', padding: '0.875rem 2rem', borderRadius: '10px', color: '#fff', fontSize: '1.1rem', fontWeight: '600', cursor: 'pointer', flexShrink: 0, transition: 'all 0.3s ease' }}
-                        onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+                      <button 
+                        onMouseEnter={(e) => {
+                          playHover()
+                          e.currentTarget.style.transform = 'translateY(-2px)'
+                        }}
                         onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                        style={{ background: themeColor, border: 'none', padding: '0.875rem 2rem', borderRadius: '10px', color: '#fff', fontSize: '1.1rem', fontWeight: '600', cursor: 'pointer', flexShrink: 0, transition: 'all 0.3s ease' }}
                       >
                         Start →
                       </button>
@@ -287,6 +311,7 @@ export default function LessonTemplate({ lessonData }) {
             item={selectedItem}
             currentPage={currentPage}
             onPageChange={setCurrentPage}
+            onMouseEnter={playHover}
             onClose={() => {
               setSelectedItem(null)
               // Clear the hash when closing
