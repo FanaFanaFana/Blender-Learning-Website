@@ -13,6 +13,16 @@ body {
   padding: 1.5rem;
 }
 
+.logo {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 .page-wrapper {
   max-width: 95%;
   margin: 0 auto;

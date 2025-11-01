@@ -14,7 +14,7 @@ export const modifierLessonData = {
 
    tabs : [
     { id: 'overview', icon: '/Icons/info.svg', label: 'Overview' },
-    { id: 'types', icon: '/Icons/modifier.svg', label: 'Modifier Types' },
+    { id: 'content', icon: '/Icons/modifier.svg', label: 'Modifier Types' },
     { id: 'practice', icon: '/Icons/view_camera.svg', label: 'Practice' }
   ],
 
@@ -38,13 +38,16 @@ export const modifierLessonData = {
     }
   ],
 
+  contentTitle: 'Modifier Types',
+   contentDescription: 'Explore the complete collection of Blender modifiers organized by category',
+
   // 👇 Complete modifier data with all major modifiers
-   modifierCategories : [
+   categories : [
     {
       name: 'Generate',
       icon: '/Icons/modifier.svg',
       color: '#3b82c4',
-      modifiers: [
+      items: [
         {
           name: 'Array',
           description: 'Duplicate objects in a pattern',
@@ -336,7 +339,7 @@ export const modifierLessonData = {
       name: 'Deform',
       icon: '/Icons/modifier.svg',
       color: '#f59e0b',
-      modifiers: [
+      items: [
         {
           name: 'Armature',
           description: 'Deform using bone skeleton',
@@ -568,7 +571,7 @@ export const modifierLessonData = {
       name: 'Physics',
       icon: '/Icons/physics.svg',
       color: '#8b5cf6',
-      modifiers: [
+      items: [
         {
           name: 'Cloth',
           description: 'Simulate fabric behavior',
@@ -730,7 +733,7 @@ export const modifierLessonData = {
       name: 'Modify',
       icon: '/Icons/modifier.svg',
       color: '#10b981',
-      modifiers: [
+      items: [
         {
           name: 'Data Transfer',
           description: 'Transfer data between meshes',

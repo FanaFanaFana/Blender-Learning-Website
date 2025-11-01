@@ -1,23 +1,24 @@
 export const interfaceLessonData = {
-     heroConfig : {
+  heroConfig: {
     title: 'Blender',
     gradientText: 'Interface',
     subtitle: 'Master the Blender interface and start your 3D journey with confidence',
     gradientColors: 'linear-gradient(135deg, #f97316, #fb923c, #fbbf24)',
-    badges: [
-  
-    ]
+    badges: []
   },
 
-   tabs : [
+  tabs: [
     { id: 'overview', icon: '/Icons/info.svg', label: 'Overview' },
-    { id: 'areas', icon: '/Icons/view3d.svg', label: 'Interface Areas' },
+    { id: 'content', icon: '/Icons/view3d.svg', label: 'Interface Areas' }, // ← Changed from 'areas' to 'content'
     { id: 'shortcuts', icon: '/Icons/settings.svg', label: 'Shortcuts' }
   ],
 
-   themeColor : '#f97316',
+  themeColor: '#f97316',
 
-   overviewCards : [
+  overviewTitle: 'Understanding Blender\'s Interface',
+  overviewDescription: 'Get familiar with the workspace before diving in',
+
+  overviewCards: [
     {
       icon: '/Icons/view3d.svg',
       title: 'Workspaces',
@@ -35,12 +36,17 @@ export const interfaceLessonData = {
     }
   ],
 
-   interfaceAreas : [
+  // ✨ Add these for the content tab header
+  contentTitle: 'Interface Areas',
+  contentDescription: 'Explore Blender\'s powerful editors and panels',
+
+  // ✨ Changed from 'interfaceAreas' to 'categories'
+  categories: [
     {
       name: 'Editor Types',
       icon: '/Icons/view3d.svg',
       color: '#f97316',
-      areas: [
+      items: [ // ← Changed from 'areas' to 'items'
         {
           name: '3D Viewport',
           icon: '/Icons/view3d.svg',
@@ -377,7 +383,7 @@ export const interfaceLessonData = {
       name: 'Panel & UI Elements',
       icon: '/Icons/panel.svg',
       color: '#ec4899',
-      areas: [
+      items: [ // ← Changed from 'areas' to 'items'
         {
           name: 'Tool Shelf (T)',
           icon: '/Icons/tool.svg',
@@ -441,10 +447,10 @@ export const interfaceLessonData = {
       ]
     },
     {
-      name: 'Modifier & raint Panels',
+      name: 'Modifier & Constraint Panels',
       icon: '/Icons/modifier.svg',
       color: '#a855f7',
-      areas: [
+      items: [ // ← Changed from 'areas' to 'items'
         {
           name: 'Modifiers',
           icon: '/Icons/modifier.svg',
@@ -496,7 +502,7 @@ export const interfaceLessonData = {
       name: 'Data Management',
       icon: '/Icons/data.svg',
       color: '#14b8a6',
-      areas: [
+      items: [ // ← Changed from 'areas' to 'items'
         {
           name: 'Collections',
           icon: '/Icons/collection_color_05.svg',
@@ -548,7 +554,7 @@ export const interfaceLessonData = {
       name: 'Object Modes',
       icon: '/Icons/object_datamode.svg',
       color: '#8b5cf6',
-      areas: [
+      items: [ // ← Changed from 'areas' to 'items'
         {
           name: 'Object Mode',
           icon: '/Icons/object_datamode.svg',
@@ -617,7 +623,7 @@ export const interfaceLessonData = {
             overview: 'Paint vertex weights to control how bones deform mesh. Essential for character rigging - determines which bones influence which parts of the mesh.',
             image: '/examples/weight-paint.gif',
             tips: [
-              'Blue : no influence, Red : full influence',
+              'Blue: no influence, Red: full influence',
               'X for weight gradient tool',
               'Use Auto Normalize',
               'Sample weights with Shift+K'
@@ -660,7 +666,7 @@ export const interfaceLessonData = {
       name: 'Top Bar Elements',
       icon: '/Icons/topbar.svg',
       color: '#06b6d4',
-      areas: [
+      items: [ // ← Changed from 'areas' to 'items'
         {
           name: 'Workspaces',
           icon: '/Icons/workspace.svg',
@@ -712,7 +718,7 @@ export const interfaceLessonData = {
       name: 'Viewport Display',
       icon: '/Icons/display.svg',
       color: '#10b981',
-      areas: [
+      items: [ // ← Changed from 'areas' to 'items'
         {
           name: 'Shading Modes',
           icon: '/Icons/node_material.svg',
@@ -752,7 +758,7 @@ export const interfaceLessonData = {
             image: '/examples/gizmos.gif',
             tips: [
               'Click center for free transform',
-              'Click axis for rained transform',
+              'Click axis for constrained transform',
               'Toggle with gizmo button (top-right)',
               'Customize in Preferences'
             ]
@@ -760,10 +766,9 @@ export const interfaceLessonData = {
         }
       ]
     }
-  
   ],
 
- shortcuts : [
+  shortcuts: [
     { 
       category: 'Selection', 
       items: [
@@ -803,8 +808,8 @@ export const interfaceLessonData = {
         { key: 'G', action: 'Grab/Move' },
         { key: 'R', action: 'Rotate' },
         { key: 'S', action: 'Scale' },
-        { key: 'G/R/S + X/Y/Z', action: 'rain to axis' },
-        { key: 'G/R/S + Shift+X/Y/Z', action: 'rain to plane (exclude axis)' },
+        { key: 'G/R/S + X/Y/Z', action: 'Constrain to axis' },
+        { key: 'G/R/S + Shift+X/Y/Z', action: 'Constrain to plane (exclude axis)' },
         { key: 'G/R/S + Number', action: 'Precise transform value' },
         { key: 'Shift while transforming', action: 'Slow/precise movement' },
         { key: 'Ctrl while transforming', action: 'Snap to grid/increment' },

@@ -31,6 +31,21 @@ export default function GlobalSearch() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
+  // Helper to build link with item data
+  const buildItemLink = (item) => {
+    if (!item.fullItem) {
+      return item.link // No modal, just go to page
+    }
+    
+    // Build hash with item data for auto-opening modal
+    const itemData = {
+      ...item.fullItem,
+      tab: item.tabId
+    }
+    const hash = `#item=${encodeURIComponent(JSON.stringify(itemData))}`
+    return `${item.link}${hash}`
+  }
+
   return (
     <>
       {/* Search Button */}
@@ -208,7 +223,7 @@ export default function GlobalSearch() {
                   {filteredResults.slice(0, 20).map((item, index) => (
                     <a
                       key={index}
-                      href={item.link}
+                      href={buildItemLink(item)}
                       onClick={() => setIsSearchOpen(false)}
                       style={{
                         display: 'flex',

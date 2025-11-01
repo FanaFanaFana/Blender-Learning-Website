@@ -14,7 +14,7 @@ export const sculptingLessonData = {
 
   tabs: [
     { id: 'overview', icon: '/Icons/info.svg', label: 'Overview' },
-    { id: 'brushes', icon: '/Icons/brush.sculpt.paint.svg', label: 'Sculpting Brushes' },
+    { id: 'content', icon: '/Icons/brush.sculpt.paint.svg', label: 'Sculpting Brushes' },
     { id: 'techniques', icon: '/Icons/tool.svg', label: 'Techniques' },
     { id: 'practice', icon: '/Icons/view_camera.svg', label: 'Practice' }
   ],
@@ -39,12 +39,15 @@ export const sculptingLessonData = {
     }
   ],
 
-  brushCategories: [
+   contentTitle: 'Sculpting Tools & Techniques',
+   contentDescription: 'Master the brushes and workflows for digital sculpting',
+
+  categories: [
     {
       name: 'Basic Brushes',
       icon: '/Icons/brush.svg',
       color: '#ec4899',
-      brushes: [
+      items: [
         {
           name: 'Blob',
           description: 'Push geometry like thick paint',
@@ -206,7 +209,7 @@ export const sculptingLessonData = {
       name: 'Smoothing & Refinement',
       icon: '/Icons/modifier.svg',
       color: '#8b5cf6',
-      brushes: [
+      items: [
         {
           name: 'Fill',
           description: 'Fill holes and valleys',
@@ -323,7 +326,7 @@ export const sculptingLessonData = {
       name: 'Deformation',
       icon: '/Icons/transform.svg',
       color: '#f59e0b',
-      brushes: [
+      items: [
         {
           name: 'Boundary',
           description: 'Deform mesh boundaries',
@@ -560,7 +563,7 @@ export const sculptingLessonData = {
       name: 'Detail & Texture',
       icon: '/Icons/texture.svg',
       color: '#06b6d4',
-      brushes: [
+      items: [
         {
           name: 'Density',
           description: 'Control mesh density',
@@ -827,7 +830,7 @@ export const sculptingLessonData = {
       name: 'Cloth Simulation',
       icon: '/Icons/mod_cloth.svg',
       color: '#10b981',
-      brushes: [
+      items: [
         {
           name: 'Bend Boundary Cloth',
           description: 'Bend fabric edges',

@@ -8,7 +8,7 @@ import { firstModelLessonData } from '../../data/lessons/firstModelLessonData'
 import { interfaceLessonData } from '../../data/lessons/interfaceLessonData'
 import { modifierLessonData } from '../../data/lessons/modifierLessonData'
 import { sculptingLessonData } from '../../data/lessons/sculptingLessonData'
-import { hardsurfaceLessonData } from '../../data/lessons/hardsurfaceLessonData' // Note: all lowercase!
+import { hardsurfaceLessonData } from '../../data/lessons/hardsurfaceLessonData'
 import { productDesignLessonData } from '../../data/lessons/productDesignLessonData'
 import { materialLessonData } from '../../data/lessons/materialLessonData'
 
@@ -16,7 +16,7 @@ function extractSearchableItems(lessonData, lessonInfo) {
   const items = []
   
   // Helper to create search item
-  const createItem = (title, description, type, path, detailedInfo, color, tags = []) => ({
+  const createItem = (title, description, type, path, detailedInfo, color, tags = [], tabId = 'content', fullItem = null) => ({
     title,
     description,
     type,
@@ -25,7 +25,9 @@ function extractSearchableItems(lessonData, lessonInfo) {
     color: color || lessonInfo.color,
     difficulty: lessonInfo.difficulty,
     tags: [...tags, ...lessonInfo.baseTags],
-    detailedInfo
+    detailedInfo,
+    tabId, // Which tab to switch to
+    fullItem // The complete item data for the modal
   })
 
   // Index overview cards
@@ -38,7 +40,8 @@ function extractSearchableItems(lessonData, lessonInfo) {
         `${lessonInfo.title} → Overview`,
         null,
         lessonInfo.color,
-        ['overview', 'concept']
+        ['overview', 'concept'],
+        'overview'
       ))
     })
   }
@@ -54,7 +57,9 @@ function extractSearchableItems(lessonData, lessonInfo) {
           `${lessonInfo.title} → Steps → ${category.name}`,
           step.detailedInfo,
           category.color,
-          ['step', 'tutorial', step.name.toLowerCase()]
+          ['step', 'tutorial', step.name.toLowerCase()],
+          'content',
+          { ...step, color: category.color }
         ))
       })
     })
@@ -70,7 +75,9 @@ function extractSearchableItems(lessonData, lessonInfo) {
         `${lessonInfo.title} → Modes`,
         mode.detailedInfo,
         mode.color,
-        ['mode', 'selection', mode.name.toLowerCase()]
+        ['mode', 'selection', mode.name.toLowerCase()],
+        'content',
+        mode
       ))
     })
   }
@@ -88,7 +95,9 @@ function extractSearchableItems(lessonData, lessonInfo) {
             `${lessonInfo.title} → Tools → ${category.name}`,
             tool.detailedInfo,
             category.color,
-            ['tool', tool.name.toLowerCase()]
+            ['tool', tool.name.toLowerCase()],
+            'content',
+            { ...tool, color: category.color }
           ))
         })
       })
@@ -102,126 +111,29 @@ function extractSearchableItems(lessonData, lessonInfo) {
           `${lessonInfo.title} → Tools`,
           tool.detailedInfo,
           tool.color || lessonInfo.color,
-          ['tool', tool.name.toLowerCase()]
+          ['tool', tool.name.toLowerCase()],
+          'content',
+          tool
         ))
       })
     }
   }
 
-  // Index sculpting tools
-  if (lessonData.sculptingTools) {
-    lessonData.sculptingTools.forEach(category => {
-      category.tools.forEach(tool => {
+  // Index categories (brushes, techniques, etc.)
+  if (lessonData.categories) {
+    lessonData.categories.forEach(category => {
+      const categoryItems = category.items || category.brushes || []
+      categoryItems.forEach(item => {
         items.push(createItem(
-          tool.name,
-          tool.description,
-          'tool',
-          `${lessonInfo.title} → Tools → ${category.name}`,
-          tool.detailedInfo,
+          item.name,
+          item.description,
+          category.name.toLowerCase().includes('brush') ? 'brush' : 'tool',
+          `${lessonInfo.title} → ${category.name}`,
+          item.detailedInfo,
           category.color,
-          ['tool', 'brush', 'sculpting', tool.name.toLowerCase()]
-        ))
-      })
-    })
-  }
-
-  // Index workflow steps
-  if (lessonData.workflowSteps) {
-    lessonData.workflowSteps.forEach(category => {
-      category.steps.forEach(step => {
-        items.push(createItem(
-          step.name,
-          step.description,
-          'workflow',
-          `${lessonInfo.title} → Workflow → ${category.name}`,
-          step.detailedInfo,
-          category.color,
-          ['workflow', 'process', step.name.toLowerCase()]
-        ))
-      })
-    })
-  }
-
-  // Index modifier categories
-  if (lessonData.modifierCategories) {
-    lessonData.modifierCategories.forEach(category => {
-      category.modifiers.forEach(modifier => {
-        items.push(createItem(
-          modifier.name,
-          modifier.description,
-          'modifier',
-          `${lessonInfo.title} → Modifiers → ${category.name}`,
-          modifier.detailedInfo,
-          category.color,
-          ['modifier', modifier.name.toLowerCase()]
-        ))
-      })
-    })
-  }
-
-  // Index interface areas
-  if (lessonData.interfaceAreas) {
-    lessonData.interfaceAreas.forEach(category => {
-      category.areas.forEach(area => {
-        items.push(createItem(
-          area.name,
-          area.description,
-          'interface',
-          `${lessonInfo.title} → Areas → ${category.name}`,
-          area.detailedInfo,
-          category.color,
-          ['interface', 'ui', area.name.toLowerCase()]
-        ))
-      })
-    })
-  }
-
-  // Index shortcuts
-  if (lessonData.shortcuts) {
-    lessonData.shortcuts.forEach(section => {
-      section.items.forEach(shortcut => {
-        items.push(createItem(
-          shortcut.action,
-          `Keyboard shortcut: ${shortcut.key}`,
-          'shortcut',
-          `${lessonInfo.title} → Shortcuts → ${section.category}`,
-          null,
-          lessonInfo.color,
-          ['shortcut', 'keyboard', shortcut.key.toLowerCase(), shortcut.action.toLowerCase()]
-        ))
-      })
-    })
-  }
-
-  // Index brush categories
-  if (lessonData.brushCategories) {
-    lessonData.brushCategories.forEach(category => {
-      category.brushes.forEach(brush => {
-        items.push(createItem(
-          brush.name,
-          brush.description,
-          'brush',
-          `${lessonInfo.title} → Brushes → ${category.name}`,
-          brush.detailedInfo,
-          category.color,
-          ['brush', 'sculpting', brush.name.toLowerCase()]
-        ))
-      })
-    })
-  }
-
-  // Index core principles (hard surface)
-  if (lessonData.corePrinciples) {
-    lessonData.corePrinciples.forEach(category => {
-      category.topics.forEach(topic => {
-        items.push(createItem(
-          topic.name,
-          topic.description,
-          'principle',
-          `${lessonInfo.title} → Principles → ${category.name}`,
-          topic.detailedInfo,
-          category.color,
-          ['principle', 'concept', topic.name.toLowerCase()]
+          ['tool', 'brush', item.name.toLowerCase()],
+          'content',
+          { ...item, color: category.color }
         ))
       })
     })
@@ -239,7 +151,103 @@ function extractSearchableItems(lessonData, lessonInfo) {
           `${lessonInfo.title} → Techniques → ${category.name}`,
           technique.detailedInfo,
           category.color,
-          ['technique', 'method', technique.name.toLowerCase()]
+          ['technique', 'method', technique.name.toLowerCase()],
+          'techniques',
+          { ...technique, color: category.color }
+        ))
+      })
+    })
+  }
+
+  // Index workflow steps
+  if (lessonData.workflowSteps) {
+    lessonData.workflowSteps.forEach(category => {
+      category.steps.forEach(step => {
+        items.push(createItem(
+          step.name,
+          step.description,
+          'workflow',
+          `${lessonInfo.title} → Workflow → ${category.name}`,
+          step.detailedInfo,
+          category.color,
+          ['workflow', 'process', step.name.toLowerCase()],
+          'content',
+          { ...step, color: category.color }
+        ))
+      })
+    })
+  }
+
+  // Index modifier categories
+  if (lessonData.modifierCategories) {
+    lessonData.modifierCategories.forEach(category => {
+      category.modifiers.forEach(modifier => {
+        items.push(createItem(
+          modifier.name,
+          modifier.description,
+          'modifier',
+          `${lessonInfo.title} → Modifiers → ${category.name}`,
+          modifier.detailedInfo,
+          category.color,
+          ['modifier', modifier.name.toLowerCase()],
+          'content',
+          { ...modifier, color: category.color }
+        ))
+      })
+    })
+  }
+
+  // Index interface areas
+  if (lessonData.interfaceAreas) {
+    lessonData.interfaceAreas.forEach(category => {
+      category.areas.forEach(area => {
+        items.push(createItem(
+          area.name,
+          area.description,
+          'interface',
+          `${lessonInfo.title} → Areas → ${category.name}`,
+          area.detailedInfo,
+          category.color,
+          ['interface', 'ui', area.name.toLowerCase()],
+          'content',
+          { ...area, color: category.color }
+        ))
+      })
+    })
+  }
+
+  // Index shortcuts
+  if (lessonData.shortcuts) {
+    lessonData.shortcuts.forEach(section => {
+      section.items.forEach(shortcut => {
+        items.push(createItem(
+          shortcut.action,
+          `Keyboard shortcut: ${shortcut.key}`,
+          'shortcut',
+          `${lessonInfo.title} → Shortcuts → ${section.category}`,
+          null,
+          lessonInfo.color,
+          ['shortcut', 'keyboard', shortcut.key.toLowerCase(), shortcut.action.toLowerCase()],
+          'shortcuts'
+        ))
+      })
+    })
+  }
+
+  // Index core principles (hard surface)
+  if (lessonData.corePrinciples) {
+    lessonData.corePrinciples.forEach(category => {
+      category.topics.forEach(topic => {
+        items.push(createItem(
+          topic.name,
+          topic.description,
+          'principle',
+          `${lessonInfo.title} → Principles → ${category.name}`,
+          topic.detailedInfo,
+          category.color,
+          ['principle', 'concept', topic.name.toLowerCase()],
+          'content',
+          { ...topic, color: category.color }
         ))
       })
     })

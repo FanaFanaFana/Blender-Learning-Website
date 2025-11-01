@@ -1,7 +1,7 @@
 // FILE: components/LessonTemplate.jsx
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import BackButton from '@/components/BackButton'
@@ -17,9 +17,39 @@ import {
 } from '@/components/shared/LessonComponents'
 
 export default function LessonTemplate({ lessonData }) {
-  const [activeTab, setActiveTab] = useState(lessonData.tabs[1].id)
+  const [activeTab, setActiveTab] = useState(lessonData.tabs[0].id)
   const [selectedItem, setSelectedItem] = useState(null)
   const [currentPage, setCurrentPage] = useState(0)
+
+  // Auto-open modal from URL hash (for search results)
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash
+      if (hash.startsWith('#item=')) {
+        try {
+          const itemData = JSON.parse(decodeURIComponent(hash.substring(6)))
+          setSelectedItem(itemData)
+          setCurrentPage(0)
+          // Switch to the correct tab if specified
+          if (itemData.tab) {
+            setActiveTab(itemData.tab)
+          }
+        } catch (e) {
+          console.error('Failed to parse item from URL:', e)
+        }
+      }
+    }
+
+    // Check hash on mount
+    handleHashChange()
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange)
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange)
+    }
+  }, [])
 
   const {
     heroConfig,
@@ -28,38 +58,16 @@ export default function LessonTemplate({ lessonData }) {
     overviewCards,
     overviewTitle,
     overviewDescription,
-    // For FirstModelLesson
-    modelingSteps,
-    stepsTitle,
-    stepsDescription,
-    // For EditModeLesson
-    selectionModes,
-    modesTitle,
-    modesDescription,
-    essentialTools,
-    toolsTitle,
-    toolsDescription,
-    // For InterfaceLesson
-    interfaceAreas,
-    areasTitle,
-    areasDescription,
+    // NEW: Unified categories structure
+    categories,
+    contentTitle,
+    contentDescription,
+    // Special tabs
     shortcuts,
-    // Modifier lesson
-    modifierCategories,
-    //Scultping
-    techniques,
-    brushCategories,
-    sculptingTools,
-    workflowSteps,
-    //HardSurface
-    corePrinciples,
     // Practice projects (all lessons)
     practiceProjects,
     practiceTitle,
     practiceDescription,
-
-    
-    
   } = lessonData
 
   return (
@@ -72,17 +80,16 @@ export default function LessonTemplate({ lessonData }) {
         
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem', marginBottom: '3rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', position: 'relative' }}>
-
- <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-  <div className="tabs-wrapper">
-              <BackButton />
-              <TabNavigation 
-                tabs={tabs}
-                activeTab={activeTab}
-                onTabChange={setActiveTab}
-                activeColor={themeColor}
-              />
-            </div>
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+              <div className="tabs-wrapper">
+                <BackButton />
+                <TabNavigation 
+                  tabs={tabs}
+                  activeTab={activeTab}
+                  onTabChange={setActiveTab}
+                  activeColor={themeColor}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -108,32 +115,32 @@ export default function LessonTemplate({ lessonData }) {
           </section>
         )}
 
-        {/* Steps Tab - for categorized steps like modelingSteps */}
-        {activeTab === 'steps' && modelingSteps && (
+        {/* Content Tab - UNIFIED for all categorized content */}
+        {activeTab === 'content' && categories && (
           <section style={{ padding: '4rem 0' }}>
             <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
               <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
-                {stepsTitle || "Learning Steps"}
+                {contentTitle || "Lesson Content"}
               </h2>
               <p style={{ textAlign: 'center', color: '#8fa9bd', fontSize: '1.25rem', marginBottom: '3rem' }}>
-                {stepsDescription || "Follow along step-by-step to build your first model"}
+                {contentDescription || "Explore the key concepts and tools"}
               </p>
 
               <div style={{ display: 'grid', gap: '3rem' }}>
-                {modelingSteps.map((category, idx) => (
+                {categories.map((category, idx) => (
                   <div key={idx}>
                     <h3 style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1.5rem', color: category.color }}>
                       {category.name}
                     </h3>
 
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-                      {category.steps.map((step, stepIdx) => (
+                      {(category.items || category.brushes || []).map((item, itemIdx) => (
                         <ClickableCard
-                          key={stepIdx}
-                          item={step}
+                          key={itemIdx}
+                          item={item}
                           color={category.color}
                           onClick={() => {
-                            setSelectedItem({ ...step, color: category.color })
+                            setSelectedItem({ ...item, color: category.color })
                             setCurrentPage(0)
                           }}
                         />
@@ -146,120 +153,32 @@ export default function LessonTemplate({ lessonData }) {
           </section>
         )}
 
-        {/* Modes Tab - for flat selection modes */}
-        {activeTab === 'modes' && selectionModes && (
+        {/* Techniques Tab - Uses same structure as content */}
+        {activeTab === 'techniques' && lessonData.techniques && (
           <section style={{ padding: '4rem 0' }}>
             <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
               <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
-                {modesTitle || "Selection Modes"}
+                Sculpting Techniques
               </h2>
               <p style={{ textAlign: 'center', color: '#8fa9bd', fontSize: '1.25rem', marginBottom: '3rem' }}>
-                {modesDescription || "Master the three fundamental ways to select and edit geometry"}
-              </p>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
-                {selectionModes.map((mode, idx) => (
-                  <ClickableCard
-                    key={idx}
-                    item={mode}
-                    color={mode.color}
-                    onClick={() => {
-                      setSelectedItem(mode)
-                      setCurrentPage(0)
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        
-       {/* Tools Tab */}
-{activeTab === 'tools' && (essentialTools || sculptingTools) && (
-  <section style={{ padding: '4rem 0' }}>
-    <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
-      <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
-        {toolsTitle || (sculptingTools ? "Sculpting Tools" : "Essential Tools")}
-      </h2>
-      <p style={{ textAlign: 'center', color: '#8fa9bd', fontSize: '1.25rem', marginBottom: '3rem' }}>
-        {toolsDescription || "Master the essential tools for your workflow"}
-      </p>
-
-      {/* Check if it's a flat array or categorized */}
-      {(essentialTools && !essentialTools[0]?.tools) ? (
-        // Flat array - render directly
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-          {essentialTools.map((tool, idx) => (
-            <ClickableCard
-              key={idx}
-              item={tool}
-              color={tool.color || themeColor}
-              onClick={() => {
-                setSelectedItem({ ...tool, color: tool.color || themeColor })
-                setCurrentPage(0)
-              }}
-            />
-          ))}
-        </div>
-      ) : (
-        // Categorized array
-        <div style={{ display: 'grid', gap: '3rem' }}>
-          {(sculptingTools || essentialTools).map((category, idx) => {
-            const items = category.tools || category.items || []
-            return (
-              <div key={idx}>
-                <h3 style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1.5rem', color: category.color }}>
-                  {category.name}
-                </h3>
-
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-                  {items.map((tool, toolIdx) => (
-                    <ClickableCard
-                      key={toolIdx}
-                      item={tool}
-                      color={category.color}
-                      onClick={() => {
-                        setSelectedItem({ ...tool, color: category.color })
-                        setCurrentPage(0)
-                      }}
-                    />
-                  ))}
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      )}
-    </div>
-  </section>
-)}
-        {/* Types Tab - for Modifier Categories */}
-        {activeTab === 'types' && modifierCategories && (
-          <section style={{ padding: '4rem 0' }}>
-            <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
-              <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
-                Modifier Types
-              </h2>
-              <p style={{ textAlign: 'center', color: '#8fa9bd', fontSize: '1.25rem', marginBottom: '3rem' }}>
-                Explore the complete collection of Blender modifiers organized by category
+                Master essential workflows and methods
               </p>
 
               <div style={{ display: 'grid', gap: '3rem' }}>
-                {modifierCategories.map((category, idx) => (
+                {lessonData.techniques.map((category, idx) => (
                   <div key={idx}>
                     <h3 style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1.5rem', color: category.color }}>
                       {category.name}
                     </h3>
 
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-                      {category.modifiers.map((modifier, modIdx) => (
+                      {category.items.map((item, itemIdx) => (
                         <ClickableCard
-                          key={modIdx}
-                          item={modifier}
+                          key={itemIdx}
+                          item={item}
                           color={category.color}
                           onClick={() => {
-                            setSelectedItem({ ...modifier, color: category.color })
+                            setSelectedItem({ ...item, color: category.color })
                             setCurrentPage(0)
                           }}
                         />
@@ -272,45 +191,7 @@ export default function LessonTemplate({ lessonData }) {
           </section>
         )}
 
-        {/* Areas Tab - for Interface Lesson (interfaceAreas) */}
-        {activeTab === 'areas' && interfaceAreas && (
-          <section style={{ padding: '4rem 0' }}>
-            <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
-              <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
-                {areasTitle || "Interface Areas"}
-              </h2>
-              <p style={{ textAlign: 'center', color: '#8fa9bd', fontSize: '1.25rem', marginBottom: '3rem' }}>
-                {areasDescription || "Explore Blender's interface components"}
-              </p>
-
-              <div style={{ display: 'grid', gap: '3rem' }}>
-                {interfaceAreas.map((category, idx) => (
-                  <div key={idx}>
-                    <h3 style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1.5rem', color: category.color }}>
-                      {category.name}
-                    </h3>
-
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-                      {category.areas.map((area, areaIdx) => (
-                        <ClickableCard
-                          key={areaIdx}
-                          item={area}
-                          color={category.color}
-                          onClick={() => {
-                            setSelectedItem({ ...area, color: category.color })
-                            setCurrentPage(0)
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Shortcuts Tab - for Interface Lesson */}
+        {/* Shortcuts Tab - Special case for Interface Lesson */}
         {activeTab === 'shortcuts' && shortcuts && (
           <section style={{ padding: '4rem 0' }}>
             <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
@@ -343,84 +224,6 @@ export default function LessonTemplate({ lessonData }) {
             </div>
           </section>
         )}
-
-        {/* Brushes Tab - for Sculpting Lesson */}
-{activeTab === 'brushes' && brushCategories && (
-  <section style={{ padding: '4rem 0' }}>
-    <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
-      <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
-        Sculpting Brushes
-      </h2>
-      <p style={{ textAlign: 'center', color: '#8fa9bd', fontSize: '1.25rem', marginBottom: '3rem' }}>
-        Master the essential brushes for digital sculpting
-      </p>
-
-      <div style={{ display: 'grid', gap: '3rem' }}>
-        {brushCategories.map((category, idx) => (
-          <div key={idx}>
-            <h3 style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1.5rem', color: category.color }}>
-              {category.name}
-            </h3>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-              {category.brushes.map((brush, brushIdx) => (
-                <ClickableCard
-                  key={brushIdx}
-                  item={brush}
-                  color={category.color}
-                  onClick={() => {
-                    setSelectedItem({ ...brush, color: category.color })
-                    setCurrentPage(0)
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-)}
-
-
-
-{/* Workflow Tab - for Character Modeling Lesson */}
-{activeTab === 'workflow' && workflowSteps && (
-  <section style={{ padding: '4rem 0' }}>
-    <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
-      <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
-        Character Modeling Workflow
-      </h2>
-      <p style={{ textAlign: 'center', color: '#8fa9bd', fontSize: '1.25rem', marginBottom: '3rem' }}>
-        Step-by-step process from concept to finished character
-      </p>
-
-      <div style={{ display: 'grid', gap: '3rem' }}>
-        {workflowSteps.map((category, idx) => (
-          <div key={idx}>
-            <h3 style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1.5rem', color: category.color }}>
-              {category.name}
-            </h3>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-              {category.steps.map((step, stepIdx) => (
-                <ClickableCard
-                  key={stepIdx}
-                  item={step}
-                  color={category.color}
-                  onClick={() => {
-                    setSelectedItem({ ...step, color: category.color })
-                    setCurrentPage(0)
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-)}
 
         {/* Practice Tab */}
         {activeTab === 'practice' && practiceProjects && (
@@ -478,110 +281,19 @@ export default function LessonTemplate({ lessonData }) {
           </section>
         )}
 
-        
-
-        {/* Principles Tab - for Hard Surface Lesson */}
-{activeTab === 'principles' && corePrinciples && (
-  <section style={{ padding: '4rem 0' }}>
-    <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
-      <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
-        Core Principles
-      </h2>
-      <p style={{ textAlign: 'center', color: '#8fa9bd', fontSize: '1.25rem', marginBottom: '3rem' }}>
-        Fundamental concepts for hard surface modeling
-      </p>
-
-      <div style={{ display: 'grid', gap: '3rem' }}>
-        {corePrinciples.map((category, idx) => (
-          <div key={idx}>
-            <h3 style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1.5rem', color: category.color }}>
-              {category.name}
-            </h3>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-              {category.topics.map((topic, topicIdx) => (
-                <ClickableCard
-                  key={topicIdx}
-                  item={topic}
-                  color={category.color}
-                  onClick={() => {
-                    setSelectedItem({ ...topic, color: category.color })
-                    setCurrentPage(0)
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-)}
-
-{/* Techniques Tab - handles flat arrays and categorized structures */}
-{activeTab === 'techniques' && techniques && (
-  <section style={{ padding: '4rem 0' }}>
-    <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
-      <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
-        {techniques[0]?.items || techniques[0]?.methods ? 'Advanced Techniques' : 'Essential Techniques'}
-      </h2>
-      <p style={{ textAlign: 'center', color: '#8fa9bd', fontSize: '1.25rem', marginBottom: '3rem' }}>
-        Essential methods and workflows for professional results
-      </p>
-
-      {/* Check if it's a flat array or categorized */}
-      {(techniques[0]?.items || techniques[0]?.methods) ? (
-        // Categorized structure
-        <div style={{ display: 'grid', gap: '3rem' }}>
-          {techniques.map((category, idx) => (
-            <div key={idx}>
-              <h3 style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1.5rem', color: category.color }}>
-                {category.name}
-              </h3>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-                {(category.items || category.methods)?.map((item, itemIdx) => (
-                  <ClickableCard
-                    key={itemIdx}
-                    item={item}
-                    color={category.color}
-                    onClick={() => {
-                      setSelectedItem({ ...item, color: category.color })
-                      setCurrentPage(0)
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        // Flat array - render directly
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-          {techniques.map((technique, idx) => (
-            <ClickableCard
-              key={idx}
-              item={technique}
-              color={technique.color || themeColor}
-              onClick={() => {
-                setSelectedItem({ ...technique, color: technique.color || themeColor })
-                setCurrentPage(0)
-              }}
-            />
-          ))}
-        </div>
-      )}
-    </div>
-  </section>
-)}
-
         {/* Modal */}
         {selectedItem && (
           <DetailModal
             item={selectedItem}
             currentPage={currentPage}
             onPageChange={setCurrentPage}
-            onClose={() => setSelectedItem(null)}
+            onClose={() => {
+              setSelectedItem(null)
+              // Clear the hash when closing
+              if (window.location.hash.startsWith('#item=')) {
+                window.history.replaceState(null, '', window.location.pathname)
+              }
+            }}
           />
         )}
       </main>
