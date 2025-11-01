@@ -62,7 +62,7 @@ export default function LessonScene() {
     // Load GLB model
     const loader = new GLTFLoader()
     loader.load(
-      '/Lessonmov.glb',
+      '/LessonMov.glb',
       (gltf) => {
         console.log('Lessonmov.glb loaded successfully!', gltf)
         const model = gltf.scene
