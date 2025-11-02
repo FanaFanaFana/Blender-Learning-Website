@@ -437,7 +437,10 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
       {/* Custom fullscreen overlay for GIFs (works on all devices including iOS) */}
       {isFullscreen && (
         <div 
-          onClick={toggleFullscreen}
+          onClick={(e) => {
+            e.stopPropagation()
+            toggleFullscreen(e)
+          }}
           style={{
             position: 'fixed',
             inset: 0,
