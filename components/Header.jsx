@@ -36,7 +36,7 @@ export default function Header() {
               className="nav-link"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <Image src="/test1.svg" alt="" width={24} height={24} />
+              <Image src="/Icons/test1.svg" alt="" width={24} height={24} />
               <span>Home</span>
             </Link>
             <Link 
@@ -45,7 +45,7 @@ export default function Header() {
               className="nav-link"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <Image src="/test2.svg" alt="" width={24} height={24} />
+              <Image src="/Icons/test2.svg" alt="" width={24} height={24} />
               <span>Docs</span>
             </Link>
             <Link 
@@ -54,7 +54,7 @@ export default function Header() {
               className="nav-link"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <Image src="/test3.svg" alt="" width={24} height={24} />
+              <Image src="/Icons/test3.svg" alt="" width={24} height={24} />
               <span>About</span>
             </Link>
             <Link 
@@ -63,7 +63,7 @@ export default function Header() {
               className="nav-link"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <Image src="/test4.svg" alt="" width={24} height={24} />
+              <Image src="/Icons/test4.svg" alt="" width={24} height={24} />
               <span>Contact</span>
             </Link>
           </nav>

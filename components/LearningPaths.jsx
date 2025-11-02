@@ -23,41 +23,40 @@ export default function BlenderCompendium() {
   const categories = {
     modeling: {
       title: '3D Modeling',
-      icon: '/modeling.svg',
+      icon: '/Icons/modeling.svg',
       color: '#3b82c4',
       description: 'Categories and lessons focused on creating and manipulating 3D models in Blender',
       topics: [
-        { title: 'Interface Areas', description: 'Understanding Blender\'s workspace layout', icon: '/Icons/outliner.svg', link: '/InterfaceLesson' },
-        { title: 'Edit Mode', description: 'Tools and techniques for mesh editing', icon: '/Icons/editmode_hlt.svg', link: '/EditModeLesson' },
-        { title: 'Modifiers', description: 'Non-destructive modeling techniques', icon: '/Icons/modifier.svg', link: '/modifierlesson' },
-        { title: 'Sculpting', description: 'Digital sculpting tools and workflows', icon: '/Icons/sculptmode_hlt.svg', link: '/SculptingLesson' },
-        
+        { title: 'Interface Areas', description: 'Understanding Blender\'s workspace layout', icon: '/Icons/outliner.svg', link: '/lessons/interface' },
+        { title: 'Edit Mode', description: 'Tools and techniques for mesh editing', icon: '/Icons/editmode_hlt.svg', link: '/lessons/edit-mode' },
+        { title: 'Modifiers', description: 'Non-destructive modeling techniques', icon: '/Icons/modifier.svg', link: '/lessons/modifier' },
+        { title: 'Sculpting', description: 'Digital sculpting tools and workflows', icon: '/Icons/sculptmode_hlt.svg', link: '/lessons/sculpting' },
       ]
     },
     rendering: {
       title: 'Rendering',
-      icon: '/rendered.svg',
+      icon: '/Icons/rendered.svg',
       color: '#f59e0b',
       description: 'Complete reference for render engines, lighting, and image output',
       topics: [
-        { title: 'Render Engines', description: 'Eevee vs Cycles comparison', icon: '/Icons/render_still.svg', link: '/RenderEnginesLesson' },
-        { title: 'Lighting', description: 'Light types, HDRI, world settings', icon: '/Icons/light.svg', link: '/LightingLesson' },
-        { title: 'Camera', description: 'Camera settings, depth of field, composition', icon: '/Icons/camera_data.svg', link: '/CameraLesson' },
-        { title: 'Materials', description: 'Shader nodes, PBR workflow', icon: '/Icons/material.svg', link: '/MaterialLesson' },
-        { title: 'Render Settings', description: 'Samples, resolution, output formats', icon: '/Icons/render_result.svg', link: '/RenderSettingsLesson' }
+        { title: 'Render Engines', description: 'Eevee vs Cycles comparison', icon: '/Icons/render_still.svg', link: '/lessons/render-engines' },
+        { title: 'Lighting', description: 'Light types, HDRI, world settings', icon: '/Icons/light.svg', link: '/lessons/lighting' },
+        { title: 'Camera', description: 'Camera settings, depth of field, composition', icon: '/Icons/camera_data.svg', link: '/lessons/camera' },
+        { title: 'Materials', description: 'Shader nodes, PBR workflow', icon: '/Icons/material.svg', link: '/lessons/material' },
+        { title: 'Render Settings', description: 'Samples, resolution, output formats', icon: '/Icons/render_result.svg', link: '/lessons/render-settings' }
       ]
     },
     animation: {
       title: 'Animation',
-      icon: '/animation.svg',
+      icon: '/Icons/animation.svg',
       color: '#8b5cf6',
       description: 'Reference for keyframes, rigging, and motion systems in Blender',
       topics: [
-        { title: 'Keyframes', description: 'Setting and editing keyframes', icon: '/Icons/keyframe.svg', link: null },
-        { title: 'Timeline', description: 'Playback controls and scrubbing', icon: '/Icons/anim.svg', link: null },
-        { title: 'Graph Editor', description: 'Animation curves and interpolation', icon: '/Icons/graph.svg', link: null },
-        { title: 'Rigging', description: 'Armatures, bones, constraints', icon: '/Icons/armature_data.svg', link: null },
-        { title: 'Physics', description: 'Rigid body, soft body, cloth, fluid', icon: '/Icons/physics.svg', link: null }
+        { title: 'Keyframes', description: 'Setting and editing keyframes', icon: '/Icons/keyframe.svg', link: '/lessons/keyframe' },
+        { title: 'Timeline', description: 'Playback controls and scrubbing', icon: '/Icons/anim.svg', link: '/lessons/timeline' },
+        { title: 'Graph Editor', description: 'Animation curves and interpolation', icon: '/Icons/graph.svg', link: '/lessons/graph-editor' },
+        { title: 'Rigging', description: 'Armatures, bones, constraints', icon: '/Icons/armature_data.svg', link: '/lessons/rigging' },
+        { title: 'Physics', description: 'Rigid body, soft body, cloth, fluid', icon: '/Icons/physics.svg', link: '/lessons/physics' }
       ]
     },
     Texturing: {

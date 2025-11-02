@@ -59,7 +59,7 @@ export default function ContactPage() {
 
   const contactMethods = [
     {
-      icon: '/test4.svg',
+      icon: '/Icons/test4.svg',
       title: 'Email',
       detail: 'yannick.work3d@gmail.com',
       description: 'Get in touch via email',
@@ -67,7 +67,7 @@ export default function ContactPage() {
       onClick: handleEmailClick
     },
     {
-      icon: '/test2.svg',
+      icon: '/Icons/test2.svg',
       link:"https://discord.gg/blenddocs",
       title: 'Discord',
       detail: 'Join our community',
@@ -76,7 +76,7 @@ export default function ContactPage() {
       onClick: handleDiscordClick
     },
     {
-      icon: '/test3.svg',
+      icon: '/Icons/test3.svg',
       title: 'Documentation',
       detail: 'Browse our guides',
       description: 'Find answers in our docs',

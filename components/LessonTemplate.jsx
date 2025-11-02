@@ -1,12 +1,12 @@
 // FILE: components/LessonTemplate.jsx
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
+import dynamic from 'next/dynamic'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import BackButton from '@/components/BackButton'
 import Sidebar from '@/components/Sidebar'
-import LessonScene from '@/components/LessonScene'
 import { playHover } from '@/app/utils/sounds'
 
 import { 
@@ -14,16 +14,53 @@ import {
   TabNavigation, 
   InfoCard,
   ClickableCard,
-  DetailModal,
   SectionHeader
 } from '@/components/shared/LessonComponents'
+
+// ✨ DYNAMIC IMPORTS - Load heavy components only when needed
+const LessonScene = dynamic(() => import('@/components/LessonScene'), {
+  ssr: false,
+  loading: () => <div style={{ width: '100%', height: '100%', background: 'rgba(16, 185, 129, 0.05)' }} />
+})
+
+const DetailModal = dynamic(() => import('@/components/shared/DetailModal'), {
+  ssr: false,
+  loading: () => (
+    <div style={{
+      position: 'fixed',
+      inset: 0,
+      background: 'rgba(0, 0, 0, 0.8)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 1000
+    }}>
+      <div style={{ color: '#10b981', fontSize: '1.5rem' }}>Loading...</div>
+    </div>
+  )
+})
+
+// Loading skeleton for tab content
+const TabContentSkeleton = () => (
+  <div style={{ padding: '4rem 0' }}>
+    <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
+      <div style={{ height: '60px', background: 'rgba(255,255,255,0.05)', borderRadius: '12px', marginBottom: '2rem', animation: 'pulse 1.5s ease-in-out infinite' }} />
+      <div style={{ display: 'grid', gap: '1.5rem', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
+        {[1, 2, 3, 4, 5, 6].map(i => (
+          <div key={i} style={{ height: '200px', background: 'rgba(255,255,255,0.05)', borderRadius: '16px', animation: `pulse 1.5s ease-in-out infinite ${i * 0.1}s` }} />
+        ))}
+      </div>
+    </div>
+  </div>
+)
 
 export default function LessonTemplate({ lessonData }) {
   const [activeTab, setActiveTab] = useState(lessonData.tabs[1].id)
   const [selectedItem, setSelectedItem] = useState(null)
   const [currentPage, setCurrentPage] = useState(0)
+  const [tabContentLoaded, setTabContentLoaded] = useState(false)
 
-  // Auto-open modal from URL hash (for search results)
+  // Auto-open modal from URL hash
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash
@@ -32,7 +69,6 @@ export default function LessonTemplate({ lessonData }) {
           const itemData = JSON.parse(decodeURIComponent(hash.substring(6)))
           setSelectedItem(itemData)
           setCurrentPage(0)
-          // Switch to the correct tab if specified
           if (itemData.tab) {
             setActiveTab(itemData.tab)
           }
@@ -42,16 +78,20 @@ export default function LessonTemplate({ lessonData }) {
       }
     }
 
-    // Check hash on mount
     handleHashChange()
-
-    // Listen for hash changes
     window.addEventListener('hashchange', handleHashChange)
     
     return () => {
       window.removeEventListener('hashchange', handleHashChange)
     }
   }, [])
+
+  // Simulate tab content loading (remove this if your data is already loaded)
+  useEffect(() => {
+    setTabContentLoaded(false)
+    const timer = setTimeout(() => setTabContentLoaded(true), 100)
+    return () => clearTimeout(timer)
+  }, [activeTab])
 
   const {
     heroConfig,
@@ -60,13 +100,10 @@ export default function LessonTemplate({ lessonData }) {
     overviewCards,
     overviewTitle,
     overviewDescription,
-    // NEW: Unified categories structure
     categories,
     contentTitle,
     contentDescription,
-    // Special tabs
     shortcuts,
-    // Practice projects (all lessons)
     practiceProjects,
     practiceTitle,
     practiceDescription,
@@ -80,9 +117,11 @@ export default function LessonTemplate({ lessonData }) {
       <main>
         {/* Hero with 3D Background */}
         <section style={{ position: 'relative', padding: '0', margin: '0 -2rem', width: 'calc(100% + 4rem)', minHeight: '50vh', display: 'flex', alignItems: 'center', overflow: 'hidden', marginBottom: '3rem' }}>
-          {/* 3D Scene Background */}
+          {/* 3D Scene Background - Loaded dynamically */}
           <div style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, width: '100%', height: '100%', zIndex: 1, opacity: 0.3 }}>
-            <LessonScene />
+            <Suspense fallback={<div style={{ width: '100%', height: '100%', background: 'rgba(16, 185, 129, 0.05)' }} />}>
+              <LessonScene />
+            </Suspense>
           </div>
 
           {/* Hero Content Overlay */}
@@ -108,8 +147,11 @@ export default function LessonTemplate({ lessonData }) {
           </div>
         </div>
 
+        {/* Show skeleton while content loads */}
+        {!tabContentLoaded && <TabContentSkeleton />}
+
         {/* Overview Tab */}
-        {activeTab === 'overview' && overviewCards && (
+        {tabContentLoaded && activeTab === 'overview' && overviewCards && (
           <section style={{ padding: '4rem 0' }}>
             <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
               <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
@@ -129,8 +171,8 @@ export default function LessonTemplate({ lessonData }) {
           </section>
         )}
 
-        {/* Content Tab - UNIFIED for all categorized content */}
-        {activeTab === 'content' && categories && (
+        {/* Content Tab */}
+        {tabContentLoaded && activeTab === 'content' && categories && (
           <section style={{ padding: '4rem 0' }}>
             <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
               <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
@@ -168,16 +210,16 @@ export default function LessonTemplate({ lessonData }) {
           </section>
         )}
 
-        {/* Techniques Tab - Uses same structure as content */}
-        {activeTab === 'techniques' && lessonData.techniques && (
+        {/* Techniques Tab */}
+        {tabContentLoaded && activeTab === 'techniques' && lessonData.techniques && (
           <section style={{ padding: '4rem 0' }}>
             <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
               <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
-  {lessonData.techniquesTitle || 'Techniques'}
-</h2>
-<p style={{ textAlign: 'center', color: '#8fa9bd', fontSize: '1.25rem', marginBottom: '3rem' }}>
-  {lessonData.techniquesDescription || 'Master essential workflows and methods'}
-</p>
+                {lessonData.techniquesTitle || 'Techniques'}
+              </h2>
+              <p style={{ textAlign: 'center', color: '#8fa9bd', fontSize: '1.25rem', marginBottom: '3rem' }}>
+                {lessonData.techniquesDescription || 'Master essential workflows and methods'}
+              </p>
 
               <div style={{ display: 'grid', gap: '3rem' }}>
                 {lessonData.techniques.map((category, idx) => (
@@ -207,8 +249,8 @@ export default function LessonTemplate({ lessonData }) {
           </section>
         )}
 
-        {/* Shortcuts Tab - Special case for Interface Lesson */}
-        {activeTab === 'shortcuts' && shortcuts && (
+        {/* Shortcuts Tab */}
+        {tabContentLoaded && activeTab === 'shortcuts' && shortcuts && (
           <section style={{ padding: '4rem 0' }}>
             <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
               <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
@@ -246,7 +288,7 @@ export default function LessonTemplate({ lessonData }) {
         )}
 
         {/* Practice Tab */}
-        {activeTab === 'practice' && practiceProjects && (
+        {tabContentLoaded && activeTab === 'practice' && practiceProjects && (
           <section style={{ padding: '4rem 0' }}>
             <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
               <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
@@ -305,25 +347,33 @@ export default function LessonTemplate({ lessonData }) {
           </section>
         )}
 
-        {/* Modal */}
+        {/* Modal - Only loads when selectedItem exists */}
         {selectedItem && (
-          <DetailModal
-            item={selectedItem}
-            currentPage={currentPage}
-            onPageChange={setCurrentPage}
-            onMouseEnter={playHover}
-            onClose={() => {
-              setSelectedItem(null)
-              // Clear the hash when closing
-              if (window.location.hash.startsWith('#item=')) {
-                window.history.replaceState(null, '', window.location.pathname)
-              }
-            }}
-          />
+          <Suspense fallback={null}>
+            <DetailModal
+              item={selectedItem}
+              currentPage={currentPage}
+              onPageChange={setCurrentPage}
+              onMouseEnter={playHover}
+              onClose={() => {
+                setSelectedItem(null)
+                if (window.location.hash.startsWith('#item=')) {
+                  window.history.replaceState(null, '', window.location.pathname)
+                }
+              }}
+            />
+          </Suspense>
         )}
       </main>
 
       <Footer />
+
+      <style jsx>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
+      `}</style>
     </div>
   )
 }

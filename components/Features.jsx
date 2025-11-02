@@ -7,19 +7,19 @@ import { playHover } from '@/app/utils/sounds'
 export default function Features() {
   const features = [
     {
-      icon: '/modeling.svg',
+      icon: '/Icons/modeling.svg',
       title: '3D Modeling',
       alt: '3D Modeling',
       link: '/learn#modeling'
     },
     {
-      icon: '/rendered.svg',
+      icon: '/Icons/rendered.svg',
       title: 'Rendering',
       alt: 'Rendering',
       link: '/learn#rendering'
     },
     {
-      icon: '/animation.svg',
+      icon: '/Icons/animation.svg',
       title: 'Animation',
       alt: 'Animation',
       link: '/learn#animation'

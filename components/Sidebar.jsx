@@ -11,25 +11,25 @@ export default function Sidebar() {
 
   const allTopics = [
     // 3D Modeling
-    { title: 'Interface Areas', category: '3D Modeling', icon: '/Icons/outliner.svg', link: '/InterfaceLesson', color: '#3b82c4' },
-    { title: 'Edit Mode', category: '3D Modeling', icon: '/Icons/editmode_hlt.svg', link: '/EditModeLesson', color: '#3b82c4' },
-    { title: 'Modifiers', category: '3D Modeling', icon: '/Icons/modifier.svg', link: '/modifierlesson', color: '#3b82c4' },
-    { title: 'Sculpting', category: '3D Modeling', icon: '/Icons/sculptmode_hlt.svg', link: '/SculptingLesson', color: '#3b82c4' },
+    { title: 'Interface Areas', category: '3D Modeling', icon: '/Icons/outliner.svg', link: '/lessons/interface', color: '#3b82c4' },
+    { title: 'Edit Mode', category: '3D Modeling', icon: '/Icons/editmode_hlt.svg', link: '/lessons/edit-mode', color: '#3b82c4' },
+    { title: 'Modifiers', category: '3D Modeling', icon: '/Icons/modifier.svg', link: '/lessons/modifier', color: '#3b82c4' },
+    { title: 'Sculpting', category: '3D Modeling', icon: '/Icons/sculptmode_hlt.svg', link: '/lessons/sculpting', color: '#3b82c4' },
     
     
     // Rendering
-    { title: 'Render Engines', category: 'Rendering', icon: '/Icons/render_still.svg', link: '/RenderEnginesLesson', color: '#f59e0b' },
-    { title: 'Lighting', category: 'Rendering', icon: '/Icons/light.svg', link: '/LightingLesson', color: '#f59e0b' },
-    { title: 'Camera', category: 'Rendering', icon: '/Icons/camera_data.svg', link: '/CameraLesson', color: '#f59e0b' },
-    { title: 'Materials', category: 'Rendering', icon: '/Icons/material.svg', link: '/MaterialLesson', color: '#f59e0b' },
-    { title: 'Render Settings', category: 'Rendering', icon: '/Icons/render_result.svg', link: '/RenderSettingsLesson', color: '#f59e0b' },
+    { title: 'Render Engines', category: 'Rendering', icon: '/Icons/render_still.svg', link: '/lessons/render-engines', color: '#f59e0b' },
+    { title: 'Lighting', category: 'Rendering', icon: '/Icons/light.svg', link: '/lessons/lighting', color: '#f59e0b' },
+    { title: 'Camera', category: 'Rendering', icon: '/Icons/camera_data.svg', link: '/lessons/camera', color: '#f59e0b' },
+    { title: 'Materials', category: 'Rendering', icon: '/Icons/material.svg', link: '/lessons/material', color: '#f59e0b' },
+    { title: 'Render Settings', category: 'Rendering', icon: '/Icons/render_result.svg', link: '/lessons/render-settings', color: '#f59e0b' },
     
     // Animation
-    { title: 'Keyframes', category: 'Animation', icon: '/Icons/keyframe.svg', link: null, color: '#8b5cf6' },
-    { title: 'Timeline', category: 'Animation', icon: '/Icons/anim.svg', link: null, color: '#8b5cf6' },
-    { title: 'Graph Editor', category: 'Animation', icon: '/Icons/graph.svg', link: null, color: '#8b5cf6' },
-    { title: 'Rigging', category: 'Animation', icon: '/Icons/armature_data.svg', link: null, color: '#8b5cf6' },
-    { title: 'Physics', category: 'Animation', icon: '/Icons/physics.svg', link: null, color: '#8b5cf6' },
+    { title: 'Keyframes', category: 'Animation', icon: '/Icons/keyframe.svg', link: 'lessons/keyframe', color: '#8b5cf6' },
+    { title: 'Timeline', category: 'Animation', icon: '/Icons/anim.svg', link: '/lessons/timeline', color: '#8b5cf6' },
+    { title: 'Graph Editor', category: 'Animation', icon: '/Icons/graph.svg', link: '/lessons/graph-editor', color: '#8b5cf6' },
+    { title: 'Rigging', category: 'Animation', icon: '/Icons/armature_data.svg', link: '/lessons/rigging', color: '#8b5cf6' },
+    { title: 'Physics', category: 'Animation', icon: '/Icons/physics.svg', link: '/lessons/physics', color: '#8b5cf6' },
     
     // Texturing
     { title: 'UV Mapping', category: 'Texturing', icon: '/Icons/uv.svg', link: null, color: '#a2d677' },
@@ -39,12 +39,12 @@ export default function Sidebar() {
     { title: 'Baking', category: 'Texturing', icon: '/Icons/armature_data.svg', link: null, color: '#a2d677' },
     
     // Lesson Content
-    { title: 'First 3D Model', category: 'Lessons', icon: '/Icons/mesh_cube.svg', link: '/FirstModelLesson', color: '#0bf5e2' },
-    { title: 'Character Modeling', category: 'Lessons', icon: '/Icons/mesh_monkey.svg', link: '/CharacterModelingLesson', color: '#0bf5e2' },
-    { title: 'Hard Surface Modeling', category: 'Lessons', icon: '/Icons/mod_bevel.svg', link: '/HardSurfaceLesson', color: '#0bf5e2' },
-    { title: 'Product Design', category: 'Lessons', icon: '/Icons/mesh_torus.svg', link: '/ProductDesignLesson', color: '#0bf5e2' },
-    { title: 'Materials & Shading', category: 'Lessons', icon: '/Icons/material.svg', link: '/MaterialLesson', color: '#0bf5e2' },
-    { title: 'Topology', category: 'Lessons', icon: '/Icons/mod_remesh.svg', link: '/TopologyLesson', color: '#0bf5e2' },
+    { title: 'First 3D Model', category: 'Lessons', icon: '/Icons/mesh_cube.svg', link: '/lessons/first-model', color: '#0bf5e2' },
+    { title: 'Character Modeling', category: 'Lessons', icon: '/Icons/mesh_monkey.svg', link: '/lessons/character-modelling', color: '#0bf5e2' },
+    { title: 'Hard Surface Modeling', category: 'Lessons', icon: '/Icons/mod_bevel.svg', link: '/lessons/hard-surface', color: '#0bf5e2' },
+    { title: 'Product Design', category: 'Lessons', icon: '/Icons/mesh_torus.svg', link: '/lessons/product-design', color: '#0bf5e2' },
+    { title: 'Materials & Shading', category: 'Lessons', icon: '/Icons/material.svg', link: '/lessons/material', color: '#0bf5e2' },
+    { title: 'Topology', category: 'Lessons', icon: '/Icons/mod_remesh.svg', link: '/lessons/topology', color: '#0bf5e2' },
     
     // 3D Printing
     { title: 'Manifold Geometry', category: '3D Printing', icon: '/Icons/mesh_cube.svg', link: null, color: '#ec4899' },

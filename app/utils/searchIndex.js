@@ -11,6 +11,16 @@ import { sculptingLessonData } from '../../data/lessons/sculptingLessonData'
 import { hardsurfaceLessonData } from '../../data/lessons/hardsurfaceLessonData'
 import { productDesignLessonData } from '../../data/lessons/productDesignLessonData'
 import { materialLessonData } from '../../data/lessons/materialLessonData'
+import { cameraLessonData } from '../../data/lessons/cameraLessonData'
+import { lightingLessonData } from '../../data/lessons/lightingLessonData'
+import { renderEnginesLessonData } from '../../data/lessons/renderEnginesLessonData'
+import { renderSettingsLessonData } from '../../data/lessons/renderSettingsLessonData'
+import { topologyLessonData } from '../../data/lessons/topologyLessonData'
+import { keyframeLessonData } from '../../data/lessons/keyframeLessonData'
+import { timelineLessonData } from '@/data/lessons/timelineLessonData'
+import { graphEditorLessonData } from '@/data/lessons/graphEditorLessonData'
+import { riggingLessonData } from '@/data/lessons/riggingLessonData'
+import { physicsLessonData } from '@/data/lessons/physicsLessonData'
 
 function extractSearchableItems(lessonData, lessonInfo) {
   const items = []
@@ -119,7 +129,7 @@ function extractSearchableItems(lessonData, lessonInfo) {
     }
   }
 
-  // Index categories (brushes, techniques, etc.)
+  // Index categories (brushes, techniques, interface areas, etc.)
   if (lessonData.categories) {
     lessonData.categories.forEach(category => {
       const categoryItems = category.items || category.brushes || []
@@ -197,7 +207,7 @@ function extractSearchableItems(lessonData, lessonInfo) {
     })
   }
 
-  // Index interface areas
+  // Index interface areas (DEPRECATED - now uses categories)
   if (lessonData.interfaceAreas) {
     lessonData.interfaceAreas.forEach(category => {
       category.areas.forEach(area => {
@@ -261,7 +271,7 @@ const lessons = [
   {
     data: characterModelingLessonData,
     title: 'Character Modeling',
-    link: '/CharacterModelingLesson',
+    link: '/lessons/character-modelling',
     color: '#ec4899',
     difficulty: 'Advanced',
     baseTags: ['character', 'modeling', 'advanced']
@@ -269,15 +279,15 @@ const lessons = [
   {
     data: editModeLessonData,
     title: 'Edit Mode',
-    link: '/EditModeLesson',
-    color: '#3b82c4',
+    link: '/lessons/edit-mode',
+    color: '#10b981',
     difficulty: 'Beginner',
     baseTags: ['edit', 'mode', 'beginner']
   },
   {
     data: firstModelLessonData,
     title: 'First 3D Model',
-    link: '/FirstModelLesson',
+    link: '/lessons/first-model',
     color: '#3b82c4',
     difficulty: 'Beginner',
     baseTags: ['modeling', 'beginner', 'basics']
@@ -285,15 +295,15 @@ const lessons = [
   {
     data: interfaceLessonData,
     title: 'Interface',
-    link: '/InterfaceLesson',
-    color: '#3b82c4',
+    link: '/lessons/interface',
+    color: '#f97316',
     difficulty: 'Beginner',
     baseTags: ['interface', 'ui', 'beginner']
   },
   {
     data: modifierLessonData,
     title: 'Modifiers',
-    link: '/modifierlesson',
+    link: '/lessons/modifier',
     color: '#3b82c4',
     difficulty: 'Intermediate',
     baseTags: ['modifiers', 'intermediate']
@@ -301,7 +311,7 @@ const lessons = [
   {
     data: sculptingLessonData,
     title: 'Sculpting',
-    link: '/SculptingLesson',
+    link: '/lessons/sculpting',
     color: '#3b82c4',
     difficulty: 'Intermediate',
     baseTags: ['sculpting', 'intermediate']
@@ -309,7 +319,7 @@ const lessons = [
   {
     data: hardsurfaceLessonData,
     title: 'Hard Surface',
-    link: '/HardSurfaceLesson',
+    link: '/lessons/hard-surface',
     color: '#3b82c4',
     difficulty: 'Advanced',
     baseTags: ['hard surface', 'advanced']
@@ -317,7 +327,7 @@ const lessons = [
   {
     data: productDesignLessonData,
     title: 'Product Design',
-    link: '/ProductDesignLesson',
+    link: '/lessons/product-design',
     color: '#3b82c4',
     difficulty: 'Advanced',
     baseTags: ['product', 'design', 'advanced']
@@ -325,11 +335,91 @@ const lessons = [
   {
     data: materialLessonData,
     title: 'Materials & Shading',
-    link: '/MaterialLesson',
+    link: '/lessons/material',
     color: '#f59e0b',
     difficulty: 'Intermediate',
     baseTags: ['materials', 'shading', 'intermediate']
-  }
+  },
+  {
+    data: cameraLessonData,
+    title: 'Camera',
+    link: '/lessons/camera',
+    color: '#f59e0b',
+    difficulty: 'Beginner',
+    baseTags: ['camera', 'rendering', 'beginner']
+  },
+  {
+    data: lightingLessonData,
+    title: 'Lighting',
+    link: '/lessons/lighting',
+    color: '#f59e0b',
+    difficulty: 'Intermediate',
+    baseTags: ['lighting', 'rendering', 'intermediate']
+  },
+  {
+    data: renderEnginesLessonData,
+    title: 'Render Engines',
+    link: '/lessons/render-engines',
+    color: '#f59e0b',
+    difficulty: 'Intermediate',
+    baseTags: ['rendering', 'engines', 'intermediate']
+  },
+  {
+    data: renderSettingsLessonData,
+    title: 'Render Settings',
+    link: '/lessons/render-settings',
+    color: '#f59e0b',
+    difficulty: 'Intermediate',
+    baseTags: ['rendering', 'settings', 'intermediate']
+  },
+  {
+    data: topologyLessonData,
+    title: 'Topology',
+    link: '/lessons/topology',
+    color: '#3b82c4',
+    difficulty: 'Advanced',
+    baseTags: ['topology', 'modeling', 'advanced']
+  },
+  {
+    data: keyframeLessonData,
+    title: 'Keyframes',
+    link: '/lessons/keyframe',
+    color: '#8b5cf6',
+    difficulty: 'Intermediate',
+    baseTags: ['keyframes', 'animation', 'intermediate']
+  },
+  {
+    data: timelineLessonData,
+    title: 'Timeline',
+    link: '/lessons/timeline',
+    color: '#8b5cf6',
+    difficulty: 'Intermediate', 
+    baseTags: ['timeline', 'animation', 'intermediate']
+  },
+  { data: graphEditorLessonData,
+    title: 'Graph Editor',
+    link: '/lessons/graph-editor',    
+    color: '#8b5cf6',
+    difficulty: 'Advanced',
+    baseTags: ['graph editor', 'animation', 'advanced'] 
+  },
+  {
+    data: riggingLessonData,  
+    title: 'Rigging',
+    link: '/lessons/rigging',  
+    color: '#8b5cf6',
+    difficulty: 'Advanced',
+    baseTags: ['rigging', 'animation', 'advanced']
+  },
+  {
+    data: physicsLessonData,  
+    title: 'Physics',
+    link: '/lessons/physics',
+    color: '#8b5cf6',
+    difficulty: 'Advanced',
+    baseTags: ['physics', 'animation', 'advanced']
+  },
+
 ]
 
 // Build the complete search index
