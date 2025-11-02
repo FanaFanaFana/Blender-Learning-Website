@@ -61,11 +61,15 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
   // Listen for fullscreen changes
   useEffect(() => {
     const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement)
+      setIsFullscreen(!!(document.fullscreenElement || document.webkitFullscreenElement))
     }
     
     document.addEventListener('fullscreenchange', handleFullscreenChange)
-    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange)
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange)
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange)
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange)
+    }
   }, [])
 
   const page = item.detailedInfo.pages[currentPage]
@@ -92,11 +96,26 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
     if (!mediaElement) return
     
     try {
-      if (!document.fullscreenElement) {
-        await mediaElement.requestFullscreen()
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        // Try standard fullscreen API first
+        if (mediaElement.requestFullscreen) {
+          await mediaElement.requestFullscreen()
+        } 
+        // iOS/Safari fallback for video elements
+        else if (mediaElement.webkitEnterFullscreen) {
+          mediaElement.webkitEnterFullscreen()
+        }
+        // iOS/Safari fallback for other elements
+        else if (mediaElement.webkitRequestFullscreen) {
+          await mediaElement.webkitRequestFullscreen()
+        }
         setIsFullscreen(true)
       } else {
-        await document.exitFullscreen()
+        if (document.exitFullscreen) {
+          await document.exitFullscreen()
+        } else if (document.webkitExitFullscreen) {
+          await document.webkitExitFullscreen()
+        }
         setIsFullscreen(false)
       }
     } catch (err) {
@@ -150,7 +169,7 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
                 width={48}
                 height={48}
                 style={{ 
-                  filter: `drop-shadow(0 0 6px ${item.color})`,
+                  filter: `drop-shadow(0 0 8px ${item.color})`,
                   flexShrink: 0
                 }}
               />
@@ -258,8 +277,8 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
                   }}
                   style={{
                     position: 'relative',
-                    width: '80%',
-                    height: '385px',
+                    width: '70%',
+                    height: '340px',
                     marginBottom: '1.5rem',
                     marginLeft: 'auto',
                     marginRight: 'auto',
