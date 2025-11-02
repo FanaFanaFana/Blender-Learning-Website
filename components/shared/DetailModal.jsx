@@ -58,18 +58,6 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
     }
   }, [currentPage, item.detailedInfo.pages])
 
-  // Listen for fullscreen changes and escape key
-  useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape' && isFullscreen) {
-        setIsFullscreen(false)
-      }
-    }
-    
-    document.addEventListener('keydown', handleEscape)
-    return () => document.removeEventListener('keydown', handleEscape)
-  }, [isFullscreen])
-
   const page = item.detailedInfo.pages[currentPage]
   const totalPages = item.detailedInfo.pages.length
 
@@ -225,111 +213,57 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
           </h3>
 
           {page.image && (
-            <>
-              {isMedia ? (
-                <div 
-                  ref={mediaContainerRef}
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    toggleFullscreen(e)
-                  }}
-                  style={{
-                    position: 'relative',
-                    width: '70%',
-                    height: '400px',
-                    marginBottom: '1.5rem',
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
-                    borderRadius: '12px',
-                    overflow: 'hidden',
-                    background: 'rgba(0, 0, 0, 0.9)',
-                    border: `1px solid ${item.color}20`,
-                    cursor: 'pointer'
-                  }}
-                >
-                  {isGif ? (
-                    <img
-                      ref={videoRef}
-                      src={page.image}
-                      alt={page.title}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'contain'
-                      }}
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        toggleFullscreen(e)
-                      }}
-                    />
-                  ) : (
-                    <video
-                      ref={videoRef}
-                      src={page.image}
-                      controls
-                      autoPlay
-                      loop
-                      playsInline
-                      webkit-playsinline="true"
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'contain'
-                      }}
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        toggleFullscreen(e)
-                      }}
-                    />
-                  )}
-                  
-                  {/* Fullscreen indicator */}
-                  <div style={{
-                    position: 'absolute',
-                    bottom: '12px',
-                    right: '12px',
-                    background: 'rgba(0, 0, 0, 0.6)',
-                    backdropFilter: 'blur(8px)',
-                    padding: '8px 12px',
-                    borderRadius: '8px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    opacity: 0.7,
-                    transition: 'opacity 0.2s ease',
-                    pointerEvents: 'none',
-                    border: '1px solid rgba(255, 255, 255, 0.1)'
-                  }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                      <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
-                    </svg>
-                    <span style={{ color: 'white', fontSize: '12px', fontWeight: '500' }}>
-                      Click to fullscreen
-                    </span>
-                  </div>
-                </div>
-              ) : (
-                <div style={{
-                  position: 'relative',
+            <div 
+              ref={mediaContainerRef}
+              onClick={toggleFullscreen}
+              style={{
+                position: 'relative',
+                width: '100%',
+                height: '450px',
+                marginBottom: '1.5rem',
+                borderRadius: '12px',
+                overflow: 'hidden',
+                background: 'rgba(0, 0, 0, 0.9)',
+                border: `1px solid ${item.color}20`,
+                cursor: 'pointer'
+              }}
+            >
+              <img
+                ref={videoRef}
+                src={page.image}
+                alt={page.title}
+                style={{
                   width: '100%',
-                  height: '400px',
-                  marginBottom: '1.5rem',
-                  borderRadius: '12px',
-                  overflow: 'hidden',
-                  background: 'rgba(0, 0, 0, 0.3)',
-                  border: `1px solid ${item.color}20`
-                }}>
-                  <Image
-                    src={page.image}
-                    alt={page.title}
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    loading="lazy"
-                    sizes="(max-width: 1000px) 100vw, 1000px"
-                  />
-                </div>
-              )}
-            </>
+                  height: '100%',
+                  objectFit: 'contain'
+                }}
+              />
+              
+              {/* Fullscreen indicator */}
+              <div style={{
+                position: 'absolute',
+                bottom: '12px',
+                right: '12px',
+                background: 'rgba(0, 0, 0, 0.6)',
+                backdropFilter: 'blur(8px)',
+                padding: '8px 12px',
+                borderRadius: '8px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                opacity: 0.7,
+                transition: 'opacity 0.2s ease',
+                pointerEvents: 'none',
+                border: '1px solid rgba(255, 255, 255, 0.1)'
+              }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                </svg>
+                <span style={{ color: 'white', fontSize: '12px', fontWeight: '500' }}>
+                  Click to fullscreen
+                </span>
+              </div>
+            </div>
           )}
 
           <p style={{
