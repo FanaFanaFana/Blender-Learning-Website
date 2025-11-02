@@ -96,25 +96,37 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
     if (!mediaElement) return
     
     try {
-      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-        // Try standard fullscreen API first
-        if (mediaElement.requestFullscreen) {
-          await mediaElement.requestFullscreen()
-        } 
-        // iOS/Safari fallback for video elements
-        else if (mediaElement.webkitEnterFullscreen) {
+      // Check if we're in fullscreen
+      const isInFullscreen = !!(
+        document.fullscreenElement || 
+        document.webkitFullscreenElement || 
+        document.webkitCurrentFullScreenElement
+      )
+      
+      if (!isInFullscreen) {
+        // For video elements on iOS
+        if (mediaElement.webkitEnterFullscreen && typeof mediaElement.webkitEnterFullscreen === 'function') {
           mediaElement.webkitEnterFullscreen()
+          setIsFullscreen(true)
         }
-        // iOS/Safari fallback for other elements
+        // Standard fullscreen API
+        else if (mediaElement.requestFullscreen) {
+          await mediaElement.requestFullscreen()
+          setIsFullscreen(true)
+        }
+        // Webkit fallback
         else if (mediaElement.webkitRequestFullscreen) {
           await mediaElement.webkitRequestFullscreen()
+          setIsFullscreen(true)
         }
-        setIsFullscreen(true)
       } else {
+        // Exit fullscreen
         if (document.exitFullscreen) {
           await document.exitFullscreen()
         } else if (document.webkitExitFullscreen) {
           await document.webkitExitFullscreen()
+        } else if (document.webkitCancelFullScreen) {
+          document.webkitCancelFullScreen()
         }
         setIsFullscreen(false)
       }
@@ -169,7 +181,7 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
                 width={48}
                 height={48}
                 style={{ 
-                  filter: `drop-shadow(0 0 8px ${item.color})`,
+                  filter: `drop-shadow(0 0 12px ${item.color})`,
                   flexShrink: 0
                 }}
               />
@@ -311,6 +323,8 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
                       controls
                       autoPlay
                       loop
+                      playsInline
+                      webkit-playsinline="true"
                       style={{
                         width: '100%',
                         height: '100%',
