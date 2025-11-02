@@ -58,88 +58,34 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
     }
   }, [currentPage, item.detailedInfo.pages])
 
-  // Listen for fullscreen changes
+  // Listen for fullscreen changes and escape key
   useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(!!(document.fullscreenElement || document.webkitFullscreenElement))
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && isFullscreen) {
+        setIsFullscreen(false)
+      }
     }
     
-    document.addEventListener('fullscreenchange', handleFullscreenChange)
-    document.addEventListener('webkitfullscreenchange', handleFullscreenChange)
-    return () => {
-      document.removeEventListener('fullscreenchange', handleFullscreenChange)
-      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange)
-    }
-  }, [])
+    document.addEventListener('keydown', handleEscape)
+    return () => document.removeEventListener('keydown', handleEscape)
+  }, [isFullscreen])
 
   const page = item.detailedInfo.pages[currentPage]
   const totalPages = item.detailedInfo.pages.length
-  
-  // Simplified media detection - treat all videos and gifs the same way
-  const isMedia = page.image && (
-    page.image.endsWith('.mp4') || 
-    page.image.endsWith('.webm') || 
-    page.image.endsWith('.mov') ||
-    page.image.endsWith('.MOV') ||
-    page.image.endsWith('.gif')
-  )
-  const isGif = page.image && page.image.endsWith('.gif')
 
-  const toggleFullscreen = async (e) => {
+  const toggleFullscreen = (e) => {
     if (e) {
       e.preventDefault()
       e.stopPropagation()
     }
-    
-    const mediaElement = videoRef.current
-    
-    if (!mediaElement) return
-    
-    try {
-      // Check if we're in fullscreen
-      const isInFullscreen = !!(
-        document.fullscreenElement || 
-        document.webkitFullscreenElement || 
-        document.webkitCurrentFullScreenElement
-      )
-      
-      if (!isInFullscreen) {
-        // For video elements on iOS
-        if (mediaElement.webkitEnterFullscreen && typeof mediaElement.webkitEnterFullscreen === 'function') {
-          mediaElement.webkitEnterFullscreen()
-          setIsFullscreen(true)
-        }
-        // Standard fullscreen API
-        else if (mediaElement.requestFullscreen) {
-          await mediaElement.requestFullscreen()
-          setIsFullscreen(true)
-        }
-        // Webkit fallback
-        else if (mediaElement.webkitRequestFullscreen) {
-          await mediaElement.webkitRequestFullscreen()
-          setIsFullscreen(true)
-        }
-      } else {
-        // Exit fullscreen
-        if (document.exitFullscreen) {
-          await document.exitFullscreen()
-        } else if (document.webkitExitFullscreen) {
-          await document.webkitExitFullscreen()
-        } else if (document.webkitCancelFullScreen) {
-          document.webkitCancelFullScreen()
-        }
-        setIsFullscreen(false)
-      }
-    } catch (err) {
-      console.error('Fullscreen error:', err)
-    }
+    setIsFullscreen(!isFullscreen)
   }
 
   return (
     <div style={{
       position: 'fixed',
       inset: 0,
-      background: 'rgba(0, 0, 0, 0.55)',
+      background: 'rgba(0, 0, 0, 0.85)',
       backdropFilter: 'blur(8px)',
       display: 'flex',
       alignItems: 'center',
@@ -157,7 +103,7 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
           width: '100%',
           maxHeight: '90vh',
           overflow: 'hidden',
-          border: `1px solid ${item.color}40`,
+          border: `2px solid ${item.color}40`,
           display: 'flex',
           flexDirection: 'column',
           animation: 'slideUp 0.3s ease-out'
@@ -290,7 +236,7 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
                   style={{
                     position: 'relative',
                     width: '70%',
-                    height: '340px',
+                    height: '400px',
                     marginBottom: '1.5rem',
                     marginLeft: 'auto',
                     marginRight: 'auto',
@@ -551,6 +497,49 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
           }
         }
       `}</style>
+
+      {/* Custom fullscreen overlay for GIFs (works on all devices including iOS) */}
+      {isFullscreen && (
+        <div 
+          onClick={toggleFullscreen}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(0, 0, 0, 0.98)',
+            zIndex: 10000,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            animation: 'fadeIn 0.2s ease-out'
+          }}
+        >
+          <img
+            src={page.image}
+            alt={page.title}
+            style={{
+              maxWidth: '100%',
+              maxHeight: '100%',
+              objectFit: 'contain'
+            }}
+          />
+          <div style={{
+            position: 'absolute',
+            top: '20px',
+            right: '20px',
+            background: 'rgba(0, 0, 0, 0.6)',
+            backdropFilter: 'blur(8px)',
+            padding: '12px 16px',
+            borderRadius: '8px',
+            color: 'white',
+            fontSize: '14px',
+            fontWeight: '500',
+            border: '1px solid rgba(255, 255, 255, 0.1)'
+          }}>
+            Click or press ESC to exit
+          </div>
+        </div>
+      )}
     </div>
   )
 }
