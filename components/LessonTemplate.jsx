@@ -173,11 +173,11 @@ export default function LessonTemplate({ lessonData }) {
           <section style={{ padding: '4rem 0' }}>
             <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
               <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
-                Sculpting Techniques
-              </h2>
-              <p style={{ textAlign: 'center', color: '#8fa9bd', fontSize: '1.25rem', marginBottom: '3rem' }}>
-                Master essential workflows and methods
-              </p>
+  {lessonData.techniquesTitle || 'Techniques'}
+</h2>
+<p style={{ textAlign: 'center', color: '#8fa9bd', fontSize: '1.25rem', marginBottom: '3rem' }}>
+  {lessonData.techniquesDescription || 'Master essential workflows and methods'}
+</p>
 
               <div style={{ display: 'grid', gap: '3rem' }}>
                 {lessonData.techniques.map((category, idx) => (

@@ -18,11 +18,11 @@ export default function Sidebar() {
     
     
     // Rendering
-    { title: 'Render Engines', category: 'Rendering', icon: '/Icons/render_still.svg', link: null, color: '#f59e0b' },
-    { title: 'Lighting', category: 'Rendering', icon: '/Icons/light.svg', link: null, color: '#f59e0b' },
-    { title: 'Camera', category: 'Rendering', icon: '/Icons/camera_data.svg', link: null, color: '#f59e0b' },
-    { title: 'Materials', category: 'Rendering', icon: '/Icons/material.svg', link: null, color: '#f59e0b' },
-    { title: 'Render Settings', category: 'Rendering', icon: '/Icons/render_result.svg', link: null, color: '#f59e0b' },
+    { title: 'Render Engines', category: 'Rendering', icon: '/Icons/render_still.svg', link: '/RenderEnginesLesson', color: '#f59e0b' },
+    { title: 'Lighting', category: 'Rendering', icon: '/Icons/light.svg', link: '/LightingLesson', color: '#f59e0b' },
+    { title: 'Camera', category: 'Rendering', icon: '/Icons/camera_data.svg', link: '/CameraLesson', color: '#f59e0b' },
+    { title: 'Materials', category: 'Rendering', icon: '/Icons/material.svg', link: '/MaterialLesson', color: '#f59e0b' },
+    { title: 'Render Settings', category: 'Rendering', icon: '/Icons/render_result.svg', link: '/RenderSettingsLesson', color: '#f59e0b' },
     
     // Animation
     { title: 'Keyframes', category: 'Animation', icon: '/Icons/keyframe.svg', link: null, color: '#8b5cf6' },

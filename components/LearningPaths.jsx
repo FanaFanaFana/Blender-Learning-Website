@@ -40,11 +40,11 @@ export default function BlenderCompendium() {
       color: '#f59e0b',
       description: 'Complete reference for render engines, lighting, and image output',
       topics: [
-        { title: 'Render Engines', description: 'Eevee vs Cycles comparison', icon: '/Icons/render_still.svg', link: null },
-        { title: 'Lighting', description: 'Light types, HDRI, world settings', icon: '/Icons/light.svg', link: null },
-        { title: 'Camera', description: 'Camera settings, depth of field, composition', icon: '/Icons/camera_data.svg', link: null },
-        { title: 'Materials', description: 'Shader nodes, PBR workflow', icon: '/Icons/material.svg', link: null },
-        { title: 'Render Settings', description: 'Samples, resolution, output formats', icon: '/Icons/render_result.svg', link: null }
+        { title: 'Render Engines', description: 'Eevee vs Cycles comparison', icon: '/Icons/render_still.svg', link: '/RenderEnginesLesson' },
+        { title: 'Lighting', description: 'Light types, HDRI, world settings', icon: '/Icons/light.svg', link: '/LightingLesson' },
+        { title: 'Camera', description: 'Camera settings, depth of field, composition', icon: '/Icons/camera_data.svg', link: '/CameraLesson' },
+        { title: 'Materials', description: 'Shader nodes, PBR workflow', icon: '/Icons/material.svg', link: '/MaterialLesson' },
+        { title: 'Render Settings', description: 'Samples, resolution, output formats', icon: '/Icons/render_result.svg', link: '/RenderSettingsLesson' }
       ]
     },
     animation: {

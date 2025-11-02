@@ -12,6 +12,7 @@ export default function ContactPage() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null)
+  const [copyStatus, setCopyStatus] = useState(null)
 
   const handleChange = (e) => {
     setFormData({
@@ -38,27 +39,49 @@ export default function ContactPage() {
     }, 1500)
   }
 
+  const handleEmailClick = async () => {
+    try {
+      await navigator.clipboard.writeText('yannick.work3d@gmail.com')
+      setCopyStatus('Email copied to clipboard!')
+      setTimeout(() => setCopyStatus(null), 3000)
+    } catch (err) {
+      console.error('Failed to copy:', err)
+    }
+  }
+
+  const handleDiscordClick = () => {
+    window.open('https://discord.gg/blenddocs', '_blank')
+  }
+
+  const handleDocsClick = () => {
+    window.location.href = '/learn'
+  }
+
   const contactMethods = [
     {
       icon: '/test4.svg',
       title: 'Email',
-      detail: 'support@blenddocs.com',
+      detail: 'yannick.work3d@gmail.com',
       description: 'Get in touch via email',
-      color: '#3b82f6'
+      color: '#3b82f6',
+      onClick: handleEmailClick
     },
     {
       icon: '/test2.svg',
+      link:"https://discord.gg/blenddocs",
       title: 'Discord',
       detail: 'Join our community',
       description: 'Chat with other learners',
-      color: '#8b5cf6'
+      color: '#8b5cf6',
+      onClick: handleDiscordClick
     },
     {
       icon: '/test3.svg',
       title: 'Documentation',
       detail: 'Browse our guides',
       description: 'Find answers in our docs',
-      color: '#10b981'
+      color: '#10b981',
+      onClick: handleDocsClick
     }
   ]
 
@@ -83,9 +106,29 @@ export default function ContactPage() {
       {/* Contact Methods */}
       <section className="features">
         <div className="container">
+          {copyStatus && (
+            <div style={{
+              background: 'rgba(59, 130, 246, 0.1)',
+              border: '1px solid rgba(59, 130, 246, 0.3)',
+              borderRadius: '12px',
+              padding: '1rem',
+              marginBottom: '2rem',
+              color: '#3b82f6',
+              textAlign: 'center',
+              fontWeight: 600
+            }}>
+              ✓ {copyStatus}
+            </div>
+          )}
+          
           <div className="features-grid">
             {contactMethods.map((method, index) => (
-              <div key={index} className="feature-card">
+              <div 
+                key={index} 
+                className="feature-card"
+                onClick={method.onClick}
+                style={{ cursor: 'pointer' }}
+              >
                 <div className="feature-icon">
                   <Image 
                     src={method.icon} 
