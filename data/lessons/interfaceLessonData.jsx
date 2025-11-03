@@ -55,7 +55,7 @@ export const interfaceLessonData = {
               {
                 title: 'Viewport Navigation',
                 content: 'The 3D Viewport is where all the magic happens. Use your middle mouse button to orbit around your scene, Shift+MMB to pan, and scroll to zoom. The viewport shows your 3D objects from any angle you choose.',
-                image: '/examples/viewport-navigation.gif',
+                image: '/examples/viewport-navigation.mp4',
                 tips: [
                   'MMB to rotate view',
                   'Shift+MMB to pan',
