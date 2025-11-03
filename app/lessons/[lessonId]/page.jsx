@@ -20,13 +20,13 @@ function LessonLoadingSkeleton() {
     }}>
       <div style={{
         textAlign: 'center',
-        color: '#10b981'
+        color: '#ffffffff'
       }}>
         <div style={{
           width: '60px',
           height: '60px',
-          border: '4px solid rgba(16, 185, 129, 0.2)',
-          borderTopColor: '#10b981',
+          border: '4px solid rgba(48, 48, 48, 0.2)',
+          borderTopColor: '#ffffffff',
           borderRadius: '50%',
           margin: '0 auto 1rem',
           animation: 'spin 1s linear infinite'
@@ -100,7 +100,7 @@ export default function LessonPage({ params }) {
         <button
           onClick={() => window.location.href = '/lessons'}
           style={{
-            background: '#10b981',
+            background: '#fafafaff',
             color: '#fff',
             border: 'none',
             padding: '1rem 2rem',

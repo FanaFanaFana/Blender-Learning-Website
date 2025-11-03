@@ -167,7 +167,7 @@ useEffect(() => {
       <div style={{
         position: 'fixed',
         inset: 0,
-        background: 'rgba(13, 27, 42, 0.85)',
+        background: 'rgba(13, 27, 42, 0.55)',
         backdropFilter: 'blur(12px)',
         display: 'flex',
         alignItems: 'center',
