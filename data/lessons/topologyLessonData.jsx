@@ -51,7 +51,7 @@ export const topologyLessonData = {
           {
             title: 'Why Quads Matter',
             content: 'Quads subdivide into four smaller quads, creating even, predictable geometry. Triangles and N-gons (5+ sides) create irregular subdivision patterns that cause visual artifacts and deformation issues.',
-            image: '/examples/topology-quads-vs-tris.gif',
+            image: '/examples/topology-quads-vs-tris.mp4',
             tips: [
               'Aim for 95%+ quads in your mesh',
               'Triangles are acceptable on flat, non-deforming surfaces',
@@ -63,7 +63,7 @@ export const topologyLessonData = {
           {
             title: 'Converting to Quads',
             content: 'Select problem areas, press X > Limited Dissolve to remove unnecessary edges. Use F to fill missing faces, then adjust edge flow. The Triangulate to Quads operator (Alt+J) can help convert triangulated meshes.',
-            image: '/examples/topology-convert-quads.gif',
+            image: '/examples/topology-convert-quads.mp4',
             tips: [
               'Alt+J converts tris to quads where possible',
               'Limited Dissolve removes unneeded edges',
@@ -75,7 +75,7 @@ export const topologyLessonData = {
           {
             title: 'Acceptable Triangles',
             content: 'Triangles are fine on flat surfaces that won\'t deform - like building walls, hard-surface details, or environmental props. Keep them away from deformation areas like joints and facial features.',
-            image: '/examples/topology-acceptable-triangles.gif',
+            image: '/examples/topology-acceptable-triangles.mp4',
             tips: [
               'Static objects can use triangles freely',
               'Game engines triangulate everything anyway',
@@ -98,7 +98,7 @@ export const topologyLessonData = {
           {
             title: 'Following Natural Forms',
             content: 'Edge loops should wrap around cylindrical forms like limbs, follow muscle groups on bodies, and radiate around circular features like eyes. Think of edges as topographic lines on a map.',
-            image: '/examples/topology-edge-flow-organic.gif',
+            image: '/examples/topology-edge-flow-organic.mp4',
             tips: [
               'Edge loops wrap around limbs horizontally',
               'Follow muscle anatomy on characters',
@@ -110,7 +110,7 @@ export const topologyLessonData = {
           {
             title: 'Hard Surface Flow',
             content: 'On mechanical objects, edges should follow panel lines, feature boundaries, and manufacturing details. Bevels need supporting edge loops, and sharp corners need edge termination.',
-            image: '/examples/topology-edge-flow-hardsurface.gif',
+            image: '/examples/topology-edge-flow-hardsurface.mp4',
             tips: [
               'Follow panel lines and seams',
               'Support bevels with parallel edges',
@@ -122,7 +122,7 @@ export const topologyLessonData = {
           {
             title: 'Deformation Areas',
             content: 'Joints (shoulders, elbows, knees) need horizontal edge loops to enable bending. Face needs loops around mouth (smile lines), eyes (squint lines), and forehead (expression lines).',
-            image: '/examples/topology-deformation-areas.gif',
+            image: '/examples/topology-deformation-areas.mp4',
             tips: [
               'Add edge loops perpendicular to bend direction',
               'Face needs concentric loops around features',
@@ -145,7 +145,7 @@ export const topologyLessonData = {
           {
             title: 'Understanding Poles',
             content: 'A normal quad has 4 edges meeting at each vertex. Poles have 3 (tri-pole) or 5+ edges (N-pole). They break the quad flow but are often necessary for topology transitions.',
-            image: '/examples/topology-poles-types.gif',
+            image: '/examples/topology-poles-types.mp4',
             tips: [
               'Poles are unavoidable on spheres and cylinders',
               'Place poles in low-stress areas',
@@ -157,7 +157,7 @@ export const topologyLessonData = {
           {
             title: 'Strategic Pole Placement',
             content: 'Place poles where they won\'t cause deformation issues. On faces, poles go on the nose bridge, eye corners, and ear connection. On bodies, hide them in low-deformation areas like shoulder blades.',
-            image: '/examples/topology-pole-placement.gif',
+            image: '/examples/topology-pole-placement.mp4',
             tips: [
               'Keep poles off deformation areas',
               'Face: bridge of nose is safe',
@@ -169,7 +169,7 @@ export const topologyLessonData = {
           {
             title: 'Edge Termination',
             content: 'When you need to end an edge loop, create a pole. This redirects edge flow without breaking quad structure. Common when adding detail to specific areas without affecting the entire mesh.',
-            image: '/examples/topology-edge-termination.gif',
+            image: '/examples/topology-edge-termination.mp4',
             tips: [
               'Use poles to terminate edge loops',
               'Better than letting edges run forever',
@@ -192,7 +192,7 @@ export const topologyLessonData = {
           {
             title: 'Detail Hierarchy',
             content: 'Face gets the most geometry (expressions need it). Hands need moderate detail (finger joints). Torso can be simpler. Background objects need minimal geometry.',
-            image: '/examples/topology-edge-density.gif',
+            image: '/examples/topology-edge-density.mp4',
             tips: [
               'Face: high density for expressions',
               'Hands: moderate for finger articulation',
@@ -204,7 +204,7 @@ export const topologyLessonData = {
           {
             title: 'Transition Zones',
             content: 'When transitioning from high to low density, use edge loop reduction techniques. Add poles, merge edges, or use diagonal edges to step down geometry gradually.',
-            image: '/examples/topology-density-transition.gif',
+            image: '/examples/topology-density-transition.mp4',
             tips: [
               'Gradual transitions prevent artifacts',
               'Use poles to reduce loop count',
@@ -216,7 +216,7 @@ export const topologyLessonData = {
           {
             title: 'Subdivision Preparation',
             content: 'Models meant for subdivision modifier need less base geometry. The modifier adds detail. Focus on edge flow and form, let subdivision add density.',
-            image: '/examples/topology-subdivision-prep.gif',
+            image: '/examples/topology-subdivision-prep.mp4',
             tips: [
               'Start with minimal geometry',
               'Let subdivision add detail',
@@ -239,7 +239,7 @@ export const topologyLessonData = {
           {
             title: 'What is Manifold?',
             content: 'A manifold mesh represents a real 3D object - it has volume, inside, and outside. Non-manifold edges (connected to 3+ faces) or loose geometry break this, causing technical issues.',
-            image: '/examples/topology-manifold-concept.gif',
+            image: '/examples/topology-manifold-concept.mp4',
             tips: [
               'Every edge should connect exactly 2 faces',
               'No loose vertices or edges',
@@ -251,7 +251,7 @@ export const topologyLessonData = {
           {
             title: 'Finding Non-Manifold',
             content: 'Select all (A), then Select > Select All by Trait > Non-Manifold. Problem areas highlight. Common causes: overlapping geometry, internal faces, or disconnected parts.',
-            image: '/examples/topology-find-nonmanifold.gif',
+            image: '/examples/topology-find-nonmanifold.mp4',
             tips: [
               'Shift+Ctrl+Alt+M selects non-manifold',
               'Check with 3D Print Toolbox addon',
@@ -263,7 +263,7 @@ export const topologyLessonData = {
           {
             title: 'Fixing Non-Manifold',
             content: 'Remove doubles (M > By Distance), delete internal faces, fill holes (F), and ensure no overlapping geometry. The 3D Print Toolbox has automatic fixing tools.',
-            image: '/examples/topology-fix-nonmanifold.gif',
+            image: '/examples/topology-fix-nonmanifold.mp4',
             tips: [
               'Merge vertices by distance',
               'Delete internal faces',
@@ -286,7 +286,7 @@ export const topologyLessonData = {
           {
             title: 'How Subdivision Works',
             content: 'Subdivision splits each face into smaller faces and averages vertex positions to create smooth surfaces. Your base mesh (cage) controls the final smooth form.',
-            image: '/examples/topology-subdivision-basics.gif',
+            image: '/examples/topology-subdivision-basics.mp4',
             tips: [
               'Base mesh is the control cage',
               'Add modifier with Ctrl+1, Ctrl+2, etc.',
@@ -298,7 +298,7 @@ export const topologyLessonData = {
           {
             title: 'Edge Creasing',
             content: 'Shift+E to crease selected edges. Creased edges stay sharp after subdivision. Perfect for hard-surface modeling - crisp bevels without dense geometry.',
-            image: '/examples/topology-edge-creasing.gif',
+            image: '/examples/topology-edge-creasing.mp4',
             tips: [
               'Shift+E to crease edges (0-1)',
               'Keeps edges sharp in subdivision',
@@ -310,7 +310,7 @@ export const topologyLessonData = {
           {
             title: 'Supporting Edge Loops',
             content: 'To keep corners sharp, add edge loops close to edges. The closer the loops, the sharper the corner after subdivision. This is the traditional method before creasing was added.',
-            image: '/examples/topology-supporting-loops.gif',
+            image: '/examples/topology-supporting-loops.mp4',
             tips: [
               'Add loops near edges for sharpness',
               'Closer loops = sharper result',
@@ -336,7 +336,7 @@ export const topologyLessonData = {
           {
             title: 'Why Retopologize?',
             content: 'Sculpts have millions of polygons with chaotic topology. Retopology creates a clean, quad-based mesh with proper edge flow that can be rigged, animated, and textured efficiently.',
-            image: '/examples/topology-retopo-why.gif',
+            image: '/examples/topology-retopo-why.mp4',
             tips: [
               'Sculpts are too dense for animation',
               'Need clean topology for rigging',
@@ -348,7 +348,7 @@ export const topologyLessonData = {
           {
             title: 'Manual Retopology',
             content: 'Add a plane, enable Snap to Face. Extrude edges (E) to draw topology over the sculpt. Build edge loops following the form. This gives maximum control.',
-            image: '/examples/topology-manual-retopo.gif',
+            image: '/examples/topology-manual-retopo.mp4',
             tips: [
               'Enable Face snapping in header',
               'Start with major edge loops',
@@ -360,7 +360,7 @@ export const topologyLessonData = {
           {
             title: 'Retopology Tools',
             content: 'RetopoFlow addon provides specialized tools. Instant Meshes (external) auto-generates topology. These speed up the process but may need manual cleanup.',
-            image: '/examples/topology-retopo-tools.gif',
+            image: '/examples/topology-retopo-tools.mp4',
             tips: [
               'RetopoFlow addon in Blender',
               'Instant Meshes for auto-retopo',
@@ -383,7 +383,7 @@ export const topologyLessonData = {
           {
             title: 'Edge Loop Deletion',
             content: 'Select an edge loop (Alt+Click), press X > Dissolve Edges. The loop disappears and surrounding faces merge. Only works cleanly with good quad topology.',
-            image: '/examples/topology-loop-reduction.gif',
+            image: '/examples/topology-loop-reduction.mp4',
             tips: [
               'Alt+Click to select loop',
               'X > Dissolve Edges to remove',
@@ -395,7 +395,7 @@ export const topologyLessonData = {
           {
             title: 'Loop Merging',
             content: 'Select two parallel edge loops, use LoopTools (addon) > Bridge. Merges loops together. Great for reducing density in specific areas.',
-            image: '/examples/topology-loop-merge.gif',
+            image: '/examples/topology-loop-merge.mp4',
             tips: [
               'Enable LoopTools addon',
               'Select two parallel loops',
@@ -407,7 +407,7 @@ export const topologyLessonData = {
           {
             title: 'Limited Dissolve',
             content: 'Select area, X > Limited Dissolve. Automatically removes unnecessary edges while maintaining form. Adjust angle threshold to control aggression.',
-            image: '/examples/topology-limited-dissolve.gif',
+            image: '/examples/topology-limited-dissolve.mp4',
             tips: [
               'Removes edges that don\'t affect form',
               'Adjust max angle for control',
@@ -430,7 +430,7 @@ export const topologyLessonData = {
           {
             title: 'Flipped Normals',
             content: 'Face Orientation overlay shows flipped faces in red. Select all (A), Shift+N to recalculate normals outside. Flip individual faces with Alt+N > Flip.',
-            image: '/examples/topology-fix-normals.gif',
+            image: '/examples/topology-fix-normals.mp4',
             tips: [
               'Enable Face Orientation overlay',
               'Red = flipped, blue = correct',
@@ -442,7 +442,7 @@ export const topologyLessonData = {
           {
             title: 'Overlapping Geometry',
             content: 'Select all (A), M > By Distance to merge overlapping vertices. Set distance to 0.0001 for precision. Use Remove Doubles for older Blender versions.',
-            image: '/examples/topology-fix-overlapping.gif',
+            image: '/examples/topology-fix-overlapping.mp4',
             tips: [
               'M > By Distance merges close verts',
               'Adjust threshold carefully',
@@ -454,7 +454,7 @@ export const topologyLessonData = {
           {
             title: 'Ngons and Triangles',
             content: 'Use Checker Deselect to spot tris. Select N-gons with Select > Select All by Trait > Faces by Sides. Fix by adding edges (J) or dissolving (X) strategically.',
-            image: '/examples/topology-fix-ngons.gif',
+            image: '/examples/topology-fix-ngons.mp4',
             tips: [
               'Select faces, Checker Deselect shows tris',
               'J key to connect vertices with edge',
@@ -477,7 +477,7 @@ export const topologyLessonData = {
           {
             title: 'Eye Loop Pattern',
             content: 'Concentric loops around eyes enable squinting, wide eyes, and eyelid movement. Minimum 3 loops around eye socket. More for realistic characters.',
-            image: '/examples/topology-face-eyes.gif',
+            image: '/examples/topology-face-eyes.mp4',
             tips: [
               'Minimum 3 concentric eye loops',
               'Top and bottom eyelid need separate loops',
@@ -489,7 +489,7 @@ export const topologyLessonData = {
           {
             title: 'Mouth Loop Pattern',
             content: 'Loops encircle mouth following smile lines. Minimum 4 loops around lips. These enable talking, smiling, and all mouth expressions.',
-            image: '/examples/topology-face-mouth.gif',
+            image: '/examples/topology-face-mouth.mp4',
             tips: [
               'Loops follow natural smile lines',
               'Minimum 4 loops around mouth',
@@ -501,7 +501,7 @@ export const topologyLessonData = {
           {
             title: 'Full Face Flow',
             content: 'Edge flow connects eyes, nose, mouth, and ears. Cheek bones, jaw line, and forehead need horizontal loops. Nose bridge is a common pole location.',
-            image: '/examples/topology-face-full.gif',
+            image: '/examples/topology-face-full.mp4',
             tips: [
               'Connect all features with loops',
               'Horizontal loops across forehead',
@@ -524,7 +524,7 @@ export const topologyLessonData = {
           {
             title: 'Limb Topology',
             content: 'Horizontal loops around arms and legs enable bending. Minimum 3 loops across joints (more for realistic). Loops should be perpendicular to bend direction.',
-            image: '/examples/topology-body-limbs.gif',
+            image: '/examples/topology-body-limbs.mp4',
             tips: [
               'Horizontal loops for limb bending',
               'Minimum 3 loops at each joint',
@@ -536,7 +536,7 @@ export const topologyLessonData = {
           {
             title: 'Torso Topology',
             content: 'Edge loops follow muscle groups. Horizontal loops around chest, waist. Vertical loops down spine, sides. Shoulder connection is complex - study references.',
-            image: '/examples/topology-body-torso.gif',
+            image: '/examples/topology-body-torso.mp4',
             tips: [
               'Follow muscle anatomy',
               'Horizontal loops around torso',
@@ -548,7 +548,7 @@ export const topologyLessonData = {
           {
             title: 'Hand and Foot Topology',
             content: 'Hands need loops around each finger joint (3 each) plus palm. Feet can be simpler but toes still need articulation loops. Thumb requires special attention.',
-            image: '/examples/topology-body-hands.gif',
+            image: '/examples/topology-body-hands.mp4',
             tips: [
               'Each finger needs 3 joint loops',
               'Palm needs radial pattern',
@@ -571,7 +571,7 @@ export const topologyLessonData = {
           {
             title: 'Panel Lines and Flow',
             content: 'Edge loops should follow panel lines, seams, and manufacturing details. Creates natural divisions and helps with texturing. Plan panel flow early.',
-            image: '/examples/topology-hardsurface-panels.gif',
+            image: '/examples/topology-hardsurface-panels.mp4',
             tips: [
               'Follow panel lines with loops',
               'Seams define separate panels',
@@ -583,7 +583,7 @@ export const topologyLessonData = {
           {
             title: 'Bevel Topology',
             content: 'Bevels need supporting edge loops parallel to the bevel. These maintain bevel shape through subdivision. Use edge creasing for sharper results.',
-            image: '/examples/topology-hardsurface-bevels.gif',
+            image: '/examples/topology-hardsurface-bevels.mp4',
             tips: [
               'Support bevels with parallel loops',
               'Use edge creasing for sharpness',
@@ -595,7 +595,7 @@ export const topologyLessonData = {
           {
             title: 'Boolean Cleanup',
             content: 'Boolean operations create messy topology. After booleans, dissolve unnecessary edges, rebuild with quads, add supporting loops. Never leave raw boolean results.',
-            image: '/examples/topology-hardsurface-boolean.gif',
+            image: '/examples/topology-hardsurface-boolean.mp4',
             tips: [
               'Booleans create messy topology',
               'Always clean up afterward',

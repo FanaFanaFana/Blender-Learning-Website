@@ -58,12 +58,12 @@ export const modifierLessonData = {
               {
                 title: 'Basic Setup',
                 content: 'Add the Array modifier to your object. By default, it creates one copy offset along the X-axis. Adjust the count to increase duplicates.',
-                image: '/examples/array-basic.gif'
+                image: '/examples/array-basic.mp4'
               },
               {
                 title: 'Offset Types',
                 content: 'Use Relative Offset for spacing based on object size, ant Offset for fixed distances, or Object Offset to follow another object\'s position.',
-                image: '/examples/array-offset.gif'
+                image: '/examples/array-offset.mp4'
               }
             ]
           }
@@ -78,12 +78,12 @@ export const modifierLessonData = {
               {
                 title: 'Amount Control',
                 content: 'Adjust the width to control how rounded edges become. Use segments to add more geometry for smoother bevels.',
-                image: '/examples/bevel-amount.gif'
+                image: '/examples/bevel-amount.mp4'
               },
               {
                 title: 'Limit Methods',
                 content: 'Use Angle to bevel only sharp edges, Weight to control specific edges, or Vertex Group for precise control over which edges get beveled.',
-                image: '/examples/bevel-limits.gif'
+                image: '/examples/bevel-limits.mp4'
               }
             ]
           }
@@ -98,12 +98,12 @@ export const modifierLessonData = {
               {
                 title: 'Operation Types',
                 content: 'Union merges objects together, Difference subtracts one from another, and Intersect keeps only overlapping areas.',
-                image: '/examples/boolean-ops.gif'
+                image: '/examples/boolean-ops.mp4'
               },
               {
                 title: 'Clean Topology',
                 content: 'After Boolean operations, use the Solver dropdown (Fast/Exact) based on your needs. Fast works for most cases, Exact handles complex overlaps better.',
-                image: '/examples/boolean-solver.gif'
+                image: '/examples/boolean-solver.mp4'
               }
             ]
           }
@@ -118,7 +118,7 @@ export const modifierLessonData = {
               {
                 title: 'Timing Control',
                 content: 'Set Start and Length frame values to control when building begins and how long it takes. Works great with Randomize for organic appearance.',
-                image: '/examples/build-timing.gif'
+                image: '/examples/build-timing.mp4'
               }
             ]
           }
@@ -133,12 +133,12 @@ export const modifierLessonData = {
               {
                 title: 'Decimate Modes',
                 content: 'Collapse mode removes vertices while preserving shape. Un-Subdivide reverses subdivision. Planar removes flat faces.',
-                image: '/examples/decimate-modes.gif'
+                image: '/examples/decimate-modes.mp4'
               },
               {
                 title: 'Quality Control',
                 content: 'Lower ratio values mean more reduction. Monitor face count and preview to balance optimization with quality.',
-                image: '/examples/decimate-quality.gif'
+                image: '/examples/decimate-quality.mp4'
               }
             ]
           }
@@ -153,7 +153,7 @@ export const modifierLessonData = {
               {
                 title: 'Edge Angle',
                 content: 'Set the angle threshold - edges sharper than this value will be split, creating a hard crease in shading.',
-                image: '/examples/edgesplit-angle.gif'
+                image: '/examples/edgesplit-angle.mp4'
               }
             ]
           }
@@ -168,7 +168,7 @@ export const modifierLessonData = {
               {
                 title: 'Using Vertex Groups',
                 content: 'Create a vertex group, assign vertices with different weights, then select that group in the Mask modifier to show only those vertices.',
-                image: '/examples/mask-groups.gif'
+                image: '/examples/mask-groups.mp4'
               }
             ]
           }
@@ -183,12 +183,12 @@ export const modifierLessonData = {
               {
                 title: 'Axis Selection',
                 content: 'Choose X, Y, or Z axis for mirroring. You can enable multiple axes to mirror across several planes simultaneously.',
-                image: '/examples/mirror-axis.gif'
+                image: '/examples/mirror-axis.mp4'
               },
               {
                 title: 'Clipping & Merge',
                 content: 'Enable Clipping to prevent vertices from crossing the mirror plane. Use Merge to automatically weld center vertices together.',
-                image: '/examples/mirror-clipping.gif'
+                image: '/examples/mirror-clipping.mp4'
               }
             ]
           }
@@ -203,7 +203,7 @@ export const modifierLessonData = {
               {
                 title: 'Level Management',
                 content: 'Subdivide to add detail levels. Sculpt at high levels while maintaining clean topology at lower levels for animation.',
-                image: '/examples/multires-levels.jpg'
+                image: '/examples/multires-levels.mp4'
               }
             ]
           }
@@ -218,7 +218,7 @@ export const modifierLessonData = {
               {
                 title: 'Voxel Remeshing',
                 content: 'Adjust Voxel Size for resolution - smaller values create more detailed meshes. Useful for preparing models for 3D printing or further sculpting.',
-                image: '/examples/remesh-voxel.jpg'
+                image: '/examples/remesh-voxel.mp4'
               }
             ]
           }
@@ -233,7 +233,7 @@ export const modifierLessonData = {
               {
                 title: 'Revolution Setup',
                 content: 'Set axis to revolve around, adjust angle for partial or multiple revolutions. Increase Steps for smoother results.',
-                image: '/examples/screw-setup.jpg'
+                image: '/examples/screw-setup.mp4'
               }
             ]
           }
@@ -248,7 +248,7 @@ export const modifierLessonData = {
               {
                 title: 'Root & Scaling',
                 content: 'Mark a vertex as root, then scale vertices in edit mode to control thickness. Skin automatically generates connecting geometry.',
-                image: '/examples/skin-root.jpg'
+                image: '/examples/skin-root.mp4'
               }
             ]
           }
@@ -263,7 +263,7 @@ export const modifierLessonData = {
               {
                 title: 'Thickness Control',
                 content: 'Adjust thickness value, use Offset to control direction (inward, outward, or both). Enable Even Thickness for consistent results.',
-                image: '/examples/solidify-thickness.jpg'
+                image: '/examples/solidify-thickness.mp4'
               }
             ]
           }
@@ -278,12 +278,12 @@ export const modifierLessonData = {
               {
                 title: 'Subdivision Levels',
                 content: 'Viewport levels control preview smoothness, Render levels affect final output. Keep viewport lower for better performance.',
-                image: '/examples/subsurf-levels.jpg'
+                image: '/examples/subsurf-levels.mp4'
               },
               {
                 title: 'Edge Control',
                 content: 'Use Edge Creases or add edge loops to control which areas stay sharp. Subdivision smooths everything unless you add control geometry.',
-                image: '/examples/subsurf-control.jpg'
+                image: '/examples/subsurf-control.mp4'
               }
             ]
           }
@@ -298,7 +298,7 @@ export const modifierLessonData = {
               {
                 title: 'Triangulation Methods',
                 content: 'Beauty method creates most attractive triangulation, Fixed uses predictable patterns. Useful for export to game engines.',
-                image: '/examples/triangulate-methods.jpg'
+                image: '/examples/triangulate-methods.mp4'
               }
             ]
           }
@@ -313,7 +313,7 @@ export const modifierLessonData = {
               {
                 title: 'Distance Threshold',
                 content: 'Adjust merge distance to control which vertices combine. Great for fixing imported models or cleaning up boolean operations.',
-                image: '/examples/weld-distance.jpg'
+                image: '/examples/weld-distance.mp4'
               }
             ]
           }
@@ -328,7 +328,7 @@ export const modifierLessonData = {
               {
                 title: 'Thickness & Detail',
                 content: 'Control thickness of generated edges, enable Boundary to cap open edges, use Crease Edges for better subdivision results.',
-                image: '/examples/wireframe-thickness.jpg'
+                image: '/examples/wireframe-thickness.mp4'
               }
             ]
           }
@@ -350,12 +350,12 @@ export const modifierLessonData = {
               {
                 title: 'Bone Parenting',
                 content: 'Create an armature, then parent your mesh with automatic weights. The modifier handles deformation based on bone movement.',
-                image: '/examples/armature-parent.jpg'
+                image: '/examples/armature-parent.mp4'
               },
               {
                 title: 'Weight Painting',
                 content: 'Use Weight Paint mode to fine-tune which vertices are influenced by each bone. Red : full influence, blue : no influence.',
-                image: '/examples/armature-weights.jpg'
+                image: '/examples/armature-weights.mp4'
               }
             ]
           }
@@ -370,7 +370,7 @@ export const modifierLessonData = {
               {
                 title: 'Shape Types',
                 content: 'Choose Sphere for rounded bulges, Cylinder for tube-like deformations, or Cuboid for box-like shapes. Adjust Factor to control strength.',
-                image: '/examples/cast-shapes.jpg'
+                image: '/examples/cast-shapes.mp4'
               }
             ]
           }
@@ -385,7 +385,7 @@ export const modifierLessonData = {
               {
                 title: 'Setup Process',
                 content: 'Create a curve path, add Curve modifier to mesh, select curve object. Mesh will deform to follow the curve shape.',
-                image: '/examples/curve-setup.jpg'
+                image: '/examples/curve-setup.mp4'
               }
             ]
           }
@@ -400,12 +400,12 @@ export const modifierLessonData = {
               {
                 title: 'Texture Setup',
                 content: 'Add a texture (image or procedural), adjust Strength to control displacement amount. Requires sufficient geometry to show detail.',
-                image: '/examples/displace-texture.jpg'
+                image: '/examples/displace-texture.mp4'
               },
               {
                 title: 'Direction Control',
                 content: 'Use Normal for surface-based displacement, or choose specific axis. Use Coordinates to control texture mapping.',
-                image: '/examples/displace-direction.jpg'
+                image: '/examples/displace-direction.mp4'
               }
             ]
           }
@@ -420,7 +420,7 @@ export const modifierLessonData = {
               {
                 title: 'Creating Hooks',
                 content: 'Select vertices, add Hook modifier, create/assign empty. Moving the empty now controls those vertices with falloff.',
-                image: '/examples/hook-create.jpg'
+                image: '/examples/hook-create.mp4'
               }
             ]
           }
@@ -435,7 +435,7 @@ export const modifierLessonData = {
               {
                 title: 'Anchor Setup',
                 content: 'Assign anchor vertices that stay fixed, then move other vertices. The modifier smoothly deforms while preserving surface features.',
-                image: '/examples/laplacian-anchors.jpg'
+                image: '/examples/laplacian-anchors.mp4'
               }
             ]
           }
@@ -450,12 +450,12 @@ export const modifierLessonData = {
               {
                 title: 'Creating Lattice',
                 content: 'Add a Lattice object around your mesh, then add Lattice modifier pointing to it. Moving lattice points deforms the mesh smoothly.',
-                image: '/examples/lattice-create.jpg'
+                image: '/examples/lattice-create.mp4'
               },
               {
                 title: 'Resolution Control',
                 content: 'Adjust lattice resolution for more control points. Higher resolution gives finer control but more points to manage.',
-                image: '/examples/lattice-resolution.jpg'
+                image: '/examples/lattice-resolution.mp4'
               }
             ]
           }
@@ -470,7 +470,7 @@ export const modifierLessonData = {
               {
                 title: 'Binding Process',
                 content: 'Create a simple cage mesh around your object, add modifier, click Bind. Deforming the cage now controls the enclosed mesh.',
-                image: '/examples/meshdeform-bind.jpg'
+                image: '/examples/meshdeform-bind.mp4'
               }
             ]
           }
@@ -485,7 +485,7 @@ export const modifierLessonData = {
               {
                 title: 'Wrap Modes',
                 content: 'Nearest Surface projects to closest point, Project casts along axis, Target Normal follows surface normals for best conforming.',
-                image: '/examples/shrinkwrap-modes.jpg'
+                image: '/examples/shrinkwrap-modes.mp4'
               }
             ]
           }
@@ -500,7 +500,7 @@ export const modifierLessonData = {
               {
                 title: 'Deform Types',
                 content: 'Twist spirals your mesh, Bend creates arc shapes, Taper scales along axis, Stretch elongates. Use limits to control affected area.',
-                image: '/examples/simpledeform-types.jpg'
+                image: '/examples/simpledeform-types.mp4'
               }
             ]
           }
@@ -515,7 +515,7 @@ export const modifierLessonData = {
               {
                 title: 'Smoothing Control',
                 content: 'Increase Factor for stronger smoothing, Repeat for multiple passes. Use vertex groups to limit affected areas.',
-                image: '/examples/smooth-factor.jpg'
+                image: '/examples/smooth-factor.mp4'
               }
             ]
           }
@@ -530,7 +530,7 @@ export const modifierLessonData = {
               {
                 title: 'Binding Setup',
                 content: 'Position mesh on target surface, add modifier, click Bind. The mesh will now follow target surface deformations automatically.',
-                image: '/examples/surfacedeform-bind.jpg'
+                image: '/examples/surfacedeform-bind.mp4'
               }
             ]
           }
@@ -545,7 +545,7 @@ export const modifierLessonData = {
               {
                 title: 'Object Setup',
                 content: 'Create two empties, assign as From and To objects. Moving these empties creates space-warping deformation between them.',
-                image: '/examples/warp-setup.jpg'
+                image: '/examples/warp-setup.mp4'
               }
             ]
           }
@@ -560,7 +560,7 @@ export const modifierLessonData = {
               {
                 title: 'Wave Parameters',
                 content: 'Adjust Height for wave amplitude, Width for wavelength. Use Time Offset to animate. Requires sufficient geometry for smooth waves.',
-                image: '/examples/wave-params.jpg'
+                image: '/examples/wave-params.mp4'
               }
             ]
           }
@@ -582,12 +582,12 @@ export const modifierLessonData = {
               {
                 title: 'Basic Setup',
                 content: 'Add Cloth modifier, set collision objects, press play. Adjust quality steps for smoother simulation (higher : more accurate).',
-                image: '/examples/cloth-setup.jpg'
+                image: '/examples/cloth-setup.mp4'
               },
               {
                 title: 'Physical Properties',
                 content: 'Adjust Mass for weight, Stiffness for rigidity, Damping for energy loss. Use presets like Cotton, Silk, or Leather as starting points.',
-                image: '/examples/cloth-properties.jpg'
+                image: '/examples/cloth-properties.mp4'
               }
             ]
           }
@@ -602,7 +602,7 @@ export const modifierLessonData = {
               {
                 title: 'Collision Setup',
                 content: 'Add Collision modifier to objects that should be solid. Adjust Thickness if objects pass through each other.',
-                image: '/examples/collision-setup.jpg'
+                image: '/examples/collision-setup.mp4'
               }
             ]
           }
@@ -617,7 +617,7 @@ export const modifierLessonData = {
               {
                 title: 'Canvas & Brush',
                 content: 'Set one object as Canvas (receives paint), another as Brush (applies paint). Configure paint settings for desired effect.',
-                image: '/examples/dynamicpaint-setup.jpg'
+                image: '/examples/dynamicpaint-setup.mp4'
               }
             ]
           }
@@ -632,7 +632,7 @@ export const modifierLessonData = {
               {
                 title: 'Particle Integration',
                 content: 'Add particle system first, then Explode modifier. Faces separate following particle movement, creating shattering effect.',
-                image: '/examples/explode-setup.jpg'
+                image: '/examples/explode-setup.mp4'
               }
             ]
           }
@@ -647,12 +647,12 @@ export const modifierLessonData = {
               {
                 title: 'Domain & Flow',
                 content: 'Create Domain (simulation boundary), set objects as Flow (liquid source) or Effector (obstacles). Bake simulation to cache results.',
-                image: '/examples/fluid-domain.jpg'
+                image: '/examples/fluid-domain.mp4'
               },
               {
                 title: 'Resolution Settings',
                 content: 'Higher resolution divisions create more detail but take longer to simulate. Balance quality with computation time.',
-                image: '/examples/fluid-resolution.jpg'
+                image: '/examples/fluid-resolution.mp4'
               }
             ]
           }
@@ -667,7 +667,7 @@ export const modifierLessonData = {
               {
                 title: 'Wave Parameters',
                 content: 'Adjust Scale for wave size, Choppiness for peak sharpness, Time to animate. Resolution controls detail level.',
-                image: '/examples/ocean-waves.jpg'
+                image: '/examples/ocean-waves.mp4'
               }
             ]
           }
@@ -682,7 +682,7 @@ export const modifierLessonData = {
               {
                 title: 'Instance Setup',
                 content: 'Add particle system, then Particle Instance modifier. Choose object to instance on each particle location.',
-                image: '/examples/particleinstance-setup.jpg'
+                image: '/examples/particleinstance-setup.mp4'
               }
             ]
           }
@@ -697,12 +697,12 @@ export const modifierLessonData = {
               {
                 title: 'Emitter vs Hair',
                 content: 'Emitter creates flowing particles (fire, rain), Hair creates static particles (grass, fur). Choose based on your needs.',
-                image: '/examples/particles-types.jpg'
+                image: '/examples/particles-types.mp4'
               },
               {
                 title: 'Physics & Forces',
                 content: 'Control particle behavior with Physics settings, add force fields for wind or turbulence. Adjust lifetime and velocity for realistic motion.',
-                image: '/examples/particles-physics.jpg'
+                image: '/examples/particles-physics.mp4'
               }
             ]
           }
@@ -717,12 +717,12 @@ export const modifierLessonData = {
               {
                 title: 'Stiffness Settings',
                 content: 'Lower stiffness creates more jiggle, higher creates firmer objects. Use Goal weights to pin certain vertices in place.',
-                image: '/examples/softbody-stiffness.jpg'
+                image: '/examples/softbody-stiffness.mp4'
               },
               {
                 title: 'Collision & Edges',
                 content: 'Enable Self Collision to prevent object from intersecting itself. Use Edge springs for maintaining shape integrity.',
-                image: '/examples/softbody-collision.jpg'
+                image: '/examples/softbody-collision.mp4'
               }
             ]
           }
@@ -744,12 +744,12 @@ export const modifierLessonData = {
               {
                 title: 'Transfer Types',
                 content: 'Transfer vertex data, edge data, face data, or custom normals. Useful for applying high-poly details to low-poly models.',
-                image: '/examples/datatransfer-types.jpg'
+                image: '/examples/datatransfer-types.mp4'
               },
               {
                 title: 'Mapping Methods',
                 content: 'Choose how source data maps to target: Nearest Vertex, Nearest Face, or Projected. Each works best for different scenarios.',
-                image: '/examples/datatransfer-mapping.jpg'
+                image: '/examples/datatransfer-mapping.mp4'
               }
             ]
           }
@@ -764,7 +764,7 @@ export const modifierLessonData = {
               {
                 title: 'Cache Files',
                 content: 'Load .mdd or .pc2 format cache files containing vertex animation. Great for bringing external simulations into Blender.',
-                image: '/examples/meshcache-files.jpg'
+                image: '/examples/meshcache-files.mp4'
               }
             ]
           }
@@ -779,7 +779,7 @@ export const modifierLessonData = {
               {
                 title: 'Alembic Import',
                 content: 'Load .abc files from other 3D software. Preserves animation, deformations, and transformations across different applications.',
-                image: '/examples/alembic-import.jpg'
+                image: '/examples/alembic-import.mp4'
               }
             ]
           }
@@ -794,7 +794,7 @@ export const modifierLessonData = {
               {
                 title: 'Normal Modes',
                 content: 'Radial mode points normals outward from a center, Directional aligns to a direction. Use for stylized shading effects.',
-                image: '/examples/normaledit-modes.jpg'
+                image: '/examples/normaledit-modes.mp4'
               }
             ]
           }
@@ -809,7 +809,7 @@ export const modifierLessonData = {
               {
                 title: 'Weighting Methods',
                 content: 'Face Area and Corner Angle options control how normals are calculated. Prevents shading artifacts on complex hard-surface meshes.',
-                image: '/examples/weightednormal-methods.jpg'
+                image: '/examples/weightednormal-methods.mp4'
               }
             ]
           }
@@ -824,7 +824,7 @@ export const modifierLessonData = {
               {
                 title: 'Projector Setup',
                 content: 'Assign camera or empties as projectors. UV coordinates update based on projector positions - perfect for animated textures.',
-                image: '/examples/uvproject-setup.jpg'
+                image: '/examples/uvproject-setup.mp4'
               }
             ]
           }
@@ -839,7 +839,7 @@ export const modifierLessonData = {
               {
                 title: 'Transform Control',
                 content: 'Use two empties to define UV transformation. Moving empties animates texture position, rotation, and scale on the mesh.',
-                image: '/examples/uvwarp-transform.jpg'
+                image: '/examples/uvwarp-transform.mp4'
               }
             ]
           }
@@ -854,7 +854,7 @@ export const modifierLessonData = {
               {
                 title: 'Weight Operations',
                 content: 'Add, subtract, multiply weights using textures, curves, or distance. Refine vertex groups without manual painting.',
-                image: '/examples/vertexweight-ops.jpg'
+                image: '/examples/vertexweight-ops.mp4'
               }
             ]
           }
@@ -869,7 +869,7 @@ export const modifierLessonData = {
               {
                 title: 'Mix Operations',
                 content: 'Add, subtract, multiply, or use other blend modes to combine groups. Create complex weight distributions from simple groups.',
-                image: '/examples/vertexweightmix-ops.jpg'
+                image: '/examples/vertexweightmix-ops.mp4'
               }
             ]
           }
@@ -884,7 +884,7 @@ export const modifierLessonData = {
               {
                 title: 'Distance Calculation',
                 content: 'Set target object and maximum distance. Vertices closer to target receive higher weights with customizable falloff.',
-                image: '/examples/vertexweightprox-distance.jpg'
+                image: '/examples/vertexweightprox-distance.mp4'
               }
             ]
           }

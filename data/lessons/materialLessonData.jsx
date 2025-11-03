@@ -62,12 +62,12 @@ export const materialLessonData = {
               {
                 title: 'Color Input',
                 content: 'Set directly with the color picker for solid colors. Connect Image Texture nodes for photo-realistic surfaces. Use procedural textures for infinite variation without image files.',
-                image: '/examples/basecolor-input.gif'
+                image: '/examples/basecolor-input.mp4'
               },
               {
                 title: 'sRGB vs Linear',
                 content: 'Always use Color space for Base Color inputs. This ensures colors display correctly. Non-color data is only for data maps like roughness or normal maps.',
-                image: '/examples/basecolor-colorspace.gif'
+                image: '/examples/basecolor-colorspace.mp4'
               }
             ]
           }
@@ -82,12 +82,12 @@ export const materialLessonData = {
               {
                 title: 'Metal vs Non-Metal',
                 content: 'Set to 1.0 for pure metals like gold, silver, aluminum. Set to 0.0 for everything else - plastic, wood, fabric, skin. There\'s no in-between in real physics, but you can blend for stylized effects.',
-                image: '/examples/metallic-comparison.gif'
+                image: '/examples/metallic-comparison.mp4'
               },
               {
                 title: 'Metallic Maps',
                 content: 'Use black and white images to define metallic regions. White = metal, black = non-metal. Perfect for painted metal, scratched surfaces, or mixed-material objects.',
-                image: '/examples/metallic-map.gif'
+                image: '/examples/metallic-map.mp4'
               }
             ]
           }
@@ -102,12 +102,12 @@ export const materialLessonData = {
               {
                 title: 'Roughness Values',
                 content: 'Smooth surfaces (0.0-0.2): Mirrors, polished metal, water. Medium roughness (0.3-0.6): Plastic, painted surfaces, wood. Rough surfaces (0.7-1.0): Fabric, concrete, matte paint.',
-                image: '/examples/roughness-range.gif'
+                image: '/examples/roughness-range.mp4'
               },
               {
                 title: 'Roughness Maps',
                 content: 'Grayscale textures add realistic surface variation. Use Non-Color data space. Darker = smoother, lighter = rougher. Adds micro-detail that makes materials believable.',
-                image: '/examples/roughness-map.gif'
+                image: '/examples/roughness-map.mp4'
               }
             ]
           }
@@ -122,12 +122,12 @@ export const materialLessonData = {
               {
                 title: 'Glass Setup',
                 content: 'Set Transmission to 1.0 for full transparency. Adjust IOR: Glass = 1.45, Water = 1.33, Diamond = 2.42. Lower Roughness for clear glass, increase for frosted effects.',
-                image: '/examples/transmission-glass.gif'
+                image: '/examples/transmission-glass.mp4'
               },
               {
                 title: 'Transmission + Roughness',
                 content: 'Combine transmission with roughness for frosted glass, ice, or translucent plastic. Higher roughness blurs the refraction for realistic diffusion effects.',
-                image: '/examples/transmission-roughness.gif'
+                image: '/examples/transmission-roughness.mp4'
               }
             ]
           }
@@ -142,12 +142,12 @@ export const materialLessonData = {
               {
                 title: 'SSS Setup',
                 content: 'Increase Subsurface value (0.1-1.0) to enable the effect. Adjust Subsurface Radius (RGB) to control how far each color channel penetrates. Red travels furthest in skin, creating realistic translucency.',
-                image: '/examples/sss-setup.gif'
+                image: '/examples/sss-setup.mp4'
               },
               {
                 title: 'Subsurface Color',
                 content: 'Subsurface Color tints light passing through the material. Use red-orange for skin, green for leaves, white for wax. This color mixes with light inside the material.',
-                image: '/examples/sss-color.gif'
+                image: '/examples/sss-color.mp4'
               }
             ]
           }
@@ -162,12 +162,12 @@ export const materialLessonData = {
               {
                 title: 'Emission Basics',
                 content: 'Set Emission strength (1-10+ for bright lights). Choose Emission color or connect Image Texture for LED displays. In Cycles, emission actually lights the scene.',
-                image: '/examples/emission-basic.gif'
+                image: '/examples/emission-basic.mp4'
               },
               {
                 title: 'Bloom Effect',
                 content: 'Enable Bloom in Eevee (Render Properties) to create realistic glow halos around bright emission. Adjust threshold and intensity for stylized or realistic effects.',
-                image: '/examples/emission-bloom.gif'
+                image: '/examples/emission-bloom.mp4'
               }
             ]
           }
@@ -182,12 +182,12 @@ export const materialLessonData = {
               {
                 title: 'Normal Map Setup',
                 content: 'Add Image Texture > Normal Map node > connect to Principled BSDF Normal input. CRITICAL: Set Image Texture to Non-Color Data space. Adjust strength to control intensity.',
-                image: '/examples/normal-map-setup.gif'
+                image: '/examples/normal-map-setup.mp4'
               },
               {
                 title: 'Inverted Green Channel',
                 content: 'If lighting looks inverted, your normal map uses a different standard. In Normal Map node, check Color Space. Try inverting the green channel if needed using Color > Invert node.',
-                image: '/examples/normal-map-invert.gif'
+                image: '/examples/normal-map-invert.mp4'
               }
             ]
           }
@@ -202,12 +202,12 @@ export const materialLessonData = {
               {
                 title: 'Bump Node Setup',
                 content: 'Add Bump node between texture and Normal input. Connect grayscale texture to Height. Adjust Strength and Distance for intensity. Invert checkbox flips raised/recessed.',
-                image: '/examples/bump-node.gif'
+                image: '/examples/bump-node.mp4'
               },
               {
                 title: 'Bump vs Normal',
                 content: 'Bump maps are computed from heightmaps at render time. Normal maps are pre-calculated and more accurate. Use bump for procedural textures, normals for photo-realistic detail.',
-                image: '/examples/bump-vs-normal.gif'
+                image: '/examples/bump-vs-normal.mp4'
               }
             ]
           }
@@ -222,12 +222,12 @@ export const materialLessonData = {
               {
                 title: 'Alpha Setup',
                 content: 'Connect grayscale texture to Alpha input. Set material Blend Mode to Alpha Clip (sharp edges) or Alpha Blend (soft edges). Enable Show Backface in material settings if needed.',
-                image: '/examples/alpha-setup.gif'
+                image: '/examples/alpha-setup.mp4'
               },
               {
                 title: 'Alpha Blending',
                 content: 'Alpha Clip uses threshold for sharp cutouts (leaves, fences). Alpha Blend uses smooth transparency (smoke, glass decals). Hash adds noise to reduce sorting issues.',
-                image: '/examples/alpha-blend.gif'
+                image: '/examples/alpha-blend.mp4'
               }
             ]
           }
@@ -249,12 +249,12 @@ export const materialLessonData = {
               {
                 title: 'Basic Mixing',
                 content: 'Connect two shaders to inputs. Factor 0 = top shader only, Factor 1 = bottom shader only, 0.5 = 50/50 mix. Use for layering paint over metal or creating weathered surfaces.',
-                image: '/examples/mix-shader-basic.gif'
+                image: '/examples/mix-shader-basic.mp4'
               },
               {
                 title: 'Texture-Based Mixing',
                 content: 'Connect texture to Fac input for complex blending. Dirt maps, wear masks, or procedural noise control where each shader appears. Creates realistic weathering and variation.',
-                image: '/examples/mix-shader-texture.gif'
+                image: '/examples/mix-shader-texture.mp4'
               }
             ]
           }
@@ -269,12 +269,12 @@ export const materialLessonData = {
               {
                 title: 'Value Remapping',
                 content: 'Input values (0-1) map to gradient stops. Add stops to create complex gradients. Adjust interpolation (Linear, Ease, Constant) for different transition styles.',
-                image: '/examples/colorramp-basic.gif'
+                image: '/examples/colorramp-basic.mp4'
               },
               {
                 title: 'Creating Masks',
                 content: 'Use ColorRamp to convert textures into masks. Position black/white stops to isolate value ranges. Perfect for selecting specific height ranges or color areas.',
-                image: '/examples/colorramp-mask.gif'
+                image: '/examples/colorramp-mask.mp4'
               }
             ]
           }
@@ -289,12 +289,12 @@ export const materialLessonData = {
               {
                 title: 'Transform Controls',
                 content: 'Location moves texture position. Rotation spins texture. Scale controls size (smaller values = larger pattern). Combine with Texture Coordinate node for full control.',
-                image: '/examples/mapping-transform.gif'
+                image: '/examples/mapping-transform.mp4'
               },
               {
                 title: 'Texture Coordinate',
                 content: 'Texture Coordinate node provides different mapping modes: Generated (object bounds), UV (unwrapped), Object (world space). Connect to Mapping node for maximum flexibility.',
-                image: '/examples/mapping-coordinate.gif'
+                image: '/examples/mapping-coordinate.mp4'
               }
             ]
           }
@@ -309,12 +309,12 @@ export const materialLessonData = {
               {
                 title: 'Realistic Reflections',
                 content: 'Connect Fresnel to Mix Shader factor to blend diffuse and glossy. Creates realistic edge reflections on plastic, car paint, or any non-metal surface.',
-                image: '/examples/fresnel-reflection.gif'
+                image: '/examples/fresnel-reflection.mp4'
               },
               {
                 title: 'IOR Control',
                 content: 'IOR parameter controls reflection intensity. 1.45 = glass/plastic, 1.33 = water. Higher values create stronger edge reflections. Match material\'s real-world IOR.',
-                image: '/examples/fresnel-ior.gif'
+                image: '/examples/fresnel-ior.mp4'
               }
             ]
           }
@@ -329,12 +329,12 @@ export const materialLessonData = {
               {
                 title: 'Blend Modes',
                 content: 'Mix: Average blend. Multiply: Darken. Add: Brighten. Overlay: Contrast. Each mode creates different effects. Experiment to find the right look for texture layering.',
-                image: '/examples/mixrgb-modes.gif'
+                image: '/examples/mixrgb-modes.mp4'
               },
               {
                 title: 'Texture Layering',
                 content: 'Stack multiple MixRGB nodes to layer textures. Combine color maps with dirt overlays, add wear and tear, or blend multiple material types seamlessly.',
-                image: '/examples/mixrgb-layering.gif'
+                image: '/examples/mixrgb-layering.mp4'
               }
             ]
           }
@@ -349,12 +349,12 @@ export const materialLessonData = {
               {
                 title: 'Common Operations',
                 content: 'Add/Subtract: Adjust values. Multiply: Scale values. Power: Create falloffs. Greater/Less Than: Create masks. Clamp: Limit value ranges for control.',
-                image: '/examples/math-operations.gif'
+                image: '/examples/math-operations.mp4'
               },
               {
                 title: 'Procedural Control',
                 content: 'Use Math nodes to drive material parameters. Multiply roughness by texture, add values to emission, create complex masking logic. Building blocks for procedural materials.',
-                image: '/examples/math-procedural.gif'
+                image: '/examples/math-procedural.mp4'
               }
             ]
           }
@@ -376,12 +376,12 @@ export const materialLessonData = {
               {
                 title: 'Noise Types',
                 content: 'Perlin: Smooth organic noise. Voronoi: Cellular patterns. Musgrave: Fractal terrain. Each creates different patterns. Scale controls pattern size, Detail adds complexity.',
-                image: '/examples/noise-types.gif'
+                image: '/examples/noise-types.mp4'
               },
               {
                 title: 'Practical Uses',
                 content: 'Add subtle roughness variation. Create dirt masks. Generate bump maps. Vary color across surfaces. Noise adds realism by preventing perfect uniformity.',
-                image: '/examples/noise-uses.gif'
+                image: '/examples/noise-uses.mp4'
               }
             ]
           }
@@ -396,12 +396,12 @@ export const materialLessonData = {
               {
                 title: 'Wave Types',
                 content: 'Bands: Straight lines. Rings: Concentric circles. Saw/Triangle: Different edge profiles. Adjust Scale for frequency, Distortion for waviness.',
-                image: '/examples/wave-types.gif'
+                image: '/examples/wave-types.mp4'
               },
               {
                 title: 'Wood and Patterns',
                 content: 'Combine Wave (rings) with Noise for realistic wood grain. Use ColorRamp to convert to wood colors. Distort with noise for natural variation.',
-                image: '/examples/wave-wood.gif'
+                image: '/examples/wave-wood.mp4'
               }
             ]
           }
@@ -416,12 +416,12 @@ export const materialLessonData = {
               {
                 title: 'Voronoi Outputs',
                 content: 'Distance output: Cell boundaries. Color output: Cell colors. Position: Cell centers. Each output creates different effects. F1/F2 distance creates different patterns.',
-                image: '/examples/voronoi-outputs.gif'
+                image: '/examples/voronoi-outputs.mp4'
               },
               {
                 title: 'Practical Applications',
                 content: 'Create reptile scales, honeycomb patterns, cracked surfaces, or sci-fi tech panels. Combine with ColorRamp and other textures for complex procedural materials.',
-                image: '/examples/voronoi-uses.gif'
+                image: '/examples/voronoi-uses.mp4'
               }
             ]
           }
@@ -436,12 +436,12 @@ export const materialLessonData = {
               {
                 title: 'Musgrave Types',
                 content: 'fBM: Smooth terrain. Multifractal: Sharp ridges. Hybrid: Mix of both. Ridged: Mountain ranges. Each creates different landscape styles.',
-                image: '/examples/musgrave-types.gif'
+                image: '/examples/musgrave-types.mp4'
               },
               {
                 title: 'Terrain Surfaces',
                 content: 'Use Musgrave for rock surfaces, mountain displacement, cloud formations. Adjust Dimension for smoothness, Lacunarity for detail scale. Creates realistic natural complexity.',
-                image: '/examples/musgrave-terrain.gif'
+                image: '/examples/musgrave-terrain.mp4'
               }
             ]
           }
@@ -456,7 +456,7 @@ export const materialLessonData = {
               {
                 title: 'Magic Patterns',
                 content: 'Adjust Depth for pattern complexity, Turbulence for chaos. Creates swirling, flowing, abstract patterns. Great for magic effects, stylized energy, or abstract art.',
-                image: '/examples/magic-pattern.gif'
+                image: '/examples/magic-pattern.mp4'
               }
             ]
           }
@@ -484,17 +484,17 @@ export const materialLessonData = {
               {
                 title: 'PBR Map Types',
                 content: 'Base Color (color), Roughness (surface smoothness), Metallic (metal/non-metal), Normal (surface detail), Height/Displacement (geometry), AO (ambient occlusion). Each map uses specific color space settings.',
-                image: '/examples/pbr-maps.gif'
+                image: '/examples/pbr-maps.mp4'
               },
               {
                 title: 'Connecting Maps',
                 content: 'Base Color: Color space. Normal: Non-Color + Normal Map node. Roughness/Metallic: Non-Color. CRITICAL: Wrong color space causes incorrect rendering. Always check!',
-                image: '/examples/pbr-connect.gif'
+                image: '/examples/pbr-connect.mp4'
               },
               {
                 title: 'Free PBR Resources',
                 content: 'Download PBR textures from: Polyhaven (CC0, free), AmbientCG (free), Quixel Megascans (free with Epic account). These provide complete material texture sets.',
-                image: '/examples/pbr-resources.gif'
+                image: '/examples/pbr-resources.mp4'
               }
             ]
           }
@@ -509,17 +509,17 @@ export const materialLessonData = {
               {
                 title: 'Smart UV Project',
                 content: 'Select all faces (A), press U > Smart UV Project. Quick automatic unwrap for most objects. Adjust Angle Limit and Island Margin in operator panel. Good starting point.',
-                image: '/examples/uv-smart.gif'
+                image: '/examples/uv-smart.mp4'
               },
               {
                 title: 'Mark Seams',
                 content: 'For clean unwraps: Select edges where you want cuts (Alt+Click for loops), Ctrl+E > Mark Seam. Then U > Unwrap. Place seams in hidden areas for best results.',
-                image: '/examples/uv-seams.gif'
+                image: '/examples/uv-seams.mp4'
               },
               {
                 title: 'UV Editor',
                 content: 'Switch to UV Editing workspace. Select faces in 3D view to see UVs. Scale, rotate, move UV islands in UV editor. Use Straighten to fix warping.',
-                image: '/examples/uv-editor.gif'
+                image: '/examples/uv-editor.mp4'
               }
             ]
           }
@@ -534,12 +534,12 @@ export const materialLessonData = {
               {
                 title: 'Texture Paint Setup',
                 content: 'Switch to Texture Paint workspace. Create new image in Image Texture node (+ icon), set resolution. Select the Image Texture node to paint on it. Paint directly on model.',
-                image: '/examples/texture-paint-setup.gif'
+                image: '/examples/texture-paint-setup.mp4'
               },
               {
                 title: 'Painting Techniques',
                 content: 'Use different brushes, adjust radius (F) and strength (Shift+F). Enable symmetry for character painting. Paint multiple maps: color, roughness, metallic for complete control.',
-                image: '/examples/texture-paint-technique.gif'
+                image: '/examples/texture-paint-technique.mp4'
               }
             ]
           }
@@ -561,12 +561,12 @@ export const materialLessonData = {
               {
                 title: 'Adding Slots',
                 content: 'Material Properties > + icon to add slot. Assign existing material or create new. Select faces in Edit mode, choose slot, click Assign to apply material to selected faces.',
-                image: '/examples/material-slots.gif'
+                image: '/examples/material-slots.mp4'
               },
               {
                 title: 'Organizing Materials',
                 content: 'Use descriptive names: "Metal_Rusty", "Fabric_Red", etc. Use Fake User (shield icon) to keep unused materials. Link materials between objects with Ctrl+L.',
-                image: '/examples/material-organize.gif'
+                image: '/examples/material-organize.mp4'
               }
             ]
           }
@@ -581,12 +581,12 @@ export const materialLessonData = {
               {
                 title: 'Appending Materials',
                 content: 'File > Append, navigate to .blend file, open Materials folder, select materials. Appended materials become part of current file. Perfect for sharing between projects.',
-                image: '/examples/material-append.gif'
+                image: '/examples/material-append.mp4'
               },
               {
                 title: 'Asset Browser',
                 content: 'Mark materials as Assets (right-click in outliner). Access via Asset Browser. Create custom asset library for your studio materials. Tag and organize for easy finding.',
-                image: '/examples/material-assets.gif'
+                image: '/examples/material-assets.mp4'
               }
             ]
           }

@@ -62,17 +62,17 @@ export const lightingLessonData = {
               {
                 title: 'Point Light Basics',
                 content: 'Add with Shift+A > Light > Point. Adjust Power (Watts) to control brightness - start with 100-1000W. Radius creates soft shadows (0 = hard shadows). Perfect for indoor scenes and practical lights.',
-                image: '/examples/light-point-basic.gif'
+                image: '/examples/light-point-basic.mp4'
               },
               {
                 title: 'When to Use Point',
                 content: 'Use Point lights for: Light bulbs in lamps, candles and torches, glowing magical orbs, street lights, or any omnidirectional source. Quick to set up and performance-friendly.',
-                image: '/examples/light-point-uses.gif'
+                image: '/examples/light-point-uses.mp4'
               },
               {
                 title: 'Falloff & Radius',
                 content: 'Light intensity decreases with distance (inverse square law in Cycles). Increase Radius for softer, more realistic shadows. Radius simulates physical light size - larger = softer.',
-                image: '/examples/light-point-falloff.gif'
+                image: '/examples/light-point-falloff.mp4'
               }
             ]
           }
@@ -87,17 +87,17 @@ export const lightingLessonData = {
               {
                 title: 'Sun Light Properties',
                 content: 'Add with Shift+A > Light > Sun. Rotation controls direction (not position). Strength measured in power (1-5 typical for daylight). Angle parameter controls sun disk size and shadow softness.',
-                image: '/examples/light-sun-basic.gif'
+                image: '/examples/light-sun-basic.mp4'
               },
               {
                 title: 'Outdoor Lighting',
                 content: 'Sun Light is essential for outdoor scenes. Low angle = sunset/sunrise (warm). High angle = noon (harsh shadows). Combine with sky texture for complete outdoor lighting.',
-                image: '/examples/light-sun-outdoor.gif'
+                image: '/examples/light-sun-outdoor.mp4'
               },
               {
                 title: 'Shadow Quality',
                 content: 'Angle parameter: Smaller = sharper shadows (harsh midday), larger = softer shadows (overcast or atmosphere scattering). Earth sun angle ≈ 0.53°. Adjust for artistic control.',
-                image: '/examples/light-sun-shadows.gif'
+                image: '/examples/light-sun-shadows.mp4'
               }
             ]
           }
@@ -112,17 +112,17 @@ export const lightingLessonData = {
               {
                 title: 'Spot Light Controls',
                 content: 'Spot Size controls cone width (degrees). Blend softens cone edges. Power controls brightness. Point spotlight at subject and adjust cone to frame perfectly.',
-                image: '/examples/light-spot-basic.gif'
+                image: '/examples/light-spot-basic.mp4'
               },
               {
                 title: 'Dramatic Lighting',
                 content: 'Use Spot lights for: Stage lighting, flashlights, focused product highlights, interrogation rooms, dramatic character lighting. Creates strong mood and directs viewer attention.',
-                image: '/examples/light-spot-dramatic.gif'
+                image: '/examples/light-spot-dramatic.mp4'
               },
               {
                 title: 'IES Textures',
                 content: 'Add IES texture in light settings for realistic architectural light patterns. IES files define real-world light falloff patterns from actual fixtures. Free from manufacturer websites.',
-                image: '/examples/light-spot-ies.gif'
+                image: '/examples/light-spot-ies.mp4'
               }
             ]
           }
@@ -137,22 +137,22 @@ export const lightingLessonData = {
               {
                 title: 'Area Light Setup',
                 content: 'Add Shift+A > Light > Area. Choose shape: Rectangle (softboxes, windows), Disk (round softboxes), Square. Size controls physical dimensions - larger = softer shadows. Most realistic light type.',
-                image: '/examples/light-area-basic.gif'
+                image: '/examples/light-area-basic.mp4'
               },
               {
                 title: 'Soft vs Hard Light',
                 content: 'Small Area = hard shadows. Large Area = soft shadows. Distance also matters - closer light = softer shadows. Simulate studio softboxes for product renders by using large rectangles.',
-                image: '/examples/light-area-softness.gif'
+                image: '/examples/light-area-softness.mp4'
               },
               {
                 title: 'Studio Lighting',
                 content: 'Use Area lights to recreate photography studios: Large rectangles as softboxes, small squares as hair lights, strips for rim lighting. Adjust power, size, and position for complete control.',
-                image: '/examples/light-area-studio.gif'
+                image: '/examples/light-area-studio.mp4'
               },
               {
                 title: 'Portal Lights',
                 content: 'In Cycles, set Area light to Portal type for indoor scenes with HDRI. Place at windows to guide light sampling. Dramatically reduces noise and speeds up interior renders.',
-                image: '/examples/light-area-portal.gif'
+                image: '/examples/light-area-portal.mp4'
               }
             ]
           }
@@ -174,12 +174,12 @@ export const lightingLessonData = {
               {
                 title: 'Realistic Values',
                 content: 'Candle: 10-50W. Light bulb: 100-1000W. Softbox: 100-500W. Sun: 1-5 strength. These are starting points - adjust based on scene scale and desired mood. Eevee and Cycles may need different values.',
-                image: '/examples/light-power-values.gif'
+                image: '/examples/light-power-values.mp4'
               },
               {
                 title: 'Scene Scale Matters',
                 content: 'Light power scales with scene size. Small scene (1m cube) needs less power than large scene (100m building). Scale your models correctly or adjust light power accordingly.',
-                image: '/examples/light-power-scale.gif'
+                image: '/examples/light-power-scale.mp4'
               }
             ]
           }
@@ -194,12 +194,12 @@ export const lightingLessonData = {
               {
                 title: 'Color Temperature Scale',
                 content: 'Candle: 1800K (very warm orange). Tungsten bulb: 3200K (warm). Daylight: 5500K (neutral). Overcast: 6500K (cool). Moonlight: 4100K (cool blue). Use Blackbody node for accurate color.',
-                image: '/examples/light-temperature.gif'
+                image: '/examples/light-temperature.mp4'
               },
               {
                 title: 'Complementary Lighting',
                 content: 'Mix warm and cool lights for visual interest: Warm key light + cool fill creates depth. Orange firelight + blue moonlight = classic night scene. Contrast creates professional look.',
-                image: '/examples/light-complementary.gif'
+                image: '/examples/light-complementary.mp4'
               }
             ]
           }
@@ -214,17 +214,17 @@ export const lightingLessonData = {
               {
                 title: 'Cycles Shadow Settings',
                 content: 'In Cycles, shadow softness is automatic based on light size/radius. Larger lights = softer shadows. Use Max Bounces to control shadow depth in Light Paths settings.',
-                image: '/examples/light-shadow-cycles.gif'
+                image: '/examples/light-shadow-cycles.mp4'
               },
               {
                 title: 'Eevee Shadow Quality',
                 content: 'In Eevee, increase Shadow Cube Size/Cascade Size in light properties for sharper shadows. Enable Contact Shadows for accurate small-scale detail. Balance quality vs performance.',
-                image: '/examples/light-shadow-eevee.gif'
+                image: '/examples/light-shadow-eevee.mp4'
               },
               {
                 title: 'Shadow Terminator',
                 content: 'Reduce shadow terminator artifacts on low-poly meshes by increasing geometry or using Shade Smooth. In Cycles, Geometry > Shadow Terminator offset can fix shading issues.',
-                image: '/examples/light-shadow-terminator.gif'
+                image: '/examples/light-shadow-terminator.mp4'
               }
             ]
           }
@@ -239,17 +239,17 @@ export const lightingLessonData = {
               {
                 title: 'Enabling Volumetrics',
                 content: 'Cycles: Automatic with Volume Scatter in world or objects. Eevee: Enable Volumetric Lighting in Render Properties. Adjust tile size (lower = higher quality). Enable Volumetric Shadows for light interaction.',
-                image: '/examples/light-volumetric-enable.gif'
+                image: '/examples/light-volumetric-enable.mp4'
               },
               {
                 title: 'World Volume',
                 content: 'Shader Editor > World > Add Volume Scatter to world output. Adjust Density for fog thickness. Low values (0.001-0.01) for subtle atmosphere, higher for thick fog.',
-                image: '/examples/light-volumetric-world.gif'
+                image: '/examples/light-volumetric-world.mp4'
               },
               {
                 title: 'God Rays',
                 content: 'Use Spot or Area lights with volumetrics for dramatic god rays. Position lights to shine through windows or openings. Adjust Volumetric Shadows quality for light shaft definition.',
-                image: '/examples/light-volumetric-godrays.gif'
+                image: '/examples/light-volumetric-godrays.mp4'
               }
             ]
           }
@@ -264,12 +264,12 @@ export const lightingLessonData = {
               {
                 title: 'Light Path Visibility',
                 content: 'Light Properties > Visibility: Toggle Diffuse (affects base color), Glossy (affects reflections), Transmission (affects glass), Volume (affects fog). Disable options for specific lighting control.',
-                image: '/examples/light-visibility.gif'
+                image: '/examples/light-visibility.mp4'
               },
               {
                 title: 'Practical Uses',
                 content: 'Rim light with Diffuse off: Only creates edge highlights. Fill light with Glossy off: Brightens shadows without washing out reflections. Gives artistic control over lighting separation.',
-                image: '/examples/light-visibility-uses.gif'
+                image: '/examples/light-visibility-uses.mp4'
               }
             ]
           }
@@ -291,17 +291,17 @@ export const lightingLessonData = {
               {
                 title: 'Creating Mesh Lights',
                 content: 'Add object, go to Shading workspace. Use Emission shader instead of Principled BSDF. Adjust Strength (1-100+). In Cycles, mesh lights actually illuminate the scene. In Eevee, limited light emission.',
-                image: '/examples/light-mesh-basic.gif'
+                image: '/examples/light-mesh-basic.mp4'
               },
               {
                 title: 'LED Strips & Signs',
                 content: 'Model LED strips or neon signs, apply Emission material. Combine with Bloom in Eevee for realistic glow. Great for sci-fi panels, signs, or decorative lighting elements.',
-                image: '/examples/light-mesh-led.gif'
+                image: '/examples/light-mesh-led.mp4'
               },
               {
                 title: 'Multiple Importance Sampling',
                 content: 'In Cycles, enable Material > Settings > Multiple Importance for large mesh lights. Reduces noise significantly by smart sampling. Essential for large emissive surfaces like ceilings or windows.',
-                image: '/examples/light-mesh-mis.gif'
+                image: '/examples/light-mesh-mis.mp4'
               }
             ]
           }
@@ -316,12 +316,12 @@ export const lightingLessonData = {
               {
                 title: 'Setting Up Linking',
                 content: 'Select light, Object Properties > Visibility > Light Linking. Create collection of objects to exclude or include. Use for dedicated lights that only affect hero objects.',
-                image: '/examples/light-linking-setup.gif'
+                image: '/examples/light-linking-setup.mp4'
               },
               {
                 title: 'Practical Applications',
                 content: 'Rim light only for character, not environment. Product light only for hero product. Background light that doesn\'t affect foreground. Gives layer-by-layer lighting control.',
-                image: '/examples/light-linking-uses.gif'
+                image: '/examples/light-linking-uses.mp4'
               }
             ]
           }
@@ -336,12 +336,12 @@ export const lightingLessonData = {
               {
                 title: 'Collection Organization',
                 content: 'Create collections: "Key_Lights", "Fill_Lights", "Rim_Lights". Move lights into appropriate collections. Toggle visibility in Outliner to quickly test lighting setups.',
-                image: '/examples/light-groups.gif'
+                image: '/examples/light-groups.mp4'
               },
               {
                 title: 'Lighting Scenarios',
                 content: 'Create multiple lighting setups in different collections: "Daytime", "Nighttime", "Studio". Toggle between complete lighting scenarios instantly. Speeds up iteration.',
-                image: '/examples/light-scenarios.gif'
+                image: '/examples/light-scenarios.mp4'
               }
             ]
           }
@@ -369,17 +369,17 @@ export const lightingLessonData = {
               {
                 title: 'How HDRI Works',
                 content: 'HDRI wraps around your scene like a sphere, providing lighting from all directions. Each pixel contains light intensity data, illuminating your objects as if they were in that real location.',
-                image: '/examples/hdri-how.gif'
+                image: '/examples/hdri-how.mp4'
               },
               {
                 title: 'Benefits of HDRI',
                 content: 'Instant realistic lighting. Accurate reflections in shiny materials. Natural ambient occlusion. Perfect color matching with real environments. One HDRI replaces dozens of manual lights.',
-                image: '/examples/hdri-benefits.gif'
+                image: '/examples/hdri-benefits.mp4'
               },
               {
                 title: 'Free HDRI Resources',
                 content: 'Polyhaven.com: Thousands of free HDRIs (CC0 license). HDRIHaven.com (now Polyhaven): High quality outdoor/indoor. Blender built-in HDRIs in Shading workspace. Download 4K+ for best quality.',
-                image: '/examples/hdri-resources.gif'
+                image: '/examples/hdri-resources.mp4'
               }
             ]
           }
@@ -394,17 +394,17 @@ export const lightingLessonData = {
               {
                 title: 'Basic HDRI Setup',
                 content: 'Shading workspace > World shader. Add Shift+A > Texture > Environment Texture. Open HDRI file (.hdr or .exr). Connect to World Output Background. Instantly realistic lighting!',
-                image: '/examples/hdri-setup-basic.gif'
+                image: '/examples/hdri-setup-basic.mp4'
               },
               {
                 title: 'Strength Control',
                 content: 'Adjust World shader Strength to control lighting intensity. 1.0 = normal, 0.5 = darker, 2.0 = brighter. Match intensity to your scene needs. Can also use Color > RGB Curves for precise control.',
-                image: '/examples/hdri-setup-strength.gif'
+                image: '/examples/hdri-setup-strength.mp4'
               },
               {
                 title: 'Rotation & Positioning',
                 content: 'Add Mapping + Texture Coordinate nodes before Environment Texture. Use Mapping > Rotation > Z to rotate HDRI. Position sun or windows exactly where you need them in your scene.',
-                image: '/examples/hdri-setup-rotation.gif'
+                image: '/examples/hdri-setup-rotation.mp4'
               }
             ]
           }
@@ -419,17 +419,17 @@ export const lightingLessonData = {
               {
                 title: 'Cycles HDRI',
                 content: 'Cycles fully supports HDRI with accurate lighting, reflections, and refraction. HDRI lights the scene naturally. Increase Max Bounces for better light distribution. Perfect for photorealism.',
-                image: '/examples/hdri-cycles.gif'
+                image: '/examples/hdri-cycles.mp4'
               },
               {
                 title: 'Eevee HDRI Setup',
                 content: 'Eevee needs Irradiance Volumes to capture HDRI lighting for dynamic objects. Add Shift+A > Light Probe > Irradiance Volume. Scale to cover scene. Render > Bake Indirect Lighting or enable auto-bake.',
-                image: '/examples/hdri-eevee.gif'
+                image: '/examples/hdri-eevee.mp4'
               },
               {
                 title: 'Eevee Limitations',
                 content: 'Eevee HDRI reflections limited to screen-space. Add Reflection Cubemap probes for better reflections. HDRI won\'t show in refractions. Consider adding dedicated lights for more control.',
-                image: '/examples/hdri-eevee-limits.gif'
+                image: '/examples/hdri-eevee-limits.mp4'
               }
             ]
           }
@@ -444,12 +444,12 @@ export const lightingLessonData = {
               {
                 title: 'Supplementary Lighting',
                 content: 'Use HDRI for environment and reflections. Add Area lights as fill or key lights for subject control. Adjust HDRI strength down (0.5-0.8), bring in focused lights for highlights.',
-                image: '/examples/hdri-plus-lights.gif'
+                image: '/examples/hdri-plus-lights.mp4'
               },
               {
                 title: 'HDRI Strength Reduction',
                 content: 'Lower HDRI strength to 0.3-0.5 for subtle environment lighting. Use custom lights for main illumination. Keeps realistic reflections while giving you creative lighting control.',
-                image: '/examples/hdri-strength-reduce.gif'
+                image: '/examples/hdri-strength-reduce.mp4'
               }
             ]
           }
@@ -471,17 +471,17 @@ export const lightingLessonData = {
               {
                 title: 'Sky Texture Setup',
                 content: 'World shader: Add Shift+A > Texture > Sky Texture > connect to Background. Choose Sky Type: Nishita (most realistic), Preetham, Hosek/Wilkie. Adjust Sun direction for time of day.',
-                image: '/examples/world-sky-setup.gif'
+                image: '/examples/world-sky-setup.mp4'
               },
               {
                 title: 'Sun Position',
                 content: 'Sun Rotation controls time of day. Low angle = sunset/sunrise (orange), high angle = noon (harsh). Elevation affects sky color and atmosphere thickness. Animate for day/night cycles.',
-                image: '/examples/world-sky-sun.gif'
+                image: '/examples/world-sky-sun.mp4'
               },
               {
                 title: 'Atmosphere Settings',
                 content: 'Adjust Altitude, Air density, Dust density, Ozone density for different planetary atmospheres or weather conditions. Create alien skies, pollution, clear mountain air, or stylized looks.',
-                image: '/examples/world-sky-atmosphere.gif'
+                image: '/examples/world-sky-atmosphere.mp4'
               }
             ]
           }
@@ -496,12 +496,12 @@ export const lightingLessonData = {
               {
                 title: 'Gradient Setup',
                 content: 'World shader: Add Texture Coordinate > Generated to ColorRamp. Connect to Background color. Adjust ColorRamp stops for custom gradients. Simple artistic control for stylized renders.',
-                image: '/examples/world-gradient.gif'
+                image: '/examples/world-gradient.mp4'
               },
               {
                 title: 'Studio Backgrounds',
                 content: 'Use subtle gradients for product renders: White to light gray. Creates depth without distraction. Combine with studio lights for professional product visualization.',
-                image: '/examples/world-gradient-studio.gif'
+                image: '/examples/world-gradient-studio.mp4'
               }
             ]
           }
@@ -516,7 +516,7 @@ export const lightingLessonData = {
               {
                 title: 'World Shader Management',
                 content: 'Create multiple world shaders with + icon. Name them: "Outdoor_Day", "Studio_White", "Sunset_Warm". Switch between setups instantly. Saves massive time during iteration.',
-                image: '/examples/world-multiple.gif'
+                image: '/examples/world-multiple.mp4'
               }
             ]
           }
@@ -538,22 +538,22 @@ export const lightingLessonData = {
               {
                 title: 'Key Light',
                 content: 'Main light source, usually 45° to side and above subject. Strongest light, defines form and mood. Use Area or Spot light. Typical power: 500-1000W. Creates main shadows.',
-                image: '/examples/lighting-key.gif'
+                image: '/examples/lighting-key.mp4'
               },
               {
                 title: 'Fill Light',
                 content: 'Soften harsh shadows from key light. Positioned opposite key, lower power (30-50% of key). Use large Area light for soft fill. Don\'t eliminate shadows completely - just soften.',
-                image: '/examples/lighting-fill.gif'
+                image: '/examples/lighting-fill.mp4'
               },
               {
                 title: 'Rim/Back Light',
                 content: 'Behind subject, creates glowing edge separating subject from background. Use Area or Spot. Creates depth and professional look. Essential for character and product lighting.',
-                image: '/examples/lighting-rim.gif'
+                image: '/examples/lighting-rim.mp4'
               },
               {
                 title: 'Complete Setup',
                 content: 'Combine all three: Key at 45° (bright), Fill opposite (-30° dimmer), Rim from behind. Adjust ratios for mood: High contrast = dramatic, low contrast = soft and friendly.',
-                image: '/examples/lighting-threepoint-complete.gif'
+                image: '/examples/lighting-threepoint-complete.mp4'
               }
             ]
           }
@@ -568,17 +568,17 @@ export const lightingLessonData = {
               {
                 title: 'Window Light Setup',
                 content: 'Large rectangular Area light positioned like window. High power (500-2000W). Rotate to face into room. Soft, directional light like real windows. Combine with HDRI for reflections.',
-                image: '/examples/lighting-window-setup.gif'
+                image: '/examples/lighting-window-setup.mp4'
               },
               {
                 title: 'Multiple Windows',
                 content: 'Real rooms have multiple windows. Use several Area lights at different intensities. Front windows (strong), side windows (medium). Creates natural multi-directional lighting.',
-                image: '/examples/lighting-window-multiple.gif'
+                image: '/examples/lighting-window-multiple.mp4'
               },
               {
                 title: 'Light Portals',
                 content: 'In Cycles with HDRI, set Area lights to Portal type at windows. Guides light sampling for much faster rendering. Essential for interior archviz with exterior HDRI.',
-                image: '/examples/lighting-window-portals.gif'
+                image: '/examples/lighting-window-portals.mp4'
               }
             ]
           }
@@ -593,17 +593,17 @@ export const lightingLessonData = {
               {
                 title: 'Softbox Setup',
                 content: 'Two large Area lights (rectangles) on either side at 45°. Equal power for even lighting, or adjust for slight shadow. Creates professional catalog-style lighting.',
-                image: '/examples/lighting-product-softbox.gif'
+                image: '/examples/lighting-product-softbox.mp4'
               },
               {
                 title: 'Overhead Beauty Light',
                 content: 'Large Area light directly above, slightly forward. Illuminates top surfaces, creates attractive highlights. Common for jewelry, tech products, food photography.',
-                image: '/examples/lighting-product-overhead.gif'
+                image: '/examples/lighting-product-overhead.mp4'
               },
               {
                 title: 'Gradient Background',
                 content: 'Use white-to-gray gradient background. Position product on infinite white plane (large scaled plane). Add subtle ambient occlusion pass for ground contact shadow.',
-                image: '/examples/lighting-product-background.gif'
+                image: '/examples/lighting-product-background.mp4'
               }
             ]
           }

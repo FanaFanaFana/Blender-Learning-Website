@@ -56,17 +56,17 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Shape Motifs',
                 content: 'Choose 2-3 basic shapes as your foundation. If you use hexagons for vents, use hexagons throughout. Circles for one part, circles for related parts. Consistency creates cohesion.',
-                image: '/examples/hardsurface-design-motifs.gif'
+                image: '/examples/hardsurface-design-motifs.mp4'
               },
               {
                 title: 'Panel Logic',
                 content: 'Panels should suggest how the object is assembled. Show access panels, seams where parts connect, fasteners. Even if fictional, make it feel like it could be built.',
-                image: '/examples/hardsurface-panel-logic.gif'
+                image: '/examples/hardsurface-panel-logic.mp4'
               },
               {
                 title: 'Scale Relationships',
                 content: 'Large forms contain medium details which contain small details. This hierarchy creates visual interest at every distance. Avoid same-sized details everywhere.',
-                image: '/examples/hardsurface-scale-hierarchy.gif'
+                image: '/examples/hardsurface-scale-hierarchy.mp4'
               }
             ]
           }
@@ -81,12 +81,12 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Visible Function',
                 content: 'Show how things work. Pistons that could compress, gears that could rotate, panels that could open. Suggest mechanism even if it doesn\'t actually function.',
-                image: '/examples/hardsurface-function-visible.gif'
+                image: '/examples/hardsurface-function-visible.mp4'
               },
               {
                 title: 'Material Implications',
                 content: 'Thick plates suggest armor, thin panels suggest covers, exposed mechanisms suggest maintenance access. Thickness tells stories about strength and purpose.',
-                image: '/examples/hardsurface-material-thickness.gif'
+                image: '/examples/hardsurface-material-thickness.mp4'
               }
             ]
           }
@@ -101,17 +101,17 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Supporting Edges',
                 content: 'Add edge loops near features you want to keep sharp under subdivision. These support edges prevent subdivision from rounding areas you want crisp.',
-                image: '/examples/hardsurface-support-edges.gif'
+                image: '/examples/hardsurface-support-edges.mp4'
               },
               {
                 title: 'Boolean Cleanup',
                 content: 'After boolean operations, clean up the resulting topology. Remove unnecessary edges, convert triangles to quads where possible, ensure even quad flow.',
-                image: '/examples/hardsurface-boolean-cleanup.gif'
+                image: '/examples/hardsurface-boolean-cleanup.mp4'
               },
               {
                 title: 'Pole Placement',
                 content: 'Place 5-pole vertices on flat surfaces away from edges. Never place poles on curved surfaces or edges - they cause pinching and shading artifacts.',
-                image: '/examples/hardsurface-pole-placement.gif'
+                image: '/examples/hardsurface-pole-placement.mp4'
               }
             ]
           }
@@ -133,17 +133,17 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Inset Panels',
                 content: 'Use Inset Faces (I key) to create recessed panels. Vary depths - some shallow, some deep. Add bevels to panel edges for realism and light catching.',
-                image: '/examples/hardsurface-inset-panels.gif'
+                image: '/examples/hardsurface-inset-panels.mp4'
               },
               {
                 title: 'Raised Details',
                 content: 'Extrude faces slightly outward for raised panels, warning stripes, or reinforcement strips. Subtle height variation creates shadow play and interest.',
-                image: '/examples/hardsurface-raised-details.gif'
+                image: '/examples/hardsurface-raised-details.mp4'
               },
               {
                 title: 'Panel Gaps',
                 content: 'Leave small gaps between panels to suggest separate parts. Use Solidify modifier on individual faces for quick panel creation with automatic thickness.',
-                image: '/examples/hardsurface-panel-gaps.gif'
+                image: '/examples/hardsurface-panel-gaps.mp4'
               }
             ]
           }
@@ -158,17 +158,17 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Functional Greebles',
                 content: 'Add vents near areas that would generate heat, bolts where panels attach, ports for connections. Make greebles feel purposeful, not random decoration.',
-                image: '/examples/hardsurface-functional-greebles.gif'
+                image: '/examples/hardsurface-functional-greebles.mp4'
               },
               {
                 title: 'Detail Hierarchy',
                 content: 'Use large greebles on important areas, medium on secondary areas, small everywhere else. Too much detail everywhere is overwhelming - be strategic.',
-                image: '/examples/hardsurface-detail-hierarchy.gif'
+                image: '/examples/hardsurface-detail-hierarchy.mp4'
               },
               {
                 title: 'Instancing Details',
                 content: 'Model one bolt, vent, or port, then instance it everywhere. Use Array modifier for repeated elements. Consistency through reuse looks professional.',
-                image: '/examples/hardsurface-instancing.gif'
+                image: '/examples/hardsurface-instancing.mp4'
               }
             ]
           }
@@ -183,12 +183,12 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Edge Wear',
                 content: 'Edges get bumped and worn first. Use weighted normals or custom normals to simulate worn edges. Add slight chamfers to most-used edges for realism.',
-                image: '/examples/hardsurface-edge-wear.gif'
+                image: '/examples/hardsurface-edge-wear.mp4'
               },
               {
                 title: 'Strategic Damage',
                 content: 'Add dents where objects would impact, scratches where surfaces slide, dirt in crevices. Tell a story with damage - what has this object experienced?',
-                image: '/examples/hardsurface-strategic-damage.gif'
+                image: '/examples/hardsurface-strategic-damage.mp4'
               }
             ]
           }
@@ -213,17 +213,17 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Cutter Setup',
                 content: 'Create a "Cutters" collection. Make cutter objects, hide them from render. Add Boolean modifier to main object referencing each cutter. Keep cutters editable.',
-                image: '/examples/hardsurface-cutter-setup.gif'
+                image: '/examples/hardsurface-cutter-setup.mp4'
               },
               {
                 title: 'Boolean Order',
                 content: 'Modifier stack order matters. Union operations first, then difference (cuts), then intersect. Bevel modifier should come after booleans for clean edges.',
-                image: '/examples/hardsurface-boolean-order.gif'
+                image: '/examples/hardsurface-boolean-order.mp4'
               },
               {
                 title: 'Cutter Organization',
                 content: 'Name cutters descriptively: "Cutter_Window_Front", "Cutter_Vent_Top". Use collections to organize by type or location. Good organization enables iteration.',
-                image: '/examples/hardsurface-cutter-organization.gif'
+                image: '/examples/hardsurface-cutter-organization.mp4'
               }
             ]
           }
@@ -238,17 +238,17 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Bevel After Boolean',
                 content: 'Add Bevel modifier below Boolean modifiers in stack. Use Angle limit method with 30° threshold. This automatically bevels both original and cut edges.',
-                image: '/examples/hardsurface-bevel-after-boolean.gif'
+                image: '/examples/hardsurface-bevel-after-boolean.mp4'
               },
               {
                 title: 'Weighted Bevel',
                 content: 'Use Mean Bevel Weight mode for control. Assign edge bevel weights (Ctrl+E > Bevel Weight) to control which edges bevel more. 0 : no bevel, 1 : full bevel.',
-                image: '/examples/hardsurface-weighted-bevel.gif'
+                image: '/examples/hardsurface-weighted-bevel.mp4'
               },
               {
                 title: 'Bevel Segments',
                 content: 'Use 2-3 segments for most bevels. More segments : smoother but more geometry. Reserve 4+ segments for prominent edges that need extra smoothness.',
-                image: '/examples/hardsurface-bevel-segments.gif'
+                image: '/examples/hardsurface-bevel-segments.mp4'
               }
             ]
           }
@@ -263,12 +263,12 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Manual Cleanup',
                 content: 'Apply boolean modifier when satisfied. Select overlapping vertices (by distance), merge. Fill n-gons with faces, convert tris to quads (Alt+J). Time-consuming but clean.',
-                image: '/examples/hardsurface-manual-cleanup.gif'
+                image: '/examples/hardsurface-manual-cleanup.mp4'
               },
               {
                 title: 'Remesh Solution',
                 content: 'Apply booleans, add Remesh modifier (Voxel mode). Adjust voxel size for detail. Loses some precision but creates clean, uniform topology. Good for organic-meets-hard-surface.',
-                image: '/examples/hardsurface-remesh-cleanup.gif'
+                image: '/examples/hardsurface-remesh-cleanup.mp4'
               }
             ]
           }
@@ -290,17 +290,17 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Primitive Blocking',
                 content: 'Block out major forms with primitives. Scale, rotate, position to match overall shape. Don\'t worry about details yet - nail proportions and silhouette first.',
-                image: '/examples/hardsurface-box-blocking.gif'
+                image: '/examples/hardsurface-box-blocking.mp4'
               },
               {
                 title: 'Loop Cut Refinement',
                 content: 'Add loop cuts (Ctrl+R) where forms change direction. Every hard edge needs supporting geometry. Build up edge flow gradually, maintaining quads.',
-                image: '/examples/hardsurface-loop-refinement.gif'
+                image: '/examples/hardsurface-loop-refinement.mp4'
               },
               {
                 title: 'Extrusion Detailing',
                 content: 'Select faces, extrude (E) and scale (S) for raised details. Inset (I) then extrude inward for recesses. Layer these operations to build complexity.',
-                image: '/examples/hardsurface-extrusion-detail.gif'
+                image: '/examples/hardsurface-extrusion-detail.mp4'
               }
             ]
           }
@@ -315,12 +315,12 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Profile Creation',
                 content: 'Create edge loops that define the silhouette. Use Grid Fill or manual faces to create surfaces between loops. Maintains clean edge flow naturally.',
-                image: '/examples/hardsurface-edge-profile.gif'
+                image: '/examples/hardsurface-edge-profile.mp4'
               },
               {
                 title: 'Spin & Lathe',
                 content: 'Create half of a circular profile, use Spin tool (Alt+R) to revolve around axis. Perfect for wheels, turbines, barrels, or any cylindrical object.',
-                image: '/examples/hardsurface-spin-lathe.gif'
+                image: '/examples/hardsurface-spin-lathe.mp4'
               }
             ]
           }
@@ -335,17 +335,17 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Linear Arrays',
                 content: 'Add Array modifier, set count and offset. Use Relative Offset for spacing based on object size, ant for fixed distance, Object for complex spacing.',
-                image: '/examples/hardsurface-linear-arrays.gif'
+                image: '/examples/hardsurface-linear-arrays.mp4'
               },
               {
                 title: 'Radial Arrays',
                 content: 'Use Empty as array offset, rotate empty by 360/count degrees. Creates perfect circular patterns - bolts around edges, engine cylinders, gear teeth.',
-                image: '/examples/hardsurface-radial-arrays.gif'
+                image: '/examples/hardsurface-radial-arrays.mp4'
               },
               {
                 title: 'Array + Curve',
                 content: 'Add Curve modifier after Array to make elements follow a path. Perfect for cables, armor strips, or mechanical details that wrap around surfaces.',
-                image: '/examples/hardsurface-array-curve.gif'
+                image: '/examples/hardsurface-array-curve.mp4'
               }
             ]
           }
@@ -370,12 +370,12 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Real-World Study',
                 content: 'Look at actual machines, vehicles, electronics. Notice panel arrangements, fastener placement, wear patterns. Real engineering teaches better design than imagination alone.',
-                image: '/examples/hardsurface-reference-real.gif'
+                image: '/examples/hardsurface-reference-real.mp4'
               },
               {
                 title: 'Reference Sheets',
                 content: 'Create reference sheet with front, side, top views if possible. Include detail callouts - interesting panels, mechanical features, surface treatments to recreate.',
-                image: '/examples/hardsurface-reference-sheet.gif'
+                image: '/examples/hardsurface-reference-sheet.mp4'
               }
             ]
           }
@@ -390,12 +390,12 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Major Volumes',
                 content: 'Use cubes, cylinders, spheres to represent main components. Scale and position to match references. Focus on silhouette and proportions only.',
-                image: '/examples/hardsurface-blocking-volumes.gif'
+                image: '/examples/hardsurface-blocking-volumes.mp4'
               },
               {
                 title: 'Component Relationships',
                 content: 'Ensure parts relate correctly in size and position. Check from multiple angles. This blockout guides all future work - get it right.',
-                image: '/examples/hardsurface-blocking-relationships.gif'
+                image: '/examples/hardsurface-blocking-relationships.mp4'
               }
             ]
           }
@@ -410,12 +410,12 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Primary Features',
                 content: 'Add major design elements - distinctive panels, prominent vents, key mechanical features. These define the character of your object.',
-                image: '/examples/hardsurface-primary-features.gif'
+                image: '/examples/hardsurface-primary-features.mp4'
               },
               {
                 title: 'Consistent Language',
                 content: 'Use consistent shapes and patterns. If you use hexagons once, use them throughout. If you bevel edges one way, bevel all edges that way.',
-                image: '/examples/hardsurface-consistent-language.gif'
+                image: '/examples/hardsurface-consistent-language.mp4'
               }
             ]
           }
@@ -437,12 +437,12 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Primary Cuts',
                 content: 'Cut major openings first - windows, large vents, access panels. These define the overall look. Keep cutters organized and editable.',
-                image: '/examples/hardsurface-primary-cuts.gif'
+                image: '/examples/hardsurface-primary-cuts.mp4'
               },
               {
                 title: 'Secondary Details',
                 content: 'Add smaller cuts - bolt holes, smaller vents, detail panels. Use arrays for repeated cuts. Boolean operations should build complexity gradually.',
-                image: '/examples/hardsurface-secondary-cuts.gif'
+                image: '/examples/hardsurface-secondary-cuts.mp4'
               }
             ]
           }
@@ -457,12 +457,12 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Global Beveling',
                 content: 'Add Bevel modifier with Angle method. Adjust threshold until edges look right. Most edges should bevel, only intentional ones stay sharp.',
-                image: '/examples/hardsurface-global-bevel.gif'
+                image: '/examples/hardsurface-global-bevel.mp4'
               },
               {
                 title: 'Edge Weighting',
                 content: 'Use bevel weights to control individual edges. Important edges get more bevel (larger), subtle edges get less. Creates visual hierarchy.',
-                image: '/examples/hardsurface-edge-weighting.gif'
+                image: '/examples/hardsurface-edge-weighting.mp4'
               }
             ]
           }
@@ -477,17 +477,17 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Strategic Placement',
                 content: 'Add greebles where they make sense functionally. Bolts where panels attach, vents near heat sources, cables connecting components. Purpose, not decoration.',
-                image: '/examples/hardsurface-greeble-placement.gif'
+                image: '/examples/hardsurface-greeble-placement.mp4'
               },
               {
                 title: 'Instance Reuse',
                 content: 'Model each greeble type once, then instance everywhere. Duplication with Alt+D creates instances. Changes to original affect all copies.',
-                image: '/examples/hardsurface-greeble-instances.gif'
+                image: '/examples/hardsurface-greeble-instances.mp4'
               },
               {
                 title: 'Detail Balance',
                 content: 'Not every surface needs greebles. Leave some areas clean for visual rest. Cluster details on focal points, spread them thinly elsewhere.',
-                image: '/examples/hardsurface-detail-balance.gif'
+                image: '/examples/hardsurface-detail-balance.mp4'
               }
             ]
           }
@@ -509,12 +509,12 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Boolean Application',
                 content: 'Apply boolean modifiers when design is final. Clean up resulting geometry - merge vertices by distance, remove doubles, fill any gaps.',
-                image: '/examples/hardsurface-cleanup-boolean.gif'
+                image: '/examples/hardsurface-cleanup-boolean.mp4'
               },
               {
                 title: 'Edge Flow',
                 content: 'Ensure edge loops flow cleanly. Convert triangles to quads where possible. Add support edges for crisp features under subdivision if needed.',
-                image: '/examples/hardsurface-cleanup-edgeflow.gif'
+                image: '/examples/hardsurface-cleanup-edgeflow.mp4'
               }
             ]
           }
@@ -529,12 +529,12 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Seam Placement',
                 content: 'Mark seams along panel edges, inside cuts, on hidden faces. Select seam edges, Ctrl+E > Mark Seam. Unwrap (U > Unwrap) for clean UV islands.',
-                image: '/examples/hardsurface-uv-seams.gif'
+                image: '/examples/hardsurface-uv-seams.mp4'
               },
               {
                 title: 'Island Organization',
                 content: 'Pack UV islands efficiently. Large visible areas get more space, hidden areas get less. Use Average Island Scale for consistent texel density.',
-                image: '/examples/hardsurface-uv-packing.gif'
+                image: '/examples/hardsurface-uv-packing.mp4'
               }
             ]
           }
@@ -549,17 +549,17 @@ export const hardsurfaceLessonData = {
               {
                 title: 'Proportion Check',
                 content: 'View model from all angles. Check against references. Adjust any forms that look off. Small proportion tweaks make huge difference in final look.',
-                image: '/examples/hardsurface-final-proportions.gif'
+                image: '/examples/hardsurface-final-proportions.mp4'
               },
               {
                 title: 'Lighting Test',
                 content: 'Check model under different lighting. Good hard surface should look interesting in various lighting. Bevels and details should catch light nicely.',
-                image: '/examples/hardsurface-final-lighting.gif'
+                image: '/examples/hardsurface-final-lighting.mp4'
               },
               {
                 title: 'Detail Review',
                 content: 'Walk through model section by section. Add any missing details. Remove anything that doesn\'t serve the design. Less is often more.',
-                image: '/examples/hardsurface-final-review.gif'
+                image: '/examples/hardsurface-final-review.mp4'
               }
             ]
           }

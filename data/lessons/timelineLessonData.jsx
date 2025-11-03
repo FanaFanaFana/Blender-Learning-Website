@@ -58,12 +58,12 @@ export const timelineLessonData = {
               {
                 title: 'Basic Playback',
                 content: 'Spacebar plays from current frame. Press again to pause. Playback loops by default from start to end frame. Simple and instant.',
-                image: '/examples/timeline-play-basic.gif'
+                image: '/examples/timeline-play-basic.mp4'
               },
               {
                 title: 'Playback Speed',
                 content: 'Animation plays at project frame rate. If viewport can\'t keep up, playback slows down. Check FPS display in timeline for real speed.',
-                image: '/examples/timeline-play-speed.gif'
+                image: '/examples/timeline-play-speed.mp4'
               }
             ]
           }
@@ -78,7 +78,7 @@ export const timelineLessonData = {
               {
                 title: 'Backward Preview',
                 content: 'Shift+Spacebar plays backward from current frame. Loops in reverse. Perfect for analyzing motion in both directions.',
-                image: '/examples/timeline-reverse.gif'
+                image: '/examples/timeline-reverse.mp4'
               }
             ]
           }
@@ -93,12 +93,12 @@ export const timelineLessonData = {
               {
                 title: 'Custom Ranges',
                 content: 'Set Preview Range in timeline header. Drag brackets to define range. Playback loops within this range only.',
-                image: '/examples/timeline-range.gif'
+                image: '/examples/timeline-range.mp4'
               },
               {
                 title: 'Quick Scrubbing',
                 content: 'Use preview range to isolate problem areas. Quickly iterate on specific sections without waiting for full playback.',
-                image: '/examples/timeline-range-scrub.gif'
+                image: '/examples/timeline-range-scrub.mp4'
               }
             ]
           }
@@ -113,12 +113,12 @@ export const timelineLessonData = {
               {
                 title: 'Single Frame Steps',
                 content: 'Left/Right arrows move one frame. Hold Shift for larger jumps. Perfect for frame-perfect positioning and pose checking.',
-                image: '/examples/timeline-step.gif'
+                image: '/examples/timeline-step.mp4'
               },
               {
                 title: 'Fast Navigation',
                 content: 'Up/Down arrows jump 10 frames. Combine with Shift for 100 frame jumps. Navigate long animations quickly.',
-                image: '/examples/timeline-step-fast.gif'
+                image: '/examples/timeline-step-fast.mp4'
               }
             ]
           }
@@ -133,7 +133,7 @@ export const timelineLessonData = {
               {
                 title: 'Quick Jumps',
                 content: 'Shift+Left/Right arrows jump to start or end of timeline range. Fast way to review from beginning or check ending.',
-                image: '/examples/timeline-jump.gif'
+                image: '/examples/timeline-jump.mp4'
               }
             ]
           }
@@ -148,12 +148,12 @@ export const timelineLessonData = {
               {
                 title: 'Audio Playback',
                 content: 'Add audio strips in Video Sequencer. Enable audio scrubbing in preferences. Hear sound during playback and scrubbing.',
-                image: '/examples/timeline-audio.gif'
+                image: '/examples/timeline-audio.mp4'
               },
               {
                 title: 'Lip Sync Workflow',
                 content: 'Scrub through dialogue, set keyframes on phonemes. Audio scrubbing makes timing mouth shapes to sound straightforward.',
-                image: '/examples/timeline-audio-lipsync.gif'
+                image: '/examples/timeline-audio-lipsync.mp4'
               }
             ]
           }
@@ -175,12 +175,12 @@ export const timelineLessonData = {
               {
                 title: 'Click and Drag',
                 content: 'Click timeline ruler and drag left/right. Current frame indicator (blue line) follows your mouse. Instant visual feedback.',
-                image: '/examples/timeline-scrub-basic.gif'
+                image: '/examples/timeline-scrub-basic.mp4'
               },
               {
                 title: 'Precise Scrubbing',
                 content: 'Hold Shift while scrubbing for slower, more precise control. Perfect for finding exact frames or subtle timing.',
-                image: '/examples/timeline-scrub-precise.gif'
+                image: '/examples/timeline-scrub-precise.mp4'
               }
             ]
           }
@@ -195,7 +195,7 @@ export const timelineLessonData = {
               {
                 title: 'Direct Input',
                 content: 'Click current frame number (blue digits), type frame number, press Enter. Jump directly to any frame instantly.',
-                image: '/examples/timeline-jump-frame.gif'
+                image: '/examples/timeline-jump-frame.mp4'
               }
             ]
           }
@@ -210,7 +210,7 @@ export const timelineLessonData = {
               {
                 title: 'Keyframe Navigation',
                 content: 'Select object, press Up/Down arrows to jump between its keyframes. Ignore empty frames, land exactly on animated poses.',
-                image: '/examples/timeline-jump-key.gif'
+                image: '/examples/timeline-jump-key.mp4'
               }
             ]
           }
@@ -225,12 +225,12 @@ export const timelineLessonData = {
               {
                 title: 'Timeline Scaling',
                 content: 'Scroll wheel over timeline to zoom. Closer zoom shows individual frames clearly. Zoom out for overview of entire animation.',
-                image: '/examples/timeline-zoom.gif'
+                image: '/examples/timeline-zoom.mp4'
               },
               {
                 title: 'Pan Timeline',
                 content: 'Middle mouse drag to pan timeline left/right. Or Shift+Scroll to pan. Navigate to different sections while zoomed in.',
-                image: '/examples/timeline-pan.gif'
+                image: '/examples/timeline-pan.mp4'
               }
             ]
           }
@@ -245,7 +245,7 @@ export const timelineLessonData = {
               {
                 title: 'Full View',
                 content: 'Press Home to frame entire timeline. Shows start to end frame. Perfect for getting overview after detailed work.',
-                image: '/examples/timeline-frame-all.gif'
+                image: '/examples/timeline-frame-all.mp4'
               }
             ]
           }
@@ -260,7 +260,7 @@ export const timelineLessonData = {
               {
                 title: 'Reading Ruler',
                 content: 'Numbers show frame count. Diamonds show keyframes. Green markers show important moments. Provides complete temporal context.',
-                image: '/examples/timeline-ruler.gif'
+                image: '/examples/timeline-ruler.mp4'
               }
             ]
           }
@@ -282,7 +282,7 @@ export const timelineLessonData = {
               {
                 title: 'Setting Start',
                 content: 'Start Frame field in timeline header sets beginning. Playback loops from here. Render starts from this frame.',
-                image: '/examples/timeline-start-frame.gif'
+                image: '/examples/timeline-start-frame.mp4'
               }
             ]
           }
@@ -297,12 +297,12 @@ export const timelineLessonData = {
               {
                 title: 'Setting End',
                 content: 'End Frame field sets conclusion point. Playback loops back to start from here. Render stops at this frame.',
-                image: '/examples/timeline-end-frame.gif'
+                image: '/examples/timeline-end-frame.mp4'
               },
               {
                 title: 'Frame Range Calculation',
                 content: 'Total frames = End - Start + 1. For 24fps, 240 frames = 10 seconds. Plan your timing with math.',
-                image: '/examples/timeline-range-math.gif'
+                image: '/examples/timeline-range-math.mp4'
               }
             ]
           }
@@ -317,7 +317,7 @@ export const timelineLessonData = {
               {
                 title: 'Frame Indicator',
                 content: 'Vertical blue line shows current frame. Blue number displays frame count. All operations happen at this frame.',
-                image: '/examples/timeline-current.gif'
+                image: '/examples/timeline-current.mp4'
               }
             ]
           }
@@ -332,12 +332,12 @@ export const timelineLessonData = {
               {
                 title: 'Range Brackets',
                 content: 'Enable Preview Range, drag green/red brackets. Playback loops within brackets only. Start/End frames unchanged.',
-                image: '/examples/timeline-preview-range.gif'
+                image: '/examples/timeline-preview-range.mp4'
               },
               {
                 title: 'Quick Section Work',
                 content: 'Set preview range over problem area. Iterate quickly without playing full animation. Disable when done.',
-                image: '/examples/timeline-preview-iterate.gif'
+                image: '/examples/timeline-preview-iterate.mp4'
               }
             ]
           }
@@ -352,12 +352,12 @@ export const timelineLessonData = {
               {
                 title: 'FPS Settings',
                 content: 'Set in Output Properties. 24fps is cinema standard, 30fps for broadcast, 60fps for smooth motion. Choose based on output medium.',
-                image: '/examples/timeline-fps.gif'
+                image: '/examples/timeline-fps.mp4'
               },
               {
                 title: 'Timing Calculations',
                 content: 'At 24fps: 24 frames = 1 second. 12 frames = 0.5 seconds. 6 frames = 0.25 seconds. Math determines animation length.',
-                image: '/examples/timeline-fps-calc.gif'
+                image: '/examples/timeline-fps-calc.mp4'
               }
             ]
           }
@@ -379,12 +379,12 @@ export const timelineLessonData = {
               {
                 title: 'Creating Markers',
                 content: 'Move to important frame, press M. Type name. Green marker appears. Perfect for marking beats, actions, or sections.',
-                image: '/examples/timeline-marker-add.gif'
+                image: '/examples/timeline-marker-add.mp4'
               },
               {
                 title: 'Marker Uses',
                 content: 'Mark dialogue beats, action starts, camera changes, or reference points. Organize complex animations into labeled sections.',
-                image: '/examples/timeline-marker-uses.gif'
+                image: '/examples/timeline-marker-uses.mp4'
               }
             ]
           }
@@ -399,7 +399,7 @@ export const timelineLessonData = {
               {
                 title: 'Updating Names',
                 content: 'Right-click marker > Rename. Type new name. Markers stay organized with descriptive labels throughout production.',
-                image: '/examples/timeline-marker-rename.gif'
+                image: '/examples/timeline-marker-rename.mp4'
               }
             ]
           }
@@ -414,7 +414,7 @@ export const timelineLessonData = {
               {
                 title: 'Marker Navigation',
                 content: 'Ctrl+Arrow keys jump between markers. Land exactly on labeled frames. Navigate complex animations by sections.',
-                image: '/examples/timeline-marker-jump.gif'
+                image: '/examples/timeline-marker-jump.mp4'
               }
             ]
           }
@@ -429,7 +429,7 @@ export const timelineLessonData = {
               {
                 title: 'Removing Markers',
                 content: 'Click marker to select (turns white), press X to delete. Keep timeline clean by removing obsolete markers.',
-                image: '/examples/timeline-marker-delete.gif'
+                image: '/examples/timeline-marker-delete.mp4'
               }
             ]
           }
@@ -444,7 +444,7 @@ export const timelineLessonData = {
               {
                 title: 'Camera Switching',
                 content: 'Select marker, Ctrl+B to bind active camera. Playback automatically switches cameras at markers. Multi-cam workflow.',
-                image: '/examples/timeline-marker-camera.gif'
+                image: '/examples/timeline-marker-camera.mp4'
               }
             ]
           }
@@ -459,7 +459,7 @@ export const timelineLessonData = {
               {
                 title: 'Pose Reference Points',
                 content: 'Mark extreme poses, contacts, and key positions. Jump between major poses during polishing without searching.',
-                image: '/examples/timeline-marker-pose.gif'
+                image: '/examples/timeline-marker-pose.mp4'
               }
             ]
           }
@@ -481,7 +481,7 @@ export const timelineLessonData = {
               {
                 title: 'Synchronized Preview',
                 content: 'Enable in Playback menu. All editors scrub together. See curves, keyframes, and viewport simultaneously during playback.',
-                image: '/examples/timeline-sync-all.gif'
+                image: '/examples/timeline-sync-all.mp4'
               }
             ]
           }
@@ -496,7 +496,7 @@ export const timelineLessonData = {
               {
                 title: 'Fast Preview',
                 content: 'Set in Playback menu. Play every 2 frames doubles playback speed. Heavy scenes play smoothly by skipping frames.',
-                image: '/examples/timeline-skip-frames.gif'
+                image: '/examples/timeline-skip-frames.mp4'
               }
             ]
           }
@@ -511,7 +511,7 @@ export const timelineLessonData = {
               {
                 title: 'Performance Mode',
                 content: 'Enable Frame Dropping in Playback menu. Blender skips drawing frames to maintain playback speed. Real-time timing preserved.',
-                image: '/examples/timeline-frame-drop.gif'
+                image: '/examples/timeline-frame-drop.mp4'
               }
             ]
           }
@@ -526,7 +526,7 @@ export const timelineLessonData = {
               {
                 title: 'Audio Alignment',
                 content: 'Enable AV-sync to keep sound and animation together. Critical for dialogue, music, or sound effects timing.',
-                image: '/examples/timeline-av-sync.gif'
+                image: '/examples/timeline-av-sync.mp4'
               }
             ]
           }
@@ -541,7 +541,7 @@ export const timelineLessonData = {
               {
                 title: 'Auto Scrolling',
                 content: 'Enable in timeline header. Timeline pans automatically during playback to keep blue line visible. Never lose current frame.',
-                image: '/examples/timeline-follow.gif'
+                image: '/examples/timeline-follow.mp4'
               }
             ]
           }
@@ -556,7 +556,7 @@ export const timelineLessonData = {
               {
                 title: 'Time Display',
                 content: 'Enable Show Seconds to see timecode instead of frames. Better for audio work and real-world timing references.',
-                image: '/examples/timeline-seconds.gif'
+                image: '/examples/timeline-seconds.mp4'
               }
             ]
           }
@@ -578,7 +578,7 @@ export const timelineLessonData = {
               {
                 title: 'Layer Visualization',
                 content: 'NLA editor shows animation layers stacked. Timeline shows combined result. Layer corrections over base animations.',
-                image: '/examples/timeline-layers.gif'
+                image: '/examples/timeline-layers.mp4'
               }
             ]
           }
@@ -593,12 +593,12 @@ export const timelineLessonData = {
               {
                 title: 'Motion Preview',
                 content: 'Enable in Viewport Overlays. Ghost images show previous/next poses. Visualize spacing and arcs without playback.',
-                image: '/examples/timeline-onion.gif'
+                image: '/examples/timeline-onion.mp4'
               },
               {
                 title: 'Frame Range',
                 content: 'Adjust how many frames before/after to show. More frames = longer motion trails. Fewer = cleaner view of immediate flow.',
-                image: '/examples/timeline-onion-range.gif'
+                image: '/examples/timeline-onion-range.mp4'
               }
             ]
           }
@@ -613,7 +613,7 @@ export const timelineLessonData = {
               {
                 title: 'Path Calculation',
                 content: 'Select object, Calculate Motion Paths. Curve shows complete movement arc. Essential for analyzing spacing and trajectory.',
-                image: '/examples/timeline-motion-path.gif'
+                image: '/examples/timeline-motion-path.mp4'
               }
             ]
           }
@@ -628,7 +628,7 @@ export const timelineLessonData = {
               {
                 title: 'Cache System',
                 content: 'Green bar in timeline shows cached frames. First playback may stutter while caching. After caching, playback is smooth and real-time.',
-                image: '/examples/timeline-cache.gif'
+                image: '/examples/timeline-cache.mp4'
               }
             ]
           }
@@ -643,7 +643,7 @@ export const timelineLessonData = {
               {
                 title: 'Performance Boost',
                 content: 'Simplify reduces visual quality during playback for speed. Heavy scenes play smoothly. Render uses full quality.',
-                image: '/examples/timeline-simplify.gif'
+                image: '/examples/timeline-simplify.mp4'
               }
             ]
           }
@@ -668,12 +668,12 @@ export const timelineLessonData = {
               {
                 title: 'Sectional Refinement',
                 content: 'Identify problem section, set preview range around it. Loop playback continuously. Refine until perfect. Move to next section.',
-                image: '/examples/workflow-preview-refine.gif'
+                image: '/examples/workflow-preview-refine.mp4'
               },
               {
                 title: 'Timing Adjustment',
                 content: 'Use preview range to test different timing options. Adjust keyframes, play section, compare. Faster iteration than full playback.',
-                image: '/examples/workflow-preview-timing.gif'
+                image: '/examples/workflow-preview-timing.mp4'
               }
             ]
           }
@@ -688,12 +688,12 @@ export const timelineLessonData = {
               {
                 title: 'Scene Breakdown',
                 content: 'Add markers for each major beat: "Intro", "Action", "Reaction", "Resolve". Jump between sections with Ctrl+Arrows.',
-                image: '/examples/workflow-marker-sections.gif'
+                image: '/examples/workflow-marker-sections.mp4'
               },
               {
                 title: 'Shot Management',
                 content: 'Mark each camera cut. Bind cameras to markers. Jump between shots instantly. Multi-cam editing made simple.',
-                image: '/examples/workflow-marker-shots.gif'
+                image: '/examples/workflow-marker-shots.mp4'
               }
             ]
           }
@@ -708,12 +708,12 @@ export const timelineLessonData = {
               {
                 title: 'Frame-by-Frame',
                 content: 'Scrub to desired frame. Adjust pose. Press I to keyframe. Step forward (arrow key). Repeat. Simple, effective workflow.',
-                image: '/examples/workflow-scrub-key.gif'
+                image: '/examples/workflow-scrub-key.mp4'
               },
               {
                 title: 'With Auto-Key',
                 content: 'Enable Auto Keyframe. Now just scrub and pose - keyframes insert automatically. Faster iteration for experienced animators.',
-                image: '/examples/workflow-scrub-auto.gif'
+                image: '/examples/workflow-scrub-auto.mp4'
               }
             ]
           }
@@ -735,12 +735,12 @@ export const timelineLessonData = {
               {
                 title: 'Slow Motion Review',
                 content: 'Set preview range, enable "Play Every 2 Frames" to slow down. Catch subtle timing issues and small pops.',
-                image: '/examples/advanced-slow-motion.gif'
+                image: '/examples/advanced-slow-motion.mp4'
               },
               {
                 title: 'Fast Preview',
                 content: 'Play at 2x speed to see overall flow and energy. Does it still feel good? Fast preview reveals pacing issues.',
-                image: '/examples/advanced-fast-preview.gif'
+                image: '/examples/advanced-fast-preview.mp4'
               }
             ]
           }
@@ -755,12 +755,12 @@ export const timelineLessonData = {
               {
                 title: 'Finding Beats',
                 content: 'Scrub through audio slowly. When you hear important sound, add marker. Build entire timing structure from audio.',
-                image: '/examples/advanced-audio-beats.gif'
+                image: '/examples/advanced-audio-beats.mp4'
               },
               {
                 title: 'Lip Sync Timing',
                 content: 'Scrub to phoneme, set mouth shape keyframe. Audio scrubbing lets you hear exactly what shape matches what sound.',
-                image: '/examples/advanced-audio-lipsync.gif'
+                image: '/examples/advanced-audio-lipsync.mp4'
               }
             ]
           }
@@ -775,12 +775,12 @@ export const timelineLessonData = {
               {
                 title: 'Exact Frame Jumps',
                 content: 'Click frame number, type exact frame. Jump precisely to important moments. No approximation or scrubbing required.',
-                image: '/examples/advanced-exact-frame.gif'
+                image: '/examples/advanced-exact-frame.mp4'
               },
               {
                 title: 'Single Frame Adjustments',
                 content: 'Use arrow keys to step one frame at a time. Adjust keyframe timing by single frames. Professional polish requires this precision.',
-                image: '/examples/advanced-frame-adjust.gif'
+                image: '/examples/advanced-frame-adjust.mp4'
               }
             ]
           }
@@ -795,12 +795,12 @@ export const timelineLessonData = {
               {
                 title: 'Cache Building',
                 content: 'Play animation once to cache all frames (watch green bar fill). Second playback is smooth and real-time. Perfect for client reviews.',
-                image: '/examples/advanced-cache-build.gif'
+                image: '/examples/advanced-cache-build.mp4'
               },
               {
                 title: 'Clear Cache',
                 content: 'Change animation? Clear cache with Free Bake in timeline menu. Rebuild cache with fresh playback. Ensures accurate preview.',
-                image: '/examples/advanced-cache-clear.gif'
+                image: '/examples/advanced-cache-clear.mp4'
               }
             ]
           }
@@ -815,12 +815,12 @@ export const timelineLessonData = {
               {
                 title: 'Split Layouts',
                 content: 'Create layout with 3D viewport, Graph Editor, and Timeline visible. All update during playback. Monitor everything simultaneously.',
-                image: '/examples/advanced-multi-monitor.gif'
+                image: '/examples/advanced-multi-monitor.mp4'
               },
               {
                 title: 'Comparison Viewport',
                 content: 'Split 3D viewport to see multiple camera angles during playback. Compare framing while animation plays.',
-                image: '/examples/advanced-viewport-compare.gif'
+                image: '/examples/advanced-viewport-compare.mp4'
               }
             ]
           }
@@ -842,12 +842,12 @@ export const timelineLessonData = {
               {
                 title: 'Review Preparation',
                 content: 'Cache full animation, add markers for each shot, set comfortable playback speed. Smooth presentation builds confidence.',
-                image: '/examples/pro-review-setup.gif'
+                image: '/examples/pro-review-setup.mp4'
               },
               {
                 title: 'Section Navigation',
                 content: 'Use markers to jump to specific notes. "Can you show me that jump again?" - Ctrl+Arrow to marker, instant replay.',
-                image: '/examples/pro-review-navigate.gif'
+                image: '/examples/pro-review-navigate.mp4'
               }
             ]
           }
@@ -862,12 +862,12 @@ export const timelineLessonData = {
               {
                 title: 'Video Reference',
                 content: 'Add reference video to timeline. Scrub through, mark key poses. Transfer timing to your animation via markers.',
-                image: '/examples/pro-reference-timing.gif'
+                image: '/examples/pro-reference-timing.mp4'
               },
               {
                 title: 'Frame Counting',
                 content: 'Count frames between poses in reference. Apply same frame counts to your animation. Ensures natural timing.',
-                image: '/examples/pro-reference-count.gif'
+                image: '/examples/pro-reference-count.mp4'
               }
             ]
           }
@@ -882,12 +882,12 @@ export const timelineLessonData = {
               {
                 title: 'Creating Playblasts',
                 content: 'Set viewport shading to Solid. Viewport > View Animation. Creates video file of real-time preview. Fast iteration tool.',
-                image: '/examples/pro-playblast.gif'
+                image: '/examples/pro-playblast.mp4'
               },
               {
                 title: 'Version Comparison',
                 content: 'Create playblast of each iteration. Compare side-by-side in video player. Track improvements objectively.',
-                image: '/examples/pro-playblast-compare.gif'
+                image: '/examples/pro-playblast-compare.mp4'
               }
             ]
           }
@@ -902,12 +902,12 @@ export const timelineLessonData = {
               {
                 title: 'FPS Scaling',
                 content: 'Select all keyframes in Dope Sheet. Scale by FPS ratio (24/30 = 0.8). Animation maintains exact timing at new frame rate.',
-                image: '/examples/pro-fps-convert.gif'
+                image: '/examples/pro-fps-convert.mp4'
               },
               {
                 title: 'International Standards',
                 content: '24fps for film worldwide. 25fps for PAL (Europe). 29.97fps for NTSC (Americas). Know your target before starting.',
-                image: '/examples/pro-fps-standards.gif'
+                image: '/examples/pro-fps-standards.mp4'
               }
             ]
           }

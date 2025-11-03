@@ -58,17 +58,17 @@ export const cameraLessonData = {
               {
                 title: 'Wide Angle (18-35mm)',
                 content: 'Wide angle lenses show more of the scene with exaggerated perspective. Great for establishing shots, architecture, and cramped spaces. Creates dramatic depth and makes spaces feel larger.',
-                image: '/examples/camera-wide-angle.gif'
+                image: '/examples/camera-wide-angle.mp4'
               },
               {
                 title: 'Normal (35-70mm)',
                 content: 'Normal focal lengths approximate human vision with natural perspective. Perfect for general shots, portraits, and realistic scenes. 50mm is considered the "standard" focal length.',
-                image: '/examples/camera-normal.gif'
+                image: '/examples/camera-normal.mp4'
               },
               {
                 title: 'Telephoto (70-200mm+)',
                 content: 'Telephoto lenses zoom in and compress depth, making backgrounds appear closer. Ideal for portraits, product shots, and isolating subjects. Creates shallow depth of field.',
-                image: '/examples/camera-telephoto.gif'
+                image: '/examples/camera-telephoto.mp4'
               }
             ]
           }
@@ -83,12 +83,12 @@ export const cameraLessonData = {
               {
                 title: 'Sensor Impact',
                 content: 'Larger sensors require longer focal lengths for the same framing, naturally creating shallower depth of field. Full Frame sensors are standard for professional photography and cinema.',
-                image: '/examples/camera-sensor-size.gif'
+                image: '/examples/camera-sensor-size.mp4'
               },
               {
                 title: 'Crop Factor',
                 content: 'Smaller sensors "crop" the image, effectively multiplying focal length. A 50mm lens on APS-C behaves like 75mm on Full Frame. Understand this for matching real-world camera behavior.',
-                image: '/examples/camera-crop-factor.gif'
+                image: '/examples/camera-crop-factor.mp4'
               }
             ]
           }
@@ -103,12 +103,12 @@ export const cameraLessonData = {
               {
                 title: 'Clip Start',
                 content: 'Objects closer than Clip Start disappear. Keep this as large as possible (0.1m typical) to avoid depth precision issues. Too small causes flickering on distant objects.',
-                image: '/examples/camera-clip-start.gif'
+                image: '/examples/camera-clip-start.mp4'
               },
               {
                 title: 'Clip End',
                 content: 'Objects beyond Clip End are culled from rendering. Set this just beyond your furthest object to optimize performance. For large scenes, use multiple cameras with different ranges.',
-                image: '/examples/camera-clip-end.gif'
+                image: '/examples/camera-clip-end.mp4'
               }
             ]
           }
@@ -123,12 +123,12 @@ export const cameraLessonData = {
               {
                 title: 'Perspective Camera',
                 content: 'Standard camera with realistic perspective and depth. Objects get smaller with distance, parallel lines converge. Used for 99% of realistic renders and animations.',
-                image: '/examples/camera-perspective.gif'
+                image: '/examples/camera-perspective.mp4'
               },
               {
                 title: 'Orthographic Camera',
                 content: 'No perspective distortion - parallel lines stay parallel. Objects don\'t get smaller with distance. Perfect for technical diagrams, architectural plans, and stylized 2D-looking renders.',
-                image: '/examples/camera-orthographic.gif'
+                image: '/examples/camera-orthographic.mp4'
               }
             ]
           }
@@ -150,17 +150,17 @@ export const cameraLessonData = {
               {
                 title: 'Shallow Depth (f/1.4-f/2.8)',
                 content: 'Low f-stop creates strong blur. Subject pops from background, draws immediate attention. Perfect for portraits, product shots, and cinematic looks. Requires precise focus.',
-                image: '/examples/camera-shallow-dof.gif'
+                image: '/examples/camera-shallow-dof.mp4'
               },
               {
                 title: 'Medium Depth (f/4-f/5.6)',
                 content: 'Balanced depth of field. Subject clear, background softly blurred. Most versatile setting for general photography and most cinematic shots.',
-                image: '/examples/camera-medium-dof.gif'
+                image: '/examples/camera-medium-dof.mp4'
               },
               {
                 title: 'Deep Depth (f/8-f/16)',
                 content: 'Everything in focus from foreground to background. Essential for landscapes, architecture, and scenes where all elements matter. Minimal artistic blur.',
-                image: '/examples/camera-deep-dof.gif'
+                image: '/examples/camera-deep-dof.mp4'
               }
             ]
           }
@@ -175,17 +175,17 @@ export const cameraLessonData = {
               {
                 title: 'Setting Focus',
                 content: 'Click the eyedropper next to Focus Distance and click on your subject to auto-focus. Or manually set the distance. This is your "point of sharpness" in the scene.',
-                image: '/examples/camera-set-focus.gif'
+                image: '/examples/camera-set-focus.mp4'
               },
               {
                 title: 'Focus Target',
                 content: 'You can also use an Empty as a focus target. Parent an empty to a moving object, and the camera will track focus automatically. Perfect for animated scenes.',
-                image: '/examples/camera-focus-target.gif'
+                image: '/examples/camera-focus-target.mp4'
               },
               {
                 title: 'Rack Focus',
                 content: 'Animate focus distance between objects to shift viewer attention. Classic cinematic technique for transitions and dramatic reveals. Keyframe the Focus Distance property.',
-                image: '/examples/camera-rack-focus.gif'
+                image: '/examples/camera-rack-focus.mp4'
               }
             ]
           }
@@ -200,12 +200,12 @@ export const cameraLessonData = {
               {
                 title: 'Blade Count',
                 content: 'Increase blade count for circular bokeh (realistic modern lenses). Decrease for polygonal bokeh (vintage lens look). 5-6 blades = pentagon/hexagon shapes, 12+ = nearly circular.',
-                image: '/examples/camera-aperture-blades.gif'
+                image: '/examples/camera-aperture-blades.mp4'
               },
               {
                 title: 'Blade Rotation',
                 content: 'Rotate aperture blades to change bokeh orientation. Creates unique artistic effects, especially with non-circular blade counts. Subtle but impacts overall image feel.',
-                image: '/examples/camera-blade-rotation.gif'
+                image: '/examples/camera-blade-rotation.mp4'
               }
             ]
           }
@@ -220,7 +220,7 @@ export const cameraLessonData = {
               {
                 title: 'Enabling Preview',
                 content: 'In viewport shading options, enable Depth of Field. Adjust Max Blur for preview quality. Lower values = faster viewport, higher = more accurate preview.',
-                image: '/examples/camera-viewport-dof.gif'
+                image: '/examples/camera-viewport-dof.mp4'
               }
             ]
           }
@@ -242,12 +242,12 @@ export const cameraLessonData = {
               {
                 title: 'Setting Up Tracking',
                 content: 'Add Track To constraint to camera, select target object. Camera will always point at target regardless of camera position. Perfect for orbit shots and following subjects.',
-                image: '/examples/camera-track-to.gif'
+                image: '/examples/camera-track-to.mp4'
               },
               {
                 title: 'Track Axis',
                 content: 'Set Track To to -Z (camera\'s forward direction) and Up to Y. This ensures proper orientation. Incorrect axis settings cause the camera to point sideways or flip.',
-                image: '/examples/camera-track-axis.gif'
+                image: '/examples/camera-track-axis.mp4'
               }
             ]
           }
@@ -262,12 +262,12 @@ export const cameraLessonData = {
               {
                 title: 'Path Animation',
                 content: 'Add Follow Path constraint, select your curve. Camera follows the path automatically. Combine with Track To to look at subjects while moving.',
-                image: '/examples/camera-follow-path.gif'
+                image: '/examples/camera-follow-path.mp4'
               },
               {
                 title: 'Timing Control',
                 content: 'Adjust Offset to control position along path. Keyframe Offset for speed control - ease in/out for smooth starts and stops. Follow Curve option makes camera bank in turns.',
-                image: '/examples/camera-path-timing.gif'
+                image: '/examples/camera-path-timing.mp4'
               }
             ]
           }
@@ -282,7 +282,7 @@ export const cameraLessonData = {
               {
                 title: 'Stable Tracking',
                 content: 'Damped Track provides smoother, more stable tracking than Track To. Less prone to flipping issues. Preferred for most tracking scenarios.',
-                image: '/examples/camera-damped-track.gif'
+                image: '/examples/camera-damped-track.mp4'
               }
             ]
           }
@@ -304,12 +304,12 @@ export const cameraLessonData = {
               {
                 title: 'Camera Motion Blur',
                 content: 'Enable Motion Blur in render settings. Adjust Shutter to control strength (1.0 = realistic, lower = less blur). Essential for camera moves and animated subjects.',
-                image: '/examples/camera-motion-blur.gif'
+                image: '/examples/camera-motion-blur.mp4'
               },
               {
                 title: 'Shutter Curve',
                 content: 'Rolling shutter simulates CMOS sensor artifacts. Instant shutter captures a single moment. Rolling creates that "jello" effect from fast pans - sometimes desired for realism.',
-                image: '/examples/camera-shutter-curve.gif'
+                image: '/examples/camera-shutter-curve.mp4'
               }
             ]
           }
@@ -324,7 +324,7 @@ export const cameraLessonData = {
               {
                 title: 'Using Safe Areas',
                 content: 'Enable Safe Areas in viewport overlays. Keep titles within inner box, important action within outer box. Critical for TV broadcast and films shown on different screens.',
-                image: '/examples/camera-safe-areas.gif'
+                image: '/examples/camera-safe-areas.mp4'
               }
             ]
           }
@@ -339,7 +339,7 @@ export const cameraLessonData = {
               {
                 title: 'Adding References',
                 content: 'In camera properties, add Background Images. Set to Camera or use Front/Side for modeling reference. Adjust opacity to see both reference and your 3D scene.',
-                image: '/examples/camera-bg-images.gif'
+                image: '/examples/camera-bg-images.mp4'
               }
             ]
           }
@@ -354,7 +354,7 @@ export const cameraLessonData = {
               {
                 title: 'Composition Focus',
                 content: 'Enable Passepartout in camera settings. Increase alpha to darken outside areas more. Helps you concentrate on what\'s actually in frame during composition.',
-                image: '/examples/camera-passepartout.gif'
+                image: '/examples/camera-passepartout.mp4'
               }
             ]
           }
@@ -369,12 +369,12 @@ export const cameraLessonData = {
               {
                 title: 'Standard Formats',
                 content: '1920x1080 (Full HD 16:9), 3840x2160 (4K 16:9), 2048x858 (2K Cinema 2.39:1), 1080x1080 (Square). Choose based on delivery platform and artistic intent.',
-                image: '/examples/camera-resolutions.gif'
+                image: '/examples/camera-resolutions.mp4'
               },
               {
                 title: 'Resolution Percentage',
                 content: 'Use percentage slider for preview renders. 50% = quarter resolution, renders 4x faster. Use 100% only for final output. Saves massive time during testing.',
-                image: '/examples/camera-res-percentage.gif'
+                image: '/examples/camera-res-percentage.mp4'
               }
             ]
           }
@@ -402,12 +402,12 @@ export const cameraLessonData = {
               {
                 title: 'Applying the Rule',
                 content: 'Position your subject\'s eyes at an intersection point. Place horizons on the top or bottom third line, not center. Leads the viewer\'s eye and creates dynamic balance.',
-                image: '/examples/camera-rule-thirds.gif'
+                image: '/examples/camera-rule-thirds.mp4'
               },
               {
                 title: 'When to Break It',
                 content: 'Center compositions work for symmetry, confrontation, or stability. Breaking rules intentionally creates specific moods. Understand rules before breaking them effectively.',
-                image: '/examples/camera-break-thirds.gif'
+                image: '/examples/camera-break-thirds.mp4'
               }
             ]
           }
@@ -422,12 +422,12 @@ export const cameraLessonData = {
               {
                 title: 'Types of Lines',
                 content: 'Horizontal lines convey stability and calm. Vertical lines suggest strength and power. Diagonal lines create energy and movement. Curved lines feel organic and flowing.',
-                image: '/examples/camera-leading-lines.gif'
+                image: '/examples/camera-leading-lines.mp4'
               },
               {
                 title: 'Creating Pathways',
                 content: 'Position camera so environmental lines converge on your subject. Roads, hallways, and architectural elements naturally guide eyes. Multiple lines increase impact.',
-                image: '/examples/camera-line-convergence.gif'
+                image: '/examples/camera-line-convergence.mp4'
               }
             ]
           }
@@ -442,12 +442,12 @@ export const cameraLessonData = {
               {
                 title: 'Natural Frames',
                 content: 'Shoot through doorways, windows, or arches. Frames create layers, add context, and draw attention to what\'s framed. Makes subjects feel observed or important.',
-                image: '/examples/camera-natural-frames.gif'
+                image: '/examples/camera-natural-frames.mp4'
               },
               {
                 title: 'Depth Creation',
                 content: 'Frames separate foreground from subject, creating depth. Especially powerful with shallow depth of field - blurred frame, sharp subject. Adds cinematic quality.',
-                image: '/examples/camera-frame-depth.gif'
+                image: '/examples/camera-frame-depth.mp4'
               }
             ]
           }
@@ -462,12 +462,12 @@ export const cameraLessonData = {
               {
                 title: 'Isolation and Emphasis',
                 content: 'Surround subject with negative space to emphasize isolation, importance, or scale. More space = more emphasis. Creates minimalist, impactful compositions.',
-                image: '/examples/camera-negative-space.gif'
+                image: '/examples/camera-negative-space.mp4'
               },
               {
                 title: 'Directional Space',
                 content: 'Place negative space in the direction a subject is looking or moving. Creates anticipation and natural flow. Looking left? Add space on left side.',
-                image: '/examples/camera-directional-space.gif'
+                image: '/examples/camera-directional-space.mp4'
               }
             ]
           }
@@ -482,12 +482,12 @@ export const cameraLessonData = {
               {
                 title: 'Perfect Symmetry',
                 content: 'Center your subject, ensure equal weight on both sides. Use for architecture, formal portraits, intimidating subjects. Creates instant impact and formality.',
-                image: '/examples/camera-symmetry.gif'
+                image: '/examples/camera-symmetry.mp4'
               },
               {
                 title: 'Reflections',
                 content: 'Water, mirrors, and polished surfaces create natural symmetry. Reflections double visual impact and add surreal, contemplative quality.',
-                image: '/examples/camera-reflections.gif'
+                image: '/examples/camera-reflections.mp4'
               }
             ]
           }
@@ -502,12 +502,12 @@ export const cameraLessonData = {
               {
                 title: 'Three-Layer Composition',
                 content: 'Place elements at different depths. Foreground frames or adds interest, middleground holds subject, background provides context. Each layer should add value.',
-                image: '/examples/camera-depth-layers.gif'
+                image: '/examples/camera-depth-layers.mp4'
               },
               {
                 title: 'Using Depth of Field',
                 content: 'Blur foreground and background to emphasize middle layer. Selective focus separates layers clearly. Subject pops while maintaining environmental context.',
-                image: '/examples/camera-layers-dof.gif'
+                image: '/examples/camera-layers-dof.mp4'
               }
             ]
           }
@@ -529,7 +529,7 @@ export const cameraLessonData = {
               {
                 title: 'Natural Connection',
                 content: 'Eye level puts viewer at same height as subject, creating equality and natural connection. Default choice for most scenes requiring neutral emotional tone.',
-                image: '/examples/camera-eye-level.gif'
+                image: '/examples/camera-eye-level.mp4'
               }
             ]
           }
@@ -544,12 +544,12 @@ export const cameraLessonData = {
               {
                 title: 'Power and Heroism',
                 content: 'Low angles make subjects tower over viewer. Use for heroes, villains, authority figures, or anything that should feel powerful or intimidating. Sky background adds scale.',
-                image: '/examples/camera-low-angle.gif'
+                image: '/examples/camera-low-angle.mp4'
               },
               {
                 title: 'Architecture',
                 content: 'Low angles emphasize height and grandeur of buildings. Makes structures feel massive and impressive. Classic for establishing shots of cities or monuments.',
-                image: '/examples/camera-low-architecture.gif'
+                image: '/examples/camera-low-architecture.mp4'
               }
             ]
           }
@@ -564,12 +564,12 @@ export const cameraLessonData = {
               {
                 title: 'Vulnerability',
                 content: 'High angles diminish subjects, making them appear weak or threatened. Use for victims, defeated characters, or moments of helplessness. Viewer becomes observer from position of power.',
-                image: '/examples/camera-high-angle.gif'
+                image: '/examples/camera-high-angle.mp4'
               },
               {
                 title: 'Overview Shots',
                 content: 'Extreme high angles (bird\'s eye view) show spatial relationships and scale. Perfect for establishing shots, battle scenes, or showing subject in environment.',
-                image: '/examples/camera-high-overview.gif'
+                image: '/examples/camera-high-overview.mp4'
               }
             ]
           }
@@ -584,12 +584,12 @@ export const cameraLessonData = {
               {
                 title: 'Psychological Impact',
                 content: 'Dutch angle destabilizes viewer, creating anxiety or discomfort. Use for villain introductions, mental instability, chaos, or moments of confusion. Subtle tilts = unease, extreme tilts = chaos.',
-                image: '/examples/camera-dutch-angle.gif'
+                image: '/examples/camera-dutch-angle.mp4'
               },
               {
                 title: 'Action and Style',
                 content: 'Dynamic dutch angles add energy to action sequences. Also used stylistically for bold, non-realistic aesthetics. Popular in music videos and stylized content.',
-                image: '/examples/camera-dutch-action.gif'
+                image: '/examples/camera-dutch-action.mp4'
               }
             ]
           }
@@ -604,12 +604,12 @@ export const cameraLessonData = {
               {
                 title: 'Dialogue Coverage',
                 content: 'Foreground character\'s shoulder and head frame one side. Other character faces camera. Cut between OTS shots to cover conversation naturally. Includes both subjects in frame for context.',
-                image: '/examples/camera-ots.gif'
+                image: '/examples/camera-ots.mp4'
               },
               {
                 title: 'Depth and Intimacy',
                 content: 'OTS creates depth with foreground element and shows spatial relationship. More intimate than two separate closeups. Viewer feels present in conversation.',
-                image: '/examples/camera-ots-depth.gif'
+                image: '/examples/camera-ots-depth.mp4'
               }
             ]
           }
@@ -624,12 +624,12 @@ export const cameraLessonData = {
               {
                 title: 'Setting the Scene',
                 content: 'Wide view of environment showing location, time of day, weather, and context. Answers "where are we?" before cutting to closer action. Often exterior of buildings or full room views.',
-                image: '/examples/camera-establishing.gif'
+                image: '/examples/camera-establishing.mp4'
               },
               {
                 title: 'Reestablishing',
                 content: 'After close-ups, reestablish with wide shot to reorient viewer or show passage of time. Reminds audience of spatial relationships between scene elements.',
-                image: '/examples/camera-reestablishing.gif'
+                image: '/examples/camera-reestablishing.mp4'
               }
             ]
           }
@@ -651,12 +651,12 @@ export const cameraLessonData = {
               {
                 title: 'Following Action',
                 content: 'Pan smoothly to follow moving subjects. Keep subject in frame as they move horizontally. Natural way to track movement without changing camera position.',
-                image: '/examples/camera-pan.gif'
+                image: '/examples/camera-pan.mp4'
               },
               {
                 title: 'Revealing Space',
                 content: 'Pan across environment to reveal its scope. Start on one element, pan to reveal full space or another important element. Builds anticipation through gradual reveal.',
-                image: '/examples/camera-pan-reveal.gif'
+                image: '/examples/camera-pan-reveal.mp4'
               }
             ]
           }
@@ -671,12 +671,12 @@ export const cameraLessonData = {
               {
                 title: 'Revealing Height',
                 content: 'Tilt up to show towering subjects or impressive height. Tilt down to show subjects below or emphasize descent. Creates sense of scale and vertical space.',
-                image: '/examples/camera-tilt.gif'
+                image: '/examples/camera-tilt.mp4'
               },
               {
                 title: 'Dramatic Reveals',
                 content: 'Start low, tilt up to reveal tall subject\'s full height. Creates anticipation and emphasis. Classic character introduction technique for important figures.',
-                image: '/examples/camera-tilt-reveal.gif'
+                image: '/examples/camera-tilt-reveal.mp4'
               }
             ]
           }
@@ -691,17 +691,17 @@ export const cameraLessonData = {
               {
                 title: 'Dolly In',
                 content: 'Moving toward subject increases intimacy and intensity. Draws viewer into moment or character. Perspective shift makes movement feel real and immersive.',
-                image: '/examples/camera-dolly-in.gif'
+                image: '/examples/camera-dolly-in.mp4'
               },
               {
                 title: 'Dolly Out',
                 content: 'Moving away from subject creates distance, reveals context, or shows isolation. Pull back to reveal surprising environment or show character\'s loneliness.',
-                image: '/examples/camera-dolly-out.gif'
+                image: '/examples/camera-dolly-out.mp4'
               },
               {
                 title: 'Dolly vs Zoom',
                 content: 'Dolly changes perspective - foreground and background relationship shifts. Zoom just magnifies - perspective stays flat. Dolly feels cinematic, zoom feels cheap unless used stylistically.',
-                image: '/examples/camera-dolly-vs-zoom.gif'
+                image: '/examples/camera-dolly-vs-zoom.mp4'
               }
             ]
           }
@@ -716,12 +716,12 @@ export const cameraLessonData = {
               {
                 title: 'Following Movement',
                 content: 'Track alongside moving subject to keep them in frame. Camera moves at same speed as subject. Creates dynamic feeling while maintaining consistent framing.',
-                image: '/examples/camera-truck.gif'
+                image: '/examples/camera-truck.mp4'
               },
               {
                 title: 'Parallax Effect',
                 content: 'Foreground moves faster than background when trucking, creating strong depth. Use foreground elements to emphasize this parallax for cinematic 3D feeling.',
-                image: '/examples/camera-truck-parallax.gif'
+                image: '/examples/camera-truck-parallax.mp4'
               }
             ]
           }
@@ -736,7 +736,7 @@ export const cameraLessonData = {
               {
                 title: 'Vertical Movement',
                 content: 'Pedestal up to follow rising subject or reveal upper environment. Pedestal down to follow descent or emphasize height by starting high.',
-                image: '/examples/camera-pedestal.gif'
+                image: '/examples/camera-pedestal.mp4'
               }
             ]
           }
@@ -751,12 +751,12 @@ export const cameraLessonData = {
               {
                 title: 'Sweeping Moves',
                 content: 'Start low and rise while moving, or start high and descend. Creates dramatic, cinematic feeling. Perfect for opening/closing shots or revealing scale.',
-                image: '/examples/camera-crane.gif'
+                image: '/examples/camera-crane.mp4'
               },
               {
                 title: 'Emotional Impact',
                 content: 'Rising crane shot feels uplifting, hopeful, or triumphant. Descending feels ominous, sad, or intimate. Powerful tool for emotional storytelling.',
-                image: '/examples/camera-crane-emotion.gif'
+                image: '/examples/camera-crane-emotion.mp4'
               }
             ]
           }
@@ -771,12 +771,12 @@ export const cameraLessonData = {
               {
                 title: 'Character Reveals',
                 content: 'Orbit around character to show them from all sides. Classic hero introduction shot. Emphasizes importance and gives complete view of subject.',
-                image: '/examples/camera-orbit.gif'
+                image: '/examples/camera-orbit.mp4'
               },
               {
                 title: 'Using Track To',
                 content: 'Animate camera position in circular path, use Track To constraint to keep camera pointed at subject. Or use Follow Path with curve for perfect circles.',
-                image: '/examples/camera-orbit-setup.gif'
+                image: '/examples/camera-orbit-setup.mp4'
               }
             ]
           }
@@ -791,12 +791,12 @@ export const cameraLessonData = {
               {
                 title: 'Adding Shake',
                 content: 'Keyframe subtle random position and rotation changes, or use noise modifier on camera animation. Small movements = professional handheld, large movements = chaotic action.',
-                image: '/examples/camera-handheld.gif'
+                image: '/examples/camera-handheld.mp4'
               },
               {
                 title: 'When to Use',
                 content: 'Action sequences, horror, documentary-style realism, or intimate moments. Avoid for formal, stable scenes. Too much shake becomes distracting.',
-                image: '/examples/camera-handheld-usage.gif'
+                image: '/examples/camera-handheld-usage.mp4'
               }
             ]
           }

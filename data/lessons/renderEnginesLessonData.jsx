@@ -61,12 +61,12 @@ export const renderEnginesLessonData = {
               {
                 title: 'Instant Preview',
                 content: 'Changes to materials, lighting, and objects appear instantly. No waiting for render calculations. What you see in the viewport is what you get.',
-                image: '/examples/eevee-realtime.gif'
+                image: '/examples/eevee-realtime.mp4'
               },
               {
                 title: 'Interactive Workflow',
                 content: 'Adjust lights, materials, and camera while seeing results live. Perfect for fine-tuning compositions and lighting setups quickly.',
-                image: '/examples/eevee-interactive.gif'
+                image: '/examples/eevee-interactive.mp4'
               }
             ]
           }
@@ -81,12 +81,12 @@ export const renderEnginesLessonData = {
               {
                 title: 'Enabling SSR',
                 content: 'Enable in Render Properties > Screen Space Reflections. Adjust refraction for glass materials. Works best for flat or slightly curved surfaces.',
-                image: '/examples/eevee-ssr-enable.gif'
+                image: '/examples/eevee-ssr-enable.mp4'
               },
               {
                 title: 'SSR Limitations',
                 content: 'Only reflects what\'s visible on screen. Objects behind camera or off-screen won\'t appear in reflections. Use reflection planes for important reflections.',
-                image: '/examples/eevee-ssr-limits.gif'
+                image: '/examples/eevee-ssr-limits.mp4'
               }
             ]
           }
@@ -101,12 +101,12 @@ export const renderEnginesLessonData = {
               {
                 title: 'Bloom Settings',
                 content: 'Enable in Render Properties > Bloom. Adjust threshold to control which areas glow. Radius controls spread. Perfect for neon lights, magic effects, and lens flare.',
-                image: '/examples/eevee-bloom.gif'
+                image: '/examples/eevee-bloom.mp4'
               },
               {
                 title: 'Stylized Effects',
                 content: 'Use high bloom intensity for stylized, dreamy looks. Combine with emission materials for glowing objects and magical atmospheres.',
-                image: '/examples/eevee-bloom-stylized.gif'
+                image: '/examples/eevee-bloom-stylized.mp4'
               }
             ]
           }
@@ -121,12 +121,12 @@ export const renderEnginesLessonData = {
               {
                 title: 'AO Setup',
                 content: 'Enable in Render Properties > Ambient Occlusion. Increase distance for larger shadowed areas. Adjust factor to control intensity.',
-                image: '/examples/eevee-ao.gif'
+                image: '/examples/eevee-ao.mp4'
               },
               {
                 title: 'Depth Enhancement',
                 content: 'AO makes surfaces feel more three-dimensional by darkening contact points. Essential for making scenes feel grounded and realistic.',
-                image: '/examples/eevee-ao-depth.gif'
+                image: '/examples/eevee-ao-depth.mp4'
               }
             ]
           }
@@ -141,7 +141,7 @@ export const renderEnginesLessonData = {
               {
                 title: 'SSS in Eevee',
                 content: 'Enable in Render Properties > Subsurface Scattering. Use Principled BSDF subsurface for skin, wax, jade. Faster approximation than Cycles.',
-                image: '/examples/eevee-sss.gif'
+                image: '/examples/eevee-sss.mp4'
               }
             ]
           }
@@ -156,12 +156,12 @@ export const renderEnginesLessonData = {
               {
                 title: 'Shadow Maps',
                 content: 'Increase Cube Size and Cascade Size in light properties for sharper shadows. Higher values = better quality but slower performance.',
-                image: '/examples/eevee-shadows.gif'
+                image: '/examples/eevee-shadows.mp4'
               },
               {
                 title: 'Contact Shadows',
                 content: 'Enable Contact Shadows on lights for accurate small-scale shadows. Perfect for object-ground contact and fine detail.',
-                image: '/examples/eevee-contact-shadows.gif'
+                image: '/examples/eevee-contact-shadows.mp4'
               }
             ]
           }
@@ -176,12 +176,12 @@ export const renderEnginesLessonData = {
               {
                 title: 'Volume Setup',
                 content: 'Enable Volumetric Lighting in Render Properties. Add Volume Scatter in World shader for atmospheric fog. Adjust density for intensity.',
-                image: '/examples/eevee-volumetrics.gif'
+                image: '/examples/eevee-volumetrics.mp4'
               },
               {
                 title: 'Light Shafts',
                 content: 'Use spotlights with volumetrics for god rays and light beams. Adjust Volumetric Shadows for light interaction quality.',
-                image: '/examples/eevee-light-shafts.gif'
+                image: '/examples/eevee-light-shafts.mp4'
               }
             ]
           }
@@ -196,7 +196,7 @@ export const renderEnginesLessonData = {
               {
                 title: 'Light Probe Setup',
                 content: 'Add Irradiance Volume to scene. Adjust resolution to cover your scene. Bake indirect lighting for accurate light bounces on dynamic objects.',
-                image: '/examples/eevee-irradiance.gif'
+                image: '/examples/eevee-irradiance.mp4'
               }
             ]
           }
@@ -218,12 +218,12 @@ export const renderEnginesLessonData = {
               {
                 title: 'How Path Tracing Works',
                 content: 'Cycles shoots rays from camera into scene, bouncing off surfaces and calculating light interactions. Each sample improves accuracy. More samples = less noise but longer render.',
-                image: '/examples/cycles-pathtracing.gif'
+                image: '/examples/cycles-pathtracing.mp4'
               },
               {
                 title: 'Sample Count',
                 content: 'Render samples control quality. Start with 128 for tests, use 512-2048 for finals. More samples reduce noise but increase render time proportionally.',
-                image: '/examples/cycles-samples.gif'
+                image: '/examples/cycles-samples.mp4'
               }
             ]
           }
@@ -238,12 +238,12 @@ export const renderEnginesLessonData = {
               {
                 title: 'Perfect Reflections',
                 content: 'All surfaces reflect accurately based on roughness. No screen-space limitations - objects behind camera appear correctly in reflections.',
-                image: '/examples/cycles-reflections.gif'
+                image: '/examples/cycles-reflections.mp4'
               },
               {
                 title: 'Glossy Materials',
                 content: 'Roughness creates natural blur in reflections. Lower roughness = sharper reflections. Cycles handles all glossy materials accurately.',
-                image: '/examples/cycles-glossy.gif'
+                image: '/examples/cycles-glossy.mp4'
               }
             ]
           }
@@ -258,12 +258,12 @@ export const renderEnginesLessonData = {
               {
                 title: 'Glass Caustics',
                 content: 'Glass objects naturally create caustics in Cycles. Light bends through refractive surfaces, creating beautiful light patterns on surfaces below.',
-                image: '/examples/cycles-caustics-glass.gif'
+                image: '/examples/cycles-caustics-glass.mp4'
               },
               {
                 title: 'Optimizing Caustics',
                 content: 'Increase Max Bounces for clearer caustics. Use Caustic Reflective/Refractive options in Light Paths. Requires higher samples for clean results.',
-                image: '/examples/cycles-caustics-setup.gif'
+                image: '/examples/cycles-caustics-setup.mp4'
               }
             ]
           }
@@ -278,12 +278,12 @@ export const renderEnginesLessonData = {
               {
                 title: 'IOR Settings',
                 content: 'Index of Refraction (IOR) controls light bending. Glass = 1.45, Water = 1.33, Diamond = 2.42. Accurate IOR creates realistic materials.',
-                image: '/examples/cycles-refraction-ior.gif'
+                image: '/examples/cycles-refraction-ior.mp4'
               },
               {
                 title: 'Transmission',
                 content: 'Use Transmission in Principled BSDF for glass. Combine with Roughness for frosted glass. Cycles handles nested glass correctly.',
-                image: '/examples/cycles-transmission.gif'
+                image: '/examples/cycles-transmission.mp4'
               }
             ]
           }
@@ -298,12 +298,12 @@ export const renderEnginesLessonData = {
               {
                 title: 'Volume Scatter',
                 content: 'Add Volume Scatter in shader for fog and smoke. Density controls thickness. Anisotropy controls forward/backward scattering direction.',
-                image: '/examples/cycles-volume-scatter.gif'
+                image: '/examples/cycles-volume-scatter.mp4'
               },
               {
                 title: 'Volume Absorption',
                 content: 'Volume Absorption creates colored tinting like stained glass or colored water. Combine with scatter for complete volume effects.',
-                image: '/examples/cycles-volume-absorption.gif'
+                image: '/examples/cycles-volume-absorption.mp4'
               }
             ]
           }
@@ -318,12 +318,12 @@ export const renderEnginesLessonData = {
               {
                 title: 'SSS Setup',
                 content: 'Use Subsurface in Principled BSDF. Adjust subsurface radius (RGB) to control color penetration depth. Red travels furthest for realistic skin.',
-                image: '/examples/cycles-sss-setup.gif'
+                image: '/examples/cycles-sss-setup.mp4'
               },
               {
                 title: 'Random Walk',
                 content: 'Christensen-Burley is fast, Random Walk is more accurate. Use Random Walk for thin objects like ears, Random Walk (Fixed Radius) for thick objects.',
-                image: '/examples/cycles-sss-methods.gif'
+                image: '/examples/cycles-sss-methods.mp4'
               }
             ]
           }
@@ -338,7 +338,7 @@ export const renderEnginesLessonData = {
               {
                 title: 'Motion Blur Settings',
                 content: 'Enable in Render Properties > Motion Blur. Adjust Shutter to control blur amount. Position controls blur timing (before/after frame).',
-                image: '/examples/cycles-motion-blur.gif'
+                image: '/examples/cycles-motion-blur.mp4'
               }
             ]
           }
@@ -353,7 +353,7 @@ export const renderEnginesLessonData = {
               {
                 title: 'Portal Setup',
                 content: 'Add Area Light at windows, set to Portal type. Portals tell Cycles where light enters, focusing samples efficiently. Reduces noise significantly in interiors.',
-                image: '/examples/cycles-portals.gif'
+                image: '/examples/cycles-portals.mp4'
               }
             ]
           }
@@ -375,12 +375,12 @@ export const renderEnginesLessonData = {
               {
                 title: 'GPU Setup',
                 content: 'Edit > Preferences > System > Cycles Render Devices. Select CUDA (NVIDIA), OptiX (NVIDIA RTX), or HIP (AMD). GPU renders 5-10x faster than CPU.',
-                image: '/examples/gpu-setup.gif'
+                image: '/examples/gpu-setup.mp4'
               },
               {
                 title: 'Device Selection',
                 content: 'In Render Properties, choose CPU, GPU, or both. Using both is slower than GPU alone. OptiX offers best performance on RTX cards.',
-                image: '/examples/device-selection.gif'
+                image: '/examples/device-selection.mp4'
               }
             ]
           }
@@ -395,12 +395,12 @@ export const renderEnginesLessonData = {
               {
                 title: 'Cycles Denoising',
                 content: 'Enable in Render Properties > Denoising. OptiX (RTX cards) is fastest, OpenImageDenoise works on all hardware. Reduces required samples by 50-75%.',
-                image: '/examples/cycles-denoise.gif'
+                image: '/examples/cycles-denoise.mp4'
               },
               {
                 title: 'Eevee Denoising',
                 content: 'Less critical in Eevee but available for shadows and ambient occlusion. Helps reduce noise in volumetrics and Screen Space effects.',
-                image: '/examples/eevee-denoise.gif'
+                image: '/examples/eevee-denoise.mp4'
               }
             ]
           }
@@ -415,7 +415,7 @@ export const renderEnginesLessonData = {
               {
                 title: 'Adaptive Settings',
                 content: 'Enable in Render Properties > Sampling > Adaptive Sampling. Lower threshold = more accurate but slower. Typical saves 20-40% render time.',
-                image: '/examples/adaptive-sampling.gif'
+                image: '/examples/adaptive-sampling.mp4'
               }
             ]
           }
@@ -430,12 +430,12 @@ export const renderEnginesLessonData = {
               {
                 title: 'Pass Setup',
                 content: 'View Layer Properties > Passes. Enable Combined, Diffuse, Glossy, Emission etc. Compose in Compositing workspace for total control.',
-                image: '/examples/render-passes.gif'
+                image: '/examples/render-passes.mp4'
               },
               {
                 title: 'Cryptomatte',
                 content: 'Enable Cryptomatte for automatic selection masks. Select any object in compositing without pre-planning. Essential for professional workflows.',
-                image: '/examples/cryptomatte.gif'
+                image: '/examples/cryptomatte.mp4'
               }
             ]
           }
@@ -460,17 +460,17 @@ export const renderEnginesLessonData = {
               {
                 title: 'Quality Settings',
                 content: 'Start with default Shadows. Increase only if needed. Lower Volumetric tile size for faster fog. Disable unused features like SSR or Bloom if not visible.',
-                image: '/examples/eevee-optimize-quality.gif'
+                image: '/examples/eevee-optimize-quality.mp4'
               },
               {
                 title: 'Baked Lighting',
                 content: 'Use Irradiance Volumes for indirect lighting. Bake Reflection Cubemaps for complex reflections. Pre-calculate what doesn\'t need real-time updates.',
-                image: '/examples/eevee-optimize-bake.gif'
+                image: '/examples/eevee-optimize-bake.mp4'
               },
               {
                 title: 'Texture Resolution',
                 content: 'Use appropriate texture sizes. 2K for hero objects, 1K for mid-ground, 512px for background. Reduces memory and increases viewport speed.',
-                image: '/examples/eevee-optimize-textures.gif'
+                image: '/examples/eevee-optimize-textures.mp4'
               }
             ]
           }
@@ -485,17 +485,17 @@ export const renderEnginesLessonData = {
               {
                 title: 'Light Path Limits',
                 content: 'Reduce Max Bounces in Light Paths. For most scenes: Total=8, Diffuse=2, Glossy=4, Transmission=8. Lower unnecessary bounces saves massive render time.',
-                image: '/examples/cycles-optimize-bounces.gif'
+                image: '/examples/cycles-optimize-bounces.mp4'
               },
               {
                 title: 'Clamping',
                 content: 'Use Light Paths > Clamping to reduce fireflies. Set Indirect Light to 3-10 for cleaner renders. Slight accuracy loss but huge noise reduction.',
-                image: '/examples/cycles-optimize-clamp.gif'
+                image: '/examples/cycles-optimize-clamp.mp4'
               },
               {
                 title: 'Simplify Settings',
                 content: 'Render Properties > Simplify. Reduce Max Subdivisions for faster displacement. Lower AO bounces. Use for test renders and animations.',
-                image: '/examples/cycles-optimize-simplify.gif'
+                image: '/examples/cycles-optimize-simplify.mp4'
               }
             ]
           }
@@ -510,17 +510,17 @@ export const renderEnginesLessonData = {
               {
                 title: 'Preview with Eevee',
                 content: 'Set up lighting and materials in Eevee for instant feedback. Test animations and camera movements in real-time. Switch to Cycles only for finals.',
-                image: '/examples/hybrid-preview.gif'
+                image: '/examples/hybrid-preview.mp4'
               },
               {
                 title: 'Material Translation',
                 content: 'Most materials work in both engines. Keep shaders simple: Principled BSDF translates perfectly. Test Eevee-specific features won\'t appear in Cycles.',
-                image: '/examples/hybrid-materials.gif'
+                image: '/examples/hybrid-materials.mp4'
               },
               {
                 title: 'Render Layers',
                 content: 'Render complex elements in Cycles, simple elements in Eevee. Composite together. Background in Eevee, hero object in Cycles saves time.',
-                image: '/examples/hybrid-layers.gif'
+                image: '/examples/hybrid-layers.mp4'
               }
             ]
           }
@@ -542,12 +542,12 @@ export const renderEnginesLessonData = {
               {
                 title: 'Cycles Setup',
                 content: 'Use Cycles with high samples (1024+). Enable Caustics for glass products. Use HDRI lighting for realistic reflections. Denoise for clean results.',
-                image: '/examples/workflow-product-cycles.gif'
+                image: '/examples/workflow-product-cycles.mp4'
               },
               {
                 title: 'Material Accuracy',
                 content: 'Use accurate IOR values. Measure real material roughness. Reference photos for color and finish. Accuracy matters for client work.',
-                image: '/examples/workflow-product-materials.gif'
+                image: '/examples/workflow-product-materials.mp4'
               }
             ]
           }
@@ -562,12 +562,12 @@ export const renderEnginesLessonData = {
               {
                 title: 'Eevee Animation',
                 content: 'Use Eevee for motion graphics, stylized characters, and fast-turnaround animation. Render at 24fps+ easily. Preview in real-time as you animate.',
-                image: '/examples/workflow-animation-eevee.gif'
+                image: '/examples/workflow-animation-eevee.mp4'
               },
               {
                 title: 'Non-Photoreal Rendering',
                 content: 'Eevee excels at stylized looks. Use Bloom for glow effects. Sharp shadows for cartoon look. Fast enough for experimentation.',
-                image: '/examples/workflow-stylized.gif'
+                image: '/examples/workflow-stylized.mp4'
               }
             ]
           }
@@ -582,12 +582,12 @@ export const renderEnginesLessonData = {
               {
                 title: 'Interior Lighting',
                 content: 'Use Cycles with Light Portals for interiors. Accurate caustics through windows. Realistic material reflections. Denoise for clean glass.',
-                image: '/examples/workflow-archviz-interior.gif'
+                image: '/examples/workflow-archviz-interior.mp4'
               },
               {
                 title: 'Exterior Speed',
                 content: 'Exteriors can use Eevee for daytime renders. Good performance with natural lighting. Switch to Cycles for night scenes with complex lighting.',
-                image: '/examples/workflow-archviz-exterior.gif'
+                image: '/examples/workflow-archviz-exterior.mp4'
               }
             ]
           }

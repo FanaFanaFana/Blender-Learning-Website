@@ -58,17 +58,17 @@ export const physicsLessonData = {
               {
                 title: 'Creating Active Bodies',
                 content: 'Add Rigid Body physics from the Physics Properties panel. Set type to Active. Objects immediately respond to gravity and will fall when animation plays.',
-                image: '/examples/physics-rigidbody-active.gif'
+                image: '/examples/physics-rigidbody-active.mp4'
               },
               {
                 title: 'Mass & Center of Mass',
                 content: 'Mass affects how objects respond to forces. Heavier objects require more force to move. Adjust Center of Mass to change balance and rotation behavior.',
-                image: '/examples/physics-rigidbody-mass.gif'
+                image: '/examples/physics-rigidbody-mass.mp4'
               },
               {
                 title: 'Collision Shape',
                 content: 'Collision Shape determines physics boundaries. Box/Sphere are fast, Convex Hull fits complex shapes, Mesh is most accurate but slowest. Choose based on detail needs.',
-                image: '/examples/physics-rigidbody-shape.gif'
+                image: '/examples/physics-rigidbody-shape.mp4'
               }
             ]
           }
@@ -83,12 +83,12 @@ export const physicsLessonData = {
               {
                 title: 'Static Colliders',
                 content: 'Set Rigid Body type to Passive. Objects become immovable collision surfaces. Active bodies bounce off passive bodies but passive bodies never move.',
-                image: '/examples/physics-rigidbody-passive.gif'
+                image: '/examples/physics-rigidbody-passive.mp4'
               },
               {
                 title: 'Animated Passives',
                 content: 'Enable Animated checkbox to move passive bodies with keyframes. Active bodies collide with them as they move, perfect for moving platforms or obstacles.',
-                image: '/examples/physics-rigidbody-animated.gif'
+                image: '/examples/physics-rigidbody-animated.mp4'
               }
             ]
           }
@@ -103,17 +103,17 @@ export const physicsLessonData = {
               {
                 title: 'Bounciness',
                 content: 'Bounciness (Restitution) ranges 0-1. Zero means no bounce, one means perfect elastic collision. Adjust for rubber balls (0.9) vs clay (0.1).',
-                image: '/examples/physics-collision-bounce.gif'
+                image: '/examples/physics-collision-bounce.mp4'
               },
               {
                 title: 'Friction',
                 content: 'Friction resists sliding. High friction (0.8-1.0) for rubber on concrete, low (0.1-0.2) for ice or metal. Affects how objects slide after contact.',
-                image: '/examples/physics-collision-friction.gif'
+                image: '/examples/physics-collision-friction.mp4'
               },
               {
                 title: 'Damping',
                 content: 'Damping slows object motion over time. Translation damping affects linear motion, rotation damping affects spinning. Simulates air resistance.',
-                image: '/examples/physics-collision-damping.gif'
+                image: '/examples/physics-collision-damping.mp4'
               }
             ]
           }
@@ -128,17 +128,17 @@ export const physicsLessonData = {
               {
                 title: 'Fixed Constraint',
                 content: 'Fixed constraint glues two objects together. They move as one unit but maintain independent collision. Perfect for compound objects.',
-                image: '/examples/physics-constraint-fixed.gif'
+                image: '/examples/physics-constraint-fixed.mp4'
               },
               {
                 title: 'Hinge Constraint',
                 content: 'Hinge creates rotation around an axis. Enable motor for powered rotation, set limits for restricted movement. Perfect for doors, wheels, joints.',
-                image: '/examples/physics-constraint-hinge.gif'
+                image: '/examples/physics-constraint-hinge.mp4'
               },
               {
                 title: 'Spring Constraint',
                 content: 'Spring constraint creates elastic connection between objects. Adjust stiffness and damping for bouncy or rigid springs. Great for suspension.',
-                image: '/examples/physics-constraint-spring.gif'
+                image: '/examples/physics-constraint-spring.mp4'
               }
             ]
           }
@@ -153,17 +153,17 @@ export const physicsLessonData = {
               {
                 title: 'Wind Force',
                 content: 'Wind creates directional force. Adjust strength and flow. Point wind direction with object rotation. Stack multiple winds for complex air flow.',
-                image: '/examples/physics-force-wind.gif'
+                image: '/examples/physics-force-wind.mp4'
               },
               {
                 title: 'Vortex Force',
                 content: 'Vortex creates spinning force around axis. Objects spiral inward or outward. Perfect for tornados, drains, or orbital motion.',
-                image: '/examples/physics-force-vortex.gif'
+                image: '/examples/physics-force-vortex.mp4'
               },
               {
                 title: 'Turbulence',
                 content: 'Turbulence adds chaotic motion. Increase strength for wild randomness, adjust flow for variation scale. Great for natural unpredictability.',
-                image: '/examples/physics-force-turbulence.gif'
+                image: '/examples/physics-force-turbulence.mp4'
               }
             ]
           }
@@ -185,17 +185,17 @@ export const physicsLessonData = {
               {
                 title: 'Enabling Soft Body',
                 content: 'Add Soft Body physics from Physics Properties. Object becomes deformable, responding to gravity and collisions with flexible deformation.',
-                image: '/examples/physics-softbody-enable.gif'
+                image: '/examples/physics-softbody-enable.mp4'
               },
               {
                 title: 'Edge Springs',
                 content: 'Edges act as springs connecting vertices. Adjust Stiffness for rigidity (low = jelly, high = rubber). Pull determines how much edges resist stretching.',
-                image: '/examples/physics-softbody-springs.gif'
+                image: '/examples/physics-softbody-springs.mp4'
               },
               {
                 title: 'Goal Weights',
                 content: 'Goal weights pin vertices to original position. Weight 1 = locked, 0 = free. Paint vertex groups for partial pinning, perfect for cloth tails or flags.',
-                image: '/examples/physics-softbody-goals.gif'
+                image: '/examples/physics-softbody-goals.mp4'
               }
             ]
           }
@@ -210,12 +210,12 @@ export const physicsLessonData = {
               {
                 title: 'Simulation Quality',
                 content: 'Increase Step Min/Max for stability. Higher steps = more accurate but slower. Use Choke to prevent interpenetration in tight spaces.',
-                image: '/examples/physics-softbody-quality.gif'
+                image: '/examples/physics-softbody-quality.mp4'
               },
               {
                 title: 'Damping',
                 content: 'Damping reduces oscillation. Higher values stop bouncing faster. Essential for preventing runaway jiggling in soft objects.',
-                image: '/examples/physics-softbody-damping.gif'
+                image: '/examples/physics-softbody-damping.mp4'
               }
             ]
           }
@@ -230,7 +230,7 @@ export const physicsLessonData = {
               {
                 title: 'Enabling Self Collision',
                 content: 'Enable Self Collision in Soft Body Collision panel. Adjust Ball Size for detection radius. Larger radius = more distance but fewer intersections.',
-                image: '/examples/physics-softbody-selfcollision.gif'
+                image: '/examples/physics-softbody-selfcollision.mp4'
               }
             ]
           }
@@ -252,17 +252,17 @@ export const physicsLessonData = {
               {
                 title: 'Basic Cloth Setup',
                 content: 'Add Cloth physics to mesh. Object drapes under gravity, creating natural folds. Works best with subdivided meshes for smooth wrinkles.',
-                image: '/examples/physics-cloth-basic.gif'
+                image: '/examples/physics-cloth-basic.mp4'
               },
               {
                 title: 'Pinning Vertices',
                 content: 'Create vertex group, assign vertices weight 1. Enable Shape > Pin Group in cloth settings. Pinned vertices stay locked, rest drapes naturally.',
-                image: '/examples/physics-cloth-pinning.gif'
+                image: '/examples/physics-cloth-pinning.mp4'
               },
               {
                 title: 'Collision Objects',
                 content: 'Add Collision physics to objects cloth should interact with. Cloth drapes over collision objects, wrapping around forms naturally.',
-                image: '/examples/physics-cloth-collision.gif'
+                image: '/examples/physics-cloth-collision.mp4'
               }
             ]
           }
@@ -277,17 +277,17 @@ export const physicsLessonData = {
               {
                 title: 'Fabric Presets',
                 content: 'Presets provide starting points: Silk (light, fluid), Denim (heavy, stiff), Leather (thick, resistant). Customize from there for exact behavior.',
-                image: '/examples/physics-cloth-presets.gif'
+                image: '/examples/physics-cloth-presets.mp4'
               },
               {
                 title: 'Stiffness Settings',
                 content: 'Tension = resistance to stretching, Compression = resistance to bunching, Shear = resistance to diagonal deformation, Bending = resistance to folding.',
-                image: '/examples/physics-cloth-stiffness.gif'
+                image: '/examples/physics-cloth-stiffness.mp4'
               },
               {
                 title: 'Damping',
                 content: 'Damping reduces cloth motion over time. Tension/Compression damping stops bouncing, Bending damping settles folds. Higher values = faster settling.',
-                image: '/examples/physics-cloth-damping.gif'
+                image: '/examples/physics-cloth-damping.mp4'
               }
             ]
           }
@@ -302,7 +302,7 @@ export const physicsLessonData = {
               {
                 title: 'Spring Types',
                 content: 'Structural springs follow edges, Shear springs connect diagonals, Bending springs maintain surface curvature. Enable multiple types for stability.',
-                image: '/examples/physics-cloth-springs.gif'
+                image: '/examples/physics-cloth-springs.mp4'
               }
             ]
           }
@@ -317,12 +317,12 @@ export const physicsLessonData = {
               {
                 title: 'Collision Distance',
                 content: 'Distance sets gap between cloth and collision object. Too small = poking through, too large = hovering. Balance based on animation speed.',
-                image: '/examples/physics-cloth-distance.gif'
+                image: '/examples/physics-cloth-distance.mp4'
               },
               {
                 title: 'Self Collision',
                 content: 'Enable Self Collision to prevent cloth from intersecting itself. Essential for flags, capes, or any fabric that folds back on itself.',
-                image: '/examples/physics-cloth-selfcollision.gif'
+                image: '/examples/physics-cloth-selfcollision.mp4'
               }
             ]
           }
@@ -337,12 +337,12 @@ export const physicsLessonData = {
               {
                 title: 'Pressure Simulation',
                 content: 'Enable Pressure with closed mesh. Positive pressure inflates (balloon), negative deflates. Adjust Pressure value for inflation strength.',
-                image: '/examples/physics-cloth-pressure.gif'
+                image: '/examples/physics-cloth-pressure.mp4'
               },
               {
                 title: 'Target Volume',
                 content: 'Target Volume maintains initial cloth volume. Prevents cloth from collapsing or expanding excessively during simulation.',
-                image: '/examples/physics-cloth-volume.gif'
+                image: '/examples/physics-cloth-volume.mp4'
               }
             ]
           }
@@ -364,17 +364,17 @@ export const physicsLessonData = {
               {
                 title: 'Creating Domain',
                 content: 'Add cube scaled to contain fluid area. Add Fluid physics, set type to Domain. This becomes simulation container. Larger domains = more memory.',
-                image: '/examples/physics-fluid-domain.gif'
+                image: '/examples/physics-fluid-domain.mp4'
               },
               {
                 title: 'Domain Resolution',
                 content: 'Resolution Divisions controls fluid detail. Higher = more detail but slower simulation. Start low (64-128) for tests, increase for final renders.',
-                image: '/examples/physics-fluid-resolution.gif'
+                image: '/examples/physics-fluid-resolution.mp4'
               },
               {
                 title: 'Domain Type',
                 content: 'Liquid for water/liquids, Gas for smoke/fire. Each type has specialized settings for that simulation behavior.',
-                image: '/examples/physics-fluid-type.gif'
+                image: '/examples/physics-fluid-type.mp4'
               }
             ]
           }
@@ -389,17 +389,17 @@ export const physicsLessonData = {
               {
                 title: 'Flow Types',
                 content: 'Geometry emits from mesh surface, Inflow continuously generates fluid. Use Geometry for initial states, Inflow for continuous sources like taps.',
-                image: '/examples/physics-fluid-flow.gif'
+                image: '/examples/physics-fluid-flow.mp4'
               },
               {
                 title: 'Initial Velocity',
                 content: 'Set Initial Velocity for fluid starting motion. Add velocity along normals for spray, add object velocity for moving emitters.',
-                image: '/examples/physics-fluid-velocity.gif'
+                image: '/examples/physics-fluid-velocity.mp4'
               },
               {
                 title: 'Sampling',
                 content: 'Sampling Substeps improves thin fluid streams. Higher substeps = smoother emission but slower simulation. Increase for fast-moving fluid.',
-                image: '/examples/physics-fluid-sampling.gif'
+                image: '/examples/physics-fluid-sampling.mp4'
               }
             ]
           }
@@ -414,12 +414,12 @@ export const physicsLessonData = {
               {
                 title: 'Setting Up Collisions',
                 content: 'Add Fluid physics to object, set type to Effector. Fluid now collides with object surface. Volume Initialization controls precision.',
-                image: '/examples/physics-fluid-effector.gif'
+                image: '/examples/physics-fluid-effector.mp4'
               },
               {
                 title: 'Surface Settings',
                 content: 'Enable Is Planar for infinite planes (floors). Surface Thickness prevents thin objects from leaking. Adjust based on object type.',
-                image: '/examples/physics-fluid-surface.gif'
+                image: '/examples/physics-fluid-surface.mp4'
               }
             ]
           }
@@ -434,17 +434,17 @@ export const physicsLessonData = {
               {
                 title: 'Viscosity',
                 content: 'Viscosity controls liquid thickness. Low (0-1) = water, medium (5-20) = oil, high (50+) = honey. Affects flow speed and behavior.',
-                image: '/examples/physics-liquid-viscosity.gif'
+                image: '/examples/physics-liquid-viscosity.mp4'
               },
               {
                 title: 'Mesh Generation',
                 content: 'Liquid generates mesh for rendering. Adjust Upres Factor for detail. Particle Radius affects smoothness. Higher values = smoother surface.',
-                image: '/examples/physics-liquid-mesh.gif'
+                image: '/examples/physics-liquid-mesh.mp4'
               },
               {
                 title: 'Diffusion',
                 content: 'Diffusion spreads liquid particles, creating smoother flow. Higher values smooth out splashes and ripples for calmer liquid behavior.',
-                image: '/examples/physics-liquid-diffusion.gif'
+                image: '/examples/physics-liquid-diffusion.mp4'
               }
             ]
           }
@@ -459,17 +459,17 @@ export const physicsLessonData = {
               {
                 title: 'Smoke Basics',
                 content: 'Set Domain Type to Gas. Flow objects emit smoke. Adjust Density for opacity, Temperature for buoyancy. Hot smoke rises, cold smoke falls.',
-                image: '/examples/physics-smoke-basic.gif'
+                image: '/examples/physics-smoke-basic.mp4'
               },
               {
                 title: 'Vorticity',
                 content: 'Vorticity adds swirling detail to smoke. Higher values create more turbulent, chaotic motion. Essential for realistic smoke behavior.',
-                image: '/examples/physics-smoke-vorticity.gif'
+                image: '/examples/physics-smoke-vorticity.mp4'
               },
               {
                 title: 'Fire Simulation',
                 content: 'Enable Fire in Domain settings. Set Flow to Fire + Smoke. Flame responds to fuel, creates heat, and generates smoke. Adjust reaction speed.',
-                image: '/examples/physics-fire-simulation.gif'
+                image: '/examples/physics-fire-simulation.mp4'
               }
             ]
           }
@@ -484,17 +484,17 @@ export const physicsLessonData = {
               {
                 title: 'Baking Process',
                 content: 'Set frame range, click Bake Data. Simulation calculates each frame, saving to cache. Larger domains and higher resolution take more time.',
-                image: '/examples/physics-fluid-bake.gif'
+                image: '/examples/physics-fluid-bake.mp4'
               },
               {
                 title: 'Bake Types',
                 content: 'Bake Data for basic simulation, Bake Mesh for liquid surface, Bake Particles for spray/foam/bubbles. Bake in order for dependent systems.',
-                image: '/examples/physics-fluid-baketypes.gif'
+                image: '/examples/physics-fluid-baketypes.mp4'
               },
               {
                 title: 'Cache Management',
                 content: 'Free Data clears cache. Adjust frame range to rebake sections. Resume continues from last baked frame. Save cache files for backup.',
-                image: '/examples/physics-fluid-cache.gif'
+                image: '/examples/physics-fluid-cache.mp4'
               }
             ]
           }
@@ -516,12 +516,12 @@ export const physicsLessonData = {
               {
                 title: 'Setting Up Canvas',
                 content: 'Add Dynamic Paint modifier, set to Canvas. Choose Surface type: Paint for colors, Displace for height, Wave for ripples.',
-                image: '/examples/physics-dpaint-canvas.gif'
+                image: '/examples/physics-dpaint-canvas.mp4'
               },
               {
                 title: 'Output Settings',
                 content: 'Paint outputs to vertex colors, image sequence, or displacement. Choose based on need - vertex for previews, image for detail.',
-                image: '/examples/physics-dpaint-output.gif'
+                image: '/examples/physics-dpaint-output.mp4'
               }
             ]
           }
@@ -536,12 +536,12 @@ export const physicsLessonData = {
               {
                 title: 'Creating Brushes',
                 content: 'Add Dynamic Paint modifier, set to Brush. Object now paints on canvas. Mesh Volume paints entire volume, Mesh Distance paints proximity.',
-                image: '/examples/physics-dpaint-brush.gif'
+                image: '/examples/physics-dpaint-brush.mp4'
               },
               {
                 title: 'Paint Settings',
                 content: 'Adjust Paint Color, Alpha, Wetness. Enable Particle System for spray effects. Velocity affects paint streaking and spread.',
-                image: '/examples/physics-dpaint-settings.gif'
+                image: '/examples/physics-dpaint-settings.mp4'
               }
             ]
           }
@@ -556,7 +556,7 @@ export const physicsLessonData = {
               {
                 title: 'Height Effects',
                 content: 'Set Canvas Surface Type to Displace. Brush objects create height displacement. Negative values create indents, positive creates bumps.',
-                image: '/examples/physics-dpaint-displace.gif'
+                image: '/examples/physics-dpaint-displace.mp4'
               }
             ]
           }
@@ -571,7 +571,7 @@ export const physicsLessonData = {
               {
                 title: 'Wave Physics',
                 content: 'Set Surface Type to Waves. Brush interaction creates ripples that propagate outward. Adjust Spring, Damping, Wave Speed for different effects.',
-                image: '/examples/physics-dpaint-waves.gif'
+                image: '/examples/physics-dpaint-waves.mp4'
               }
             ]
           }
@@ -593,12 +593,12 @@ export const physicsLessonData = {
               {
                 title: 'Emitter Particles',
                 content: 'Add Particle System, type Emitter. Particles shoot from surface based on settings. Adjust lifetime, velocity, and emission rate.',
-                image: '/examples/physics-particle-emitter.gif'
+                image: '/examples/physics-particle-emitter.mp4'
               },
               {
                 title: 'Hair System',
                 content: 'Set type to Hair. Strands grow from surface as curves. Perfect for fur, grass, cables, or any strand-based effect.',
-                image: '/examples/physics-particle-hair.gif'
+                image: '/examples/physics-particle-hair.mp4'
               }
             ]
           }
@@ -613,12 +613,12 @@ export const physicsLessonData = {
               {
                 title: 'Physics Settings',
                 content: 'Enable Newtonian physics for gravity and forces. Adjust Mass, Drag, and damping for different particle behavior from feathers to rocks.',
-                image: '/examples/physics-particle-physics.gif'
+                image: '/examples/physics-particle-physics.mp4'
               },
               {
                 title: 'Force Fields',
                 content: 'Particles react to force fields. Add Wind, Turbulence, or Vortex for complex motion. Adjust strength and falloff per field.',
-                image: '/examples/physics-particle-forces.gif'
+                image: '/examples/physics-particle-forces.mp4'
               }
             ]
           }
@@ -633,12 +633,12 @@ export const physicsLessonData = {
               {
                 title: 'Collision Setup',
                 content: 'Enable Collision in particle settings. Add Collision physics to deflector objects. Adjust Friction and Bounciness for surface behavior.',
-                image: '/examples/physics-particle-collision.gif'
+                image: '/examples/physics-particle-collision.mp4'
               },
               {
                 title: 'Kill & Stick',
                 content: 'Enable Kill on collision to delete particles on contact. Use Stick for particles that attach to surfaces like snow or paint splatter.',
-                image: '/examples/physics-particle-kill.gif'
+                image: '/examples/physics-particle-kill.mp4'
               }
             ]
           }
@@ -653,12 +653,12 @@ export const physicsLessonData = {
               {
                 title: 'Enabling Hair Dynamics',
                 content: 'In Hair system, enable Hair Dynamics. Strands respond to forces and collisions. Adjust Stiffness for hair type - soft for fine hair, stiff for cables.',
-                image: '/examples/physics-hair-dynamics.gif'
+                image: '/examples/physics-hair-dynamics.mp4'
               },
               {
                 title: 'Pinning Roots',
                 content: 'Pin Root locks strand base to surface. Rest moves freely. Adjust Pin Goal for partial pinning along strand length.',
-                image: '/examples/physics-hair-pinning.gif'
+                image: '/examples/physics-hair-pinning.mp4'
               }
             ]
           }
@@ -680,17 +680,17 @@ export const physicsLessonData = {
               {
                 title: 'Ocean Basics',
                 content: 'Add Ocean modifier to plane. Instant animated ocean with waves. Adjust Scale, Choppiness, and Time for wave characteristics.',
-                image: '/examples/physics-ocean-basic.gif'
+                image: '/examples/physics-ocean-basic.mp4'
               },
               {
                 title: 'Wave Spectrum',
                 content: 'Control wave types with Spectrum settings. Adjust Wave Scale, Wave Alignment, Wave Direction for realistic or stylized seas.',
-                image: '/examples/physics-ocean-spectrum.gif'
+                image: '/examples/physics-ocean-spectrum.mp4'
               },
               {
                 title: 'Foam & Spray',
                 content: 'Generate Foam data from wave crests. Use as vertex group for white foam material. Creates realistic breaking wave effects.',
-                image: '/examples/physics-ocean-foam.gif'
+                image: '/examples/physics-ocean-foam.mp4'
               }
             ]
           }
@@ -705,7 +705,7 @@ export const physicsLessonData = {
               {
                 title: 'Flow Animation',
                 content: 'Animate flow object transform for moving smoke sources. Keyframe Flow velocity for pulsing emission or exhaust effects.',
-                image: '/examples/physics-smoke-flow.gif'
+                image: '/examples/physics-smoke-flow.mp4'
               }
             ]
           }
@@ -720,12 +720,12 @@ export const physicsLessonData = {
               {
                 title: 'Explosion Setup',
                 content: 'Add Particle System, then Explode Modifier. Faces follow particles creating destruction. Adjust Particle UV for timing control.',
-                image: '/examples/physics-explode-basic.gif'
+                image: '/examples/physics-explode-basic.mp4'
               },
               {
                 title: 'Controlled Destruction',
                 content: 'Use vertex groups to control which faces explode. Paint weights for partial destruction or directional breaking patterns.',
-                image: '/examples/physics-explode-control.gif'
+                image: '/examples/physics-explode-control.mp4'
               }
             ]
           }
@@ -740,12 +740,12 @@ export const physicsLessonData = {
               {
                 title: 'Adding Collisions',
                 content: 'Add Collision physics to object. Other physics systems now detect and respond to this object. Adjust Thickness and Damping.',
-                image: '/examples/physics-collision-modifier.gif'
+                image: '/examples/physics-collision-modifier.mp4'
               },
               {
                 title: 'Collision Quality',
                 content: 'Increase Thickness for safety margin. Enable Single Sided for thin objects. Adjust Friction for surface grip.',
-                image: '/examples/physics-collision-quality.gif'
+                image: '/examples/physics-collision-quality.mp4'
               }
             ]
           }
@@ -770,17 +770,17 @@ export const physicsLessonData = {
               {
                 title: 'When to Bake',
                 content: 'Bake when simulation is too slow for real-time, before rendering, or when you need to edit simulation results. Fluid must always be baked.',
-                image: '/examples/physics-baking-when.gif'
+                image: '/examples/physics-baking-when.mp4'
               },
               {
                 title: 'Baking Process',
                 content: 'Set frame range in scene settings. Click Bake in physics panel. Calculation runs from start to end frame, saving to cache folder.',
-                image: '/examples/physics-baking-process.gif'
+                image: '/examples/physics-baking-process.mp4'
               },
               {
                 title: 'Cache Location',
                 content: 'Cache saves to project folder by default. Change path for network rendering. External cache can be shared between blend files.',
-                image: '/examples/physics-baking-cache.gif'
+                image: '/examples/physics-baking-cache.mp4'
               }
             ]
           }
@@ -795,17 +795,17 @@ export const physicsLessonData = {
               {
                 title: 'Start Low Resolution',
                 content: 'Test with low resolution or few particles. Increase detail only for final bake. Save hours of iteration time with quick previews.',
-                image: '/examples/physics-optimize-resolution.gif'
+                image: '/examples/physics-optimize-resolution.mp4'
               },
               {
                 title: 'Limit Domain Size',
                 content: 'Keep fluid domains as small as possible. Larger domains = exponentially longer bake times. Crop tight to action area.',
-                image: '/examples/physics-optimize-domain.gif'
+                image: '/examples/physics-optimize-domain.mp4'
               },
               {
                 title: 'Reduce Substeps',
                 content: 'Lower substeps for faster simulation. Increase only if seeing artifacts. Many simulations work fine with minimal substeps.',
-                image: '/examples/physics-optimize-substeps.gif'
+                image: '/examples/physics-optimize-substeps.mp4'
               }
             ]
           }
@@ -820,17 +820,17 @@ export const physicsLessonData = {
               {
                 title: 'Physics Stack Order',
                 content: 'Physics modifiers evaluate in stack order. Generally: Soft Body → Cloth → Collision. Order affects final result.',
-                image: '/examples/physics-combine-stack.gif'
+                image: '/examples/physics-combine-stack.mp4'
               },
               {
                 title: 'Cloth + Collision',
                 content: 'Character with Collision modifier, cloth draped over. Cloth conforms to animated character. Classic character clothing setup.',
-                image: '/examples/physics-combine-cloth.gif'
+                image: '/examples/physics-combine-cloth.mp4'
               },
               {
                 title: 'Particles + Force Fields',
                 content: 'Emit particles, add force fields for complex motion. Wind for leaves, vortex for spirals, turbulence for chaos. Layer forces.',
-                image: '/examples/physics-combine-particles.gif'
+                image: '/examples/physics-combine-particles.mp4'
               }
             ]
           }
@@ -852,12 +852,12 @@ export const physicsLessonData = {
               {
                 title: 'Flag Setup',
                 content: 'Subdivided plane with Cloth modifier. Create vertex group on pole edge, pin in cloth settings. Add Wind force field.',
-                image: '/examples/physics-example-flag.gif'
+                image: '/examples/physics-example-flag.mp4'
               },
               {
                 title: 'Cloth Settings',
                 content: 'Reduce Mass for lighter fabric. Increase Air Viscosity for air resistance. Adjust Stiffness low for silk flag, higher for heavy flag.',
-                image: '/examples/physics-example-flag-settings.gif'
+                image: '/examples/physics-example-flag-settings.mp4'
               }
             ]
           }
@@ -872,12 +872,12 @@ export const physicsLessonData = {
               {
                 title: 'Domino Setup',
                 content: 'Array of cubes as Active Rigid Bodies. First domino keyframed to fall. Chain reaction propagates through collision.',
-                image: '/examples/physics-example-domino.gif'
+                image: '/examples/physics-example-domino.mp4'
               },
               {
                 title: 'Timing Control',
                 content: 'Adjust object spacing and fall angle for timing. Use passive objects as guides. Control cascade speed with friction.',
-                image: '/examples/physics-example-domino-timing.gif'
+                image: '/examples/physics-example-domino-timing.mp4'
               }
             ]
           }
@@ -892,12 +892,12 @@ export const physicsLessonData = {
               {
                 title: 'Pour Setup',
                 content: 'Domain containing both containers. Source container as Flow (Geometry, Initial Velocity). Receiving container as Effector.',
-                image: '/examples/physics-example-pour.gif'
+                image: '/examples/physics-example-pour.mp4'
               },
               {
                 title: 'Liquid Behavior',
                 content: 'Adjust Initial Velocity for pour speed. Set appropriate Viscosity for liquid type. Generate mesh for smooth render.',
-                image: '/examples/physics-example-pour-behavior.gif'
+                image: '/examples/physics-example-pour-behavior.mp4'
               }
             ]
           }
@@ -912,12 +912,12 @@ export const physicsLessonData = {
               {
                 title: 'Smoke Setup',
                 content: 'Gas domain above emitter. Flow object set to Smoke with temperature. Hot smoke rises naturally with buoyancy.',
-                image: '/examples/physics-example-smoke.gif'
+                image: '/examples/physics-example-smoke.mp4'
               },
               {
                 title: 'Detail & Turbulence',
                 content: 'Increase Vorticity for swirling detail. Add Noise for fine turbulence. Adjust Heat Buoyancy for rise speed.',
-                image: '/examples/physics-example-smoke-detail.gif'
+                image: '/examples/physics-example-smoke-detail.mp4'
               }
             ]
           }
@@ -932,12 +932,12 @@ export const physicsLessonData = {
               {
                 title: 'Fracture Setup',
                 content: 'Enable Cell Fracture addon. Select object, Cell Fracture to break into pieces. Each piece becomes Active Rigid Body.',
-                image: '/examples/physics-example-fracture.gif'
+                image: '/examples/physics-example-fracture.mp4'
               },
               {
                 title: 'Impact Trigger',
                 content: 'Animated object hits fractured object. Impact activates pieces. Use constraints for initial held-together state.',
-                image: '/examples/physics-example-fracture-impact.gif'
+                image: '/examples/physics-example-fracture-impact.mp4'
               }
             ]
           }
@@ -952,12 +952,12 @@ export const physicsLessonData = {
               {
                 title: 'Ocean Setup',
                 content: 'Large plane with Ocean Modifier. Adjust Resolution for detail level. Set Wave Scale for size, Time for animation speed.',
-                image: '/examples/physics-example-ocean.gif'
+                image: '/examples/physics-example-ocean.mp4'
               },
               {
                 title: 'Ocean Realism',
                 content: 'Enable Foam generation for wave crests. Adjust Choppiness for wave sharpness. Align waves for directional wind effect.',
-                image: '/examples/physics-example-ocean-realism.gif'
+                image: '/examples/physics-example-ocean-realism.mp4'
               }
             ]
           }
@@ -979,17 +979,17 @@ export const physicsLessonData = {
               {
                 title: 'Increase Substeps',
                 content: 'Low substeps cause instability. Increase Steps Per Frame in physics settings. More steps = more stable but slower.',
-                image: '/examples/physics-trouble-substeps.gif'
+                image: '/examples/physics-trouble-substeps.mp4'
               },
               {
                 title: 'Check Collisions',
                 content: 'Objects starting inside collision volumes cause explosions. Move apart or increase Collision Distance for safety margin.',
-                image: '/examples/physics-trouble-collision.gif'
+                image: '/examples/physics-trouble-collision.mp4'
               },
               {
                 title: 'Reduce Forces',
                 content: 'Extreme force values cause instability. Scale down force field strength. Increase damping to reduce energy.',
-                image: '/examples/physics-trouble-forces.gif'
+                image: '/examples/physics-trouble-forces.mp4'
               }
             ]
           }
@@ -1004,17 +1004,17 @@ export const physicsLessonData = {
               {
                 title: 'Increase Thickness',
                 content: 'Collision Thickness creates safety margin. Increase until penetration stops. Especially important for thin collision objects.',
-                image: '/examples/physics-trouble-thickness.gif'
+                image: '/examples/physics-trouble-thickness.mp4'
               },
               {
                 title: 'Better Collision Shape',
                 content: 'Mesh collision is most accurate but slowest. Use for final quality. Convex Hull good balance. Box/Sphere fastest but least accurate.',
-                image: '/examples/physics-trouble-shape.gif'
+                image: '/examples/physics-trouble-shape.mp4'
               },
               {
                 title: 'CCD for Fast Objects',
                 content: 'Enable Continuous Collision Detection (CCD) in rigid body settings for fast-moving objects. Prevents tunneling through thin objects.',
-                image: '/examples/physics-trouble-ccd.gif'
+                image: '/examples/physics-trouble-ccd.mp4'
               }
             ]
           }
@@ -1029,17 +1029,17 @@ export const physicsLessonData = {
               {
                 title: 'Preview Resolution',
                 content: 'Reduce resolution/particles for preview. Use viewport particle display percentage. Full detail only for final bake.',
-                image: '/examples/physics-trouble-preview.gif'
+                image: '/examples/physics-trouble-preview.mp4'
               },
               {
                 title: 'Simplify Collision',
                 content: 'Use simpler collision shapes. Box collision much faster than Mesh. Reduce collision object polygon count.',
-                image: '/examples/physics-trouble-simplify.gif'
+                image: '/examples/physics-trouble-simplify.mp4'
               },
               {
                 title: 'Disable Unnecessary Features',
                 content: 'Turn off self-collision if not needed. Disable particle interactions if not visible. Each feature adds calculation time.',
-                image: '/examples/physics-trouble-disable.gif'
+                image: '/examples/physics-trouble-disable.mp4'
               }
             ]
           }

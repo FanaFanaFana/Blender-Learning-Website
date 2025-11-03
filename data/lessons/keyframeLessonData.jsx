@@ -58,12 +58,12 @@ export const keyframeLessonData = {
               {
                 title: 'Quick Keyframing',
                 content: 'Hover over any property and press I to keyframe it. Or right-click and choose "Insert Keyframe". The property turns yellow when keyframed.',
-                image: '/examples/keyframe-insert-basic.gif'
+                image: '/examples/keyframe-insert-basic.mp4'
               },
               {
                 title: 'Keyframe Menu',
                 content: 'Press I in the 3D viewport for the keyframe menu. Choose Location, Rotation, Scale, or LocRotScale to keyframe transform channels quickly.',
-                image: '/examples/keyframe-insert-menu.gif'
+                image: '/examples/keyframe-insert-menu.mp4'
               }
             ]
           }
@@ -78,12 +78,12 @@ export const keyframeLessonData = {
               {
                 title: 'Auto Recording',
                 content: 'Click the red dot in timeline header to enable. Now any property change automatically creates a keyframe. Perfect for quick animation iterations.',
-                image: '/examples/keyframe-auto-enable.gif'
+                image: '/examples/keyframe-auto-enable.mp4'
               },
               {
                 title: 'Auto Keyframe Modes',
                 content: 'Replace mode overwrites existing keyframes. Add/Replace only adds new ones. Use the dropdown next to the record button to choose.',
-                image: '/examples/keyframe-auto-modes.gif'
+                image: '/examples/keyframe-auto-modes.mp4'
               }
             ]
           }
@@ -98,7 +98,7 @@ export const keyframeLessonData = {
               {
                 title: 'Removing Keyframes',
                 content: 'Alt+I in viewport opens delete menu. Choose which channels to clear. Or select keyframes in Graph Editor and press X to delete.',
-                image: '/examples/keyframe-delete.gif'
+                image: '/examples/keyframe-delete.mp4'
               }
             ]
           }
@@ -113,7 +113,7 @@ export const keyframeLessonData = {
               {
                 title: 'Clearing Animation',
                 content: 'Alt+I > Clear Keyframes removes all keyframes from selected channels. Or in Graph Editor, select all (A) and delete (X).',
-                image: '/examples/keyframe-clear.gif'
+                image: '/examples/keyframe-clear.mp4'
               }
             ]
           }
@@ -128,7 +128,7 @@ export const keyframeLessonData = {
               {
                 title: 'Updating Values',
                 content: 'Jump to keyframe, change the value, press I. The existing keyframe updates rather than creating a new one.',
-                image: '/examples/keyframe-replace.gif'
+                image: '/examples/keyframe-replace.mp4'
               }
             ]
           }
@@ -150,7 +150,7 @@ export const keyframeLessonData = {
               {
                 title: 'Standard Keys',
                 content: 'Yellow diamonds mark regular keyframes. These are your bread and butter - set them, adjust timing, refine motion.',
-                image: '/examples/keyframe-standard.gif'
+                image: '/examples/keyframe-standard.mp4'
               }
             ]
           }
@@ -165,7 +165,7 @@ export const keyframeLessonData = {
               {
                 title: 'Smart In-Betweens',
                 content: 'Set as Breakdown (Shift+E in Graph Editor). Green keys maintain their relative position when you move surrounding keyframes.',
-                image: '/examples/keyframe-breakdown.gif'
+                image: '/examples/keyframe-breakdown.mp4'
               }
             ]
           }
@@ -180,7 +180,7 @@ export const keyframeLessonData = {
               {
                 title: 'Hold Frames',
                 content: 'Press T in Graph Editor > Constant to make orange hold keys. Value stays flat until next keyframe - great for snappy animation.',
-                image: '/examples/keyframe-moving-hold.gif'
+                image: '/examples/keyframe-moving-hold.mp4'
               }
             ]
           }
@@ -195,7 +195,7 @@ export const keyframeLessonData = {
               {
                 title: 'Marking Extremes',
                 content: 'Select keyframe, press R in Graph Editor, choose Extreme. Pink color helps identify key poses in your animation.',
-                image: '/examples/keyframe-extreme.gif'
+                image: '/examples/keyframe-extreme.mp4'
               }
             ]
           }
@@ -210,7 +210,7 @@ export const keyframeLessonData = {
               {
                 title: 'Adding Variation',
                 content: 'Set as Jitter type for controlled randomness. Great for handwriting, camera shake, or breaking up mechanical motion.',
-                image: '/examples/keyframe-jitter.gif'
+                image: '/examples/keyframe-jitter.mp4'
               }
             ]
           }
@@ -232,12 +232,12 @@ export const keyframeLessonData = {
               {
                 title: 'Curved Motion',
                 content: 'Bezier handles let you shape curves exactly. Drag handles in Graph Editor to create custom easing and timing.',
-                image: '/examples/interp-bezier.gif'
+                image: '/examples/interp-bezier.mp4'
               },
               {
                 title: 'Handle Types',
                 content: 'V key in Graph Editor: Auto handles for smooth flow, Vector for sharp angles, Aligned for manual control.',
-                image: '/examples/interp-bezier-handles.gif'
+                image: '/examples/interp-bezier-handles.mp4'
               }
             ]
           }
@@ -252,7 +252,7 @@ export const keyframeLessonData = {
               {
                 title: 'Constant Speed',
                 content: 'Press T > Linear in Graph Editor. Creates even motion with no acceleration. Good for robots, machines, or technical motion.',
-                image: '/examples/interp-linear.gif'
+                image: '/examples/interp-linear.mp4'
               }
             ]
           }
@@ -267,7 +267,7 @@ export const keyframeLessonData = {
               {
                 title: 'Instant Changes',
                 content: 'Press T > Constant for instant jumps. Value holds flat then snaps to next keyframe. Essential for stop-motion style or switches.',
-                image: '/examples/interp-constant.gif'
+                image: '/examples/interp-constant.mp4'
               }
             ]
           }
@@ -282,7 +282,7 @@ export const keyframeLessonData = {
               {
                 title: 'Auto Easing',
                 content: 'Press T in Graph Editor for easing menu. Ease In accelerates, Ease Out decelerates, Ease In-Out does both. Quick natural motion.',
-                image: '/examples/interp-easing.gif'
+                image: '/examples/interp-easing.mp4'
               }
             ]
           }
@@ -304,12 +304,12 @@ export const keyframeLessonData = {
               {
                 title: 'Reading Curves',
                 content: 'Steeper curves = faster motion. Flat curves = holds. Smooth curves = smooth motion. Shape of curve determines feel of movement.',
-                image: '/examples/graph-reading.gif'
+                image: '/examples/graph-reading.mp4'
               },
               {
                 title: 'Navigation',
                 content: 'Middle mouse to pan, scroll to zoom. Home to frame all. . (period) to frame selected keyframes. Same as 3D viewport navigation.',
-                image: '/examples/graph-navigation.gif'
+                image: '/examples/graph-navigation.mp4'
               }
             ]
           }
@@ -324,7 +324,7 @@ export const keyframeLessonData = {
               {
                 title: 'Selection Tools',
                 content: 'Click to select individual keys. B for box select. A to select all. Alt+A to deselect. Shift+click to add to selection.',
-                image: '/examples/graph-select.gif'
+                image: '/examples/graph-select.mp4'
               }
             ]
           }
@@ -339,12 +339,12 @@ export const keyframeLessonData = {
               {
                 title: 'Moving Keyframes',
                 content: 'G moves keyframes in time and value. Constrain to X (time only) or Y (value only) axis. Shift for precision.',
-                image: '/examples/graph-move.gif'
+                image: '/examples/graph-move.mp4'
               },
               {
                 title: 'Scaling Timing',
                 content: 'S scales keyframes around cursor. Scale horizontally to speed up/slow down. Scale vertically to exaggerate/diminish values.',
-                image: '/examples/graph-scale.gif'
+                image: '/examples/graph-scale.mp4'
               }
             ]
           }
@@ -359,7 +359,7 @@ export const keyframeLessonData = {
               {
                 title: 'Precise Alignment',
                 content: 'Shift+S for snap menu. Snap to frame snaps to whole numbers. Snap to second aligns to exact seconds. Essential for precise timing.',
-                image: '/examples/graph-snap.gif'
+                image: '/examples/graph-snap.mp4'
               }
             ]
           }
@@ -374,7 +374,7 @@ export const keyframeLessonData = {
               {
                 title: 'Copying Motion',
                 content: 'Select keyframes, Shift+D to duplicate. Move duplicates to new location. Perfect for creating repeated actions or cycles.',
-                image: '/examples/graph-duplicate.gif'
+                image: '/examples/graph-duplicate.mp4'
               }
             ]
           }
@@ -389,17 +389,17 @@ export const keyframeLessonData = {
               {
                 title: 'Auto Handles',
                 content: 'Auto handles create smooth curves automatically. Best for most situations - let Blender calculate smooth transitions.',
-                image: '/examples/graph-handle-auto.gif'
+                image: '/examples/graph-handle-auto.mp4'
               },
               {
                 title: 'Vector Handles',
                 content: 'Vector creates straight lines to next keyframe. Perfect for sharp direction changes or linear motion.',
-                image: '/examples/graph-handle-vector.gif'
+                image: '/examples/graph-handle-vector.mp4'
               },
               {
                 title: 'Free Handles',
                 content: 'Free handles move independently for complete control. Drag handles to create custom curves with any shape.',
-                image: '/examples/graph-handle-free.gif'
+                image: '/examples/graph-handle-free.mp4'
               }
             ]
           }
@@ -421,7 +421,7 @@ export const keyframeLessonData = {
               {
                 title: 'Reading Timeline',
                 content: 'Each row is a property or object. Keyframes appear as diamonds. Color indicates keyframe type. Scrub through time to preview.',
-                image: '/examples/dope-overview.gif'
+                image: '/examples/dope-overview.mp4'
               }
             ]
           }
@@ -436,7 +436,7 @@ export const keyframeLessonData = {
               {
                 title: 'Timing Adjustments',
                 content: 'Select keyframes and press G to move. Constrain to X for horizontal only. Adjust spacing between keys to change animation speed.',
-                image: '/examples/dope-move.gif'
+                image: '/examples/dope-move.mp4'
               }
             ]
           }
@@ -451,7 +451,7 @@ export const keyframeLessonData = {
               {
                 title: 'Simplified View',
                 content: 'Switch to Summary mode in header. Each object gets one row showing all its keyframes. Great for scene-wide timing.',
-                image: '/examples/dope-summary.gif'
+                image: '/examples/dope-summary.mp4'
               }
             ]
           }
@@ -466,7 +466,7 @@ export const keyframeLessonData = {
               {
                 title: 'Multiple Animations',
                 content: 'Create different actions for walk, run, idle, etc. Switch between them or use NLA editor to blend actions together.',
-                image: '/examples/dope-actions.gif'
+                image: '/examples/dope-actions.mp4'
               }
             ]
           }
@@ -481,7 +481,7 @@ export const keyframeLessonData = {
               {
                 title: 'Organization',
                 content: 'Select channels, Ctrl+G to group. Name and color groups. Collapse/expand groups to manage complex rigs.',
-                image: '/examples/dope-groups.gif'
+                image: '/examples/dope-groups.mp4'
               }
             ]
           }
@@ -506,17 +506,17 @@ export const keyframeLessonData = {
               {
                 title: 'Key Poses',
                 content: 'Start with 3-5 extreme poses that tell your story. Set keyframes on these major moments. Ignore timing details initially.',
-                image: '/examples/workflow-pose-to-pose-1.gif'
+                image: '/examples/workflow-pose-to-pose-1.mp4'
               },
               {
                 title: 'Timing Pass',
                 content: 'Adjust keyframe spacing to get timing right. Closer keys = faster motion. Further apart = slower. Refine before adding detail.',
-                image: '/examples/workflow-pose-to-pose-2.gif'
+                image: '/examples/workflow-pose-to-pose-2.mp4'
               },
               {
                 title: 'Adding Breakdowns',
                 content: 'Add in-between keyframes (breakdowns) to refine the motion path. Use breakdown keyframe type to keep them relative.',
-                image: '/examples/workflow-pose-to-pose-3.gif'
+                image: '/examples/workflow-pose-to-pose-3.mp4'
               }
             ]
           }
@@ -531,12 +531,12 @@ export const keyframeLessonData = {
               {
                 title: 'Frame by Frame',
                 content: 'Enable Auto Keyframe. Start at frame 1, pose, move forward, pose again. Build animation sequentially. More fluid and spontaneous.',
-                image: '/examples/workflow-straight-ahead.gif'
+                image: '/examples/workflow-straight-ahead.mp4'
               },
               {
                 title: 'When to Use',
                 content: 'Best for effects, fire, water, organic motion, or when you want loose, spontaneous feel. Harder to control timing than pose-to-pose.',
-                image: '/examples/workflow-straight-timing.gif'
+                image: '/examples/workflow-straight-timing.mp4'
               }
             ]
           }
@@ -551,17 +551,17 @@ export const keyframeLessonData = {
               {
                 title: 'Stepped Preview',
                 content: 'Set all keyframes to Constant interpolation (stepped mode). See clear pose-to-pose timing without smooth movement between.',
-                image: '/examples/workflow-blocking-stepped.gif'
+                image: '/examples/workflow-blocking-stepped.mp4'
               },
               {
                 title: 'Timing Approval',
                 content: 'Adjust timing with clear poses. Get approval on blocked animation before investing time in polish. Much faster to iterate.',
-                image: '/examples/workflow-blocking-timing.gif'
+                image: '/examples/workflow-blocking-timing.mp4'
               },
               {
                 title: 'Convert to Spline',
                 content: 'Once timing approved, switch interpolation to Bezier. Now refine curves and add breakdowns to polish motion.',
-                image: '/examples/workflow-blocking-spline.gif'
+                image: '/examples/workflow-blocking-spline.mp4'
               }
             ]
           }
@@ -583,17 +583,17 @@ export const keyframeLessonData = {
               {
                 title: 'Curve Shape Analysis',
                 content: 'Steep curves = fast motion. Flat = slow/hold. S-curves create natural acceleration/deceleration. Read curves to understand motion.',
-                image: '/examples/polish-curve-reading.gif'
+                image: '/examples/polish-curve-reading.mp4'
               },
               {
                 title: 'Adding Overshoot',
                 content: 'Pull curve slightly past target value, then return. Creates bounce and energy. Drag handles or add extra keyframe beyond target.',
-                image: '/examples/polish-overshoot.gif'
+                image: '/examples/polish-overshoot.mp4'
               },
               {
                 title: 'Ease In/Out',
                 content: 'Flatten curves at start/end of motion for natural ease. Steep in middle for fast action. Creates weight and believability.',
-                image: '/examples/polish-ease.gif'
+                image: '/examples/polish-ease.mp4'
               }
             ]
           }
@@ -608,12 +608,12 @@ export const keyframeLessonData = {
               {
                 title: 'Body Mechanics',
                 content: 'When arm moves, shoulder moves first, then upper arm, forearm, hand, fingers. Offset each by 2-3 frames for natural cascade.',
-                image: '/examples/offset-body.gif'
+                image: '/examples/offset-body.mp4'
               },
               {
                 title: 'Secondary Motion',
                 content: 'Main action happens first. Hair, clothes, antennae follow a few frames later. Creates sense of weight and momentum.',
-                image: '/examples/offset-secondary.gif'
+                image: '/examples/offset-secondary.mp4'
               }
             ]
           }
@@ -628,12 +628,12 @@ export const keyframeLessonData = {
               {
                 title: 'Creating Cycles',
                 content: 'Copy frame 1 keyframe to end frame. Use Cycle modifier in Graph Editor to repeat infinitely. Adjust timing to taste.',
-                image: '/examples/cycle-create.gif'
+                image: '/examples/cycle-create.mp4'
               },
               {
                 title: 'Cycle Offset',
                 content: 'Use Cycle with Offset for variation. Each cycle builds on the last - perfect for accumulating rotation or progressive motion.',
-                image: '/examples/cycle-offset.gif'
+                image: '/examples/cycle-offset.mp4'
               }
             ]
           }
@@ -648,12 +648,12 @@ export const keyframeLessonData = {
               {
                 title: 'Pose Copying',
                 content: 'In pose mode, Ctrl+C to copy pose. Select opposite bones, Ctrl+Shift+V to paste mirrored. Maintains symmetry.',
-                image: '/examples/copy-mirror-pose.gif'
+                image: '/examples/copy-mirror-pose.mp4'
               },
               {
                 title: 'Keyframe Mirroring',
                 content: 'Copy left side keyframes, paste to right side with mirroring. Perfect for walk cycles - animate one step, mirror for other.',
-                image: '/examples/copy-mirror-keys.gif'
+                image: '/examples/copy-mirror-keys.mp4'
               }
             ]
           }

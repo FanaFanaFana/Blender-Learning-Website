@@ -58,7 +58,7 @@ export const sculptingLessonData = {
               {
                 title: 'Thick Strokes',
                 content: 'Blob creates volumetric, paint-like strokes. Great for organic masses, tree bark texture, or rough terrain. Strength controls how much material builds up.',
-                image: '/examples/sculpt-blob-paint.gif'
+                image: '/examples/sculpt-blob-paint.mp4'
               }
             ]
           }
@@ -73,7 +73,7 @@ export const sculptingLessonData = {
               {
                 title: 'Building Forms',
                 content: 'Clay brush adds material with a flattened profile, making it easier to build stable forms. Great for blocking out major shapes and anatomy.',
-                image: '/examples/sculpt-clay-building.gif'
+                image: '/examples/sculpt-clay-building.mp4'
               }
             ]
           }
@@ -88,7 +88,7 @@ export const sculptingLessonData = {
               {
                 title: 'Muscle Definition',
                 content: 'Clay Strips creates distinctive ribbon strokes. Perfect for defining muscle groups and creating clear form separation.',
-                image: '/examples/sculpt-claystrips.gif'
+                image: '/examples/sculpt-claystrips.mp4'
               }
             ]
           }
@@ -103,7 +103,7 @@ export const sculptingLessonData = {
               {
                 title: 'Thumb Impressions',
                 content: 'Creates smooth, thumb-like depressions. Great for organic dents and subtle surface variations.',
-                image: '/examples/sculpt-claythumb.gif'
+                image: '/examples/sculpt-claythumb.mp4'
               }
             ]
           }
@@ -118,7 +118,7 @@ export const sculptingLessonData = {
               {
                 title: 'Polishing Creases',
                 content: 'Smooths creases without losing their definition. Perfect for refining hard surface details and panel lines.',
-                image: '/examples/sculpt-creasepolish.gif'
+                image: '/examples/sculpt-creasepolish.mp4'
               }
             ]
           }
@@ -133,7 +133,7 @@ export const sculptingLessonData = {
               {
                 title: 'Sharp Creases',
                 content: 'Creates ultra-sharp creases for hard surface work. Ideal for mechanical edges and armor details.',
-                image: '/examples/sculpt-creasesharp.gif'
+                image: '/examples/sculpt-creasesharp.mp4'
               }
             ]
           }
@@ -148,12 +148,12 @@ export const sculptingLessonData = {
               {
                 title: 'Basic Drawing',
                 content: 'Left-click and drag to pull geometry outward. Hold Ctrl to invert and push inward (carving). Adjust brush size with F key, strength with Shift+F.',
-                image: '/examples/sculpt-draw-basic.gif'
+                image: '/examples/sculpt-draw-basic.mp4'
               },
               {
                 title: 'Stroke Settings',
                 content: 'Use Space stroke method for smooth, continuous strokes. Dots method creates textured surfaces. Adjust spacing for different effects.',
-                image: '/examples/sculpt-draw-strokes.gif'
+                image: '/examples/sculpt-draw-strokes.mp4'
               }
             ]
           }
@@ -168,7 +168,7 @@ export const sculptingLessonData = {
               {
                 title: 'Creating Sharp Features',
                 content: 'Draw Sharp maintains hard edges unlike the regular Draw brush. Perfect for stylized characters, hard surface elements, or creating panel lines.',
-                image: '/examples/sculpt-drawsharp-edges.gif'
+                image: '/examples/sculpt-drawsharp-edges.mp4'
               }
             ]
           }
@@ -183,7 +183,7 @@ export const sculptingLessonData = {
               {
                 title: 'Uniform Expansion',
                 content: 'Inflate expands forms evenly in all directions. Use for puffy clothing, fat deposits, or organic bulges. Ctrl inverts to deflate.',
-                image: '/examples/sculpt-inflate-expand.gif'
+                image: '/examples/sculpt-inflate-expand.mp4'
               }
             ]
           }
@@ -198,7 +198,7 @@ export const sculptingLessonData = {
               {
                 title: 'Height Control',
                 content: 'Layer brush maintains consistent height, preventing excessive buildup. Ideal for armor plates, scales, or any element needing uniform thickness.',
-                image: '/examples/sculpt-layer-height.gif'
+                image: '/examples/sculpt-layer-height.mp4'
               }
             ]
           }
@@ -220,7 +220,7 @@ export const sculptingLessonData = {
               {
                 title: 'Filling Cavities',
                 content: 'Fill raises low areas to create even surfaces. Perfect for cleaning up unwanted indentations.',
-                image: '/examples/sculpt-fill-cavity.gif'
+                image: '/examples/sculpt-fill-cavity.mp4'
               }
             ]
           }
@@ -235,7 +235,7 @@ export const sculptingLessonData = {
               {
                 title: 'Planar Surfaces',
                 content: 'Flatten calculates an average plane and pushes vertices toward it. Great for armor plates, walls, or any flat architectural element.',
-                image: '/examples/sculpt-flatten-plane.gif'
+                image: '/examples/sculpt-flatten-plane.mp4'
               }
             ]
           }
@@ -250,7 +250,7 @@ export const sculptingLessonData = {
               {
                 title: 'Flat Top Surfaces',
                 content: 'Creates flat plateaus on raised areas. Perfect for stylized forms and architectural elements.',
-                image: '/examples/sculpt-plateau.gif'
+                image: '/examples/sculpt-plateau.mp4'
               }
             ]
           }
@@ -265,7 +265,7 @@ export const sculptingLessonData = {
               {
                 title: 'Sharp Edges',
                 content: 'Creates sharp edges between two planes. Perfect for stylized creases and mechanical edges.',
-                image: '/examples/sculpt-multiplane-edge.gif'
+                image: '/examples/sculpt-multiplane-edge.mp4'
               }
             ]
           }
@@ -280,7 +280,7 @@ export const sculptingLessonData = {
               {
                 title: 'Peak Removal',
                 content: 'Scrape targets high areas, leaving valleys intact. Perfect for refining forms after rough blocking. Ctrl inverts to peak instead.',
-                image: '/examples/sculpt-scrape-peaks.gif'
+                image: '/examples/sculpt-scrape-peaks.mp4'
               }
             ]
           }
@@ -295,12 +295,12 @@ export const sculptingLessonData = {
               {
                 title: 'Surface Refinement',
                 content: 'Hold Shift to temporarily activate Smooth brush. Use it constantly while sculpting to maintain clean transitions and remove noise.',
-                image: '/examples/sculpt-smooth-refine.gif'
+                image: '/examples/sculpt-smooth-refine.mp4'
               },
               {
                 title: 'Smooth Strength',
                 content: 'Lower strength for subtle smoothing, higher for aggressive flattening. Use with low strength for final polish, high strength to fix mistakes.',
-                image: '/examples/sculpt-smooth-strength.gif'
+                image: '/examples/sculpt-smooth-strength.mp4'
               }
             ]
           }
@@ -315,7 +315,7 @@ export const sculptingLessonData = {
               {
                 title: 'Dynamic Trimming',
                 content: 'Draw shapes to trim away geometry. More flexible than Box Trim with freeform cutting options.',
-                image: '/examples/sculpt-trim.gif'
+                image: '/examples/sculpt-trim.mp4'
               }
             ]
           }
@@ -337,7 +337,7 @@ export const sculptingLessonData = {
               {
                 title: 'Edge Control',
                 content: 'Specialized for transforming mesh boundaries. Multiple deformation modes for edge manipulation.',
-                image: '/examples/sculpt-boundary.gif'
+                image: '/examples/sculpt-boundary.mp4'
               }
             ]
           }
@@ -352,7 +352,7 @@ export const sculptingLessonData = {
               {
                 title: 'Elastic Movement',
                 content: 'Creates smooth, elastic deformations. Better for organic forms than regular Grab.',
-                image: '/examples/sculpt-elasticgrab.gif'
+                image: '/examples/sculpt-elasticgrab.mp4'
               }
             ]
           }
@@ -367,7 +367,7 @@ export const sculptingLessonData = {
               {
                 title: 'Elastic Pulling',
                 content: 'Pulls geometry with elastic behavior for more natural organic extensions.',
-                image: '/examples/sculpt-elasticsnakehook.gif'
+                image: '/examples/sculpt-elasticsnakehook.mp4'
               }
             ]
           }
@@ -382,7 +382,7 @@ export const sculptingLessonData = {
               {
                 title: 'Form Manipulation',
                 content: 'Grab is like grabbing physical clay and moving it. Perfect for adjusting silhouettes, proportions, or repositioning major features.',
-                image: '/examples/sculpt-grab-move.gif'
+                image: '/examples/sculpt-grab-move.mp4'
               }
             ]
           }
@@ -397,7 +397,7 @@ export const sculptingLessonData = {
               {
                 title: '2D Movement',
                 content: 'Movement constrained to screen space. Perfect for precise adjustments without depth changes.',
-                image: '/examples/sculpt-grab2d.gif'
+                image: '/examples/sculpt-grab2d.mp4'
               }
             ]
           }
@@ -412,7 +412,7 @@ export const sculptingLessonData = {
               {
                 title: 'Silhouette Control',
                 content: 'Grab affects only the silhouette from your view. Perfect for refining shapes and character profiles.',
-                image: '/examples/sculpt-grabsilhouette.gif'
+                image: '/examples/sculpt-grabsilhouette.mp4'
               }
             ]
           }
@@ -427,7 +427,7 @@ export const sculptingLessonData = {
               {
                 title: 'Directional Smearing',
                 content: 'Nudge follows your stroke direction, moving surface detail along your path. Great for adjusting muscle flows or creating directional patterns.',
-                image: '/examples/sculpt-nudge-smear.gif'
+                image: '/examples/sculpt-nudge-smear.mp4'
               }
             ]
           }
@@ -442,7 +442,7 @@ export const sculptingLessonData = {
               {
                 title: 'Edge Sharpening',
                 content: 'Pinch tightens forms and sharpens edges. Use along ridges to make them more pronounced. Great for noses, ears, and bony protrusions.',
-                image: '/examples/sculpt-pinch-sharpen.gif'
+                image: '/examples/sculpt-pinch-sharpen.mp4'
               }
             ]
           }
@@ -457,7 +457,7 @@ export const sculptingLessonData = {
               {
                 title: 'Auto-IK Posing',
                 content: 'Pose creates automatic bone chains, letting you pose characters without rigging. Perfect for quick iterations.',
-                image: '/examples/sculpt-pose-ik.gif'
+                image: '/examples/sculpt-pose-ik.mp4'
               }
             ]
           }
@@ -472,7 +472,7 @@ export const sculptingLessonData = {
               {
                 title: 'Strong Pulling',
                 content: 'Creates strong outward pulling motions. Great for dramatic form changes and extrusions.',
-                image: '/examples/sculpt-pull.gif'
+                image: '/examples/sculpt-pull.mp4'
               }
             ]
           }
@@ -487,7 +487,7 @@ export const sculptingLessonData = {
               {
                 title: 'Controlled Relaxation',
                 content: 'Relaxes surfaces while maintaining some edge definition through pinching.',
-                image: '/examples/sculpt-relaxpinch.gif'
+                image: '/examples/sculpt-relaxpinch.mp4'
               }
             ]
           }
@@ -502,7 +502,7 @@ export const sculptingLessonData = {
               {
                 title: 'Surface Relaxation',
                 content: 'Slides vertices to relax surface tension and improve polygon flow.',
-                image: '/examples/sculpt-relaxslide.gif'
+                image: '/examples/sculpt-relaxslide.mp4'
               }
             ]
           }
@@ -517,12 +517,12 @@ export const sculptingLessonData = {
               {
                 title: 'Pulling Forms',
                 content: 'Snake Hook extends geometry while keeping volume consistent. Drag to pull out horns, spikes, tentacles, or any protruding element.',
-                image: '/examples/sculpt-snakehook-pull.gif'
+                image: '/examples/sculpt-snakehook-pull.mp4'
               },
               {
                 title: 'Magnify Option',
                 content: 'Enable Magnify for volumetric pulling that maintains thickness. Disable for flatter, ribbon-like extrusions.',
-                image: '/examples/sculpt-snakehook-magnify.gif'
+                image: '/examples/sculpt-snakehook-magnify.mp4'
               }
             ]
           }
@@ -537,7 +537,7 @@ export const sculptingLessonData = {
               {
                 title: 'Precise Pushing',
                 content: 'Creates subtle, thumb-like pushes. Perfect for small adjustments and detail work.',
-                image: '/examples/sculpt-thumb.gif'
+                image: '/examples/sculpt-thumb.mp4'
               }
             ]
           }
@@ -552,7 +552,7 @@ export const sculptingLessonData = {
               {
                 title: 'Twisting Motion',
                 content: 'Twists geometry around the brush center. Great for spiral patterns and rotational effects.',
-                image: '/examples/sculpt-twist.gif'
+                image: '/examples/sculpt-twist.mp4'
               }
             ]
           }
@@ -574,7 +574,7 @@ export const sculptingLessonData = {
               {
                 title: 'Geometry Density',
                 content: 'Paint to increase or decrease mesh density in specific areas.',
-                image: '/examples/sculpt-density.gif'
+                image: '/examples/sculpt-density.mp4'
               }
             ]
           }
@@ -589,7 +589,7 @@ export const sculptingLessonData = {
               {
                 title: 'Multires Creasing',
                 content: 'Creates sharp creases that work well with multiresolution displacement maps.',
-                image: '/examples/sculpt-creasemultires.gif'
+                image: '/examples/sculpt-creasemultires.mp4'
               }
             ]
           }
@@ -604,7 +604,7 @@ export const sculptingLessonData = {
               {
                 title: 'Face Set Painting',
                 content: 'Paint to create and organize face sets. Each set gets a unique color for easy identification.',
-                image: '/examples/sculpt-faceset-paint.gif'
+                image: '/examples/sculpt-faceset-paint.mp4'
               }
             ]
           }
@@ -619,12 +619,12 @@ export const sculptingLessonData = {
               {
                 title: 'Masking Basics',
                 content: 'Paint to mask areas (darken). Ctrl+Paint to unmask. Alt+Click to clear all masks. Masked areas are protected from all brush strokes.',
-                image: '/examples/sculpt-mask-paint.gif'
+                image: '/examples/sculpt-mask-paint.mp4'
               },
               {
                 title: 'Mask Operations',
                 content: 'Use Mask menu (A key) for box mask, lasso mask, or mask by cavity. Ctrl+I inverts mask. Essential for controlled sculpting.',
-                image: '/examples/sculpt-mask-operations.gif'
+                image: '/examples/sculpt-mask-operations.mp4'
               }
             ]
           }
@@ -639,7 +639,7 @@ export const sculptingLessonData = {
               {
                 title: 'Displacement Smearing',
                 content: 'Blends and smears displacement map details in multiresolution workflows.',
-                image: '/examples/sculpt-smearmultires.gif'
+                image: '/examples/sculpt-smearmultires.mp4'
               }
             ]
           }
@@ -654,7 +654,7 @@ export const sculptingLessonData = {
               {
                 title: 'Spray Painting',
                 content: 'Creates soft, gradual color application. Perfect for smooth color transitions and gradients.',
-                image: '/examples/sculpt-airbrush.gif'
+                image: '/examples/sculpt-airbrush.mp4'
               }
             ]
           }
@@ -669,7 +669,7 @@ export const sculptingLessonData = {
               {
                 title: 'Hard Blending',
                 content: 'Blends colors while maintaining harder edges for more defined transitions.',
-                image: '/examples/sculpt-blendhard.gif'
+                image: '/examples/sculpt-blendhard.mp4'
               }
             ]
           }
@@ -684,7 +684,7 @@ export const sculptingLessonData = {
               {
                 title: 'Soft Blending',
                 content: 'Creates gentle color transitions. Perfect for subtle color variations.',
-                image: '/examples/sculpt-blendsoft.gif'
+                image: '/examples/sculpt-blendsoft.mp4'
               }
             ]
           }
@@ -699,7 +699,7 @@ export const sculptingLessonData = {
               {
                 title: 'Square Blending',
                 content: 'Uses square brush shape for geometric color blending effects.',
-                image: '/examples/sculpt-blendsquare.gif'
+                image: '/examples/sculpt-blendsquare.mp4'
               }
             ]
           }
@@ -714,7 +714,7 @@ export const sculptingLessonData = {
               {
                 title: 'Blended Painting',
                 content: 'Paints while automatically blending with underlying colors.',
-                image: '/examples/sculpt-paintblend.gif'
+                image: '/examples/sculpt-paintblend.mp4'
               }
             ]
           }
@@ -729,7 +729,7 @@ export const sculptingLessonData = {
               {
                 title: 'Hard Edge Painting',
                 content: 'Creates sharp, defined color edges. Perfect for precise color work.',
-                image: '/examples/sculpt-painthard.gif'
+                image: '/examples/sculpt-painthard.mp4'
               }
             ]
           }
@@ -744,7 +744,7 @@ export const sculptingLessonData = {
               {
                 title: 'Pressure Hard Painting',
                 content: 'Hard edge painting that responds to pen pressure for variable intensity.',
-                image: '/examples/sculpt-painthardpressure.gif'
+                image: '/examples/sculpt-painthardpressure.mp4'
               }
             ]
           }
@@ -759,7 +759,7 @@ export const sculptingLessonData = {
               {
                 title: 'Soft Edge Painting',
                 content: 'Creates soft, gradual color transitions. Great for organic painting.',
-                image: '/examples/sculpt-paintsoft.gif'
+                image: '/examples/sculpt-paintsoft.mp4'
               }
             ]
           }
@@ -774,7 +774,7 @@ export const sculptingLessonData = {
               {
                 title: 'Pressure Soft Painting',
                 content: 'Soft painting that responds to pen pressure for natural color application.',
-                image: '/examples/sculpt-paintsoftpressure.gif'
+                image: '/examples/sculpt-paintsoftpressure.mp4'
               }
             ]
           }
@@ -789,7 +789,7 @@ export const sculptingLessonData = {
               {
                 title: 'Square Painting',
                 content: 'Uses square brush shape for geometric painting patterns.',
-                image: '/examples/sculpt-paintsquare.gif'
+                image: '/examples/sculpt-paintsquare.mp4'
               }
             ]
           }
@@ -804,7 +804,7 @@ export const sculptingLessonData = {
               {
                 title: 'Color Sharpening',
                 content: 'Increases contrast between colors for sharper, more defined color work.',
-                image: '/examples/sculpt-sharpen.gif'
+                image: '/examples/sculpt-sharpen.mp4'
               }
             ]
           }
@@ -819,7 +819,7 @@ export const sculptingLessonData = {
               {
                 title: 'Color Blending',
                 content: 'Blends and spreads colors across the surface for soft transitions.',
-                image: '/examples/sculpt-smear.gif'
+                image: '/examples/sculpt-smear.mp4'
               }
             ]
           }
@@ -841,7 +841,7 @@ export const sculptingLessonData = {
               {
                 title: 'Edge Bending',
                 content: 'Bends fabric at boundaries. Great for hem folds, edge details, and boundary manipulation.',
-                image: '/examples/sculpt-bendboundarycloth.gif'
+                image: '/examples/sculpt-bendboundarycloth.mp4'
               }
             ]
           }
@@ -856,7 +856,7 @@ export const sculptingLessonData = {
               {
                 title: 'Fabric Bending',
                 content: 'Creates curved bends in fabric. Perfect for natural draping and curved folds.',
-                image: '/examples/sculpt-bendcloth.gif'
+                image: '/examples/sculpt-bendcloth.mp4'
               }
             ]
           }
@@ -871,7 +871,7 @@ export const sculptingLessonData = {
               {
                 title: 'Fabric Dragging',
                 content: 'Drags fabric across surfaces creating natural folds and wrinkles as you move.',
-                image: '/examples/sculpt-dragcloth.gif'
+                image: '/examples/sculpt-dragcloth.mp4'
               }
             ]
           }
@@ -886,7 +886,7 @@ export const sculptingLessonData = {
               {
                 title: 'Fabric Expansion',
                 content: 'Creates outward expansion with cloth physics. Perfect for billowing or wind-blown fabric.',
-                image: '/examples/sculpt-expandcloth.gif'
+                image: '/examples/sculpt-expandcloth.mp4'
               }
             ]
           }
@@ -901,7 +901,7 @@ export const sculptingLessonData = {
               {
                 title: 'Fabric Grabbing',
                 content: 'Grab and move fabric with realistic cloth behavior. Creates natural folds as you manipulate.',
-                image: '/examples/sculpt-grabcloth.gif'
+                image: '/examples/sculpt-grabcloth.mp4'
               }
             ]
           }
@@ -916,7 +916,7 @@ export const sculptingLessonData = {
               {
                 title: 'Planar Fabric Movement',
                 content: 'Grab and move fabric along a constrained plane. Perfect for adjusting fabric flow directionally.',
-                image: '/examples/sculpt-grabplanarcloth.gif'
+                image: '/examples/sculpt-grabplanarcloth.mp4'
               }
             ]
           }
@@ -931,7 +931,7 @@ export const sculptingLessonData = {
               {
                 title: 'Random Fabric Movement',
                 content: 'Creates random, natural-looking fabric deformation. Great for organic, irregular wrinkles.',
-                image: '/examples/sculpt-grabrandomcloth.gif'
+                image: '/examples/sculpt-grabrandomcloth.mp4'
               }
             ]
           }
@@ -946,7 +946,7 @@ export const sculptingLessonData = {
               {
                 title: 'Fabric Inflation',
                 content: 'Inflates fabric with realistic cloth behavior. Great for pillows, puffy jackets, or inflated forms.',
-                image: '/examples/sculpt-inflatecloth.gif'
+                image: '/examples/sculpt-inflatecloth.mp4'
               }
             ]
           }
@@ -961,7 +961,7 @@ export const sculptingLessonData = {
               {
                 title: 'Gathered Fabric',
                 content: 'Pinches fabric into tight folds. Perfect for gathered seams, cinched fabric, or tight wrinkles.',
-                image: '/examples/sculpt-pinchfoldscloth.gif'
+                image: '/examples/sculpt-pinchfoldscloth.mp4'
               }
             ]
           }
@@ -976,7 +976,7 @@ export const sculptingLessonData = {
               {
                 title: 'Point Gathering',
                 content: 'Gathers fabric to a single point. Creates natural radial folds from the pinch location.',
-                image: '/examples/sculpt-pinchpointcloth.gif'
+                image: '/examples/sculpt-pinchpointcloth.mp4'
               }
             ]
           }
@@ -991,7 +991,7 @@ export const sculptingLessonData = {
               {
                 title: 'Fabric Indentation',
                 content: 'Pushes fabric inward with realistic wrinkle formation. Great for pressed or compressed areas.',
-                image: '/examples/sculpt-pushcloth.gif'
+                image: '/examples/sculpt-pushcloth.mp4'
               }
             ]
           }
@@ -1006,7 +1006,7 @@ export const sculptingLessonData = {
               {
                 title: 'Fabric Stretching',
                 content: 'Stretches fabric creating tension and smoothing. Perfect for tight clothing or stretched areas.',
-                image: '/examples/sculpt-stretchcloth.gif'
+                image: '/examples/sculpt-stretchcloth.mp4'
               }
             ]
           }
@@ -1021,7 +1021,7 @@ export const sculptingLessonData = {
               {
                 title: 'Boundary Twisting',
                 content: 'Twists fabric edges creating spiral effects. Perfect for twisted hems or decorative edges.',
-                image: '/examples/sculpt-twistboundarycloth.gif'
+                image: '/examples/sculpt-twistboundarycloth.mp4'
               }
             ]
           }
@@ -1046,17 +1046,17 @@ export const sculptingLessonData = {
               {
                 title: 'Enabling Dyntopo',
                 content: 'Press Ctrl+D to toggle Dyntopo on/off. When active, Blender automatically adds detail where you sculpt and removes it where not needed.',
-                image: '/examples/sculpt-dyntopo-enable.gif'
+                image: '/examples/sculpt-dyntopo-enable.mp4'
               },
               {
                 title: 'Detail Size',
                 content: 'Adjust Detail Size to control resolution. Smaller values = more detail but slower performance. Use R+drag to set detail size interactively.',
-                image: '/examples/sculpt-dyntopo-detail.gif'
+                image: '/examples/sculpt-dyntopo-detail.mp4'
               },
               {
                 title: 'Detailing Methods',
                 content: 'Relative Detail scales with view distance. Constant maintains uniform polygon size. Brush Detail adds geometry only where you sculpt.',
-                image: '/examples/sculpt-dyntopo-methods.gif'
+                image: '/examples/sculpt-dyntopo-methods.mp4'
               }
             ]
           }
@@ -1071,12 +1071,12 @@ export const sculptingLessonData = {
               {
                 title: 'Voxel Remesh',
                 content: 'Press Ctrl+R for quick voxel remesh. Adjust Voxel Size for resolution. Remesh early and often to maintain clean topology.',
-                image: '/examples/sculpt-remesh-voxel.gif'
+                image: '/examples/sculpt-remesh-voxel.mp4'
               },
               {
                 title: 'When to Remesh',
                 content: 'Remesh when polygons get stretched, after major form changes, or before adding fine detail. Maintains sculptability throughout your process.',
-                image: '/examples/sculpt-remesh-timing.gif'
+                image: '/examples/sculpt-remesh-timing.mp4'
               }
             ]
           }
@@ -1091,12 +1091,12 @@ export const sculptingLessonData = {
               {
                 title: 'Axis Symmetry',
                 content: 'Enable X, Y, or Z axis symmetry in the toolbar. Your strokes automatically mirror across the chosen axis. Toggle on/off as needed.',
-                image: '/examples/sculpt-symmetry-axis.gif'
+                image: '/examples/sculpt-symmetry-axis.mp4'
               },
               {
                 title: 'Radial Symmetry',
                 content: 'Radial Symmetry repeats strokes in a circular pattern. Perfect for flowers, mechanical parts, or any radially symmetric element.',
-                image: '/examples/sculpt-symmetry-radial.gif'
+                image: '/examples/sculpt-symmetry-radial.mp4'
               }
             ]
           }
@@ -1118,12 +1118,12 @@ export const sculptingLessonData = {
               {
                 title: 'Adding Multires',
                 content: 'Add Multiresolution modifier, then Subdivide to add levels. Sculpt at high levels, lower level for animation. Changes propagate between levels.',
-                image: '/examples/sculpt-multires-setup.gif'
+                image: '/examples/sculpt-multires-setup.mp4'
               },
               {
                 title: 'Level Management',
                 content: 'Sculpt level controls active detail. Viewport level controls preview. Render level affects final output. Work at different levels for efficiency.',
-                image: '/examples/sculpt-multires-levels.gif'
+                image: '/examples/sculpt-multires-levels.mp4'
               }
             ]
           }
@@ -1138,7 +1138,7 @@ export const sculptingLessonData = {
               {
                 title: 'Changing Matcaps',
                 content: 'Click matcap preview ball in viewport shading options. Choose matcaps that show form clearly. Bright matcaps for overall form, contrasted ones for detail.',
-                image: '/examples/sculpt-matcap-change.gif'
+                image: '/examples/sculpt-matcap-change.mp4'
               }
             ]
           }
@@ -1153,7 +1153,7 @@ export const sculptingLessonData = {
               {
                 title: 'Auto Masking',
                 content: 'Enable Cavity in Auto-Masking options. Sculpt affects only peaks or valleys. Great for adding weathering, highlights, or controlled detail.',
-                image: '/examples/sculpt-cavity-mask.gif'
+                image: '/examples/sculpt-cavity-mask.mp4'
               }
             ]
           }

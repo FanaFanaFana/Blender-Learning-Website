@@ -56,17 +56,17 @@ export const productDesignLessonData = {
               {
                 title: 'Proportion Systems',
                 content: 'Study classic proportion systems. The golden ratio creates pleasing relationships. Fibonacci spacing makes forms feel natural. Use these as guides, not rigid rules.',
-                image: '/examples/product-proportions.gif'
+                image: '/examples/product-proportions.mp4'
               },
               {
                 title: 'Mass Distribution',
                 content: 'Heavier-looking elements at the bottom create stability. Top-heavy products feel unstable. Balance visual weight through form, not just actual mass.',
-                image: '/examples/product-mass-balance.gif'
+                image: '/examples/product-mass-balance.mp4'
               },
               {
                 title: 'Symmetry vs Asymmetry',
                 content: 'Symmetry suggests reliability and precision. Asymmetry adds dynamism and interest. Most products are primarily symmetric with subtle asymmetric details.',
-                image: '/examples/product-symmetry.gif'
+                image: '/examples/product-symmetry.mp4'
               }
             ]
           }
@@ -81,17 +81,17 @@ export const productDesignLessonData = {
               {
                 title: 'Grip Ergonomics',
                 content: 'Average grip diameter is 30-35mm. Add finger grooves where natural. Avoid sharp edges on held surfaces. Test forms with real-world hand positions.',
-                image: '/examples/product-grip-ergo.gif'
+                image: '/examples/product-grip-ergo.mp4'
               },
               {
                 title: 'Button Placement',
                 content: 'Place buttons where thumbs naturally rest. Power buttons accessible but not accidentally pressed. Group related controls. Consider left and right-handed use.',
-                image: '/examples/product-button-placement.gif'
+                image: '/examples/product-button-placement.mp4'
               },
               {
                 title: 'Weight & Center of Mass',
                 content: 'Balance point affects feel in hand. Bottom-heavy feels stable. Top-heavy feels awkward. Position heavy components low and centered for best feel.',
-                image: '/examples/product-center-mass.gif'
+                image: '/examples/product-center-mass.mp4'
               }
             ]
           }
@@ -106,17 +106,17 @@ export const productDesignLessonData = {
               {
                 title: 'Signature Elements',
                 content: 'Develop signature curves, edge treatments, or detail motifs. Apple has rounded corners, Dyson has smooth curves. Your products should have recognizable DNA.',
-                image: '/examples/product-signature-elements.gif'
+                image: '/examples/product-signature-elements.mp4'
               },
               {
                 title: 'Material Consistency',
                 content: 'Use consistent material palettes across products. If one product uses brushed aluminum, others should too. Material consistency builds brand identity.',
-                image: '/examples/product-material-consistency.gif'
+                image: '/examples/product-material-consistency.mp4'
               },
               {
                 title: 'Detail Repetition',
                 content: 'Repeat design details across products - same button style, same vent pattern, same edge radius. Repetition creates family resemblance and brand cohesion.',
-                image: '/examples/product-detail-repetition.gif'
+                image: '/examples/product-detail-repetition.mp4'
               }
             ]
           }
@@ -138,17 +138,17 @@ export const productDesignLessonData = {
               {
                 title: 'Quad Topology',
                 content: 'Maintain all-quad topology for clean subdivision. Avoid triangles and n-gons except on flat surfaces. Quads subdivide predictably, others create artifacts.',
-                image: '/examples/product-quad-topology.gif'
+                image: '/examples/product-quad-topology.mp4'
               },
               {
                 title: 'Edge Flow Direction',
                 content: 'Edge loops should follow the form\'s natural curves. Think of topology like muscle fibers - they should follow the direction of stress and movement.',
-                image: '/examples/product-edge-flow.gif'
+                image: '/examples/product-edge-flow.mp4'
               },
               {
                 title: 'Creasing vs Support Loops',
                 content: 'Use crease edges for hard transitions on subdivision. Use support loops for controlled curves. Know when each is appropriate for your design intent.',
-                image: '/examples/product-crease-support.gif'
+                image: '/examples/product-crease-support.mp4'
               }
             ]
           }
@@ -163,17 +163,17 @@ export const productDesignLessonData = {
               {
                 title: 'Understanding Continuity',
                 content: 'G0 is touching, G1 is tangent, G2 is curvature. Products need G2 for premium feel. Check continuity with MatCap shaders - highlights reveal discontinuities.',
-                image: '/examples/product-continuity-levels.gif'
+                image: '/examples/product-continuity-levels.mp4'
               },
               {
                 title: 'Highlight Flow',
                 content: 'Add studio lighting to check surface quality. Highlights should flow smoothly across surfaces with no breaks or kinks. Wavy highlights mean topology problems.',
-                image: '/examples/product-highlight-flow.gif'
+                image: '/examples/product-highlight-flow.mp4'
               },
               {
                 title: 'Fixing Discontinuities',
                 content: 'Adjust edge loops to smooth kinks. Add or remove loops to control curvature. Use proportional editing for subtle adjustments. Check from multiple angles.',
-                image: '/examples/product-fixing-discontinuities.gif'
+                image: '/examples/product-fixing-discontinuities.mp4'
               }
             ]
           }
@@ -188,17 +188,17 @@ export const productDesignLessonData = {
               {
                 title: 'Surface Blending',
                 content: 'Use subdivision with proper edge loops to blend features. No sharp transitions unless intentional. Fillets should have consistent radius throughout.',
-                image: '/examples/product-surface-blending.gif'
+                image: '/examples/product-surface-blending.mp4'
               },
               {
                 title: 'Fillet Consistency',
                 content: 'Use consistent fillet radii - typically 0.5mm, 1mm, 2mm, 5mm. Larger features get larger fillets. Consistency creates professional appearance.',
-                image: '/examples/product-fillet-consistency.gif'
+                image: '/examples/product-fillet-consistency.mp4'
               },
               {
                 title: 'Panel Gaps',
                 content: 'Real products have tiny gaps between panels. 0.1-0.3mm gaps catch light and shadow. Add deliberate micro-gaps for realism, not mesh intersections.',
-                image: '/examples/product-panel-gaps.gif'
+                image: '/examples/product-panel-gaps.mp4'
               }
             ]
           }
@@ -220,17 +220,17 @@ export const productDesignLessonData = {
               {
                 title: 'Glossy Plastics',
                 content: 'High roughness variation. Base roughness 0.1-0.3, but never uniform. Add subtle texture for realism. Slightly colored reflections - not pure white.',
-                image: '/examples/product-glossy-plastic.gif'
+                image: '/examples/product-glossy-plastic.mp4'
               },
               {
                 title: 'Matte Plastics',
                 content: 'Higher roughness 0.5-0.8. Add surface texture - orange peel effect. Slight subsurface scattering for depth. Never perfectly diffuse - all materials reflect.',
-                image: '/examples/product-matte-plastic.gif'
+                image: '/examples/product-matte-plastic.mp4'
               },
               {
                 title: 'Soft Touch Rubber',
                 content: 'Medium roughness 0.4-0.6. Slightly darker than hard plastic. Visible pores in close-up. Finger smudges add realism - add as texture layer.',
-                image: '/examples/product-soft-touch.gif'
+                image: '/examples/product-soft-touch.mp4'
               }
             ]
           }
@@ -245,17 +245,17 @@ export const productDesignLessonData = {
               {
                 title: 'Brushed Aluminum',
                 content: 'Anisotropic roughness - different in brush direction vs perpendicular. Use tangent node for brush direction. Roughness 0.2-0.4 with directional variation.',
-                image: '/examples/product-brushed-aluminum.gif'
+                image: '/examples/product-brushed-aluminum.mp4'
               },
               {
                 title: 'Polished Chrome',
                 content: 'Very low roughness 0.05-0.15. Perfect mirror-like reflections. Shows environment clearly. Use HDRI for realistic reflections. Slight imperfections for realism.',
-                image: '/examples/product-polished-chrome.gif'
+                image: '/examples/product-polished-chrome.mp4'
               },
               {
                 title: 'Anodized Aluminum',
                 content: 'Colored metalness - tint the base color but keep metallic value high. Slight roughness increase vs bare aluminum. Common in premium electronics.',
-                image: '/examples/product-anodized-aluminum.gif'
+                image: '/examples/product-anodized-aluminum.mp4'
               }
             ]
           }
@@ -270,17 +270,17 @@ export const productDesignLessonData = {
               {
                 title: 'Glass Properties',
                 content: 'IOR 1.5 for glass, 1.45 for acrylic. Transmission 1.0 but with slight absorption for thickness. Add slight roughness 0.01-0.05 for realism, never perfectly smooth.',
-                image: '/examples/product-glass-properties.gif'
+                image: '/examples/product-glass-properties.mp4'
               },
               {
                 title: 'Screen Glass',
                 content: 'Slightly tinted for anti-reflective coating. Oleophobic coating reduces fingerprints but they still show. Add subtle normal map for surface texture.',
-                image: '/examples/product-screen-glass.gif'
+                image: '/examples/product-screen-glass.mp4'
               },
               {
                 title: 'Imperfections',
                 content: 'Add fingerprints, dust particles, micro-scratches. Use separate layer with low opacity. Place smudges where fingers naturally touch. Imperfections add realism.',
-                image: '/examples/product-glass-imperfections.gif'
+                image: '/examples/product-glass-imperfections.mp4'
               }
             ]
           }
@@ -305,17 +305,17 @@ export const productDesignLessonData = {
               {
                 title: 'Primitive Blocking',
                 content: 'Block out basic shape with low-poly primitives. Get proportions and overall form right first. Don\'t add detail until basic shape is perfect.',
-                image: '/examples/product-box-blocking.gif'
+                image: '/examples/product-box-blocking.mp4'
               },
               {
                 title: 'Strategic Loop Cuts',
                 content: 'Add loops where form changes direction. More loops in curved areas, fewer on flat surfaces. Use Ctrl+R to add loops, scroll to adjust count before confirming.',
-                image: '/examples/product-strategic-loops.gif'
+                image: '/examples/product-strategic-loops.mp4'
               },
               {
                 title: 'Form Sculpting',
                 content: 'Enable proportional editing (O key). Adjust vertices to create curves. Use proportional falloff to affect surrounding geometry smoothly.',
-                image: '/examples/product-form-sculpting.gif'
+                image: '/examples/product-form-sculpting.mp4'
               }
             ]
           }
@@ -330,17 +330,17 @@ export const productDesignLessonData = {
               {
                 title: 'Profile Curves',
                 content: 'Draw product profile with bezier curve. Adjust handles for perfect curves. Use Curve modifier to deform mesh along curve. Non-destructive workflow.',
-                image: '/examples/product-profile-curves.gif'
+                image: '/examples/product-profile-curves.mp4'
               },
               {
                 title: 'Revolve & Extrude',
                 content: 'Use Screw modifier to revolve curve around axis - perfect for bottles, speakers, cylindrical products. Adjust axis position and angle for various forms.',
-                image: '/examples/product-curve-revolve.gif'
+                image: '/examples/product-curve-revolve.mp4'
               },
               {
                 title: 'Bevel Curves to Mesh',
                 content: 'Add depth to 2D curves with bevel depth. Control resolution. Convert to mesh when satisfied. Great for logos, buttons, embossed text.',
-                image: '/examples/product-bevel-curves.gif'
+                image: '/examples/product-bevel-curves.mp4'
               }
             ]
           }
@@ -355,17 +355,17 @@ export const productDesignLessonData = {
               {
                 title: 'Button Cut-Outs',
                 content: 'Model button shape, position on surface. Add Boolean modifier (Difference) to housing. Keep button object for later use as actual button component.',
-                image: '/examples/product-boolean-buttons.gif'
+                image: '/examples/product-boolean-buttons.mp4'
               },
               {
                 title: 'Port & Connector Holes',
                 content: 'Use cylinders for USB ports, audio jacks, charging ports. Array modifier for multiple ports. Boolean difference cuts perfect holes.',
-                image: '/examples/product-boolean-ports.gif'
+                image: '/examples/product-boolean-ports.mp4'
               },
               {
                 title: 'Clean Boolean Results',
                 content: 'After applying booleans, use Limited Dissolve to clean up. Add edge loops around cuts for clean topology. Bevel edges for realistic chamfers.',
-                image: '/examples/product-boolean-cleanup.gif'
+                image: '/examples/product-boolean-cleanup.mp4'
               }
             ]
           }
@@ -387,17 +387,17 @@ export const productDesignLessonData = {
               {
                 title: 'Embossed Logos',
                 content: 'Add text curve, extrude slightly. Position on surface, use Shrinkwrap modifier to conform. Boolean union or apply as separate object with offset.',
-                image: '/examples/product-embossed-logo.gif'
+                image: '/examples/product-embossed-logo.mp4'
               },
               {
                 title: 'Engraved Details',
                 content: 'Create text/logo as curve, extrude inward. Boolean difference to cut into surface. Add slight bevel to engraved edges for realism.',
-                image: '/examples/product-engraved-logo.gif'
+                image: '/examples/product-engraved-logo.mp4'
               },
               {
                 title: 'Printed Graphics',
                 content: 'Use UV mapped textures for printed elements. Add slight normal map for texture depth. Never perfectly flat - add subtle imperfections.',
-                image: '/examples/product-printed-graphics.gif'
+                image: '/examples/product-printed-graphics.mp4'
               }
             ]
           }
@@ -412,17 +412,17 @@ export const productDesignLessonData = {
               {
                 title: 'Button Geometry',
                 content: 'Model buttons separately from housing. Add 0.2-0.5mm gap around edges. Slight dome or contour on button top. Consider finger contact area.',
-                image: '/examples/product-button-geometry.gif'
+                image: '/examples/product-button-geometry.mp4'
               },
               {
                 title: 'Tactile Indicators',
                 content: 'Add subtle ribs, dots, or texture to indicate button function without looking. Power button often has distinct feel. Use different materials.',
-                image: '/examples/product-tactile-indicators.gif'
+                image: '/examples/product-tactile-indicators.mp4'
               },
               {
                 title: 'LED Indicators',
                 content: 'Model translucent rings or dots for LED shine-through. Use emission shader. Add light bloom in compositing. Consider both on and off states.',
-                image: '/examples/product-led-indicators.gif'
+                image: '/examples/product-led-indicators.mp4'
               }
             ]
           }
@@ -437,17 +437,17 @@ export const productDesignLessonData = {
               {
                 title: 'Procedural Texture',
                 content: 'Use Noise Texture for subtle surface variation. Wave Texture for brushed effects. Voronoi for patterned surfaces. Adjust scale and strength carefully.',
-                image: '/examples/product-procedural-texture.gif'
+                image: '/examples/product-procedural-texture.mp4'
               },
               {
                 title: 'Normal Map Details',
                 content: 'Add micro-details via normal maps - grain, texture, tiny imperfections. Much lighter than geometry. Bump map for subtle height, normal for directional detail.',
-                image: '/examples/product-normal-details.gif'
+                image: '/examples/product-normal-details.mp4'
               },
               {
                 title: 'Wear Maps',
                 content: 'Use dirt/wear maps to vary roughness across surface. Edges get more wear. High-touch areas show more use. Adds realism through imperfection.',
-                image: '/examples/product-wear-maps.gif'
+                image: '/examples/product-wear-maps.mp4'
               }
             ]
           }
@@ -472,17 +472,17 @@ export const productDesignLessonData = {
               {
                 title: 'Product Photography',
                 content: 'Collect photos from multiple angles - front, side, top, details. Official product photos show ideal appearance. User photos show real-world use and wear.',
-                image: '/examples/product-reference-photos.gif'
+                image: '/examples/product-reference-photos.mp4'
               },
               {
                 title: 'Teardown Analysis',
                 content: 'Look at disassembly images to understand ruction. See how parts fit together, material transitions, internal structure. Informs realistic design.',
-                image: '/examples/product-teardown-analysis.gif'
+                image: '/examples/product-teardown-analysis.mp4'
               },
               {
                 title: 'Ergonomic Study',
                 content: 'Photo reference of products in use. Hand positions, grip styles, button access. Products must look good and work well - study both aspects.',
-                image: '/examples/product-ergonomic-study.gif'
+                image: '/examples/product-ergonomic-study.mp4'
               }
             ]
           }
@@ -497,12 +497,12 @@ export const productDesignLessonData = {
               {
                 title: 'Form Exploration',
                 content: 'Sketch 10-20 thumbnail concepts. Try different proportions, silhouettes, angles. Don\'t commit to first idea - explore variations quickly.',
-                image: '/examples/product-form-exploration.gif'
+                image: '/examples/product-form-exploration.mp4'
               },
               {
                 title: 'Detail Refinement',
                 content: 'Choose best concept, refine details. Button placement, vent patterns, material breaks. Work out design language before 3D work begins.',
-                image: '/examples/product-detail-refinement.gif'
+                image: '/examples/product-detail-refinement.mp4'
               }
             ]
           }
@@ -517,12 +517,12 @@ export const productDesignLessonData = {
               {
                 title: 'Scale Reference',
                 content: 'Import scale reference - standard hand size, common object comparisons. Set up real-world units in Blender. Model to actual size, not arbitrary scale.',
-                image: '/examples/product-scale-reference.gif'
+                image: '/examples/product-scale-reference.mp4'
               },
               {
                 title: 'Proportion Guides',
                 content: 'Use guide objects for key dimensions - overall length, button size, screen area. Measure existing products for realistic proportions.',
-                image: '/examples/product-proportion-guides.gif'
+                image: '/examples/product-proportion-guides.mp4'
               }
             ]
           }
@@ -544,17 +544,17 @@ export const productDesignLessonData = {
               {
                 title: 'Housing Shell',
                 content: 'Start with cube or cylinder, add minimal loops. Adjust vertices to match proportions. Use Mirror modifier for symmetry. Keep polygon count low initially.',
-                image: '/examples/product-housing-shell.gif'
+                image: '/examples/product-housing-shell.mp4'
               },
               {
                 title: 'Component Blocking',
                 content: 'Add major components - screen area, button regions, ports. Block out as separate objects or face groups. Establish spatial relationships.',
-                image: '/examples/product-component-blocking.gif'
+                image: '/examples/product-component-blocking.mp4'
               },
               {
                 title: 'Curve Refinement',
                 content: 'Add subdivision surface modifier. Add edge loops to control curves. Check silhouette from all angles. Adjust until forms are elegant and intentional.',
-                image: '/examples/product-curve-refinement.gif'
+                image: '/examples/product-curve-refinement.mp4'
               }
             ]
           }
@@ -569,12 +569,12 @@ export const productDesignLessonData = {
               {
                 title: 'Quad Flow',
                 content: 'Convert any triangles to quads if possible. Ensure edge loops flow smoothly around curves. Avoid poles on curved surfaces - they cause pinching.',
-                image: '/examples/product-quad-flow.gif'
+                image: '/examples/product-quad-flow.mp4'
               },
               {
                 title: 'Support Loops',
                 content: 'Add support loops near edges to control subdivision sharpness. Closer loops : sharper edges. Adjust loop placement for desired edge softness.',
-                image: '/examples/product-support-loops.gif'
+                image: '/examples/product-support-loops.mp4'
               }
             ]
           }
@@ -589,17 +589,17 @@ export const productDesignLessonData = {
               {
                 title: 'MatCap Preview',
                 content: 'Enable MatCap shading in viewport. Use reflective MatCap to check surface continuity. Look for irregular highlights or broken reflections.',
-                image: '/examples/product-matcap-check.gif'
+                image: '/examples/product-matcap-check.mp4'
               },
               {
                 title: 'Studio Lighting Test',
                 content: 'Add area lights to simulate studio setup. Observe how highlights fall across surfaces. Adjust topology until highlights flow perfectly.',
-                image: '/examples/product-lighting-test.gif'
+                image: '/examples/product-lighting-test.mp4'
               },
               {
                 title: 'Multi-Angle Review',
                 content: 'Check model from all angles - front, back, top, bottom, three-quarter views. Surface quality must be consistent from every viewing angle.',
-                image: '/examples/product-angle-review.gif'
+                image: '/examples/product-angle-review.mp4'
               }
             ]
           }
@@ -621,12 +621,12 @@ export const productDesignLessonData = {
               {
                 title: 'Boolean Features',
                 content: 'Model button shapes, port cutouts, vent patterns. Apply as boolean operations to main housing. Keep cutter objects organized in collection.',
-                image: '/examples/product-boolean-features.gif'
+                image: '/examples/product-boolean-features.mp4'
               },
               {
                 title: 'Component Modeling',
                 content: 'Model actual buttons, not just holes. Create screen, ports, rubber feet. Each component gets proper materials and detail level.',
-                image: '/examples/product-component-modeling.gif'
+                image: '/examples/product-component-modeling.mp4'
               }
             ]
           }
@@ -641,17 +641,17 @@ export const productDesignLessonData = {
               {
                 title: 'Brand Elements',
                 content: 'Add logos, brand names, model numbers. Use curves for crisp text. Choose embossing, engraving, or printing based on product tier and style.',
-                image: '/examples/product-brand-elements.gif'
+                image: '/examples/product-brand-elements.mp4'
               },
               {
                 title: 'Texture Patterns',
                 content: 'Add grip texture, vent patterns, decorative details. Use array modifier for repeated elements. Consider both aesthetics and function.',
-                image: '/examples/product-texture-patterns.gif'
+                image: '/examples/product-texture-patterns.mp4'
               },
               {
                 title: 'Label & Markings',
                 content: 'Add regulatory markings, usage icons, warning labels. Place on bottom or back surfaces. Use decals or UV mapped graphics for these.',
-                image: '/examples/product-labels-markings.gif'
+                image: '/examples/product-labels-markings.mp4'
               }
             ]
           }
@@ -666,17 +666,17 @@ export const productDesignLessonData = {
               {
                 title: 'Panel Separation',
                 content: 'Separate top and bottom housing with small gap. Offset faces slightly or use Solidify modifier. Gap should be consistent - use Array modifier for uniform spacing.',
-                image: '/examples/product-panel-separation.gif'
+                image: '/examples/product-panel-separation.mp4'
               },
               {
                 title: 'Button Clearances',
                 content: 'Leave small gap around buttons - 0.2-0.5mm. Suggests button can move. Use Offset Faces or scale faces slightly inward after insetting.',
-                image: '/examples/product-button-clearances.gif'
+                image: '/examples/product-button-clearances.mp4'
               },
               {
                 title: 'Seam Lines',
                 content: 'Add subtle seams where parts meet. Real products are assembled from multiple parts. Show seams deliberately - they tell manufacturing story.',
-                image: '/examples/product-seam-lines.gif'
+                image: '/examples/product-seam-lines.mp4'
               }
             ]
           }
@@ -698,17 +698,17 @@ export const productDesignLessonData = {
               {
                 title: 'Base Materials',
                 content: 'Assign base materials to components - plastic, metal, glass, rubber. Set up Principled BSDF correctly for each material type. Get base look right first.',
-                image: '/examples/product-base-materials.gif'
+                image: '/examples/product-base-materials.mp4'
               },
               {
                 title: 'Texture Mapping',
                 content: 'UV unwrap for texture application. Mark seams along edges and hidden areas. Use texture painting or procedural textures for surface variation.',
-                image: '/examples/product-texture-mapping.gif'
+                image: '/examples/product-texture-mapping.mp4'
               },
               {
                 title: 'Detail Textures',
                 content: 'Add roughness variation, normal maps for texture, fingerprints and wear. Layer multiple textures with Mix nodes. Subtle variation prevents CG look.',
-                image: '/examples/product-detail-textures.gif'
+                image: '/examples/product-detail-textures.mp4'
               }
             ]
           }
@@ -723,17 +723,17 @@ export const productDesignLessonData = {
               {
                 title: 'HDRI Environment',
                 content: 'Use studio HDRI for base illumination and reflections. Adjust strength for mood - bright for clean product shots, dim for dramatic. HDRI provides realistic reflections.',
-                image: '/examples/product-hdri-setup.gif'
+                image: '/examples/product-hdri-setup.mp4'
               },
               {
                 title: 'Key Light',
                 content: 'Add large area light as key light - main illumination source. Position 45° from subject. Adjust size for soft shadows. Power should be 2-3x fill lights.',
-                image: '/examples/product-key-light.gif'
+                image: '/examples/product-key-light.mp4'
               },
               {
                 title: 'Fill & Rim Lights',
                 content: 'Add fill light opposite key to soften shadows. Rim light from behind to separate product from background. Use lower power than key light for each.',
-                image: '/examples/product-fill-rim-lights.gif'
+                image: '/examples/product-fill-rim-lights.mp4'
               }
             ]
           }
@@ -748,17 +748,17 @@ export const productDesignLessonData = {
               {
                 title: 'Camera Angle',
                 content: 'Use 3/4 view for hero shots - shows front and side simultaneously. Slightly above subject to show top. Avoid extreme angles unless for specific effect.',
-                image: '/examples/product-camera-angle.gif'
+                image: '/examples/product-camera-angle.mp4'
               },
               {
                 title: 'Focal Length',
                 content: 'Use 50-85mm focal length for product shots. Wider lenses cause distortion. Longer lenses compress depth. 50mm mimics human eye, 85mm is flattering.',
-                image: '/examples/product-focal-length.gif'
+                image: '/examples/product-focal-length.mp4'
               },
               {
                 title: 'Depth of Field',
                 content: 'Use shallow depth of field to focus attention. F-stop 2.8-5.6 for product shots. Keep important features in focus, allow background to blur softly.',
-                image: '/examples/product-depth-field.gif'
+                image: '/examples/product-depth-field.mp4'
               }
             ]
           }
@@ -773,17 +773,17 @@ export const productDesignLessonData = {
               {
                 title: 'Color Grading',
                 content: 'Adjust color balance, saturation, contrast. Product renders often benefit from slight saturation boost. Use Color Balance node for mood adjustment.',
-                image: '/examples/product-color-grading.gif'
+                image: '/examples/product-color-grading.mp4'
               },
               {
                 title: 'Glare & Bloom',
                 content: 'Add Glare node for light bloom on bright areas. Use Fog Glow type, low threshold. Suggests shiny surfaces and adds premium feel. Keep subtle.',
-                image: '/examples/product-glare-bloom.gif'
+                image: '/examples/product-glare-bloom.mp4'
               },
               {
                 title: 'Sharpening',
                 content: 'Add subtle sharpening with Filter node. Makes edges crisper and enhances detail perception. Over-sharpening looks bad - keep barely noticeable.',
-                image: '/examples/product-sharpening.gif'
+                image: '/examples/product-sharpening.mp4'
               }
             ]
           }

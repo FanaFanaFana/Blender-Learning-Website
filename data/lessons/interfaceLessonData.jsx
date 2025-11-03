@@ -76,7 +76,7 @@ export const interfaceLessonData = {
               {
                 title: 'Using the Console',
                 content: 'The Python Console lets you interact with Blender through code. Type commands, see instant results, and learn the API. Perfect for automation and scripting.',
-                image: '/examples/python-console.gif',
+                image: '/examples/python-console.mp4',
                 tips: [
                   'bpy.ops for operations',
                   'bpy.data for scene data',
@@ -97,7 +97,7 @@ export const interfaceLessonData = {
               {
                 title: 'Operation Logging',
                 content: 'Every action you perform in Blender is logged here as Python code. This is incredibly useful for learning the API and creating automated scripts.',
-                image: '/examples/info-editor.gif',
+                image: '/examples/info-editor.mp4',
                 tips: [
                   'Copy commands to create scripts',
                   'Shows errors and warnings',
@@ -118,7 +118,7 @@ export const interfaceLessonData = {
               {
                 title: 'Script Editing',
                 content: 'Write Python scripts directly in Blender. Use templates, run scripts instantly with Alt+P, and create powerful automation tools.',
-                image: '/examples/text-editor.gif',
+                image: '/examples/text-editor.mp4',
                 tips: [
                   'Alt+P to run script',
                   'Templates menu for examples',
@@ -139,7 +139,7 @@ export const interfaceLessonData = {
               {
                 title: 'Managing Assets',
                 content: 'The Asset Browser helps you organize reusable content. Mark assets, create catalogs, and drag them into your scene for instant use.',
-                image: '/examples/asset-browser.gif',
+                image: '/examples/asset-browser.mp4',
                 tips: [
                   'Mark assets with shield icon',
                   'Drag assets into scene',
@@ -160,7 +160,7 @@ export const interfaceLessonData = {
               {
                 title: 'Node-Based Materials',
                 content: 'The Shader Editor uses a node system to create materials. Connect nodes together to build everything from simple colors to complex, photorealistic surfaces.',
-                image: '/examples/shader-editor.gif',
+                image: '/examples/shader-editor.mp4',
                 tips: [
                   'Shift+A to add nodes',
                   'Connect node sockets by dragging',
@@ -181,7 +181,7 @@ export const interfaceLessonData = {
               {
                 title: 'UV Unwrapping',
                 content: 'The UV Editor lets you unwrap your 3D models into 2D space. This is essential for texture painting and applying image textures.',
-                image: '/examples/uv-editor.gif',
+                image: '/examples/uv-editor.mp4',
                 tips: [
                   'U key in Edit Mode to unwrap',
                   'Select seams with Ctrl+E > Mark Seam',
@@ -202,7 +202,7 @@ export const interfaceLessonData = {
               {
                 title: 'Procedural Modeling',
                 content: 'Geometry Nodes let you create procedural effects and complex geometry systems. Build parametric models that update automatically.',
-                image: '/examples/geometry-nodes.gif',
+                image: '/examples/geometry-nodes.mp4',
                 tips: [
                   'Shift+A to add nodes',
                   'Use Distribute Points on Faces for scattering',
@@ -223,7 +223,7 @@ export const interfaceLessonData = {
               {
                 title: 'Animation Control',
                 content: 'The Timeline shows your animation frames. Scrub the playhead to preview animation, set keyframes, and control playback speed.',
-                image: '/examples/timeline.gif',
+                image: '/examples/timeline.mp4',
                 tips: [
                   'Spacebar to play/pause',
                   'I key to insert keyframes',
@@ -244,7 +244,7 @@ export const interfaceLessonData = {
               {
                 title: 'Keyframe Management',
                 content: 'The Dope Sheet shows all your keyframes in a spreadsheet format. Move, copy, and organize keyframes for precise animation control.',
-                image: '/examples/dope-sheet.gif',
+                image: '/examples/dope-sheet.mp4',
                 tips: [
                   'G to move keyframes',
                   'S to scale timing',
@@ -265,7 +265,7 @@ export const interfaceLessonData = {
               {
                 title: 'Animation Curves',
                 content: 'The Graph Editor shows animation as curves. Edit handles to control easing and timing, creating smooth or snappy motion.',
-                image: '/examples/graph-editor.gif',
+                image: '/examples/graph-editor.mp4',
                 tips: [
                   'V for handle types',
                   'Shift+E for extrapolation modes',
@@ -286,7 +286,7 @@ export const interfaceLessonData = {
               {
                 title: 'Action Strips',
                 content: 'The NLA Editor lets you combine multiple animations into sequences. Layer walk cycles, blend actions, and create complex character performances.',
-                image: '/examples/nla-editor.gif',
+                image: '/examples/nla-editor.mp4',
                 tips: [
                   'Push Down icon creates action strip',
                   'Blend In/Out for smooth transitions',
@@ -307,7 +307,7 @@ export const interfaceLessonData = {
               {
                 title: 'Video Editing',
                 content: 'Blender includes a full video editor. Cut footage, add effects, composite renders, and create complete video projects.',
-                image: '/examples/video-sequencer.gif',
+                image: '/examples/video-sequencer.mp4',
                 tips: [
                   'Add > Movie to import footage',
                   'K key for blade/cut tool',
@@ -328,7 +328,7 @@ export const interfaceLessonData = {
               {
                 title: 'Texture Painting',
                 content: 'The Image Editor displays textures and renders. Switch to Paint mode to paint directly on your textures in 2D.',
-                image: '/examples/image-editor.gif',
+                image: '/examples/image-editor.mp4',
                 tips: [
                   'Switch to Paint mode for texture painting',
                   'S key to sample colors',
@@ -349,7 +349,7 @@ export const interfaceLessonData = {
               {
                 title: 'Post-Processing',
                 content: 'The Compositor uses nodes to add effects to your renders. Color grade, add glows, combine layers, and create stunning final images.',
-                image: '/examples/compositor.gif',
+                image: '/examples/compositor.mp4',
                 tips: [
                   'Use Render Layers node as input',
                   'Enable backdrop for preview',
@@ -370,7 +370,7 @@ export const interfaceLessonData = {
               {
                 title: 'Legacy Textures',
                 content: 'This editor creates procedural textures for the legacy Blender Internal renderer. Modern workflows use the Shader Editor instead.',
-                image: '/examples/texture-nodes.gif',
+                image: '/examples/texture-nodes.mp4',
                 tips: [
                   'Legacy feature, use Shader Editor for modern work',
                   'Still useful for some procedural effects',
@@ -391,7 +391,7 @@ export const interfaceLessonData = {
               {
                 title: 'Scene Organization',
                 content: 'The Outliner shows your entire scene structure in a tree view. Organize objects into collections, toggle visibility, and manage your scene hierarchy efficiently.',
-                image: '/examples/outliner.gif',
+                image: '/examples/outliner.mp4',
                 tips: [
                   'Click to select objects',
                   'Eye icon toggles visibility',
@@ -412,7 +412,7 @@ export const interfaceLessonData = {
               {
                 title: 'Property Panels',
                 content: 'The Properties panel contains all settings for your selected object, from modifiers to materials to physics. Each icon tab opens a different category of settings.',
-                image: '/examples/properties.gif',
+                image: '/examples/properties.mp4',
                 tips: [
                   'Each icon opens a different tab',
                   'Wrench icon for modifiers',
@@ -433,7 +433,7 @@ export const interfaceLessonData = {
               {
                 title: 'Motion Tracking',
                 content: 'The Movie Clip Editor tracks camera movement in video footage. Place markers, solve camera motion, and composite 3D objects into real footage.',
-                image: '/examples/movie-clip.gif',
+                image: '/examples/movie-clip.mp4',
                 tips: [
                   'Add markers with Ctrl+Click',
                   'Track Forward/Backward buttons',
@@ -454,7 +454,7 @@ export const interfaceLessonData = {
               {
                 title: 'File Management',
                 content: 'The File Browser helps you navigate your file system, preview blend files, and import external assets into your scene.',
-                image: '/examples/file-browser.gif',
+                image: '/examples/file-browser.mp4',
                 tips: [
                   'Ctrl+O to open files',
                   'File > Import for external formats',
@@ -475,7 +475,7 @@ export const interfaceLessonData = {
               {
                 title: 'Geometry Data',
                 content: 'The Spreadsheet shows geometry data as tables. Perfect for debugging geometry nodes and inspecting vertex attributes.',
-                image: '/examples/spreadsheet.gif',
+                image: '/examples/spreadsheet.mp4',
                 tips: [
                   'Shows vertices, edges, faces',
                   'View attributes and custom data',
@@ -496,7 +496,7 @@ export const interfaceLessonData = {
               {
                 title: 'Customization',
                 content: 'Preferences let you customize Blender to your workflow. Enable add-ons, change shortcuts, adjust interface settings, and more.',
-                image: '/examples/preferences.gif',
+                image: '/examples/preferences.mp4',
                 tips: [
                   'Add-ons tab for extensions',
                   'Keymap for custom shortcuts',
@@ -524,7 +524,7 @@ export const interfaceLessonData = {
               {
                 title: 'Accessing Tools',
                 content: 'Press T to toggle the Tool Shelf. This panel contains all your active tools, changing based on which mode you\'re in (Object, Edit, Sculpt, etc.).',
-                image: '/examples/tool-shelf.gif',
+                image: '/examples/tool-shelf.mp4',
                 tips: [
                   'T key to toggle visibility',
                   'Tools change based on mode',
@@ -545,7 +545,7 @@ export const interfaceLessonData = {
               {
                 title: 'Precise Control',
                 content: 'The N-panel gives you precise control over transforms and object properties. Type exact values instead of eyeballing with the mouse.',
-                image: '/examples/n-panel.gif',
+                image: '/examples/n-panel.mp4',
                 tips: [
                   'N key to toggle',
                   'Type exact transform values',
@@ -566,7 +566,7 @@ export const interfaceLessonData = {
               {
                 title: 'Scene Information',
                 content: 'The Status Bar shows useful scene information like vertex count, memory usage, and context-sensitive keyboard shortcuts.',
-                image: '/examples/status-bar.gif',
+                image: '/examples/status-bar.mp4',
                 tips: [
                   'Shows vertex/face count',
                   'Displays memory usage',
@@ -587,7 +587,7 @@ export const interfaceLessonData = {
               {
                 title: 'Editor Headers',
                 content: 'Every editor has a header bar with menus and options. Use these to change editor type, adjust settings, and access specific features.',
-                image: '/examples/header-bar.gif',
+                image: '/examples/header-bar.mp4',
                 tips: [
                   'Right-click header for options',
                   'Drag corners to split editors',
@@ -615,7 +615,7 @@ export const interfaceLessonData = {
               {
                 title: 'Modifier Stack',
                 content: 'Modifiers change your geometry non-destructively. Stack them in any order, adjust settings, and apply when you\'re ready. Perfect for procedural workflows.',
-                image: '/examples/modifiers.gif',
+                image: '/examples/modifiers.mp4',
                 tips: [
                   'Array for duplication',
                   'Subdivision Surface for smoothing',
@@ -636,7 +636,7 @@ export const interfaceLessonData = {
               {
                 title: 'Object Relationships',
                 content: 'Constraints create relationships between objects. Make one object follow another, limit motion, or create complex mechanical rigs.',
-                image: '/examples/Constraints.gif',
+                image: '/examples/Constraints.mp4',
                 tips: [
                   'Copy Location/Rotation/Scale',
                   'Track To makes object face target',
@@ -657,7 +657,7 @@ export const interfaceLessonData = {
               {
                 title: 'Physics Simulations',
                 content: 'Add realistic physics to your objects. Create falling objects, flowing cloth, splashing fluids, and complex particle systems.',
-                image: '/examples/physics.gif',
+                image: '/examples/physics.mp4',
                 tips: [
                   'Rigid Body for falling objects',
                   'Cloth for fabric simulation',
@@ -685,7 +685,7 @@ export const interfaceLessonData = {
               {
                 title: 'Scene Organization',
                 content: 'Collections group related objects together. Create hierarchies, control visibility, and organize complex scenes efficiently.',
-                image: '/examples/collections.gif',
+                image: '/examples/collections.mp4',
                 tips: [
                   'M key to move to collection',
                   'Eye icon for viewport visibility',
@@ -706,7 +706,7 @@ export const interfaceLessonData = {
               {
                 title: 'Shared Data',
                 content: 'Data-blocks are reusable assets. Multiple objects can share the same mesh or material. Edit once, update everywhere.',
-                image: '/examples/datablocks.gif',
+                image: '/examples/datablocks.mp4',
                 tips: [
                   'Shield for fake user (keeps data)',
                   'Number shows usage count',
@@ -727,7 +727,7 @@ export const interfaceLessonData = {
               {
                 title: 'Custom Data',
                 content: 'Add your own custom properties to objects. Perfect for rig controls, storing metadata, or creating driver relationships.',
-                image: '/examples/custom-props.gif',
+                image: '/examples/custom-props.mp4',
                 tips: [
                   'Great for rig controls',
                   'Use in drivers for automation',
@@ -755,7 +755,7 @@ export const interfaceLessonData = {
               {
                 title: 'Working with Objects',
                 content: 'Object Mode lets you work with complete objects. Move them around, rotate, scale, and manage your scene at a high level.',
-                image: '/examples/object-mode.gif',
+                image: '/examples/object-mode.mp4',
                 tips: [
                   'Tab to switch to Edit Mode',
                   'Ctrl+Tab for mode pie menu',
@@ -776,7 +776,7 @@ export const interfaceLessonData = {
               {
                 title: 'Mesh Editing',
                 content: 'Edit Mode lets you modify the actual geometry of your meshes. Select vertices, edges, and faces to reshape your models.',
-                image: '/examples/edit-mode.gif',
+                image: '/examples/edit-mode.mp4',
                 tips: [
                   'Tab to toggle Edit Mode',
                   '1/2/3 for vertex/edge/face select',
@@ -797,7 +797,7 @@ export const interfaceLessonData = {
               {
                 title: 'Digital Sculpting',
                 content: 'Sculpt Mode lets you shape geometry like clay. Use brushes to push, pull, smooth, and detail your models organically.',
-                image: '/examples/sculpt-mode.gif',
+                image: '/examples/sculpt-mode.mp4',
                 tips: [
                   'F key changes brush size',
                   'Shift to smooth',
@@ -818,7 +818,7 @@ export const interfaceLessonData = {
               {
                 title: 'Texture Painting',
                 content: 'Texture Paint mode lets you paint directly on your 3D models. Create custom textures by painting colors, patterns, and details in 3D space.',
-                image: '/examples/texture-paint.gif',
+                image: '/examples/texture-paint.mp4',
                 tips: [
                   'Requires UV unwrapping first',
                   'S key to sample colors',
@@ -839,7 +839,7 @@ export const interfaceLessonData = {
               {
                 title: 'Rigging Weights',
                 content: 'Weight Paint assigns influence values to vertices. Paint how much each bone affects different parts of your character mesh.',
-                image: '/examples/weight-paint.gif',
+                image: '/examples/weight-paint.mp4',
                 tips: [
                   'Blue: no influence, Red: full influence',
                   'X for weight gradient tool',
@@ -860,7 +860,7 @@ export const interfaceLessonData = {
               {
                 title: 'Vertex Colors',
                 content: 'Vertex Paint mode lets you paint colors directly on mesh vertices. No UV mapping needed - colors are stored per vertex.',
-                image: '/examples/vertex-paint.gif',
+                image: '/examples/vertex-paint.mp4',
                 tips: [
                   'No UV mapping needed',
                   'Good for ambient occlusion baking',
@@ -881,7 +881,7 @@ export const interfaceLessonData = {
               {
                 title: 'Character Animation',
                 content: 'Pose Mode lets you animate rigged characters. Select bones, rotate and move them, then set keyframes to create animation.',
-                image: '/examples/pose-mode.gif',
+                image: '/examples/pose-mode.mp4',
                 tips: [
                   'Select armature, Ctrl+Tab for Pose Mode',
                   'R/G for rotate/move bones',
@@ -909,7 +909,7 @@ export const interfaceLessonData = {
               {
                 title: 'Workspace Tabs',
                 content: 'Workspaces are pre-configured screen layouts. Each workspace is optimized for specific tasks like modeling, sculpting, or animation.',
-                image: '/examples/workspaces.gif',
+                image: '/examples/workspaces.mp4',
                 tips: [
                   'Ctrl+PageUp/Down to switch',
                   'Plus icon to add new workspace',
@@ -930,7 +930,7 @@ export const interfaceLessonData = {
               {
                 title: 'Multiple Scenes',
                 content: 'Create multiple scenes in one Blender file. Each scene can have different objects, cameras, and settings. Perfect for multi-shot projects.',
-                image: '/examples/scene-collection.gif',
+                image: '/examples/scene-collection.mp4',
                 tips: [
                   'Plus icon creates new scene',
                   'Useful for different shots',
@@ -951,7 +951,7 @@ export const interfaceLessonData = {
               {
                 title: 'Render Layers',
                 content: 'View Layers let you organize your scene for rendering. Create separate layers for characters, environments, effects, then combine in compositing.',
-                image: '/examples/view-layers.gif',
+                image: '/examples/view-layers.mp4',
                 tips: [
                   'Useful for complex compositing',
                   'Different render settings per layer',
@@ -979,7 +979,7 @@ export const interfaceLessonData = {
               {
                 title: 'Viewport Shading',
                 content: 'Switch between four shading modes to see your model differently. Wireframe for topology, Solid for modeling, Material Preview for texturing, Rendered for final look.',
-                image: '/examples/shading-modes.gif',
+                image: '/examples/shading-modes.mp4',
                 tips: [
                   'Z key opens shading pie menu',
                   'Solid for modeling',
@@ -1000,7 +1000,7 @@ export const interfaceLessonData = {
               {
                 title: 'Viewport Overlays',
                 content: 'Overlays show helpful guides in the viewport - grid floor, object origins, wireframes, and more. Toggle them individually or all at once.',
-                image: '/examples/overlays.gif',
+                image: '/examples/overlays.mp4',
                 tips: [
                   'Toggle individual overlays',
                   'Hide all with Alt+Shift+Z',
@@ -1021,7 +1021,7 @@ export const interfaceLessonData = {
               {
                 title: 'Transform Gizmos',
                 content: 'Gizmos are the colorful arrows and circles that help you transform objects. Click and drag to move, rotate, or scale interactively.',
-                image: '/examples/gizmos.gif',
+                image: '/examples/gizmos.mp4',
                 tips: [
                   'Click center for free transform',
                   'Click axis for constrained transform',

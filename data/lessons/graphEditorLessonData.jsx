@@ -58,17 +58,17 @@ export const graphEditorLessonData = {
               {
                 title: 'Curve Anatomy',
                 content: 'Horizontal axis = time (frames). Vertical axis = value (location, rotation, etc). Keyframes = points on curve. Curve shape between = interpolation.',
-                image: '/examples/graph-curve-anatomy.gif'
+                image: '/examples/graph-curve-anatomy.mp4'
               },
               {
                 title: 'Reading Speed',
                 content: 'Steep curve = fast change = quick motion. Gentle slope = slow change = gradual motion. Flat line = no change = hold. Curve angle IS speed.',
-                image: '/examples/graph-reading-speed.gif'
+                image: '/examples/graph-reading-speed.mp4'
               },
               {
                 title: 'Direction Analysis',
                 content: 'Upward curve = increasing values. Downward = decreasing. Curve direction tells you if object moves forward/back, up/down, or rotates.',
-                image: '/examples/graph-direction.gif'
+                image: '/examples/graph-direction.mp4'
               }
             ]
           }
@@ -83,7 +83,7 @@ export const graphEditorLessonData = {
               {
                 title: 'Standard Colors',
                 content: 'X axis = Red, Y axis = Green, Z axis = Blue. Universal across Location, Rotation, and Scale. Consistent color scheme throughout Blender.',
-                image: '/examples/graph-colors.gif'
+                image: '/examples/graph-colors.mp4'
               }
             ]
           }
@@ -98,12 +98,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Multi-Channel View',
                 content: 'Show multiple channels to see relationships. If X and Y move together, object moves diagonally. Compare timing across channels.',
-                image: '/examples/graph-compare.gif'
+                image: '/examples/graph-compare.mp4'
               },
               {
                 title: 'Normalized View',
                 content: 'Normalize curves to compare shapes regardless of values. See if timing matches even when scales differ. Essential for analysis.',
-                image: '/examples/graph-normalized.gif'
+                image: '/examples/graph-normalized.mp4'
               }
             ]
           }
@@ -118,12 +118,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Acceleration Curves',
                 content: 'S-curve shape shows ease in/out. Curve starts flat (slow), gets steeper (accelerates), then flattens (decelerates). Natural motion pattern.',
-                image: '/examples/graph-acceleration.gif'
+                image: '/examples/graph-acceleration.mp4'
               },
               {
                 title: 'Identifying Problems',
                 content: 'Sharp angle = sudden speed change = pop. Flat section = unexpected pause. Weird curve = weird motion. Graph reveals all issues.',
-                image: '/examples/graph-problems.gif'
+                image: '/examples/graph-problems.mp4'
               }
             ]
           }
@@ -145,12 +145,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Graph Navigation',
                 content: 'Scroll to zoom in/out. Middle mouse drag to pan. Zoom horizontally (time) or vertically (values) independently with axis constraints.',
-                image: '/examples/graph-nav-zoom.gif'
+                image: '/examples/graph-nav-zoom.mp4'
               },
               {
                 title: 'Frame Selected',
                 content: 'Period key (.) frames selected keyframes. Home frames all visible curves. Numpad period frames all channels. Quick focus tools.',
-                image: '/examples/graph-nav-frame.gif'
+                image: '/examples/graph-nav-frame.mp4'
               }
             ]
           }
@@ -165,12 +165,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Selection Tools',
                 content: 'Click to select one keyframe. Shift+click to add to selection. B for box select, C for circle. A selects all visible.',
-                image: '/examples/graph-select-basic.gif'
+                image: '/examples/graph-select-basic.mp4'
               },
               {
                 title: 'Advanced Selection',
                 content: 'Select columns (K), rows, or by channel. Select all keyframes at current frame. Select handles independently from keyframes.',
-                image: '/examples/graph-select-advanced.gif'
+                image: '/examples/graph-select-advanced.mp4'
               }
             ]
           }
@@ -185,7 +185,7 @@ export const graphEditorLessonData = {
               {
                 title: 'Channel Management',
                 content: 'Click eye icon to hide/show channels. Shift+click to solo channel. Hide complex rigs to see only animated properties.',
-                image: '/examples/graph-visibility.gif'
+                image: '/examples/graph-visibility.mp4'
               }
             ]
           }
@@ -200,7 +200,7 @@ export const graphEditorLessonData = {
               {
                 title: 'Cursor Tools',
                 content: 'Shift+Right-click places cursor. Snap keyframes to cursor value or time. Scale around cursor as pivot point. Powerful reference tool.',
-                image: '/examples/graph-cursor.gif'
+                image: '/examples/graph-cursor.mp4'
               }
             ]
           }
@@ -215,7 +215,7 @@ export const graphEditorLessonData = {
               {
                 title: 'Channel Filtering',
                 content: 'Type in filter box to search properties by name. Show only animated, only errors, or only selected. Clean up cluttered graphs.',
-                image: '/examples/graph-filter.gif'
+                image: '/examples/graph-filter.mp4'
               }
             ]
           }
@@ -237,12 +237,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Bezier Basics',
                 content: 'Smooth curve between keyframes. Drag handles to adjust easing. Most versatile interpolation mode for animation.',
-                image: '/examples/interp-bezier-basic.gif'
+                image: '/examples/interp-bezier-basic.mp4'
               },
               {
                 title: 'Handle Control',
                 content: 'Longer handles = gentler curves. Short handles = tighter curves. Rotate handles to change curve direction. Complete control over motion.',
-                image: '/examples/interp-bezier-handles.gif'
+                image: '/examples/interp-bezier-handles.mp4'
               }
             ]
           }
@@ -257,12 +257,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Constant Speed',
                 content: 'Select keyframes, T > Linear. Straight line = constant velocity. No acceleration or deceleration. Good for robots or technical motion.',
-                image: '/examples/interp-linear.gif'
+                image: '/examples/interp-linear.mp4'
               },
               {
                 title: 'When to Use',
                 content: 'Use for mechanical movement, UI elements, or as starting point before adding easing. Rarely used for organic animation.',
-                image: '/examples/interp-linear-use.gif'
+                image: '/examples/interp-linear-use.mp4'
               }
             ]
           }
@@ -277,12 +277,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Stepped Keys',
                 content: 'Select keyframes, T > Constant. Value holds flat, then jumps to next keyframe. Perfect for pose-to-pose blocking.',
-                image: '/examples/interp-constant.gif'
+                image: '/examples/interp-constant.mp4'
               },
               {
                 title: 'Blocking Workflow',
                 content: 'Set all keys to Constant during blocking phase. See poses clearly without smooth motion. Switch to Bezier for polish phase.',
-                image: '/examples/interp-constant-blocking.gif'
+                image: '/examples/interp-constant-blocking.mp4'
               }
             ]
           }
@@ -297,7 +297,7 @@ export const graphEditorLessonData = {
               {
                 title: 'Acceleration Curve',
                 content: 'T > Ease In creates automatic acceleration. Object starts slowly, speeds up toward end. Feels weighty and natural.',
-                image: '/examples/interp-ease-in.gif'
+                image: '/examples/interp-ease-in.mp4'
               }
             ]
           }
@@ -312,7 +312,7 @@ export const graphEditorLessonData = {
               {
                 title: 'Deceleration Curve',
                 content: 'T > Ease Out creates automatic deceleration. Object moves quickly, slows down smoothly. Landing animation standard.',
-                image: '/examples/interp-ease-out.gif'
+                image: '/examples/interp-ease-out.mp4'
               }
             ]
           }
@@ -327,12 +327,12 @@ export const graphEditorLessonData = {
               {
                 title: 'S-Curve Motion',
                 content: 'T > Ease In-Out creates S-curve. Starts slow, speeds up in middle, slows at end. The "neutral" natural motion.',
-                image: '/examples/interp-ease-in-out.gif'
+                image: '/examples/interp-ease-in-out.mp4'
               },
               {
                 title: 'Default Choice',
                 content: 'When in doubt, use Ease In-Out. Looks natural for most movements. Refine with manual handles if needed.',
-                image: '/examples/interp-ease-default.gif'
+                image: '/examples/interp-ease-default.mp4'
               }
             ]
           }
@@ -354,12 +354,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Automatic Smoothing',
                 content: 'V > Automatic creates auto-calculated smooth curves. Handles adjust when moving keyframes. Set and forget for smooth motion.',
-                image: '/examples/handle-auto.gif'
+                image: '/examples/handle-auto.mp4'
               },
               {
                 title: 'When to Use',
                 content: 'Default choice for organic motion. Let Blender calculate optimal smoothness. Override with other handle types only when needed.',
-                image: '/examples/handle-auto-use.gif'
+                image: '/examples/handle-auto-use.mp4'
               }
             ]
           }
@@ -374,7 +374,7 @@ export const graphEditorLessonData = {
               {
                 title: 'Controlled Smoothing',
                 content: 'Like Auto handles but prevents overshoot. Curve never goes beyond keyframe values. Safer for properties with limits.',
-                image: '/examples/handle-auto-clamped.gif'
+                image: '/examples/handle-auto-clamped.mp4'
               }
             ]
           }
@@ -389,12 +389,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Linear Segments',
                 content: 'V > Vector creates straight lines. Sharp angle at keyframe. Perfect for direction changes or mechanical motion.',
-                image: '/examples/handle-vector.gif'
+                image: '/examples/handle-vector.mp4'
               },
               {
                 title: 'Sharp Transitions',
                 content: 'Use Vector for instant direction changes. Ball bouncing, robot moving, or any sharp motion change. No gradual curve.',
-                image: '/examples/handle-vector-use.gif'
+                image: '/examples/handle-vector-use.mp4'
               }
             ]
           }
@@ -409,7 +409,7 @@ export const graphEditorLessonData = {
               {
                 title: 'Linked Smoothness',
                 content: 'V > Aligned keeps handles in line. Drag one side, other side mirrors to maintain smoothness. Manual control with guaranteed flow.',
-                image: '/examples/handle-aligned.gif'
+                image: '/examples/handle-aligned.mp4'
               }
             ]
           }
@@ -424,12 +424,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Asymmetric Control',
                 content: 'V > Free allows independent handle movement. Different ease in vs ease out. Shape curves exactly as needed.',
-                image: '/examples/handle-free.gif'
+                image: '/examples/handle-free.mp4'
               },
               {
                 title: 'Advanced Easing',
                 content: 'Use Free for custom timing. Slow in, fast out - or vice versa. Handles don\'t affect each other. Professional polish tool.',
-                image: '/examples/handle-free-use.gif'
+                image: '/examples/handle-free-use.mp4'
               }
             ]
           }
@@ -444,7 +444,7 @@ export const graphEditorLessonData = {
               {
                 title: 'Handle Editing',
                 content: 'Click handle end to select. Drag to reshape curve. G to move, R to rotate, S to scale. Precise curve sculpting.',
-                image: '/examples/handle-select.gif'
+                image: '/examples/handle-select.mp4'
               }
             ]
           }
@@ -466,17 +466,17 @@ export const graphEditorLessonData = {
               {
                 title: 'Basic Movement',
                 content: 'Select keyframes, press G to grab. Move freely or constrain to X (time) or Y (value) axis. Click to confirm, right-click to cancel.',
-                image: '/examples/transform-move.gif'
+                image: '/examples/transform-move.mp4'
               },
               {
                 title: 'Timing Adjustment',
                 content: 'G > X moves only in time. Slide keyframes earlier/later without changing values. Adjust speed without affecting poses.',
-                image: '/examples/transform-move-time.gif'
+                image: '/examples/transform-move-time.mp4'
               },
               {
                 title: 'Value Adjustment',
                 content: 'G > Y moves only in value. Change keyframe values without affecting timing. Adjust intensity while keeping pace.',
-                image: '/examples/transform-move-value.gif'
+                image: '/examples/transform-move-value.mp4'
               }
             ]
           }
@@ -491,17 +491,17 @@ export const graphEditorLessonData = {
               {
                 title: 'Timing Scale',
                 content: 'S > X scales in time. Compress keyframes = faster motion. Expand keyframes = slower motion. Speed up or slow down actions.',
-                image: '/examples/transform-scale-time.gif'
+                image: '/examples/transform-scale-time.mp4'
               },
               {
                 title: 'Value Scale',
                 content: 'S > Y scales values. Make movement more/less extreme. Exaggerate or diminish animation without changing timing.',
-                image: '/examples/transform-scale-value.gif'
+                image: '/examples/transform-scale-value.mp4'
               },
               {
                 title: 'Pivot Points',
                 content: 'Scale around cursor, individual origins, or median. Position 2D cursor, then scale around it. Powerful timing tool.',
-                image: '/examples/transform-scale-pivot.gif'
+                image: '/examples/transform-scale-pivot.mp4'
               }
             ]
           }
@@ -516,7 +516,7 @@ export const graphEditorLessonData = {
               {
                 title: 'Curve Rotation',
                 content: 'Select keyframes, place cursor as pivot, press R to rotate. Changes relative timing and values simultaneously.',
-                image: '/examples/transform-rotate.gif'
+                image: '/examples/transform-rotate.mp4'
               }
             ]
           }
@@ -531,12 +531,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Copy Motion',
                 content: 'Select keyframes, Shift+D to duplicate. Move duplicates to new position. Repeat motion patterns quickly.',
-                image: '/examples/transform-duplicate.gif'
+                image: '/examples/transform-duplicate.mp4'
               },
               {
                 title: 'Creating Cycles',
                 content: 'Copy first cycle of walk. Duplicate and place at end. Extend animation by repeating patterns.',
-                image: '/examples/transform-duplicate-cycle.gif'
+                image: '/examples/transform-duplicate-cycle.mp4'
               }
             ]
           }
@@ -551,7 +551,7 @@ export const graphEditorLessonData = {
               {
                 title: 'Key Removal',
                 content: 'Select keyframes, press X to delete. Interpolation adjusts automatically. Keep curves clean with minimal keys.',
-                image: '/examples/transform-delete.gif'
+                image: '/examples/transform-delete.mp4'
               }
             ]
           }
@@ -573,7 +573,7 @@ export const graphEditorLessonData = {
               {
                 title: 'Curve Smoothing',
                 content: 'Add Smooth modifier to noisy curves. Adjust iterations for more/less smoothing. Cleans up shaky animation instantly.',
-                image: '/examples/modifier-smooth.gif'
+                image: '/examples/modifier-smooth.mp4'
               }
             ]
           }
@@ -588,7 +588,7 @@ export const graphEditorLessonData = {
               {
                 title: 'Adding Variation',
                 content: 'Noise modifier creates random offsets. Adjust scale for intensity, phase for pattern. Bring life to mechanical animation.',
-                image: '/examples/modifier-noise.gif'
+                image: '/examples/modifier-noise.mp4'
               }
             ]
           }
@@ -603,12 +603,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Looping Animation',
                 content: 'Add Cycles modifier to make animation repeat. Before/After options control which direction loops. Walk cycles made easy.',
-                image: '/examples/modifier-cycles.gif'
+                image: '/examples/modifier-cycles.mp4'
               },
               {
                 title: 'Cycle with Offset',
                 content: 'Enable Cycle with Offset for accumulation. Each cycle adds to previous - perfect for wheels or progressive rotation.',
-                image: '/examples/modifier-cycles-offset.gif'
+                image: '/examples/modifier-cycles-offset.mp4'
               }
             ]
           }
@@ -623,7 +623,7 @@ export const graphEditorLessonData = {
               {
                 title: 'Dynamic Scaling',
                 content: 'Envelope creates min/max bounds that scale animation. Ramp intensity up/down smoothly over time.',
-                image: '/examples/modifier-envelope.gif'
+                image: '/examples/modifier-envelope.mp4'
               }
             ]
           }
@@ -638,7 +638,7 @@ export const graphEditorLessonData = {
               {
                 title: 'Value Clamping',
                 content: 'Set min/max limits. Curves can\'t exceed these values. Prevents rotation beyond 360°, or location outside area.',
-                image: '/examples/modifier-limits.gif'
+                image: '/examples/modifier-limits.mp4'
               }
             ]
           }
@@ -653,7 +653,7 @@ export const graphEditorLessonData = {
               {
                 title: 'Stop Motion Effect',
                 content: 'Stepped modifier samples curve at intervals. Creates choppy, stop-motion aesthetic from smooth animation.',
-                image: '/examples/modifier-stepped.gif'
+                image: '/examples/modifier-stepped.mp4'
               }
             ]
           }
@@ -678,17 +678,17 @@ export const graphEditorLessonData = {
               {
                 title: 'Block in Constant',
                 content: 'Set all initial keyframes to Constant interpolation. See pure poses without interpolation. Refine timing before adding curves.',
-                image: '/examples/workflow-block-constant.gif'
+                image: '/examples/workflow-block-constant.mp4'
               },
               {
                 title: 'Convert to Bezier',
                 content: 'Select all keyframes, T > Bezier. Smooth interpolation appears. Now refine curves for natural motion.',
-                image: '/examples/workflow-convert-bezier.gif'
+                image: '/examples/workflow-convert-bezier.mp4'
               },
               {
                 title: 'Add Breakdowns',
                 content: 'Insert keyframes between extremes. Adjust curves to control motion path. Polish timing with handle editing.',
-                image: '/examples/workflow-breakdowns.gif'
+                image: '/examples/workflow-breakdowns.mp4'
               }
             ]
           }
@@ -703,17 +703,17 @@ export const graphEditorLessonData = {
               {
                 title: 'Flat at Extremes',
                 content: 'Flatten curves at key poses (drag handles horizontal). Creates holds at important moments. Gives weight and emphasis.',
-                image: '/examples/workflow-ease-flatten.gif'
+                image: '/examples/workflow-ease-flatten.mp4'
               },
               {
                 title: 'Steep in Middle',
                 content: 'Make curves steeper between poses. Fast motion through in-betweens, slow at extremes. Creates snappy, energetic motion.',
-                image: '/examples/workflow-ease-steep.gif'
+                image: '/examples/workflow-ease-steep.mp4'
               },
               {
                 title: 'Overshoot and Settle',
                 content: 'Pull curve slightly past target, then return. Creates bounce and springiness. Small overshoot adds life.',
-                image: '/examples/workflow-ease-overshoot.gif'
+                image: '/examples/workflow-ease-overshoot.mp4'
               }
             ]
           }
@@ -728,12 +728,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Decimate Modifier',
                 content: 'Use Decimate to reduce keyframe count. Maintains curve shape with fewer keys. Essential for mocap cleanup.',
-                image: '/examples/workflow-simplify-decimate.gif'
+                image: '/examples/workflow-simplify-decimate.mp4'
               },
               {
                 title: 'Manual Simplification',
                 content: 'Select unnecessary keyframes and delete. Keep only extremes and essential breakdowns. Cleaner curves = easier editing.',
-                image: '/examples/workflow-simplify-manual.gif'
+                image: '/examples/workflow-simplify-manual.mp4'
               }
             ]
           }
@@ -755,12 +755,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Body Chain Offset',
                 content: 'Copy shoulder curve. Move it 2 frames later for upper arm, 2 more for forearm. Creates wave of motion through body.',
-                image: '/examples/advanced-offset-body.gif'
+                image: '/examples/advanced-offset-body.mp4'
               },
               {
                 title: 'Secondary Motion',
                 content: 'Offset hair, cloth, and accessories by 3-6 frames behind main motion. Creates drag and follow-through. Everything doesn\'t move at once.',
-                image: '/examples/advanced-offset-secondary.gif'
+                image: '/examples/advanced-offset-secondary.mp4'
               }
             ]
           }
@@ -775,12 +775,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Handle as Brush',
                 content: 'Switch to Free handles. Drag handles to "paint" curve shape. Think of curve as ribbon you\'re shaping by hand.',
-                image: '/examples/advanced-sculpt-handles.gif'
+                image: '/examples/advanced-sculpt-handles.mp4'
               },
               {
                 title: 'Micro Adjustments',
                 content: 'Tiny handle adjustments = subtle timing changes. Zoom in, make minute tweaks. Professional polish is in the details.',
-                image: '/examples/advanced-sculpt-micro.gif'
+                image: '/examples/advanced-sculpt-micro.mp4'
               }
             ]
           }
@@ -795,12 +795,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Copy Mirrored',
                 content: 'Copy left side keyframes. Paste to right side channels with mirroring enabled. Walk cycle: animate one step, mirror for other.',
-                image: '/examples/advanced-mirror-copy.gif'
+                image: '/examples/advanced-mirror-copy.mp4'
               },
               {
                 title: 'Time Offset Mirror',
                 content: 'Mirror and offset in time. Left foot at frame 1, right foot at frame 13. Creates alternating walk pattern automatically.',
-                image: '/examples/advanced-mirror-offset.gif'
+                image: '/examples/advanced-mirror-offset.mp4'
               }
             ]
           }
@@ -815,12 +815,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Proportional Editing',
                 content: 'Enable Proportional Editing (O). Move one keyframe, nearby keys move proportionally. Smooth timing adjustments across curves.',
-                image: '/examples/advanced-multi-proportional.gif'
+                image: '/examples/advanced-multi-proportional.mp4'
               },
               {
                 title: 'Normalized View',
                 content: 'Normalize curves to edit shapes regardless of values. Compare timing visually even when value ranges differ.',
-                image: '/examples/advanced-multi-normalized.gif'
+                image: '/examples/advanced-multi-normalized.mp4'
               }
             ]
           }
@@ -835,7 +835,7 @@ export const graphEditorLessonData = {
               {
                 title: 'Curve Presets',
                 content: 'Create perfect curve once. Save as preset. Apply to other channels instantly. Build library of timing patterns.',
-                image: '/examples/advanced-template-save.gif'
+                image: '/examples/advanced-template-save.mp4'
               }
             ]
           }
@@ -857,12 +857,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Opposite Direction',
                 content: 'Before jumping up, curve dips down. Before moving right, slight move left. Drag handle to create small dip before main action.',
-                image: '/examples/polish-anticipation-dip.gif'
+                image: '/examples/polish-anticipation-dip.mp4'
               },
               {
                 title: 'Timing Ratio',
                 content: 'Anticipation is typically 1/4 to 1/3 the duration of main action. Quick wind-up, longer main movement. Creates energy.',
-                image: '/examples/polish-anticipation-timing.gif'
+                image: '/examples/polish-anticipation-timing.mp4'
               }
             ]
           }
@@ -877,12 +877,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Overshoot Pattern',
                 content: 'Action ends at target? Pull curve past target, then back. Small wave pattern creates settling. Feels physical.',
-                image: '/examples/polish-follow-overshoot.gif'
+                image: '/examples/polish-follow-overshoot.mp4'
               },
               {
                 title: 'Diminishing Returns',
                 content: 'Each bounce gets smaller. First overshoot is largest, second smaller, third tiny. Natural energy dissipation.',
-                image: '/examples/polish-follow-diminish.gif'
+                image: '/examples/polish-follow-diminish.mp4'
               }
             ]
           }
@@ -897,12 +897,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Building S-Curves',
                 content: 'Start with Ease In-Out. Adjust handles until curve is smooth S-shape. Flat at extremes, steep in middle. Natural motion standard.',
-                image: '/examples/polish-s-curve-build.gif'
+                image: '/examples/polish-s-curve-build.mp4'
               },
               {
                 title: 'S-Curve Variations',
                 content: 'Asymmetric S: more ease in than out, or vice versa. Adjust to character weight and intent. Heavy = more ease in.',
-                image: '/examples/polish-s-curve-variations.gif'
+                image: '/examples/polish-s-curve-variations.mp4'
               }
             ]
           }
@@ -917,7 +917,7 @@ export const graphEditorLessonData = {
               {
                 title: 'Copy Paste Curves',
                 content: 'Select keyframes, Ctrl+C to copy. Select target channel, Ctrl+V to paste. Same timing applied to different property.',
-                image: '/examples/polish-copy-curve.gif'
+                image: '/examples/polish-copy-curve.mp4'
               }
             ]
           }
@@ -932,7 +932,7 @@ export const graphEditorLessonData = {
               {
                 title: 'Blur-Friendly Timing',
                 content: 'Very fast actions (1-2 frames) need steep curves. Motion blur hides detail. Slower actions need careful curve work.',
-                image: '/examples/polish-blur-timing.gif'
+                image: '/examples/polish-blur-timing.mp4'
               }
             ]
           }
@@ -947,12 +947,12 @@ export const graphEditorLessonData = {
               {
                 title: 'Common Problems',
                 content: 'Sharp angle in curve = sudden speed change = pop. Find and smooth. Unexpected flat = pause. Bump in curve = wobble.',
-                image: '/examples/polish-diagnostic-problems.gif'
+                image: '/examples/polish-diagnostic-problems.mp4'
               },
               {
                 title: 'Fixing Pops',
                 content: 'Pop at keyframe? Switch to Auto or Free handles. Adjust to smooth transition. Curve should flow smoothly through keyframe.',
-                image: '/examples/polish-diagnostic-fix.gif'
+                image: '/examples/polish-diagnostic-fix.mp4'
               }
             ]
           }

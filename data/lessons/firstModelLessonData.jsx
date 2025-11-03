@@ -55,7 +55,7 @@ export const firstModelLessonData = {
               {
                 title: 'Adding Your First Object',
                 content: 'Press Shift+A to open the Add menu. Navigate to Mesh > Cube. A perfect cube appears at the 3D cursor location. This is your blank canvas!',
-                image: '/examples/first-model-add-cube.gif',
+                image: '/examples/first-model-add-cube.mp4',
                 tips: [
                   'Shift+A opens the Add menu anywhere',
                   'The cube appears at the 3D cursor location',
@@ -66,7 +66,7 @@ export const firstModelLessonData = {
               {
                 title: 'Understanding the Default Cube',
                 content: 'The cube has 8 vertices (corners), 12 edges, and 6 faces. These three elements - vertices, edges, and faces - are the building blocks of all 3D models.',
-                image: '/examples/first-model-cube-components.gif',
+                image: '/examples/first-model-cube-components.mp4',
                 tips: [
                   'Vertices are the points/corners',
                   'Edges connect vertices',
@@ -87,7 +87,7 @@ export const firstModelLessonData = {
               {
                 title: 'Entering Edit Mode',
                 content: 'Press Tab to enter Edit Mode. Your cube turns orange/yellow and you can now see its vertices. Press Tab again to return to Object Mode.',
-                image: '/examples/first-model-enter-edit-mode.gif',
+                image: '/examples/first-model-enter-edit-mode.mp4',
                 tips: [
                   'Tab toggles between Object and Edit Mode',
                   'Orange color indicates Edit Mode',
@@ -98,7 +98,7 @@ export const firstModelLessonData = {
               {
                 title: 'Selection Modes',
                 content: 'Press 1 for Vertex mode, 2 for Edge mode, 3 for Face mode. Each mode lets you select and manipulate different components of your mesh.',
-                image: '/examples/first-model-selection-modes.gif',
+                image: '/examples/first-model-selection-modes.mp4',
                 tips: [
                   '1 = Vertex selection mode',
                   '2 = Edge selection mode', 
@@ -119,7 +119,7 @@ export const firstModelLessonData = {
               {
                 title: 'Mouse Navigation',
                 content: 'Middle mouse button to orbit, Shift+Middle mouse to pan, scroll wheel to zoom. These are the core navigation controls you\'ll use constantly.',
-                image: '/examples/first-model-navigation-basics.gif',
+                image: '/examples/first-model-navigation-basics.mp4',
                 tips: [
                   'MMB (middle mouse) = rotate view',
                   'Shift+MMB = pan view',
@@ -130,7 +130,7 @@ export const firstModelLessonData = {
               {
                 title: 'Frame Selected',
                 content: 'Press . (period) on the numpad or View > Frame Selected to center the view on your selection. Super useful when working on specific parts.',
-                image: '/examples/first-model-frame-selected.gif',
+                image: '/examples/first-model-frame-selected.mp4',
                 tips: [
                   'Numpad . frames selected object',
                   'Home key frames all objects',
@@ -158,7 +158,7 @@ export const firstModelLessonData = {
               {
                 title: 'Basic Extrusion',
                 content: 'Select a face in Edit Mode (press 3 for face mode). Press E to extrude, move your mouse outward, and click to confirm. New geometry extends from your selection.',
-                image: '/examples/first-model-extrude-basic.gif',
+                image: '/examples/first-model-extrude-basic.mp4',
                 tips: [
                   'E key activates extrude',
                   'Move mouse to pull geometry out',
@@ -169,7 +169,7 @@ export const firstModelLessonData = {
               {
                 title: 'Constrained Extrusion',
                 content: 'After pressing E, press X, Y, or Z to constrain movement to a specific axis. This keeps your extrusions straight and precise.',
-                image: '/examples/first-model-extrude-constrained.gif',
+                image: '/examples/first-model-extrude-constrained.mp4',
                 tips: [
                   'E then X = extrude along X axis',
                   'E then Y = extrude along Y axis',
@@ -190,7 +190,7 @@ export const firstModelLessonData = {
               {
                 title: 'Basic Scaling',
                 content: 'Press S to scale, move your mouse, and click. The selection grows or shrinks from its center point.',
-                image: '/examples/first-model-scale-basic.gif',
+                image: '/examples/first-model-scale-basic.mp4',
                 tips: [
                   'S key activates scale',
                   'Move mouse away = bigger',
@@ -201,7 +201,7 @@ export const firstModelLessonData = {
               {
                 title: 'Axis Scaling',
                 content: 'Press S then X, Y, or Z to scale along one axis only. Great for stretching or squashing shapes in one direction.',
-                image: '/examples/first-model-scale-axis.gif',
+                image: '/examples/first-model-scale-axis.mp4',
                 tips: [
                   'S then X = scale on X axis',
                   'S then Shift+X = scale on Y and Z (not X)',
@@ -222,7 +222,7 @@ export const firstModelLessonData = {
               {
                 title: 'Creating Loop Cuts',
                 content: 'Press Ctrl+R, hover over your mesh to see a preview line, click to place it, then move your mouse to position it. Click again to confirm.',
-                image: '/examples/first-model-loop-cut.gif',
+                image: '/examples/first-model-loop-cut.mp4',
                 tips: [
                   'Ctrl+R activates loop cut tool',
                   'Scroll wheel to add multiple loops',
@@ -243,7 +243,7 @@ export const firstModelLessonData = {
               {
                 title: 'Using Inset',
                 content: 'Select one or more faces (press 3), then press I. Move your mouse inward and click. A new face appears inside with edges connecting to the original.',
-                image: '/examples/first-model-inset-faces.gif',
+                image: '/examples/first-model-inset-faces.mp4',
                 tips: [
                   'I key activates inset',
                   'Works on single or multiple faces',
@@ -271,7 +271,7 @@ export const firstModelLessonData = {
               {
                 title: 'Applying Smooth Shading',
                 content: 'Right-click your object and choose "Shade Smooth". Your model instantly looks more organic and less blocky.',
-                image: '/examples/first-model-shade-smooth.gif',
+                image: '/examples/first-model-shade-smooth.mp4',
                 tips: [
                   'Right-click > Shade Smooth',
                   'Shade Flat returns to angular look',
@@ -292,7 +292,7 @@ export const firstModelLessonData = {
               {
                 title: 'Adding Subdivision',
                 content: 'Select your object, go to Modifiers panel, Add Modifier > Subdivision Surface. Your model becomes instantly smoother!',
-                image: '/examples/first-model-subdivision-surface.gif',
+                image: '/examples/first-model-subdivision-surface.mp4',
                 tips: [
                   'Non-destructive - can be removed anytime',
                   'Increase levels for more smoothness',
