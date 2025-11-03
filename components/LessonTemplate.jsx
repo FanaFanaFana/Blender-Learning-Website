@@ -35,7 +35,7 @@ const DetailModal = dynamic(() => import('@/components/shared/DetailModal'), {
       justifyContent: 'center',
       zIndex: 1000
     }}>
-      <div style={{ color: '#10b981', fontSize: '1.5rem' }}>Loading...</div>
+      <div style={{ color: '#ffffffff', fontSize: '1.5rem' }}>Loading...</div>
     </div>
   )
 })

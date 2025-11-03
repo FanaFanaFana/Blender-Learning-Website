@@ -7,7 +7,7 @@
 
 // Import all your lesson data files here
 // Path: app/lib → up to app → up to root → into data/lessons
-import { editModeLessonData } from '../../data/lessons/editModeLessonData'
+import { editModeLessonData } from '../../data/lessons/editModeLessonData.jsx'
 import { cameraLessonData } from '../../data/lessons/cameraLessonData'
 import { characterModelingLessonData } from '../../data/lessons/characterModelingLessonData'
 import { firstModelLessonData } from '../../data/lessons/firstModelLessonData'
@@ -27,29 +27,146 @@ import { graphEditorLessonData } from '@/data/lessons/graphEditorLessonData'
 import { riggingLessonData } from '@/data/lessons/riggingLessonData'
 import { physicsLessonData } from '@/data/lessons/physicsLessonData'
 
+// New Texturing lessons
+import { uvMappingLessonData } from '../../data/lessons/uvMappingLessonData'
+import { texturePaintingLessonData } from '../../data/lessons/texturePaintingLessonData'
+import { imageTexturesLessonData } from '../../data/lessons/imageTexturesLessonData'
+import { proceduralTexturesLessonData } from '../../data/lessons/proceduralTexturesLessonData'
+import { bakingLessonData } from '../../data/lessons/bakingLessonData'
+
+// New 3D Printing lessons
+import { manifoldGeometryLessonData } from '../../data/lessons/manifoldGeometryLessonData'
+import { scaleUnitsLessonData } from '../../data/lessons/scaleUnitsLessonData'
+import { supportStructuresLessonData } from '../../data/lessons/supportStructuresLessonData'
+import { fileExportLessonData } from '../../data/lessons/fileExportLessonData'
+
+// New VFX Integration lessons
+import { cameraTrackingLessonData } from '../../data/lessons/cameraTrackingLessonData'
+import { keyingMaskingLessonData } from '../../data/lessons/keyingMaskingLessonData'
+import { shadowCatcherLessonData } from '../../data/lessons/shadowCatcherLessonData'
+import { colorMatchingLessonData } from '../../data/lessons/colorMatchingLessonData'
+
+// New Game Assets lessons
+import { lowPolyModelingLessonData } from '../../data/lessons/lowPolyModelingLessonData'
+import { textureBakingLessonData } from '../../data/lessons/textureBakingLessonData'
+import { lodCreationLessonData } from '../../data/lessons/lodCreationLessonData'
+import { engineExportLessonData } from '../../data/lessons/engineExportLessonData'
+
+// New Hair & Fur lessons
+import { particleHairLessonData } from '../../data/lessons/particleHairLessonData'
+import { groomingLessonData } from '../../data/lessons/groomingLessonData'
+import { hairShadingLessonData } from '../../data/lessons/hairShadingLessonData'
+import { dynamicsLessonData } from '../../data/lessons/dynamicsLessonData'
+
+// New Grease Pencil lessons
+import { drawingBasicsLessonData } from '../../data/lessons/drawingBasicsLessonData'
+import { gpAnimationLessonData } from '../../data/lessons/gpAnimationLessonData'
+import { gpModifiersLessonData } from '../../data/lessons/gpModifiersLessonData'
+import { mixedMediaLessonData } from '../../data/lessons/mixedMediaLessonData'
+
+// New Geometry Nodes lessons
+import { nodeBasicsLessonData } from '../../data/lessons/nodeBasicsLessonData'
+import { proceduralModelingLessonData } from '../../data/lessons/proceduralModelingLessonData'
+import { instancesLessonData } from '../../data/lessons/instancesLessonData'
+import { fieldsAttributesLessonData } from '../../data/lessons/fieldsAttributesLessonData'
+
+// New Project Management lessons
+import { fileOrganizationLessonData } from '../../data/lessons/fileOrganizationLessonData'
+import { collectionsLessonData } from '../../data/lessons/collectionsLessonData'
+import { versionControlLessonData } from '../../data/lessons/versionControlLessonData'
+import { assetLibrariesLessonData } from '../../data/lessons/assetLibrariesLessonData'
+
+// New Simulation lessons
+import { rigidBodyLessonData } from '../../data/lessons/rigidBodyLessonData'
+import { clothSimulationLessonData } from '../../data/lessons/clothSimulationLessonData'
+import { fluidSimulationLessonData } from '../../data/lessons/fluidSimulationLessonData'
+import { particleSystemsLessonData } from '../../data/lessons/particleSystemsLessonData'
+
 const lessonCache = new Map()
 
 // Map lesson IDs to their data
 const lessonDataMap = {
+    // 3D Modeling
     'edit-mode': editModeLessonData,
-    'camera': cameraLessonData,
-    'character-modelling': characterModelingLessonData,
-    'first-model': firstModelLessonData,
-    'hard-surface': hardsurfaceLessonData,
     'interface': interfaceLessonData,
+    'modifier': modifierLessonData,
+    'sculpting': sculptingLessonData,
+    
+    // Rendering
+    'camera': cameraLessonData,
     'lighting': lightingLessonData,
     'material': materialLessonData,
-    'modifier': modifierLessonData,
-    'product-design': productDesignLessonData,
     'render-engines': renderEnginesLessonData,
     'render-settings': renderSettingsLessonData,
-    'sculpting': sculptingLessonData,
-    'topology': topologyLessonData,
+    
+    // Animation
     'keyframe': keyframeLessonData,
     'timeline': timelineLessonData,
     'graph-editor': graphEditorLessonData,
     'rigging': riggingLessonData,
     'physics': physicsLessonData,
+    
+    // Texturing
+    'uv-mapping': uvMappingLessonData,
+    'texture-painting': texturePaintingLessonData,
+    'image-textures': imageTexturesLessonData,
+    'procedural-textures': proceduralTexturesLessonData,
+    'baking': bakingLessonData,
+    
+    // Lessons
+    'first-model': firstModelLessonData,
+    'character-modelling': characterModelingLessonData,
+    'hard-surface': hardsurfaceLessonData,
+    'product-design': productDesignLessonData,
+    'topology': topologyLessonData,
+    
+    // 3D Printing
+    'manifold-geometry': manifoldGeometryLessonData,
+    'scale-units': scaleUnitsLessonData,
+    'support-structures': supportStructuresLessonData,
+    'file-export': fileExportLessonData,
+    
+    // VFX Integration
+    'camera-tracking': cameraTrackingLessonData,
+    'keying-masking': keyingMaskingLessonData,
+    'shadow-catcher': shadowCatcherLessonData,
+    'color-matching': colorMatchingLessonData,
+    
+    // Game Assets
+    'low-poly-modeling': lowPolyModelingLessonData,
+    'texture-baking': textureBakingLessonData,
+    'lod-creation': lodCreationLessonData,
+    'engine-export': engineExportLessonData,
+    
+    // Hair & Fur
+    'particle-hair': particleHairLessonData,
+    'grooming': groomingLessonData,
+    'hair-shading': hairShadingLessonData,
+    'dynamics': dynamicsLessonData,
+    
+    // Grease Pencil
+    'drawing-basics': drawingBasicsLessonData,
+    'gp-animation': gpAnimationLessonData,
+    'gp-modifiers': gpModifiersLessonData,
+    'mixed-media': mixedMediaLessonData,
+    
+    // Geometry Nodes
+    'node-basics': nodeBasicsLessonData,
+    'procedural-modeling': proceduralModelingLessonData,
+    'instances': instancesLessonData,
+    'fields-attributes': fieldsAttributesLessonData,
+    
+    // Project Management
+    'file-organization': fileOrganizationLessonData,
+    'collections': collectionsLessonData,
+    'version-control': versionControlLessonData,
+    'asset-libraries': assetLibrariesLessonData,
+    
+    // Simulation
+    'rigid-body': rigidBodyLessonData,
+    'cloth-simulation': clothSimulationLessonData,
+    'fluid-simulation': fluidSimulationLessonData,
+    'particle-systems': particleSystemsLessonData,
 }
 
 

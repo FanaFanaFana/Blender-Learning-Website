@@ -65,11 +65,11 @@ export default function BlenderCompendium() {
       color: '#a2d677ff',
       description: 'UV mapping, texture painting, and material workflows',
       topics: [
-        { title: 'UV Mapping', description: 'Unwrapping and UV layout techniques', icon: '/Icons/uv.svg', link: null },
-        { title: 'Texture Painting', description: 'Painting directly on 3D models', icon: '/Icons/keyframe.svg', link: null },
-        { title: 'Image Textures', description: 'Using images in materials', icon: '/Icons/anim.svg', link: null },
-        { title: 'Procedural Textures', description: 'Node-based texture generation', icon: '/Icons/graph.svg', link: null },
-        { title: 'Baking', description: 'Baking textures and lighting information', icon: '/Icons/armature_data.svg', link: null }
+        { title: 'UV Mapping', description: 'Unwrapping and UV layout techniques', icon: '/Icons/uv.svg', link: '/lessons/uv-mapping' },
+        { title: 'Texture Painting', description: 'Painting directly on 3D models', icon: '/Icons/keyframe.svg', link: '/lessons/texture-painting' },
+        { title: 'Image Textures', description: 'Using images in materials', icon: '/Icons/anim.svg', link: '/lessons/image-textures' },
+        { title: 'Procedural Textures', description: 'Node-based texture generation', icon: '/Icons/graph.svg', link: '/lessons/procedural-textures' },
+        { title: 'Baking', description: 'Baking textures and lighting information', icon: '/Icons/armature_data.svg', link: '/lessons/baking' }
       ]
     },
     Lesson: {
@@ -78,12 +78,12 @@ export default function BlenderCompendium() {
       color: '#0bf5e2ff',
       description: 'Step-by-step tutorials and guided learning paths',
       topics: [
-        { title: 'First 3D Model', description: 'Creating your first object in Blender', icon: '/Icons/mesh_cube.svg', link: '/FirstModelLesson' },
-        { title: 'Character Modeling', description: 'Creating character meshes and topology', icon: '/Icons/mesh_monkey.svg', link: '/CharacterModelingLesson' },
-        { title: 'Hard Surface Modeling', description: 'Mechanical and architectural modeling', icon: '/Icons/mod_bevel.svg', link: '/HardSurfaceLesson' },
-        { title: 'Product Design', description: 'Design workflows for product visualization', icon: '/Icons/mesh_torus.svg', link: '/ProductDesignLesson' },
-        { title: 'Topology', description: 'Digital sculpting tools and workflows', icon: '/Icons/mod_remesh.svg', link: '/TopologyLesson' },
-        { title: 'Materials & Shading', description: 'Creating realistic materials with the Shader Editor', icon: '/Icons/material.svg',  link: '/MaterialLesson' }
+        { title: 'First 3D Model', description: 'Creating your first object in Blender', icon: '/Icons/mesh_cube.svg', link: '/lessons/first-model' },
+        { title: 'Character Modeling', description: 'Creating character meshes and topology', icon: '/Icons/mesh_monkey.svg', link: '/lessons/character-modelling' },
+        { title: 'Hard Surface Modeling', description: 'Mechanical and architectural modeling', icon: '/Icons/mod_bevel.svg', link: '/lessons/hard-surface' },
+        { title: 'Product Design', description: 'Design workflows for product visualization', icon: '/Icons/mesh_torus.svg', link: '/lessons/product-design' },
+        { title: 'Topology', description: 'Digital sculpting tools and workflows', icon: '/Icons/mod_remesh.svg', link: '/lessons/topology' },
+        { title: 'Materials & Shading', description: 'Creating realistic materials with the Shader Editor', icon: '/Icons/material.svg', link: '/lessons/material' }
       ]
     },
     printing: {
@@ -92,10 +92,10 @@ export default function BlenderCompendium() {
       color: '#ec4899',
       description: 'Preparing models for 3D printing and manufacturing',
       topics: [
-        { title: 'Manifold Geometry', description: 'Creating watertight, printable meshes', icon: '/Icons/mesh_cube.svg', link: null },
-        { title: 'Scale & Units', description: 'Setting correct dimensions for printing', icon: '/Icons/tool.svg', link: null },
-        { title: 'Support Structures', description: 'Planning for print supports', icon: '/Icons/modifier.svg', link: null },
-        { title: 'File Export', description: 'Exporting STL and other formats', icon: '/Icons/render_still.svg', link: null }
+        { title: 'Manifold Geometry', description: 'Creating watertight, printable meshes', icon: '/Icons/mesh_cube.svg', link: '/lessons/manifold-geometry' },
+        { title: 'Scale & Units', description: 'Setting correct dimensions for printing', icon: '/Icons/tool.svg', link: '/lessons/scale-units' },
+        { title: 'Support Structures', description: 'Planning for print supports', icon: '/Icons/modifier.svg', link: '/lessons/support-structures' },
+        { title: 'File Export', description: 'Exporting STL and other formats', icon: '/Icons/render_still.svg', link: '/lessons/file-export' }
       ]
     },
     vfx: {
@@ -104,10 +104,10 @@ export default function BlenderCompendium() {
       color: '#f97316',
       description: 'Integrating 3D elements with live-action footage',
       topics: [
-        { title: 'Camera Tracking', description: 'Match-moving and camera solve', icon: '/Icons/camera_data.svg', link: null },
-        { title: 'Keying & Masking', description: 'Green screen and compositing', icon: '/Icons/render_result.svg', link: null },
-        { title: 'Shadow Catcher', description: 'Realistic shadow integration', icon: '/Icons/light.svg', link: null },
-        { title: 'Color Matching', description: 'Matching CG to footage', icon: '/Icons/material.svg', link: null }
+        { title: 'Camera Tracking', description: 'Match-moving and camera solve', icon: '/Icons/camera_data.svg', link: '/lessons/camera-tracking' },
+        { title: 'Keying & Masking', description: 'Green screen and compositing', icon: '/Icons/render_result.svg', link: '/lessons/keying-masking' },
+        { title: 'Shadow Catcher', description: 'Realistic shadow integration', icon: '/Icons/light.svg', link: '/lessons/shadow-catcher' },
+        { title: 'Color Matching', description: 'Matching CG to footage', icon: '/Icons/material.svg', link: '/lessons/color-matching' }
       ]
     },
     gameAssets: {
@@ -116,10 +116,10 @@ export default function BlenderCompendium() {
       color: '#06b6d4',
       description: 'Optimized modeling for game engines',
       topics: [
-        { title: 'Low-Poly Modeling', description: 'Efficient geometry for real-time', icon: '/Icons/mesh_cube.svg', link: null },
-        { title: 'Texture Baking', description: 'Baking high-res details to textures', icon: '/Icons/material.svg', link: null },
-        { title: 'LOD Creation', description: 'Level of detail optimization', icon: '/Icons/modifier.svg', link: null },
-        { title: 'Engine Export', description: 'FBX, glTF export workflows', icon: '/Icons/render_still.svg', link: null }
+        { title: 'Low-Poly Modeling', description: 'Efficient geometry for real-time', icon: '/Icons/mesh_cube.svg', link: '/lessons/low-poly-modeling' },
+        { title: 'Texture Baking', description: 'Baking high-res details to textures', icon: '/Icons/material.svg', link: '/lessons/texture-baking' },
+        { title: 'LOD Creation', description: 'Level of detail optimization', icon: '/Icons/modifier.svg', link: '/lessons/lod-creation' },
+        { title: 'Engine Export', description: 'FBX, glTF export workflows', icon: '/Icons/render_still.svg', link: '/lessons/engine-export' }
       ]
     },
     hairFur: {
@@ -128,10 +128,10 @@ export default function BlenderCompendium() {
       color: '#a855f7',
       description: 'Particle systems and grooming workflows',
       topics: [
-        { title: 'Particle Hair', description: 'Hair particle system basics', icon: '/Icons/physics.svg', link: null },
-        { title: 'Grooming', description: 'Styling and combing techniques', icon: '/Icons/tool.svg', link: null },
-        { title: 'Hair Shading', description: 'Realistic hair materials', icon: '/Icons/material.svg', link: null },
-        { title: 'Dynamics', description: 'Hair physics and simulation', icon: '/Icons/anim.svg', link: null }
+        { title: 'Particle Hair', description: 'Hair particle system basics', icon: '/Icons/physics.svg', link: '/lessons/particle-hair' },
+        { title: 'Grooming', description: 'Styling and combing techniques', icon: '/Icons/tool.svg', link: '/lessons/grooming' },
+        { title: 'Hair Shading', description: 'Realistic hair materials', icon: '/Icons/material.svg', link: '/lessons/hair-shading' },
+        { title: 'Dynamics', description: 'Hair physics and simulation', icon: '/Icons/anim.svg', link: '/lessons/dynamics' }
       ]
     },
     greaseGencil: {
@@ -140,10 +140,10 @@ export default function BlenderCompendium() {
       color: '#14b8a6',
       description: '2D animation in 3D space',
       topics: [
-        { title: 'Drawing Basics', description: 'Strokes, fills, and layers', icon: '/Icons/editmode_hlt.svg', link: null },
-        { title: 'Animation', description: 'Frame-by-frame animation', icon: '/Icons/anim.svg', link: null },
-        { title: 'Modifiers', description: 'Grease Pencil modifiers', icon: '/Icons/modifier.svg', link: null },
-        { title: 'Mixed Media', description: 'Combining 2D and 3D', icon: '/Icons/mesh_cube.svg', link: null }
+        { title: 'Drawing Basics', description: 'Strokes, fills, and layers', icon: '/Icons/editmode_hlt.svg', link: '/lessons/drawing-basics' },
+        { title: 'GP Animation', description: 'Frame-by-frame animation', icon: '/Icons/anim.svg', link: '/lessons/gp-animation' },
+        { title: 'GP Modifiers', description: 'Grease Pencil modifiers', icon: '/Icons/modifier.svg', link: '/lessons/gp-modifiers' },
+        { title: 'Mixed Media', description: 'Combining 2D and 3D', icon: '/Icons/mesh_cube.svg', link: '/lessons/mixed-media' }
       ]
     },
     geometryNodes: {
@@ -152,10 +152,10 @@ export default function BlenderCompendium() {
       color: '#eab308',
       description: 'Procedural modeling with node systems',
       topics: [
-        { title: 'Node Basics', description: 'Understanding geometry nodes', icon: '/Icons/graph.svg', link: null },
-        { title: 'Procedural Modeling', description: 'Non-destructive workflows', icon: '/Icons/mesh_cube.svg', link: null },
-        { title: 'Instances', description: 'Scattering and instancing', icon: '/Icons/modifier.svg', link: null },
-        { title: 'Fields & Attributes', description: 'Data-driven geometry', icon: '/Icons/tool.svg', link: null }
+        { title: 'Node Basics', description: 'Understanding geometry nodes', icon: '/Icons/graph.svg', link: '/lessons/node-basics' },
+        { title: 'Procedural Modeling', description: 'Non-destructive workflows', icon: '/Icons/mesh_cube.svg', link: '/lessons/procedural-modeling' },
+        { title: 'Instances', description: 'Scattering and instancing', icon: '/Icons/modifier.svg', link: '/lessons/instances' },
+        { title: 'Fields & Attributes', description: 'Data-driven geometry', icon: '/Icons/tool.svg', link: '/lessons/fields-attributes' }
       ]
     },
     projectManagement: {
@@ -164,10 +164,10 @@ export default function BlenderCompendium() {
       color: '#64748b',
       description: 'Organization and workflow optimization',
       topics: [
-        { title: 'File Organization', description: 'Naming conventions and structure', icon: '/Icons/outliner.svg', link: null },
-        { title: 'Collections', description: 'Scene organization', icon: '/Icons/mesh_cube.svg', link: null },
-        { title: 'Version Control', description: 'Managing file versions', icon: '/Icons/render_still.svg', link: null },
-        { title: 'Asset Libraries', description: 'Reusable asset management', icon: '/Icons/material.svg', link: null }
+        { title: 'File Organization', description: 'Naming conventions and structure', icon: '/Icons/outliner.svg', link: '/lessons/file-organization' },
+        { title: 'Collections', description: 'Scene organization', icon: '/Icons/mesh_cube.svg', link: '/lessons/collections' },
+        { title: 'Version Control', description: 'Managing file versions', icon: '/Icons/render_still.svg', link: '/lessons/version-control' },
+        { title: 'Asset Libraries', description: 'Reusable asset management', icon: '/Icons/material.svg', link: '/lessons/asset-libraries' }
       ]
     },
     simulation: {
@@ -176,10 +176,10 @@ export default function BlenderCompendium() {
       color: '#3b82f6',
       description: 'Physics simulations and dynamics',
       topics: [
-        { title: 'Rigid Body', description: 'Collision and dynamics', icon: '/Icons/physics.svg', link: null },
-        { title: 'Cloth Simulation', description: 'Fabric and soft bodies', icon: '/Icons/modifier.svg', link: null },
-        { title: 'Fluid Simulation', description: 'Liquids and gases', icon: '/Icons/render_result.svg', link: null },
-        { title: 'Particle Systems', description: 'Fire, smoke, and effects', icon: '/Icons/anim.svg', link: null }
+        { title: 'Rigid Body', description: 'Collision and dynamics', icon: '/Icons/physics.svg', link: '/lessons/rigid-body' },
+        { title: 'Cloth Simulation', description: 'Fabric and soft bodies', icon: '/Icons/modifier.svg', link: '/lessons/cloth-simulation' },
+        { title: 'Fluid Simulation', description: 'Liquids and gases', icon: '/Icons/render_result.svg', link: '/lessons/fluid-simulation' },
+        { title: 'Particle Systems', description: 'Fire, smoke, and effects', icon: '/Icons/anim.svg', link: '/lessons/particle-systems' }
       ]
     }
   }
@@ -264,7 +264,6 @@ export default function BlenderCompendium() {
                 }}>
                   {['Texturing', 'Lesson', 'printing', 'vfx', 'gameAssets', 'hairFur', 'greaseGencil', 'geometryNodes', 'projectManagement', 'simulation'].map((key) => (
                     <button
-                    
                       key={key}
                       onClick={() => {
                         setSelectedCategory(key)
@@ -321,7 +320,7 @@ export default function BlenderCompendium() {
                 const wrapperProps = topic.link ? { href: topic.link } : {}
                 
                 return (
-                  <TopicWrapper key={index}   onMouseEnter={playHover} {...wrapperProps} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <TopicWrapper key={index} onMouseEnter={playHover} {...wrapperProps} style={{ textDecoration: 'none', color: 'inherit' }}>
                     <div style={{
                       background: 'rgba(21, 35, 47, 0.6)',
                       border: '1px solid rgba(255, 255, 255, 0.05)',

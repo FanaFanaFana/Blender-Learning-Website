@@ -16,7 +16,6 @@ export default function Sidebar() {
     { title: 'Modifiers', category: '3D Modeling', icon: '/Icons/modifier.svg', link: '/lessons/modifier', color: '#3b82c4' },
     { title: 'Sculpting', category: '3D Modeling', icon: '/Icons/sculptmode_hlt.svg', link: '/lessons/sculpting', color: '#3b82c4' },
     
-    
     // Rendering
     { title: 'Render Engines', category: 'Rendering', icon: '/Icons/render_still.svg', link: '/lessons/render-engines', color: '#f59e0b' },
     { title: 'Lighting', category: 'Rendering', icon: '/Icons/light.svg', link: '/lessons/lighting', color: '#f59e0b' },
@@ -25,18 +24,18 @@ export default function Sidebar() {
     { title: 'Render Settings', category: 'Rendering', icon: '/Icons/render_result.svg', link: '/lessons/render-settings', color: '#f59e0b' },
     
     // Animation
-    { title: 'Keyframes', category: 'Animation', icon: '/Icons/keyframe.svg', link: 'lessons/keyframe', color: '#8b5cf6' },
+    { title: 'Keyframes', category: 'Animation', icon: '/Icons/keyframe.svg', link: '/lessons/keyframe', color: '#8b5cf6' },
     { title: 'Timeline', category: 'Animation', icon: '/Icons/anim.svg', link: '/lessons/timeline', color: '#8b5cf6' },
     { title: 'Graph Editor', category: 'Animation', icon: '/Icons/graph.svg', link: '/lessons/graph-editor', color: '#8b5cf6' },
     { title: 'Rigging', category: 'Animation', icon: '/Icons/armature_data.svg', link: '/lessons/rigging', color: '#8b5cf6' },
     { title: 'Physics', category: 'Animation', icon: '/Icons/physics.svg', link: '/lessons/physics', color: '#8b5cf6' },
     
     // Texturing
-    { title: 'UV Mapping', category: 'Texturing', icon: '/Icons/uv.svg', link: null, color: '#a2d677' },
-    { title: 'Texture Painting', category: 'Texturing', icon: '/Icons/keyframe.svg', link: null, color: '#a2d677' },
-    { title: 'Image Textures', category: 'Texturing', icon: '/Icons/anim.svg', link: null, color: '#a2d677' },
-    { title: 'Procedural Textures', category: 'Texturing', icon: '/Icons/graph.svg', link: null, color: '#a2d677' },
-    { title: 'Baking', category: 'Texturing', icon: '/Icons/armature_data.svg', link: null, color: '#a2d677' },
+    { title: 'UV Mapping', category: 'Texturing', icon: '/Icons/uv.svg', link: '/lessons/uv-mapping', color: '#a2d677' },
+    { title: 'Texture Painting', category: 'Texturing', icon: '/Icons/keyframe.svg', link: '/lessons/texture-painting', color: '#a2d677' },
+    { title: 'Image Textures', category: 'Texturing', icon: '/Icons/anim.svg', link: '/lessons/image-textures', color: '#a2d677' },
+    { title: 'Procedural Textures', category: 'Texturing', icon: '/Icons/graph.svg', link: '/lessons/procedural-textures', color: '#a2d677' },
+    { title: 'Baking', category: 'Texturing', icon: '/Icons/armature_data.svg', link: '/lessons/baking', color: '#a2d677' },
     
     // Lesson Content
     { title: 'First 3D Model', category: 'Lessons', icon: '/Icons/mesh_cube.svg', link: '/lessons/first-model', color: '#0bf5e2' },
@@ -47,52 +46,52 @@ export default function Sidebar() {
     { title: 'Topology', category: 'Lessons', icon: '/Icons/mod_remesh.svg', link: '/lessons/topology', color: '#0bf5e2' },
     
     // 3D Printing
-    { title: 'Manifold Geometry', category: '3D Printing', icon: '/Icons/mesh_cube.svg', link: null, color: '#ec4899' },
-    { title: 'Scale & Units', category: '3D Printing', icon: '/Icons/tool.svg', link: null, color: '#ec4899' },
-    { title: 'Support Structures', category: '3D Printing', icon: '/Icons/modifier.svg', link: null, color: '#ec4899' },
-    { title: 'File Export', category: '3D Printing', icon: '/Icons/render_still.svg', link: null, color: '#ec4899' },
+    { title: 'Manifold Geometry', category: '3D Printing', icon: '/Icons/mesh_cube.svg', link: '/lessons/manifold-geometry', color: '#ec4899' },
+    { title: 'Scale & Units', category: '3D Printing', icon: '/Icons/tool.svg', link: '/lessons/scale-units', color: '#ec4899' },
+    { title: 'Support Structures', category: '3D Printing', icon: '/Icons/modifier.svg', link: '/lessons/support-structures', color: '#ec4899' },
+    { title: 'File Export', category: '3D Printing', icon: '/Icons/render_still.svg', link: '/lessons/file-export', color: '#ec4899' },
     
     // VFX Integration
-    { title: 'Camera Tracking', category: 'VFX Integration', icon: '/Icons/camera_data.svg', link: null, color: '#f97316' },
-    { title: 'Keying & Masking', category: 'VFX Integration', icon: '/Icons/render_result.svg', link: null, color: '#f97316' },
-    { title: 'Shadow Catcher', category: 'VFX Integration', icon: '/Icons/light.svg', link: null, color: '#f97316' },
-    { title: 'Color Matching', category: 'VFX Integration', icon: '/Icons/material.svg', link: null, color: '#f97316' },
+    { title: 'Camera Tracking', category: 'VFX Integration', icon: '/Icons/camera_data.svg', link: '/lessons/camera-tracking', color: '#f97316' },
+    { title: 'Keying & Masking', category: 'VFX Integration', icon: '/Icons/render_result.svg', link: '/lessons/keying-masking', color: '#f97316' },
+    { title: 'Shadow Catcher', category: 'VFX Integration', icon: '/Icons/light.svg', link: '/lessons/shadow-catcher', color: '#f97316' },
+    { title: 'Color Matching', category: 'VFX Integration', icon: '/Icons/material.svg', link: '/lessons/color-matching', color: '#f97316' },
     
     // Game Assets
-    { title: 'Low-Poly Modeling', category: 'Game Assets', icon: '/Icons/mesh_cube.svg', link: null, color: '#06b6d4' },
-    { title: 'Texture Baking', category: 'Game Assets', icon: '/Icons/material.svg', link: null, color: '#06b6d4' },
-    { title: 'LOD Creation', category: 'Game Assets', icon: '/Icons/modifier.svg', link: null, color: '#06b6d4' },
-    { title: 'Engine Export', category: 'Game Assets', icon: '/Icons/render_still.svg', link: null, color: '#06b6d4' },
+    { title: 'Low-Poly Modeling', category: 'Game Assets', icon: '/Icons/mesh_cube.svg', link: '/lessons/low-poly-modeling', color: '#06b6d4' },
+    { title: 'Texture Baking', category: 'Game Assets', icon: '/Icons/material.svg', link: '/lessons/texture-baking', color: '#06b6d4' },
+    { title: 'LOD Creation', category: 'Game Assets', icon: '/Icons/modifier.svg', link: '/lessons/lod-creation', color: '#06b6d4' },
+    { title: 'Engine Export', category: 'Game Assets', icon: '/Icons/render_still.svg', link: '/lessons/engine-export', color: '#06b6d4' },
     
     // Hair & Fur
-    { title: 'Particle Hair', category: 'Hair & Fur', icon: '/Icons/physics.svg', link: null, color: '#a855f7' },
-    { title: 'Grooming', category: 'Hair & Fur', icon: '/Icons/tool.svg', link: null, color: '#a855f7' },
-    { title: 'Hair Shading', category: 'Hair & Fur', icon: '/Icons/material.svg', link: null, color: '#a855f7' },
-    { title: 'Dynamics', category: 'Hair & Fur', icon: '/Icons/anim.svg', link: null, color: '#a855f7' },
+    { title: 'Particle Hair', category: 'Hair & Fur', icon: '/Icons/physics.svg', link: '/lessons/particle-hair', color: '#a855f7' },
+    { title: 'Grooming', category: 'Hair & Fur', icon: '/Icons/tool.svg', link: '/lessons/grooming', color: '#a855f7' },
+    { title: 'Hair Shading', category: 'Hair & Fur', icon: '/Icons/material.svg', link: '/lessons/hair-shading', color: '#a855f7' },
+    { title: 'Dynamics', category: 'Hair & Fur', icon: '/Icons/anim.svg', link: '/lessons/dynamics', color: '#a855f7' },
     
     // Grease Pencil
-    { title: 'Drawing Basics', category: 'Grease Pencil', icon: '/Icons/editmode_hlt.svg', link: null, color: '#14b8a6' },
-    { title: 'GP Animation', category: 'Grease Pencil', icon: '/Icons/anim.svg', link: null, color: '#14b8a6' },
-    { title: 'GP Modifiers', category: 'Grease Pencil', icon: '/Icons/modifier.svg', link: null, color: '#14b8a6' },
-    { title: 'Mixed Media', category: 'Grease Pencil', icon: '/Icons/mesh_cube.svg', link: null, color: '#14b8a6' },
+    { title: 'Drawing Basics', category: 'Grease Pencil', icon: '/Icons/editmode_hlt.svg', link: '/lessons/drawing-basics', color: '#14b8a6' },
+    { title: 'GP Animation', category: 'Grease Pencil', icon: '/Icons/anim.svg', link: '/lessons/gp-animation', color: '#14b8a6' },
+    { title: 'GP Modifiers', category: 'Grease Pencil', icon: '/Icons/modifier.svg', link: '/lessons/gp-modifiers', color: '#14b8a6' },
+    { title: 'Mixed Media', category: 'Grease Pencil', icon: '/Icons/mesh_cube.svg', link: '/lessons/mixed-media', color: '#14b8a6' },
     
     // Geometry Nodes
-    { title: 'Node Basics', category: 'Geometry Nodes', icon: '/Icons/graph.svg', link: null, color: '#eab308' },
-    { title: 'Procedural Modeling', category: 'Geometry Nodes', icon: '/Icons/mesh_cube.svg', link: null, color: '#eab308' },
-    { title: 'Instances', category: 'Geometry Nodes', icon: '/Icons/modifier.svg', link: null, color: '#eab308' },
-    { title: 'Fields & Attributes', category: 'Geometry Nodes', icon: '/Icons/tool.svg', link: null, color: '#eab308' },
+    { title: 'Node Basics', category: 'Geometry Nodes', icon: '/Icons/graph.svg', link: '/lessons/node-basics', color: '#eab308' },
+    { title: 'Procedural Modeling', category: 'Geometry Nodes', icon: '/Icons/mesh_cube.svg', link: '/lessons/procedural-modeling', color: '#eab308' },
+    { title: 'Instances', category: 'Geometry Nodes', icon: '/Icons/modifier.svg', link: '/lessons/instances', color: '#eab308' },
+    { title: 'Fields & Attributes', category: 'Geometry Nodes', icon: '/Icons/tool.svg', link: '/lessons/fields-attributes', color: '#eab308' },
     
     // Project Management
-    { title: 'File Organization', category: 'Project Management', icon: '/Icons/outliner.svg', link: null, color: '#64748b' },
-    { title: 'Collections', category: 'Project Management', icon: '/Icons/mesh_cube.svg', link: null, color: '#64748b' },
-    { title: 'Version Control', category: 'Project Management', icon: '/Icons/render_still.svg', link: null, color: '#64748b' },
-    { title: 'Asset Libraries', category: 'Project Management', icon: '/Icons/material.svg', link: null, color: '#64748b' },
+    { title: 'File Organization', category: 'Project Management', icon: '/Icons/outliner.svg', link: '/lessons/file-organization', color: '#64748b' },
+    { title: 'Collections', category: 'Project Management', icon: '/Icons/mesh_cube.svg', link: '/lessons/collections', color: '#64748b' },
+    { title: 'Version Control', category: 'Project Management', icon: '/Icons/render_still.svg', link: '/lessons/version-control', color: '#64748b' },
+    { title: 'Asset Libraries', category: 'Project Management', icon: '/Icons/material.svg', link: '/lessons/asset-libraries', color: '#64748b' },
     
     // Simulation
-    { title: 'Rigid Body', category: 'Simulation', icon: '/Icons/physics.svg', link: null, color: '#3b82f6' },
-    { title: 'Cloth Simulation', category: 'Simulation', icon: '/Icons/modifier.svg', link: null, color: '#3b82f6' },
-    { title: 'Fluid Simulation', category: 'Simulation', icon: '/Icons/render_result.svg', link: null, color: '#3b82f6' },
-    { title: 'Particle Systems', category: 'Simulation', icon: '/Icons/anim.svg', link: null, color: '#3b82f6' }
+    { title: 'Rigid Body', category: 'Simulation', icon: '/Icons/physics.svg', link: '/lessons/rigid-body', color: '#3b82f6' },
+    { title: 'Cloth Simulation', category: 'Simulation', icon: '/Icons/modifier.svg', link: '/lessons/cloth-simulation', color: '#3b82f6' },
+    { title: 'Fluid Simulation', category: 'Simulation', icon: '/Icons/render_result.svg', link: '/lessons/fluid-simulation', color: '#3b82f6' },
+    { title: 'Particle Systems', category: 'Simulation', icon: '/Icons/anim.svg', link: '/lessons/particle-systems', color: '#3b82f6' }
   ]
 
   const filteredTopics = allTopics.filter(topic =>
@@ -130,7 +129,6 @@ export default function Sidebar() {
       {/* Overlay for touch devices - closes sidebar when tapped */}
       {isSidebarOpen && (
         <div
-        
           onClick={(e) => {
             e.stopPropagation()
             setIsSidebarOpen(false)
@@ -170,7 +168,6 @@ export default function Sidebar() {
 
       {/* Sidebar */}
       <div
-      
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={(e) => e.stopPropagation()}
@@ -195,7 +192,7 @@ export default function Sidebar() {
         {/* Search Bar */}
         <div style={{ marginBottom: '1.5rem', opacity: isSidebarOpen ? 1 : 0, transition: 'opacity 0.3s ease' }}>
           <input
-          onMouseEnter={playHover}
+            onMouseEnter={playHover}
             type="text"
             placeholder="Search topics..."
             value={searchQuery}
@@ -214,11 +211,10 @@ export default function Sidebar() {
         </div>
 
         {/* Topics List */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', opacity: isSidebarOpen ? 1 : 0, transition: 'opacity 0.3s ease 0.1s'  }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', opacity: isSidebarOpen ? 1 : 0, transition: 'opacity 0.3s ease 0.1s' }}>
           {Object.entries(groupedTopics).map(([category, topics]) => (
-            <div key={category} >
+            <div key={category}>
               <h3 style={{
-                
                 fontSize: '0.85rem',
                 fontWeight: '600',
                 color: topics[0].color,
@@ -227,7 +223,6 @@ export default function Sidebar() {
                 letterSpacing: '0.05em'
               }}>
                 {category}
-                
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 {topics.map((topic, idx) => {
@@ -235,7 +230,7 @@ export default function Sidebar() {
                   const wrapperProps = topic.link ? { href: topic.link } : {}
 
                   return (
-                    <TopicWrapper key={idx}  onMouseEnter={playHover} {...wrapperProps} style={{ textDecoration: 'none' }}>
+                    <TopicWrapper key={idx} onMouseEnter={playHover} {...wrapperProps} style={{ textDecoration: 'none' }}>
                       <div
                         style={{
                           display: 'flex',
@@ -249,12 +244,10 @@ export default function Sidebar() {
                           transition: 'all 0.2s ease',
                           border: '1px solid transparent'
                         }}
-                        
                         onMouseEnter={(e) => {
                           if (topic.link) {
                             e.currentTarget.style.background = 'rgba(28, 45, 60, 0.6)'
                             e.currentTarget.style.borderColor = `${topic.color}40`
-                            
                           }
                         }}
                         onMouseLeave={(e) => {

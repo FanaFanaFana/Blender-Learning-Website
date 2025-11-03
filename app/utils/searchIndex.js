@@ -3,24 +3,79 @@
 
 // Import all your lesson data files - EXACT filenames from your directory
 import { characterModelingLessonData } from '../../data/lessons/characterModelingLessonData'
-import { editModeLessonData } from '../../data/lessons/editModeLessonData'
-import { firstModelLessonData } from '../../data/lessons/firstModelLessonData'
-import { interfaceLessonData } from '../../data/lessons/interfaceLessonData'
-import { modifierLessonData } from '../../data/lessons/modifierLessonData'
+import { editModeLessonData } from '../../data/lessons/editModeLessonData.jsx'
+import { firstModelLessonData } from '../../data/lessons/firstModelLessonData.jsx'
+import { interfaceLessonData } from '../../data/lessons/interfaceLessonData.jsx'
+import { modifierLessonData } from '../../data/lessons/modifierLessonData.jsx'
 import { sculptingLessonData } from '../../data/lessons/sculptingLessonData'
-import { hardsurfaceLessonData } from '../../data/lessons/hardsurfaceLessonData'
-import { productDesignLessonData } from '../../data/lessons/productDesignLessonData'
-import { materialLessonData } from '../../data/lessons/materialLessonData'
+import { hardsurfaceLessonData } from '../../data/lessons/hardsurfaceLessonData.jsx'
+import { productDesignLessonData } from '../../data/lessons/productDesignLessonData.jsx'
+import { materialLessonData } from '../../data/lessons/materialLessonData.jsx'
 import { cameraLessonData } from '../../data/lessons/cameraLessonData'
-import { lightingLessonData } from '../../data/lessons/lightingLessonData'
-import { renderEnginesLessonData } from '../../data/lessons/renderEnginesLessonData'
-import { renderSettingsLessonData } from '../../data/lessons/renderSettingsLessonData'
+import { lightingLessonData } from '../../data/lessons/lightingLessonData.jsx'
+import { renderEnginesLessonData } from '../../data/lessons/renderEnginesLessonData.jsx'
+import { renderSettingsLessonData } from '../../data/lessons/renderSettingsLessonData.jsx'
 import { topologyLessonData } from '../../data/lessons/topologyLessonData'
-import { keyframeLessonData } from '../../data/lessons/keyframeLessonData'
+import { keyframeLessonData } from '../../data/lessons/keyframeLessonData.jsx'
 import { timelineLessonData } from '@/data/lessons/timelineLessonData'
 import { graphEditorLessonData } from '@/data/lessons/graphEditorLessonData'
 import { riggingLessonData } from '@/data/lessons/riggingLessonData'
 import { physicsLessonData } from '@/data/lessons/physicsLessonData'
+
+// Texturing lessons
+import { uvMappingLessonData } from '../../data/lessons/uvMappingLessonData'
+import { texturePaintingLessonData } from '../../data/lessons/texturePaintingLessonData'
+import { imageTexturesLessonData } from '../../data/lessons/imageTexturesLessonData'
+import { proceduralTexturesLessonData } from '../../data/lessons/proceduralTexturesLessonData'
+import { bakingLessonData } from '../../data/lessons/bakingLessonData'
+
+// 3D Printing lessons
+import { manifoldGeometryLessonData } from '../../data/lessons/manifoldGeometryLessonData'
+import { scaleUnitsLessonData } from '../../data/lessons/scaleUnitsLessonData'
+import { supportStructuresLessonData } from '../../data/lessons/supportStructuresLessonData'
+import { fileExportLessonData } from '../../data/lessons/fileExportLessonData'
+
+// VFX Integration lessons
+import { cameraTrackingLessonData } from '../../data/lessons/cameraTrackingLessonData'
+import { keyingMaskingLessonData } from '../../data/lessons/keyingMaskingLessonData'
+import { shadowCatcherLessonData } from '../../data/lessons/shadowCatcherLessonData'
+import { colorMatchingLessonData } from '../../data/lessons/colorMatchingLessonData'
+
+// Game Assets lessons
+import { lowPolyModelingLessonData } from '../../data/lessons/lowPolyModelingLessonData'
+import { textureBakingLessonData } from '../../data/lessons/textureBakingLessonData'
+import { lodCreationLessonData } from '../../data/lessons/lodCreationLessonData'
+import { engineExportLessonData } from '../../data/lessons/engineExportLessonData'
+
+// Hair & Fur lessons
+import { particleHairLessonData } from '../../data/lessons/particleHairLessonData'
+import { groomingLessonData } from '../../data/lessons/groomingLessonData'
+import { hairShadingLessonData } from '../../data/lessons/hairShadingLessonData'
+import { dynamicsLessonData } from '../../data/lessons/dynamicsLessonData'
+
+// Grease Pencil lessons
+import { drawingBasicsLessonData } from '../../data/lessons/drawingBasicsLessonData'
+import { gpAnimationLessonData } from '../../data/lessons/gpAnimationLessonData.jsx'
+import { gpModifiersLessonData } from '../../data/lessons/gpModifiersLessonData'
+import { mixedMediaLessonData } from '../../data/lessons/mixedMediaLessonData'
+
+// Geometry Nodes lessons
+import { nodeBasicsLessonData } from '../../data/lessons/nodeBasicsLessonData'
+import { proceduralModelingLessonData } from '../../data/lessons/proceduralModelingLessonData'
+import { instancesLessonData } from '../../data/lessons/instancesLessonData'
+import { fieldsAttributesLessonData } from '../../data/lessons/fieldsAttributesLessonData'
+
+// Project Management lessons
+import { fileOrganizationLessonData } from '../../data/lessons/fileOrganizationLessonData'
+import { collectionsLessonData } from '../../data/lessons/collectionsLessonData'
+import { versionControlLessonData } from '../../data/lessons/versionControlLessonData'
+import { assetLibrariesLessonData } from '../../data/lessons/assetLibrariesLessonData'
+
+// Simulation lessons
+import { rigidBodyLessonData } from '../../data/lessons/rigidBodyLessonData'
+import { clothSimulationLessonData } from '../../data/lessons/clothSimulationLessonData'
+import { fluidSimulationLessonData } from '../../data/lessons/fluidSimulationLessonData'
+import { particleSystemsLessonData } from '../../data/lessons/particleSystemsLessonData'
 
 function extractSearchableItems(lessonData, lessonInfo) {
   const items = []
@@ -268,29 +323,14 @@ function extractSearchableItems(lessonData, lessonInfo) {
 
 // Define all your lessons with their metadata
 const lessons = [
-  {
-    data: characterModelingLessonData,
-    title: 'Character Modeling',
-    link: '/lessons/character-modelling',
-    color: '#ec4899',
-    difficulty: 'Advanced',
-    baseTags: ['character', 'modeling', 'advanced']
-  },
+  // 3D Modeling
   {
     data: editModeLessonData,
     title: 'Edit Mode',
     link: '/lessons/edit-mode',
     color: '#10b981',
     difficulty: 'Beginner',
-    baseTags: ['edit', 'mode', 'beginner']
-  },
-  {
-    data: firstModelLessonData,
-    title: 'First 3D Model',
-    link: '/lessons/first-model',
-    color: '#3b82c4',
-    difficulty: 'Beginner',
-    baseTags: ['modeling', 'beginner', 'basics']
+    baseTags: ['edit', 'mode', 'beginner', 'modeling']
   },
   {
     data: interfaceLessonData,
@@ -306,7 +346,7 @@ const lessons = [
     link: '/lessons/modifier',
     color: '#3b82c4',
     difficulty: 'Intermediate',
-    baseTags: ['modifiers', 'intermediate']
+    baseTags: ['modifiers', 'intermediate', 'modeling']
   },
   {
     data: sculptingLessonData,
@@ -314,32 +354,10 @@ const lessons = [
     link: '/lessons/sculpting',
     color: '#3b82c4',
     difficulty: 'Intermediate',
-    baseTags: ['sculpting', 'intermediate']
+    baseTags: ['sculpting', 'intermediate', 'modeling']
   },
-  {
-    data: hardsurfaceLessonData,
-    title: 'Hard Surface',
-    link: '/lessons/hard-surface',
-    color: '#3b82c4',
-    difficulty: 'Advanced',
-    baseTags: ['hard surface', 'advanced']
-  },
-  {
-    data: productDesignLessonData,
-    title: 'Product Design',
-    link: '/lessons/product-design',
-    color: '#3b82c4',
-    difficulty: 'Advanced',
-    baseTags: ['product', 'design', 'advanced']
-  },
-  {
-    data: materialLessonData,
-    title: 'Materials & Shading',
-    link: '/lessons/material',
-    color: '#f59e0b',
-    difficulty: 'Intermediate',
-    baseTags: ['materials', 'shading', 'intermediate']
-  },
+  
+  // Rendering
   {
     data: cameraLessonData,
     title: 'Camera',
@@ -357,6 +375,14 @@ const lessons = [
     baseTags: ['lighting', 'rendering', 'intermediate']
   },
   {
+    data: materialLessonData,
+    title: 'Materials & Shading',
+    link: '/lessons/material',
+    color: '#f59e0b',
+    difficulty: 'Intermediate',
+    baseTags: ['materials', 'shading', 'intermediate', 'rendering']
+  },
+  {
     data: renderEnginesLessonData,
     title: 'Render Engines',
     link: '/lessons/render-engines',
@@ -372,14 +398,8 @@ const lessons = [
     difficulty: 'Intermediate',
     baseTags: ['rendering', 'settings', 'intermediate']
   },
-  {
-    data: topologyLessonData,
-    title: 'Topology',
-    link: '/lessons/topology',
-    color: '#3b82c4',
-    difficulty: 'Advanced',
-    baseTags: ['topology', 'modeling', 'advanced']
-  },
+  
+  // Animation
   {
     data: keyframeLessonData,
     title: 'Keyframes',
@@ -396,7 +416,8 @@ const lessons = [
     difficulty: 'Intermediate', 
     baseTags: ['timeline', 'animation', 'intermediate']
   },
-  { data: graphEditorLessonData,
+  {
+    data: graphEditorLessonData,
     title: 'Graph Editor',
     link: '/lessons/graph-editor',    
     color: '#8b5cf6',
@@ -420,6 +441,361 @@ const lessons = [
     baseTags: ['physics', 'animation', 'advanced']
   },
 
+  // Texturing
+  {
+    data: uvMappingLessonData,
+    title: 'UV Mapping',
+    link: '/lessons/uv-mapping',
+    color: '#06b6d4',
+    difficulty: 'Intermediate',
+    baseTags: ['uv', 'mapping', 'texturing', 'intermediate']
+  },
+  {
+    data: texturePaintingLessonData,
+    title: 'Texture Painting',
+    link: '/lessons/texture-painting',
+    color: '#06b6d4',
+    difficulty: 'Intermediate',
+    baseTags: ['texture', 'painting', 'texturing', 'intermediate']
+  },
+  {
+    data: imageTexturesLessonData,
+    title: 'Image Textures',
+    link: '/lessons/image-textures',
+    color: '#06b6d4',
+    difficulty: 'Beginner',
+    baseTags: ['image', 'textures', 'texturing', 'beginner']
+  },
+  {
+    data: proceduralTexturesLessonData,
+    title: 'Procedural Textures',
+    link: '/lessons/procedural-textures',
+    color: '#06b6d4',
+    difficulty: 'Intermediate',
+    baseTags: ['procedural', 'textures', 'texturing', 'intermediate']
+  },
+  {
+    data: bakingLessonData,
+    title: 'Baking',
+    link: '/lessons/baking',
+    color: '#06b6d4',
+    difficulty: 'Advanced',
+    baseTags: ['baking', 'texturing', 'advanced']
+  },
+
+  // Lessons
+  {
+    data: firstModelLessonData,
+    title: 'First 3D Model',
+    link: '/lessons/first-model',
+    color: '#3b82c4',
+    difficulty: 'Beginner',
+    baseTags: ['modeling', 'beginner', 'basics']
+  },
+  {
+    data: characterModelingLessonData,
+    title: 'Character Modeling',
+    link: '/lessons/character-modelling',
+    color: '#ec4899',
+    difficulty: 'Advanced',
+    baseTags: ['character', 'modeling', 'advanced']
+  },
+  {
+    data: hardsurfaceLessonData,
+    title: 'Hard Surface',
+    link: '/lessons/hard-surface',
+    color: '#3b82c4',
+    difficulty: 'Advanced',
+    baseTags: ['hard surface', 'advanced', 'modeling']
+  },
+  {
+    data: productDesignLessonData,
+    title: 'Product Design',
+    link: '/lessons/product-design',
+    color: '#3b82c4',
+    difficulty: 'Advanced',
+    baseTags: ['product', 'design', 'advanced', 'modeling']
+  },
+  {
+    data: topologyLessonData,
+    title: 'Topology',
+    link: '/lessons/topology',
+    color: '#3b82c4',
+    difficulty: 'Advanced',
+    baseTags: ['topology', 'modeling', 'advanced']
+  },
+
+  // 3D Printing
+  {
+    data: manifoldGeometryLessonData,
+    title: 'Manifold Geometry',
+    link: '/lessons/manifold-geometry',
+    color: '#14b8a6',
+    difficulty: 'Intermediate',
+    baseTags: ['3d printing', 'manifold', 'geometry', 'intermediate']
+  },
+  {
+    data: scaleUnitsLessonData,
+    title: 'Scale & Units',
+    link: '/lessons/scale-units',
+    color: '#14b8a6',
+    difficulty: 'Beginner',
+    baseTags: ['3d printing', 'scale', 'units', 'beginner']
+  },
+  {
+    data: supportStructuresLessonData,
+    title: 'Support Structures',
+    link: '/lessons/support-structures',
+    color: '#14b8a6',
+    difficulty: 'Intermediate',
+    baseTags: ['3d printing', 'supports', 'intermediate']
+  },
+  {
+    data: fileExportLessonData,
+    title: 'File Export',
+    link: '/lessons/file-export',
+    color: '#14b8a6',
+    difficulty: 'Beginner',
+    baseTags: ['3d printing', 'export', 'beginner']
+  },
+
+  // VFX Integration
+  {
+    data: cameraTrackingLessonData,
+    title: 'Camera Tracking',
+    link: '/lessons/camera-tracking',
+    color: '#ef4444',
+    difficulty: 'Advanced',
+    baseTags: ['vfx', 'tracking', 'camera', 'advanced']
+  },
+  {
+    data: keyingMaskingLessonData,
+    title: 'Keying & Masking',
+    link: '/lessons/keying-masking',
+    color: '#ef4444',
+    difficulty: 'Intermediate',
+    baseTags: ['vfx', 'keying', 'masking', 'intermediate']
+  },
+  {
+    data: shadowCatcherLessonData,
+    title: 'Shadow Catcher',
+    link: '/lessons/shadow-catcher',
+    color: '#ef4444',
+    difficulty: 'Intermediate',
+    baseTags: ['vfx', 'shadow', 'compositing', 'intermediate']
+  },
+  {
+    data: colorMatchingLessonData,
+    title: 'Color Matching',
+    link: '/lessons/color-matching',
+    color: '#ef4444',
+    difficulty: 'Intermediate',
+    baseTags: ['vfx', 'color', 'grading', 'intermediate']
+  },
+
+  // Game Assets
+  {
+    data: lowPolyModelingLessonData,
+    title: 'Low Poly Modeling',
+    link: '/lessons/low-poly-modeling',
+    color: '#22c55e',
+    difficulty: 'Intermediate',
+    baseTags: ['game dev', 'low poly', 'modeling', 'intermediate']
+  },
+  {
+    data: textureBakingLessonData,
+    title: 'Texture Baking',
+    link: '/lessons/texture-baking',
+    color: '#22c55e',
+    difficulty: 'Advanced',
+    baseTags: ['game dev', 'baking', 'textures', 'advanced']
+  },
+  {
+    data: lodCreationLessonData,
+    title: 'LOD Creation',
+    link: '/lessons/lod-creation',
+    color: '#22c55e',
+    difficulty: 'Advanced',
+    baseTags: ['game dev', 'lod', 'optimization', 'advanced']
+  },
+  {
+    data: engineExportLessonData,
+    title: 'Engine Export',
+    link: '/lessons/engine-export',
+    color: '#22c55e',
+    difficulty: 'Intermediate',
+    baseTags: ['game dev', 'export', 'unity', 'unreal', 'intermediate']
+  },
+
+  // Hair & Fur
+  {
+    data: particleHairLessonData,
+    title: 'Particle Hair',
+    link: '/lessons/particle-hair',
+    color: '#a855f7',
+    difficulty: 'Advanced',
+    baseTags: ['hair', 'fur', 'particles', 'advanced']
+  },
+  {
+    data: groomingLessonData,
+    title: 'Grooming',
+    link: '/lessons/grooming',
+    color: '#a855f7',
+    difficulty: 'Advanced',
+    baseTags: ['hair', 'fur', 'grooming', 'advanced']
+  },
+  {
+    data: hairShadingLessonData,
+    title: 'Hair Shading',
+    link: '/lessons/hair-shading',
+    color: '#a855f7',
+    difficulty: 'Advanced',
+    baseTags: ['hair', 'fur', 'shading', 'advanced']
+  },
+  {
+    data: dynamicsLessonData,
+    title: 'Dynamics',
+    link: '/lessons/dynamics',
+    color: '#a855f7',
+    difficulty: 'Advanced',
+    baseTags: ['hair', 'fur', 'dynamics', 'simulation', 'advanced']
+  },
+
+  // Grease Pencil
+  {
+    data: drawingBasicsLessonData,
+    title: 'Drawing Basics',
+    link: '/lessons/drawing-basics',
+    color: '#ec4899',
+    difficulty: 'Beginner',
+    baseTags: ['grease pencil', '2d', 'drawing', 'beginner']
+  },
+  {
+    data: gpAnimationLessonData,
+    title: 'GP Animation',
+    link: '/lessons/gp-animation',
+    color: '#ec4899',
+    difficulty: 'Intermediate',
+    baseTags: ['grease pencil', '2d', 'animation', 'intermediate']
+  },
+  {
+    data: gpModifiersLessonData,
+    title: 'GP Modifiers',
+    link: '/lessons/gp-modifiers',
+    color: '#ec4899',
+    difficulty: 'Intermediate',
+    baseTags: ['grease pencil', '2d', 'modifiers', 'intermediate']
+  },
+  {
+    data: mixedMediaLessonData,
+    title: 'Mixed Media',
+    link: '/lessons/mixed-media',
+    color: '#ec4899',
+    difficulty: 'Advanced',
+    baseTags: ['grease pencil', '2d', '3d', 'mixed media', 'advanced']
+  },
+
+  // Geometry Nodes
+  {
+    data: nodeBasicsLessonData,
+    title: 'Node Basics',
+    link: '/lessons/node-basics',
+    color: '#f59e0b',
+    difficulty: 'Intermediate',
+    baseTags: ['geometry nodes', 'procedural', 'nodes', 'intermediate']
+  },
+  {
+    data: proceduralModelingLessonData,
+    title: 'Procedural Modeling',
+    link: '/lessons/procedural-modeling',
+    color: '#f59e0b',
+    difficulty: 'Advanced',
+    baseTags: ['geometry nodes', 'procedural', 'modeling', 'advanced']
+  },
+  {
+    data: instancesLessonData,
+    title: 'Instances',
+    link: '/lessons/instances',
+    color: '#f59e0b',
+    difficulty: 'Advanced',
+    baseTags: ['geometry nodes', 'instances', 'optimization', 'advanced']
+  },
+  {
+    data: fieldsAttributesLessonData,
+    title: 'Fields & Attributes',
+    link: '/lessons/fields-attributes',
+    color: '#f59e0b',
+    difficulty: 'Advanced',
+    baseTags: ['geometry nodes', 'fields', 'attributes', 'advanced']
+  },
+
+  // Project Management
+  {
+    data: fileOrganizationLessonData,
+    title: 'File Organization',
+    link: '/lessons/file-organization',
+    color: '#64748b',
+    difficulty: 'Beginner',
+    baseTags: ['project management', 'organization', 'workflow', 'beginner']
+  },
+  {
+    data: collectionsLessonData,
+    title: 'Collections',
+    link: '/lessons/collections',
+    color: '#64748b',
+    difficulty: 'Beginner',
+    baseTags: ['project management', 'collections', 'organization', 'beginner']
+  },
+  {
+    data: versionControlLessonData,
+    title: 'Version Control',
+    link: '/lessons/version-control',
+    color: '#64748b',
+    difficulty: 'Intermediate',
+    baseTags: ['project management', 'version control', 'git', 'intermediate']
+  },
+  {
+    data: assetLibrariesLessonData,
+    title: 'Asset Libraries',
+    link: '/lessons/asset-libraries',
+    color: '#64748b',
+    difficulty: 'Intermediate',
+    baseTags: ['project management', 'assets', 'libraries', 'intermediate']
+  },
+
+  // Simulation
+  {
+    data: rigidBodyLessonData,
+    title: 'Rigid Body',
+    link: '/lessons/rigid-body',
+    color: '#06b6d4',
+    difficulty: 'Intermediate',
+    baseTags: ['simulation', 'rigid body', 'physics', 'intermediate']
+  },
+  {
+    data: clothSimulationLessonData,
+    title: 'Cloth Simulation',
+    link: '/lessons/cloth-simulation',
+    color: '#06b6d4',
+    difficulty: 'Advanced',
+    baseTags: ['simulation', 'cloth', 'physics', 'advanced']
+  },
+  {
+    data: fluidSimulationLessonData,
+    title: 'Fluid Simulation',
+    link: '/lessons/fluid-simulation',
+    color: '#06b6d4',
+    difficulty: 'Advanced',
+    baseTags: ['simulation', 'fluid', 'physics', 'advanced']
+  },
+  {
+    data: particleSystemsLessonData,
+    title: 'Particle Systems',
+    link: '/lessons/particle-systems',
+    color: '#06b6d4',
+    difficulty: 'Advanced',
+    baseTags: ['simulation', 'particles', 'physics', 'advanced']
+  },
 ]
 
 // Build the complete search index
