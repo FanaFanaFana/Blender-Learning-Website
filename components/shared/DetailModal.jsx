@@ -8,6 +8,7 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
   const modalRef = useRef(null)
   const videoRef = useRef(null)
   const mediaContainerRef = useRef(null)
+  const fullscreenRef = useRef(null)
   const [isFullscreen, setIsFullscreen] = useState(false)
   
   useEffect(() => {
@@ -22,9 +23,10 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
     }
     
     const handleClickOutside = (e) => {
-      // Don't close if clicking inside the modal or the media container
+      // Don't close if clicking inside the modal, media container, or fullscreen overlay
       if (modalRef.current && !modalRef.current.contains(e.target) && 
-          (!mediaContainerRef.current || !mediaContainerRef.current.contains(e.target))) {
+          (!mediaContainerRef.current || !mediaContainerRef.current.contains(e.target)) &&
+          (!fullscreenRef.current || !fullscreenRef.current.contains(e.target))) {
         onClose()
       }
     }
@@ -437,6 +439,7 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
       {/* Custom fullscreen overlay for GIFs (works on all devices including iOS) */}
       {isFullscreen && (
         <div 
+          ref={fullscreenRef}
           onClick={(e) => {
             e.stopPropagation()
             toggleFullscreen(e)
