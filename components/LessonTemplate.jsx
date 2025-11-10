@@ -65,6 +65,32 @@ export default function LessonTemplate({ lessonData }) {
       if (hash.startsWith('#item=')) {
         try {
           const itemData = JSON.parse(decodeURIComponent(hash.substring(6)))
+          
+          // ✅ FIX: Process media URLs to add finalMediaUrl (same as API does)
+          if (itemData.detailedInfo && itemData.detailedInfo.pages) {
+            itemData.detailedInfo.pages = itemData.detailedInfo.pages.map(page => {
+              // Determine finalMediaUrl based on mediaType (matching API logic exactly)
+              const finalMediaUrl = page.mediaType === 'upload' 
+                ? page.uploadedMediaUrl 
+                : page.image
+              
+              console.log('Processing page from search:', {
+                title: page.title,
+                mediaType: page.mediaType,
+                image: page.image,
+                uploadedMediaUrl: page.uploadedMediaUrl,
+                finalMediaUrl: finalMediaUrl
+              })
+              
+              return {
+                ...page,
+                finalMediaUrl: finalMediaUrl
+              }
+            })
+          }
+          
+          console.log('Opening modal with processed item:', itemData)
+          
           setSelectedItem(itemData)
           setCurrentPage(0)
           if (itemData.tab) {

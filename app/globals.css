@@ -1825,7 +1825,8 @@ body {
 }
 
 /* ========================================
-   ICON PICKER STYLES
+   ICON PICKER STYLES - FIXED VERSION
+   Replace the existing .icon-picker styles in your globals.css with this
    ======================================== */
 
 .icon-picker {
@@ -1843,32 +1844,72 @@ body {
   opacity: 0.8;
 }
 
+/* ✅ Fixed overlay - covers entire screen */
 .icon-picker-overlay {
   position: fixed;
   inset: 0;
-  z-index: 999;
-  background: transparent;
+  z-index: 998;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
 }
 
+/* ✅ Fixed grid - centered modal style */
 .icon-picker-grid {
+  /* Remove these old styles that cause the issue:
   position: absolute;
   top: calc(100% + 0.5rem);
   left: 0;
-  z-index: 1000;
+  */
+  
+  /* Use fixed positioning and center it */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  z-index: 999;
   background: rgb(27, 40, 56);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 1rem;
-  margin-top: 0.5rem;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 0.5rem;
-  max-height: 400px;
+  border: 2px solid rgba(59, 130, 246, 0.3);
+  border-radius: 16px;
+  padding: 1.5rem;
+  
+  /* Set max dimensions */
+  max-width: 90vw;
+  width: 600px;
+  max-height: 70vh;
+  
+  /* Enable scrolling */
   overflow-y: auto;
-  min-width: 320px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  overflow-x: hidden;
+  
+  /* Smooth iOS scrolling */
+  -webkit-overflow-scrolling: touch;
+  
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
+/* Icon grid header (if you add one) */
+.icon-picker-grid h3 {
+  position: sticky;
+  top: 0;
+  background: rgb(27, 40, 56);
+  padding-bottom: 1rem;
+  margin: 0 0 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1;
+  color: #e0e7ef;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* ✅ Grid wrapper inside the scrollable container */
+.icon-picker-grid > div:last-child {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 0.75rem;
+}
+
+/* Individual icon items */
 .icon-picker-item {
   cursor: pointer;
   padding: 0.75rem;
@@ -1879,22 +1920,33 @@ body {
   background: rgba(255, 255, 255, 0.03);
   transition: all 0.2s;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  aspect-ratio: 1;
+  
+  /* Prevent text selection on touch devices */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .icon-picker-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
   transform: scale(1.05);
 }
 
 .icon-picker-item.active {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(59, 130, 246, 0.2);
+  border-color: #3b82f6;
 }
 
 .icon-picker-item img {
-  filter: brightness(0) invert(1);
-  opacity: 0.8;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  pointer-events: none;
+  /* Remove the invert filter if you want colored icons */
+  /* filter: brightness(0) invert(1); */
+  opacity: 0.9;
 }
 
 .icon-picker-item:hover img,
@@ -1902,63 +1954,58 @@ body {
   opacity: 1;
 }
 
-/* JSON View */
-.builder-json-view {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 2rem;
-  border-radius: 12px;
-  overflow: auto;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: #10b981;
+/* Make icons bigger in card contexts */
+.builder-card-icon .icon-picker-trigger img,
+.builder-item-icon .icon-picker-trigger img {
+  width: 48px;
+  height: 48px;
 }
 
-/* Loading/Empty States */
-.builder-loading,
-.builder-empty {
-  text-align: center;
-  padding: 4rem;
-  color: #8fa9bd;
+/* Make icons even bigger in settings */
+.builder-field .icon-picker-trigger img {
+  width: 64px;
+  height: 64px;
 }
 
-.spinner {
-  width: 60px;
-  height: 60px;
-  border: 4px solid rgba(255, 255, 255, 0.2);
-  border-top-color: #fff;
-  border-radius: 50%;
-  margin: 0 auto 1rem;
-  animation: spin 1s linear infinite;
+/* Category header icons - medium size */
+.builder-category-title .icon-picker-trigger img {
+  width: 40px;
+  height: 40px;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Responsive */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .builder-modal-header {
-    padding: 1rem;
-  }
-
-  .builder-modal-content {
-    padding: 1rem;
-    padding-bottom: 4rem;
-  }
-
-  .builder-toolbar-inner {
-    flex-direction: column;
-  }
-
-  .builder-toolbar-left,
-  .builder-toolbar-right {
-    width: 100%;
-    justify-content: center;
-  }
-
   .icon-picker-grid {
-    grid-template-columns: repeat(4, 1fr);
-    min-width: 280px;
+    width: 95vw;
+    max-height: 80vh;
+    padding: 1rem;
+  }
+  
+  .icon-picker-grid > div:last-child {
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 0.5rem;
+  }
+  
+  .icon-picker-item {
+    padding: 0.5rem;
+  }
+  
+  .icon-picker-item img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+  .icon-picker-grid {
+    width: 98vw;
+    padding: 0.75rem;
+  }
+  
+  .icon-picker-grid > div:last-child {
+    grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+    gap: 0.4rem;
   }
 }
 

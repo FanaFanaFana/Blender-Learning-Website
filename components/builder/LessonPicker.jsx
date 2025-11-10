@@ -8,8 +8,9 @@ export default function LessonPicker({ lessons, onSelect }) {
   const [search, setSearch] = useState('')
 
   const filtered = lessons.filter(l =>
-    l.heroConfig?.gradientText?.toLowerCase().includes(search.toLowerCase()) ||
-    l.lessonId?.current?.toLowerCase().includes(search.toLowerCase())
+    l.gradientText?.toLowerCase().includes(search.toLowerCase()) ||
+    l.id?.toLowerCase().includes(search.toLowerCase()) ||
+    l.title?.toLowerCase().includes(search.toLowerCase())
   )
 
   return (
@@ -30,18 +31,18 @@ export default function LessonPicker({ lessons, onSelect }) {
         {filtered.map((lesson, i) => (
           <div
             key={i}
-            onClick={() => onSelect(lesson.lessonId?.current)}
+            onClick={() => onSelect(lesson.id)}
             className="lesson-picker-card"
             style={{ '--theme-color': lesson.themeColor || '#3b82f6' }}
           >
             <h3 style={{ color: lesson.themeColor || '#3b82f6' }}>
-              {lesson.heroConfig?.gradientText || 'Untitled'}
+              {lesson.gradientText || lesson.title || 'Untitled'}
             </h3>
             <p className="lesson-picker-desc">
-              {lesson.heroConfig?.subtitle || 'No description'}
+              {lesson.title || 'No description'}
             </p>
             <div className="lesson-picker-meta">
-              <span>ID: {lesson.lessonId?.current}</span>
+              <span>ID: {lesson.id}</span>
               <span 
                 className="lesson-picker-category"
                 style={{ 
@@ -49,7 +50,7 @@ export default function LessonPicker({ lessons, onSelect }) {
                   color: lesson.themeColor || '#3b82f6'
                 }}
               >
-                {lesson.category || 'Unknown'}
+                {lesson.lessonCategory || 'Unknown'}
               </span>
             </div>
           </div>

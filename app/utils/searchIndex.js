@@ -154,7 +154,10 @@ export async function buildSearchIndex(forceRefresh = false) {
               pages[] {
                 title,
                 content,
-                tips[]
+                tips[],
+                mediaType,
+                image,
+                "uploadedMediaUrl": uploadedMedia.asset->url
               }
             }
           }
@@ -171,7 +174,10 @@ export async function buildSearchIndex(forceRefresh = false) {
               pages[] {
                 title,
                 content,
-                tips[]
+                tips[],
+                mediaType,
+                image,
+                "uploadedMediaUrl": uploadedMedia.asset->url
               }
             }
           }
