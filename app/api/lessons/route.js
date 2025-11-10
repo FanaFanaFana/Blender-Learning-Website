@@ -5,24 +5,21 @@ import { NextResponse } from 'next/server'
 export async function GET() {
   try {
     const query = `
-      *[_type == "lesson"] {
+      *[_type == "lesson"] | order(_createdAt desc) {
         "id": lessonId.current,
-        "icon": coalesce(lessonIcon, "/Icons/blender_icon_current_file.svg"),
-        "title": coalesce(title, heroConfig.gradientText, heroConfig.title),
-        "description": coalesce(subtitle, heroConfig.subtitle),
-        category,
-        "themeColor": coalesce(color, themeColor, "#3b82f6"),
-        heroConfig
+        "gradientText": heroConfig.gradientText,
+        "title": heroConfig.title,
+        "lessonCategory": category,
+        "themeColor": coalesce(themeColor, "#3b82f6"),
+        "icon": lessonIcon
       }
     `
     
     const lessons = await client.fetch(query)
     
-    console.log('📚 API fetched lessons:', lessons.length)
-    
     return NextResponse.json(lessons)
   } catch (error) {
-    console.error('❌ Error fetching lessons:', error)
+    console.error('Error fetching lessons:', error)
     return NextResponse.json(
       { error: 'Failed to fetch lessons' },
       { status: 500 }
