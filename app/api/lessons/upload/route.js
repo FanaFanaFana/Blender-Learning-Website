@@ -1,16 +1,6 @@
 // FILE: app/api/lessons/upload/route.js
+import { serverClient } from '@/sanity/lib/serverClient'
 import { NextResponse } from 'next/server'
-
-// Dynamic import or lazy initialization
-let sanityClient = null;
-
-async function getSanityClient() {
-  if (!sanityClient) {
-    const { client } = await import('@/sanity/lib/client');
-    sanityClient = client;
-  }
-  return sanityClient;
-}
 
 export async function POST(request) {
   try {
@@ -25,11 +15,8 @@ export async function POST(request) {
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
 
-    // Get Sanity client
-    const client = await getSanityClient()
-
-    // Upload to Sanity
-    const asset = await client.assets.upload(
+    // Upload to Sanity using server client
+    const asset = await serverClient.assets.upload(
       file.type.startsWith('video/') ? 'file' : 'image',
       buffer,
       {
@@ -48,5 +35,4 @@ export async function POST(request) {
   }
 }
 
-// Opt out of static optimization
 export const dynamic = 'force-dynamic'
