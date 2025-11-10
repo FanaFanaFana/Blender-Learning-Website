@@ -5,6 +5,7 @@ import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schema} from './sanity/schemaTypes'
+import {media} from 'sanity-plugin-media'
 
 export default defineConfig({
   basePath: '/studio',
@@ -17,6 +18,7 @@ export default defineConfig({
   schema,
   
   plugins: [
+    media(),
     structureTool({
       structure: (S) =>
         S.list()

@@ -1,11 +1,16 @@
 // FILE: components/builder/DetailModal.jsx
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import { client } from '@/sanity/lib/client'
+import MediaUploader from './MediaUploader'
 
 export default function DetailModal({ item, onClose, onSave, themeColor }) {
   const [editedItem, setEditedItem] = useState(JSON.parse(JSON.stringify(item)))
   const [currentPage, setCurrentPage] = useState(0)
+  
+  // ✅ Track all uploaded assets during this session
+  const uploadedAssetsRef = useRef([])
 
   const updateItem = (path, value) => {
     setEditedItem(prev => {
@@ -47,6 +52,8 @@ export default function DetailModal({ item, onClose, onSave, themeColor }) {
       clone.detailedInfo.pages.push({
         title: 'New Page',
         content: 'Page content here...',
+        mediaType: 'url',
+        image: '',
         tips: []
       })
       return clone
@@ -68,15 +75,71 @@ export default function DetailModal({ item, onClose, onSave, themeColor }) {
     }
   }
 
+  // ✅ Track uploaded assets
+  const handleUploadComplete = (assetInfo) => {
+    console.log('📌 Tracking uploaded asset:', assetInfo)
+    uploadedAssetsRef.current.push(assetInfo)
+  }
+
+  // ✅ Cleanup orphaned uploads if user cancels
+  const handleCancel = async () => {
+    if (uploadedAssetsRef.current.length > 0) {
+      const shouldCleanup = confirm(
+        `You uploaded ${uploadedAssetsRef.current.length} file(s) but didn't save. Delete them?`
+      )
+      
+      if (shouldCleanup) {
+        console.log('🗑️ Cleaning up orphaned uploads...')
+        for (const asset of uploadedAssetsRef.current) {
+          try {
+            await client.delete(asset.assetId)
+            console.log('✅ Deleted:', asset.assetId)
+          } catch (err) {
+            console.error('❌ Failed to delete:', asset.assetId, err)
+          }
+        }
+      }
+    }
+    onClose()
+  }
+
+  // ✅ Save and clear the upload tracker
   const handleSave = () => {
+    console.log('💾 Saving with', uploadedAssetsRef.current.length, 'tracked uploads')
+    // Clear tracker since we're keeping these assets
+    uploadedAssetsRef.current = []
     onSave(editedItem)
   }
 
   const page = editedItem.detailedInfo?.pages?.[currentPage]
   const totalPages = editedItem.detailedInfo?.pages?.length || 0
 
+  const getCurrentMediaUrl = () => {
+    if (!page) return ''
+    if (page.mediaType === 'upload') {
+      return page.uploadedMediaUrl || page.finalMediaUrl || ''
+    }
+    return page.image || page.finalMediaUrl || ''
+  }
+
+  const handleMediaUrlChange = (url) => {
+    const isUploadedUrl = url.includes('cdn.sanity.io')
+    
+    if (isUploadedUrl) {
+      updateItem(`detailedInfo.pages.${currentPage}.uploadedMediaUrl`, url)
+      updateItem(`detailedInfo.pages.${currentPage}.mediaType`, 'upload')
+      updateItem(`detailedInfo.pages.${currentPage}.image`, '')
+    } else {
+      updateItem(`detailedInfo.pages.${currentPage}.image`, url)
+      updateItem(`detailedInfo.pages.${currentPage}.mediaType`, 'url')
+      updateItem(`detailedInfo.pages.${currentPage}.uploadedMediaUrl`, '')
+    }
+    
+    updateItem(`detailedInfo.pages.${currentPage}.finalMediaUrl`, url)
+  }
+
   return (
-    <div onClick={onClose} className="detail-modal-overlay">
+    <div onClick={handleCancel} className="detail-modal-overlay">
       <div onClick={(e) => e.stopPropagation()} className="detail-modal">
         {/* Header */}
         <div className="detail-modal-header">
@@ -92,10 +155,25 @@ export default function DetailModal({ item, onClose, onSave, themeColor }) {
               className="detail-modal-desc-input"
             />
           </div>
-          <button onClick={onClose} className="detail-modal-close">
+          <button onClick={handleCancel} className="detail-modal-close">
             ✕
           </button>
         </div>
+
+        {/* Show upload tracker */}
+        {uploadedAssetsRef.current.length > 0 && (
+          <div style={{
+            background: 'rgba(59, 130, 246, 0.1)',
+            border: '1px solid rgba(59, 130, 246, 0.3)',
+            color: '#60a5fa',
+            padding: '0.75rem',
+            margin: '1rem',
+            borderRadius: '8px',
+            fontSize: '0.9rem'
+          }}>
+            📎 {uploadedAssetsRef.current.length} file(s) uploaded. Don't forget to save!
+          </div>
+        )}
 
         {/* Content */}
         <div className="detail-modal-content">
@@ -131,16 +209,13 @@ export default function DetailModal({ item, onClose, onSave, themeColor }) {
                 )}
               </div>
 
-              {/* Media URL */}
-              <div className="detail-modal-field">
-                <label>Video/Image URL (optional)</label>
-                <input
-                  value={page.finalMediaUrl || page.image || ''}
-                  onChange={(e) => updateItem(`detailedInfo.pages.${currentPage}.finalMediaUrl`, e.target.value)}
-                  placeholder="/examples/video.mp4"
-                  className="detail-modal-input"
-                />
-              </div>
+              {/* Media Uploader with tracking */}
+              <MediaUploader
+                currentUrl={getCurrentMediaUrl()}
+                onUrlChange={handleMediaUrlChange}
+                onUploadComplete={handleUploadComplete}
+                editMode={true}
+              />
 
               {/* Content */}
               <textarea
