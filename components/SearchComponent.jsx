@@ -60,6 +60,19 @@ export default function SearchComponent() {
     return () => clearTimeout(timeoutId)
   }, [query, searchIndex])
 
+  // NEW: Handle click - if result has itemData, encode it in URL hash
+  const handleResultClick = (result) => {
+    if (result.itemData) {
+      // Navigate to lesson page with item hash
+      const itemHash = encodeURIComponent(JSON.stringify(result.itemData))
+      window.location.href = `${result.link}#item=${itemHash}`
+    } else {
+      // Regular navigation
+      window.location.href = result.link
+    }
+    setIsExpanded(false)
+  }
+
   return (
     <div ref={searchRef} style={{ position: 'relative', flex: '0 1 300px' }}>
       {/* Compact Search Input */}
@@ -148,18 +161,21 @@ export default function SearchComponent() {
               </div>
               <div>
                 {results.map((result, index) => (
-                  <a
+                  <button
                     key={index}
-                    href={result.link}
-                    onClick={() => setIsExpanded(false)}
+                    onClick={() => handleResultClick(result)}
                     style={{
+                      width: '100%',
                       display: 'block',
                       padding: '1rem',
                       borderBottom: index < results.length - 1 ? '1px solid rgba(255, 255, 255, 0.05)' : 'none',
                       textDecoration: 'none',
                       color: 'inherit',
                       transition: 'background 0.2s ease',
-                      cursor: 'pointer'
+                      cursor: 'pointer',
+                      background: 'transparent',
+                      border: 'none',
+                      textAlign: 'left'
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)'
@@ -187,6 +203,15 @@ export default function SearchComponent() {
                       }}>
                         {result.type}
                       </div>
+                      {result.itemData && (
+                        <div style={{
+                          fontSize: '0.7rem',
+                          color: '#8fa9bd',
+                          fontStyle: 'italic'
+                        }}>
+                          • Opens detail view
+                        </div>
+                      )}
                     </div>
                     
                     <div style={{ 
@@ -210,7 +235,7 @@ export default function SearchComponent() {
                     }}>
                       {result.description}
                     </div>
-                  </a>
+                  </button>
                 ))}
               </div>
             </>

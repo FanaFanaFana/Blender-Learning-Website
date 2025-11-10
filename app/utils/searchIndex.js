@@ -18,7 +18,18 @@ function extractSearchableItems(lessonData, lessonInfo) {
     tags: [...tags, ...lessonInfo.baseTags],
     detailedInfo,
     tabId,
-    fullItem
+    fullItem,
+    // NEW: Flag if this item can open a detail modal
+    isClickableItem: detailedInfo && fullItem ? true : false,
+    // NEW: Include item data for modal opening
+    itemData: (detailedInfo && fullItem) ? {
+      name: title,
+      description: description,
+      icon: fullItem.icon,
+      color: color || lessonInfo.color,
+      detailedInfo: detailedInfo,
+      tab: tabId
+    } : null
   })
 
   // Index overview cards
@@ -47,10 +58,30 @@ function extractSearchableItems(lessonData, lessonInfo) {
           item.description,
           'tool',
           `${lessonInfo.title} → ${category.name}`,
-          item.detailedInfo,
+          item.detailedInfo, // This is what makes it clickable
           category.color,
           ['tool', item.name.toLowerCase()],
           'content',
+          { ...item, color: category.color } // Full item for modal
+        ))
+      })
+    })
+  }
+
+  // NEW: Index techniques tab items
+  if (lessonData.techniques) {
+    lessonData.techniques.forEach(category => {
+      const categoryItems = category.items || []
+      categoryItems.forEach(item => {
+        items.push(createItem(
+          item.name,
+          item.description,
+          'technique',
+          `${lessonInfo.title} → ${category.name}`,
+          item.detailedInfo,
+          category.color,
+          ['technique', item.name.toLowerCase()],
+          'techniques',
           { ...item, color: category.color }
         ))
       })
@@ -127,6 +158,23 @@ export async function buildSearchIndex(forceRefresh = false) {
               }
             }
           }
+        },
+        techniques[] {
+          name,
+          color,
+          items[] {
+            name,
+            icon,
+            description,
+            detailedInfo {
+              overview,
+              pages[] {
+                title,
+                content,
+                tips[]
+              }
+            }
+          }
         }
       }
     `
@@ -142,9 +190,9 @@ export async function buildSearchIndex(forceRefresh = false) {
       
       // Generate base tags from title and categories
       const baseTags = [
-  (lesson.heroConfig?.title || lesson.title || '').toLowerCase(),
-  ...(lesson.categories?.map(c => c.name.toLowerCase()) || [])
-]
+        (lesson.title || '').toLowerCase(),
+        ...(lesson.categories?.map(c => c.name.toLowerCase()) || [])
+      ]
       
       const lessonInfo = {
         title: lesson.title,
