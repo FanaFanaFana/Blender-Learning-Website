@@ -8,7 +8,7 @@ import {schema} from './sanity/schemaTypes'
 
 export default defineConfig({
   basePath: '/studio',
-  projectId: 'l9y29z8y',
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,  // ✅ Reads from environment variable
   dataset: 'production',
   apiVersion: '2025-11-03', // ✅ Add this!
   
