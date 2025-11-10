@@ -2,7 +2,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { downloadLesson, copyLesson } from './builderUtils'
+import { downloadLesson, copyLesson } from './BuilderUtils'
 import { SettingsPanel, HeroSection, TabsSection } from './BuilderSection'
 import { OverviewTab, ContentTab, ShortcutsTab, PracticeTab } from './BuilderTabs'
 import DetailModal from './DetailModal'
