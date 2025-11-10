@@ -1,6 +1,16 @@
-// FILE: app/api/upload/route.js
-import { client } from '@/sanity/lib/client'
+// FILE: app/api/lessons/upload/route.js
 import { NextResponse } from 'next/server'
+
+// Dynamic import or lazy initialization
+let sanityClient = null;
+
+async function getSanityClient() {
+  if (!sanityClient) {
+    const { client } = await import('@/sanity/lib/client');
+    sanityClient = client;
+  }
+  return sanityClient;
+}
 
 export async function POST(request) {
   try {
@@ -14,6 +24,9 @@ export async function POST(request) {
     // Convert to buffer
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
+
+    // Get Sanity client
+    const client = await getSanityClient()
 
     // Upload to Sanity
     const asset = await client.assets.upload(
@@ -34,17 +47,6 @@ export async function POST(request) {
     )
   }
 }
-```
 
-## What You Get:
-
-✅ **Drag & drop file upload**  
-✅ **Direct upload to Sanity's CDN**  
-✅ **Automatic video/image detection**  
-✅ **File size validation (50MB limit)**  
-✅ **OR paste URL manually**  
-✅ **Preview uploaded media**  
-✅ **Clear/remove media button**
-
-The uploaded files will be stored in your Sanity project's assets and you'll get a permanent CDN URL like:
-```
+// Opt out of static optimization
+export const dynamic = 'force-dynamic'
