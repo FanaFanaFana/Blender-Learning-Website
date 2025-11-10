@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import PathsScene from './PathsScene'
 import { playHover } from '@/app/utils/sounds'
-import { client } from '@/sanity/lib/client'
 
 export default function BlenderCompendium() {
   const [selectedCategory, setSelectedCategory] = useState('modeling')
@@ -97,58 +96,19 @@ export default function BlenderCompendium() {
 
   const mainCategories = ['modeling', 'rendering', 'animation']
 
-  // Fetch lessons from Sanity
+  // Fetch lessons from API route
   useEffect(() => {
     async function fetchLessons() {
       try {
-        const query = `
-          *[_type == "lesson"] {
-            "id": lessonId.current,
-            
-            // ✅ Fetch lessonIcon directly
-            "icon": lessonIcon,
-            
-            // Try NEW format first, fallback to OLD format
-            "title": coalesce(title, heroConfig.gradientText, heroConfig.title),
-            "description": coalesce(subtitle, heroConfig.subtitle),
-            
-            category,
-            
-            // Try NEW format color first, fallback to OLD format
-            "themeColor": coalesce(color, themeColor),
-            
-            // Include full lesson data for detailed pages
-            heroConfig,
-            categories[] {
-              name,
-              icon,
-              color,
-              items[] {
-                name,
-                description,
-                icon,
-                detailedInfo {
-                  overview,
-                  pages[] {
-                    title,
-                    content,
-                    mediaType,
-                    image,
-                    "uploadedMediaUrl": uploadedMedia.asset->url,
-                    tips
-                  }
-                }
-              }
-            }
-          }
-        `
-        const lessons = await client.fetch(query)
+        const response = await fetch('/api/lessons')
+        if (!response.ok) throw new Error('Failed to fetch')
+        const lessons = await response.json()
         
         console.log('📚 Fetched lessons with icons:', lessons)
         
         // Group lessons by category
         const groupedLessons = lessons.reduce((acc, lesson) => {
-          const cat = lesson.category || 'Lesson'
+          const cat = lesson.lessonCategory || 'Lesson'
           if (!acc[cat]) {
             acc[cat] = {
               ...categoryMetadata[cat],
@@ -156,8 +116,8 @@ export default function BlenderCompendium() {
             }
           }
           acc[cat].topics.push({
-            title: lesson.title || 'Untitled',
-            description: lesson.description || 'No description available',
+            title: lesson.gradientText || lesson.title || 'Untitled',
+            description: 'Click to view lesson details',
             icon: lesson.icon || '/Icons/blender_icon_current_file.svg',
             link: `/lessons/${lesson.id}`
           })
@@ -435,8 +395,8 @@ export default function BlenderCompendium() {
           width: calc(100% + 4rem);
           background: transparent;
           min-height: 50vh;
-          display: 'flex';
-          alignItems: 'center';
+          display: flex;
+          align-items: center;
           overflow: hidden;
           margin-bottom: 3rem;
         }

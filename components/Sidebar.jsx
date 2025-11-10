@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { playHover } from '@/app/utils/sounds'
-import { client } from '@/sanity/lib/client'
 
 export default function Sidebar() {
   const [searchQuery, setSearchQuery] = useState('')
@@ -29,25 +28,17 @@ export default function Sidebar() {
     simulation: 'Simulation'
   }
 
-  // Fetch lessons from Sanity on mount
+  // Fetch lessons from API route on mount
   useEffect(() => {
     async function fetchLessons() {
       try {
-        const query = `
-          *[_type == "lesson"] {
-            "id": lessonId.current,
-            "gradientText": heroConfig.gradientText,
-            "title": heroConfig.title,
-            "lessonCategory": category,
-            "themeColor": coalesce(themeColor, "#3b82f6"),
-            "icon": lessonIcon
-          }
-        `
-        const lessons = await client.fetch(query)
+        const response = await fetch('/api/lessons')
+        if (!response.ok) throw new Error('Failed to fetch')
+        const lessons = await response.json()
         
         console.log('📚 Fetched lessons with icons:', lessons)
         
-        // Transform Sanity data to match sidebar format
+        // Transform API data to match sidebar format
         const transformedTopics = lessons.map(lesson => {
           const displayTitle = lesson.gradientText || lesson.title || 'Untitled'
           const categoryKey = lesson.lessonCategory || 'Lesson'
