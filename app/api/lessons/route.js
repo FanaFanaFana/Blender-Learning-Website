@@ -6,10 +6,12 @@ export async function GET() {
   try {
     const query = `
       *[_type == "lesson"] | order(_createdAt desc) {
-        "lessonId": lessonId,
-        "heroConfig": heroConfig,
-        "themeColor": themeColor,
-        "category": category
+        "id": lessonId.current,
+        "gradientText": heroConfig.gradientText,
+        "title": heroConfig.title,
+        "lessonCategory": category,
+        "themeColor": coalesce(themeColor, "#3b82f6"),
+        "icon": lessonIcon
       }
     `
     
