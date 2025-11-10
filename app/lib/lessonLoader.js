@@ -1,5 +1,5 @@
 // FILE: app/lib/lessonLoader.js
-import {client} from '@/sanity/lib/client'
+// ✅ REMOVED: import {client} from '@/sanity/lib/client'
 
 const lessonCache = new Map()
 
@@ -15,141 +15,16 @@ const availableTabs = [
 export async function loadLessonData(lessonId) {
   if (lessonCache.has(lessonId)) return lessonCache.get(lessonId)
 
-  // 🔥 Fetch BOTH old and new format fields + lessonIcon
-  const query = `
-    *[_type == "lesson" && lessonId.current == $lessonId][0] {
-      "id": lessonId.current,
-      
-      // ✅ CRITICAL: Fetch lessonIcon
-      lessonIcon,
-      
-      // NEW FORMAT FIELDS
-      title,
-      subtitle,
-      category,
-      "themeColor": color,
-      icon,
-      duration,
-      level,
-      overviewCards[] {
-        icon,
-        title,
-        content
-      },
-      contentSections[] {
-        sectionName,
-        sectionColor,
-        lessons[] {
-          name,
-          icon,
-          description,
-          overview,
-          steps[] {
-            stepTitle,
-            stepContent,
-            "videoUrl": videoFile.asset->url,
-            videoPath,
-            tips[]
-          }
-        }
-      },
-      shortcuts[] {
-        category,
-        icon,
-        items[] {
-          action,
-          key
-        }
-      },
-      practiceProjects[] {
-        title,
-        description,
-        duration,
-        difficulty,
-        skills[]
-      },
-      
-      // OLD FORMAT FIELDS (from migration)
-      themeColor,
-      heroConfig {
-        title,
-        gradientText,
-        subtitle,
-        gradientColors
-      },
-      
-      // ✅ NEW: Fetch enabledTabs instead of tabs
-      enabledTabs[] {
-        tabId,
-        customLabel
-      },
-      
-      // ✅ FALLBACK: Also fetch old tabs format for backwards compatibility
-      tabs[] {
-        id,
-        icon,
-        label
-      },
-      
-      overviewTitle,
-      overviewDescription,
-      contentTitle,
-      contentDescription,
-      categories[] {
-        name,
-        color,
-        icon,
-        items[] {
-          name,
-          icon,
-          description,
-          detailedInfo {
-            overview,
-            pages[] {
-              title,
-              content,
-              image,
-              mediaType,
-              "uploadedMediaUrl": uploadedMedia.asset->url,
-              tips[]
-            }
-          }
-        }
-      },
-      techniques[] {
-        name,
-        color,
-        icon,
-        items[] {
-          name,
-          icon,
-          description,
-          detailedInfo {
-            overview,
-            pages[] {
-              title,
-              content,
-              image,
-              mediaType,
-              "uploadedMediaUrl": uploadedMedia.asset->url
-            }
-          }
-        }
-      },
-      techniquesTitle,
-      techniquesDescription,
-      practiceTitle,
-      practiceDescription
-    }
-  `
-
-  const data = await client.fetch(query, {lessonId})
-
-  if (!data) {
+  // ✅ FIXED: Use Next.js API route instead of direct Sanity call
+  const response = await fetch(`/api/lessons/${lessonId}`)
+  
+  if (!response.ok) {
     throw new Error(`Lesson "${lessonId}" not found`)
   }
+  
+  const data = await response.json()
 
-  console.log('🎨 Fetched lessonIcon from Sanity:', data.lessonIcon)
+  console.log('🎨 Fetched lessonIcon from API:', data.lessonIcon)
 
   // 🔥 Detect which format this lesson uses
   const isOldFormat = !!data.heroConfig && !!data.categories?.[0]?.items?.[0]?.detailedInfo
