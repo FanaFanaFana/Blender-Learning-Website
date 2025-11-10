@@ -1,4 +1,3 @@
-
 // FILE: app/api/upload/route.js
 import { client } from '@/sanity/lib/client'
 import { NextResponse } from 'next/server'
