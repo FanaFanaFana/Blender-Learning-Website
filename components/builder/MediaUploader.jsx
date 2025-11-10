@@ -2,19 +2,18 @@
 'use client'
 
 import { useState } from 'react'
-import { client } from '@/sanity/lib/client'
-import { Upload, X, AlertCircle } from 'lucide-react'
+import { Upload, X, AlertCircle, File } from 'lucide-react'
 
 export default function MediaUploader({ 
   currentUrl, 
   onUrlChange, 
   editMode,
-  onUploadComplete, // Callback to track uploaded asset IDs
+  onFileStaged, // NEW: Callback when user selects a file (doesn't upload yet)
 }) {
-  const [uploading, setUploading] = useState(false)
+  const [stagedFile, setStagedFile] = useState(null)
   const [error, setError] = useState(null)
 
-  const handleFileUpload = async (e) => {
+  const handleFileSelect = (e) => {
     const file = e.target.files?.[0]
     if (!file) return
 
@@ -31,58 +30,26 @@ export default function MediaUploader({
       return
     }
 
-    setUploading(true)
     setError(null)
-
-    try {
-      console.log('🔄 Starting upload to Sanity...')
-      
-      // Upload to Sanity
-      const asset = await client.assets.upload(
-        file.type.startsWith('video/') ? 'file' : 'image',
-        file,
-        {
-          filename: file.name,
-          contentType: file.type
-        }
-      )
-
-      console.log('✅ Upload successful:', asset.url)
-      
-      // Pass the URL AND asset ID to parent
-      onUrlChange(asset.url)
-      
-      // Track this upload so we can delete it later if needed
-      if (onUploadComplete) {
-        onUploadComplete({
-          assetId: asset._id,
-          url: asset.url,
-          type: asset._type
-        })
-      }
-      
-      alert('✅ Upload successful!')
-    } catch (err) {
-      console.error('❌ Upload failed:', err)
-      
-      let errorMessage = 'Upload failed. '
-      if (err.message?.includes('token')) {
-        errorMessage += 'Missing or invalid Sanity API token.'
-      } else if (err.statusCode === 401) {
-        errorMessage += 'Authentication failed.'
-      } else if (err.statusCode === 403) {
-        errorMessage += 'Permission denied.'
-      } else {
-        errorMessage += err.message || 'Unknown error occurred.'
-      }
-      
-      setError(errorMessage)
-    } finally {
-      setUploading(false)
+    
+    // Create a preview URL
+    const previewUrl = URL.createObjectURL(file)
+    setStagedFile({ file, previewUrl })
+    
+    // Pass the file object to parent (NOT uploaded yet)
+    if (onFileStaged) {
+      onFileStaged(file, previewUrl)
     }
+    
+    // Set the preview URL in the lesson data
+    onUrlChange(previewUrl)
   }
 
   const clearMedia = () => {
+    if (stagedFile?.previewUrl) {
+      URL.revokeObjectURL(stagedFile.previewUrl)
+    }
+    setStagedFile(null)
     onUrlChange('')
     setError(null)
   }
@@ -92,7 +59,7 @@ export default function MediaUploader({
     
     return (
       <div className="media-preview">
-        {currentUrl.match(/\.(mp4|webm|mov)$/i) ? (
+        {currentUrl.match(/\.(mp4|webm|mov)$/i) || currentUrl.startsWith('blob:') ? (
           <video src={currentUrl} controls style={{ maxWidth: '100%', borderRadius: '8px' }} />
         ) : (
           <img src={currentUrl} alt="Media" style={{ maxWidth: '100%', borderRadius: '8px' }} />
@@ -101,26 +68,21 @@ export default function MediaUploader({
     )
   }
 
-  const hasToken = client.config().token
-  
   return (
     <div className="media-uploader">
-      {!hasToken && (
-        <div className="media-warning">
-          <AlertCircle size={16} />
-          <div>
-            <strong>⚠️ Sanity token not configured</strong>
-            <p>Add <code>NEXT_PUBLIC_SANITY_TOKEN</code> to your <code>.env.local</code></p>
-          </div>
+      {stagedFile && (
+        <div className="staged-file-notice">
+          <File size={16} />
+          <span>📁 Staged: {stagedFile.file.name} (will upload when you commit)</span>
         </div>
       )}
 
       {currentUrl ? (
         <div className="media-uploader-preview">
           <div className="media-preview-container">
-            {currentUrl.match(/\.(mp4|webm|mov)$/i) ? (
+            {currentUrl.match(/\.(mp4|webm|mov)$/i) || currentUrl.startsWith('blob:') ? (
               <video src={currentUrl} controls style={{ maxWidth: '100%', borderRadius: '8px' }} />
-            ) : currentUrl.startsWith('http') || currentUrl.startsWith('/') ? (
+            ) : currentUrl.startsWith('http') || currentUrl.startsWith('/') || currentUrl.startsWith('blob:') ? (
               <img src={currentUrl} alt="Media" style={{ maxWidth: '100%', borderRadius: '8px' }} />
             ) : (
               <div style={{ 
@@ -136,13 +98,15 @@ export default function MediaUploader({
           </div>
           
           <div className="media-uploader-actions">
-            <input
-              type="text"
-              value={currentUrl}
-              onChange={(e) => onUrlChange(e.target.value)}
-              placeholder="Or paste URL here..."
-              className="media-url-input"
-            />
+            {!stagedFile && (
+              <input
+                type="text"
+                value={currentUrl}
+                onChange={(e) => onUrlChange(e.target.value)}
+                placeholder="Or paste URL here..."
+                className="media-url-input"
+              />
+            )}
             <button 
               onClick={clearMedia} 
               className="btn-clear-media"
@@ -154,30 +118,23 @@ export default function MediaUploader({
         </div>
       ) : (
         <>
-          <label className={`media-upload-label ${!hasToken ? 'disabled' : ''}`}>
+          <label className="media-upload-label">
             <input
               type="file"
               accept="video/mp4,video/webm,video/quicktime,image/jpeg,image/png,image/gif,image/webp"
-              onChange={handleFileUpload}
-              disabled={uploading || !hasToken}
+              onChange={handleFileSelect}
               style={{ display: 'none' }}
             />
             
             <div className="media-upload-box">
-              {uploading ? (
-                <>
-                  <div className="spinner" />
-                  <p>Uploading to Sanity CDN...</p>
-                </>
-              ) : (
-                <>
-                  <Upload size={32} />
-                  <p><strong>Click to upload</strong> or drag and drop</p>
-                  <p style={{ fontSize: '0.85rem', color: '#7a8c9e' }}>
-                    MP4, WebM, MOV, or images (max 50MB)
-                  </p>
-                </>
-              )}
+              <Upload size={32} />
+              <p><strong>Click to select file</strong> or drag and drop</p>
+              <p style={{ fontSize: '0.85rem', color: '#7a8c9e' }}>
+                MP4, WebM, MOV, or images (max 50MB)
+              </p>
+              <p style={{ fontSize: '0.8rem', color: '#60a5fa', marginTop: '0.5rem' }}>
+                💡 Files won't upload until you click "Commit to Sanity"
+              </p>
             </div>
           </label>
 
@@ -205,14 +162,22 @@ export default function MediaUploader({
           margin: 1rem 0;
         }
 
+        .staged-file-notice {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          background: rgba(59, 130, 246, 0.1);
+          border: 1px solid rgba(59, 130, 246, 0.3);
+          color: #60a5fa;
+          padding: 0.75rem;
+          border-radius: 8px;
+          margin-bottom: 1rem;
+          font-size: 0.9rem;
+        }
+
         .media-upload-label {
           cursor: pointer;
           display: block;
-        }
-
-        .media-upload-label.disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
         }
 
         .media-upload-box {
@@ -297,7 +262,7 @@ export default function MediaUploader({
           background: rgba(239, 68, 68, 0.3);
         }
 
-        .media-error, .media-warning {
+        .media-error {
           background: rgba(239, 68, 68, 0.1);
           border: 1px solid rgba(239, 68, 68, 0.3);
           color: #ef4444;
@@ -305,36 +270,6 @@ export default function MediaUploader({
           border-radius: 8px;
           margin-top: 0.5rem;
           font-size: 0.9rem;
-          display: flex;
-          gap: 0.5rem;
-          align-items: flex-start;
-        }
-
-        .media-warning {
-          background: rgba(234, 179, 8, 0.1);
-          border-color: rgba(234, 179, 8, 0.3);
-          color: #eab308;
-        }
-
-        .media-warning code {
-          background: rgba(0, 0, 0, 0.3);
-          padding: 0.125rem 0.375rem;
-          border-radius: 4px;
-          font-size: 0.85rem;
-        }
-
-        .spinner {
-          width: 32px;
-          height: 32px;
-          border: 3px solid rgba(255, 255, 255, 0.2);
-          border-top-color: #3b82f6;
-          border-radius: 50%;
-          margin: 0 auto 0.5rem;
-          animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-          to { transform: rotate(360deg); }
         }
       `}</style>
     </div>

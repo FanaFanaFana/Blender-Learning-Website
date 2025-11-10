@@ -5,50 +5,144 @@ import { NextResponse } from 'next/server'
 export async function GET(request, { params }) {
   try {
     const { id } = await params
+    const { searchParams } = new URL(request.url)
+    const includeDraft = searchParams.get('draft') === 'true'
     
-    const query = `
-      *[_type == "lesson" && lessonId.current == $id][0] {
-        lessonId,
-        category,
-        themeColor,
-        lessonIcon,
-        heroConfig,
-        enabledTabs,
-        overviewTitle,
-        overviewDescription,
-        overviewCards,
-        contentTitle,
-        contentDescription,
-        categories[] {
-          name,
-          icon,
-          color,
-          items[] {
+    // 🔒 Fetch published version by default
+    let query
+    if (includeDraft) {
+      // Check draft first, fallback to published
+      query = `
+        *[_type == "lesson" && lessonId.current == $id && _id in path("drafts.**")][0] {
+          lessonId,
+          category,
+          themeColor,
+          lessonIcon,
+          heroConfig,
+          enabledTabs,
+          overviewTitle,
+          overviewDescription,
+          overviewCards,
+          contentTitle,
+          contentDescription,
+          categories[] {
             name,
-            description,
             icon,
-            detailedInfo {
-              overview,
-              pages[] {
-                title,
-                content,
-                mediaType,
-                image,
-                "uploadedMediaUrl": uploadedMedia.asset->url,
-                tips
+            color,
+            items[] {
+              name,
+              description,
+              icon,
+              detailedInfo {
+                overview,
+                pages[] {
+                  title,
+                  content,
+                  mediaType,
+                  image,
+                  "uploadedMediaUrl": uploadedMedia.asset->url,
+                  tips
+                }
               }
             }
-          }
-        },
-        techniquesTitle,
-        techniquesDescription,
-        techniques,
-        shortcuts,
-        practiceTitle,
-        practiceDescription,
-        practiceProjects
-      }
-    `
+          },
+          techniquesTitle,
+          techniquesDescription,
+          techniques,
+          shortcuts,
+          practiceTitle,
+          practiceDescription,
+          practiceProjects,
+          "_isDraft": true
+        } ?? *[_type == "lesson" && lessonId.current == $id && !(_id in path("drafts.**"))][0] {
+          lessonId,
+          category,
+          themeColor,
+          lessonIcon,
+          heroConfig,
+          enabledTabs,
+          overviewTitle,
+          overviewDescription,
+          overviewCards,
+          contentTitle,
+          contentDescription,
+          categories[] {
+            name,
+            icon,
+            color,
+            items[] {
+              name,
+              description,
+              icon,
+              detailedInfo {
+                overview,
+                pages[] {
+                  title,
+                  content,
+                  mediaType,
+                  image,
+                  "uploadedMediaUrl": uploadedMedia.asset->url,
+                  tips
+                }
+              }
+            }
+          },
+          techniquesTitle,
+          techniquesDescription,
+          techniques,
+          shortcuts,
+          practiceTitle,
+          practiceDescription,
+          practiceProjects,
+          "_isDraft": false
+        }
+      `
+    } else {
+      // Only fetch published
+      query = `
+        *[_type == "lesson" && lessonId.current == $id && !(_id in path("drafts.**"))][0] {
+          lessonId,
+          category,
+          themeColor,
+          lessonIcon,
+          heroConfig,
+          enabledTabs,
+          overviewTitle,
+          overviewDescription,
+          overviewCards,
+          contentTitle,
+          contentDescription,
+          categories[] {
+            name,
+            icon,
+            color,
+            items[] {
+              name,
+              description,
+              icon,
+              detailedInfo {
+                overview,
+                pages[] {
+                  title,
+                  content,
+                  mediaType,
+                  image,
+                  "uploadedMediaUrl": uploadedMedia.asset->url,
+                  tips
+                }
+              }
+            }
+          },
+          techniquesTitle,
+          techniquesDescription,
+          techniques,
+          shortcuts,
+          practiceTitle,
+          practiceDescription,
+          practiceProjects
+        }
+      `
+    }
     
     const lesson = await client.fetch(query, { id })
     
@@ -59,7 +153,7 @@ export async function GET(request, { params }) {
       )
     }
 
-    // ✅ Ensure lessonIcon has a default value if null
+    // Ensure lessonIcon has a default value if null
     lesson.lessonIcon = lesson.lessonIcon || '/Icons/blender_icon_current_file.svg'
 
     // Process media URLs
@@ -80,8 +174,6 @@ export async function GET(request, { params }) {
         }))
       }))
     }
-    
-    console.log('📖 API returning lesson with lessonIcon:', lesson.lessonIcon)
     
     return NextResponse.json(lesson)
   } catch (error) {
