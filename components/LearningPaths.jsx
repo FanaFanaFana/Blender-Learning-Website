@@ -5,10 +5,184 @@ import Image from 'next/image'
 import Link from 'next/link'
 import PathsScene from './PathsScene'
 import { playHover } from '@/app/utils/sounds'
+import { client } from '@/sanity/lib/client'
 
 export default function BlenderCompendium() {
   const [selectedCategory, setSelectedCategory] = useState('modeling')
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [categories, setCategories] = useState({})
+  const [loading, setLoading] = useState(true)
+
+  // Category metadata (icons, colors, descriptions)
+  const categoryMetadata = {
+    modeling: {
+      title: '3D Modeling',
+      icon: '/Icons/modeling.svg',
+      color: '#3b82c4',
+      description: 'Categories and lessons focused on creating and manipulating 3D models in Blender'
+    },
+    rendering: {
+      title: 'Rendering',
+      icon: '/Icons/rendered.svg',
+      color: '#f59e0b',
+      description: 'Complete reference for render engines, lighting, and image output'
+    },
+    animation: {
+      title: 'Animation',
+      icon: '/Icons/animation.svg',
+      color: '#8b5cf6',
+      description: 'Reference for keyframes, rigging, and motion systems in Blender'
+    },
+    texturing: {
+      title: 'Texturing',
+      icon: '/Icons/material_data.svg',
+      color: '#a2d677',
+      description: 'UV mapping, texture painting, and material workflows'
+    },
+    Lesson: {
+      title: 'Lesson Content',
+      icon: '/Icons/blender_icon_current_file.svg',
+      color: '#0bf5e2',
+      description: 'Step-by-step tutorials and guided learning paths'
+    },
+    printing: {
+      title: '3D Printing',
+      icon: '/Icons/mesh_cube.svg',
+      color: '#ec4899',
+      description: 'Preparing models for 3D printing and manufacturing'
+    },
+    vfx: {
+      title: 'VFX Integration',
+      icon: '/Icons/render_result.svg',
+      color: '#f97316',
+      description: 'Integrating 3D elements with live-action footage'
+    },
+    gameAssets: {
+      title: 'Game Asset Creation',
+      icon: '/Icons/mesh_torus.svg',
+      color: '#06b6d4',
+      description: 'Optimized modeling for game engines'
+    },
+    hairFur: {
+      title: 'Hair & Fur',
+      icon: '/Icons/armature_data.svg',
+      color: '#a855f7',
+      description: 'Particle systems and grooming workflows'
+    },
+    greaseGencil: {
+      title: 'Grease Pencil',
+      icon: '/Icons/editmode_hlt.svg',
+      color: '#14b8a6',
+      description: '2D animation in 3D space'
+    },
+    geometryNodes: {
+      title: 'Geometry Nodes',
+      icon: '/Icons/graph.svg',
+      color: '#eab308',
+      description: 'Procedural modeling with node systems'
+    },
+    projectManagement: {
+      title: 'Project Management',
+      icon: '/Icons/outliner.svg',
+      color: '#64748b',
+      description: 'Organization and workflow optimization'
+    },
+    simulation: {
+      title: 'Simulation',
+      icon: '/Icons/physics.svg',
+      color: '#3b82f6',
+      description: 'Physics simulations and dynamics'
+    }
+  }
+
+  const mainCategories = ['modeling', 'rendering', 'animation']
+
+  // Fetch lessons from Sanity
+  useEffect(() => {
+    async function fetchLessons() {
+      try {
+        const query = `
+          *[_type == "lesson"] {
+            "id": lessonId.current,
+            
+            // ✅ Fetch lessonIcon directly
+            "icon": lessonIcon,
+            
+            // Try NEW format first, fallback to OLD format
+            "title": coalesce(title, heroConfig.gradientText, heroConfig.title),
+            "description": coalesce(subtitle, heroConfig.subtitle),
+            
+            category,
+            
+            // Try NEW format color first, fallback to OLD format
+            "themeColor": coalesce(color, themeColor),
+            
+            // Include full lesson data for detailed pages
+            heroConfig,
+            categories[] {
+              name,
+              icon,
+              color,
+              items[] {
+                name,
+                description,
+                icon,
+                detailedInfo {
+                  overview,
+                  pages[] {
+                    title,
+                    content,
+                    mediaType,
+                    image,
+                    "uploadedMediaUrl": uploadedMedia.asset->url,
+                    tips
+                  }
+                }
+              }
+            }
+          }
+        `
+        const lessons = await client.fetch(query)
+        
+        console.log('📚 Fetched lessons with icons:', lessons)
+        
+        // Group lessons by category
+        const groupedLessons = lessons.reduce((acc, lesson) => {
+          const cat = lesson.category || 'Lesson'
+          if (!acc[cat]) {
+            acc[cat] = {
+              ...categoryMetadata[cat],
+              topics: []
+            }
+          }
+          acc[cat].topics.push({
+            title: lesson.title || 'Untitled',
+            description: lesson.description || 'No description available',
+            icon: lesson.icon || '/Icons/blender_icon_current_file.svg',
+            link: `/lessons/${lesson.id}`
+          })
+          return acc
+        }, {})
+
+        // Merge with metadata for categories without lessons
+        const mergedCategories = Object.keys(categoryMetadata).reduce((acc, key) => {
+          acc[key] = groupedLessons[key] || {
+            ...categoryMetadata[key],
+            topics: []
+          }
+          return acc
+        }, {})
+
+        setCategories(mergedCategories)
+        setLoading(false)
+      } catch (error) {
+        console.error('Error fetching lessons:', error)
+        setLoading(false)
+      }
+    }
+
+    fetchLessons()
+  }, [])
 
   // Handle hash navigation
   useEffect(() => {
@@ -16,175 +190,23 @@ export default function BlenderCompendium() {
     if (hash && categories[hash]) {
       setSelectedCategory(hash)
     }
-  }, [])
+  }, [categories])
 
-  const mainCategories = ['modeling', 'rendering', 'animation']
+  const currentCategory = categories[selectedCategory] || {}
 
-  const categories = {
-    modeling: {
-      title: '3D Modeling',
-      icon: '/Icons/modeling.svg',
-      color: '#3b82c4',
-      description: 'Categories and lessons focused on creating and manipulating 3D models in Blender',
-      topics: [
-        { title: 'Interface Areas', description: 'Understanding Blender\'s workspace layout', icon: '/Icons/outliner.svg', link: '/lessons/interface' },
-        { title: 'Edit Mode', description: 'Tools and techniques for mesh editing', icon: '/Icons/editmode_hlt.svg', link: '/lessons/edit-mode' },
-        { title: 'Modifiers', description: 'Non-destructive modeling techniques', icon: '/Icons/modifier.svg', link: '/lessons/modifier' },
-        { title: 'Sculpting', description: 'Digital sculpting tools and workflows', icon: '/Icons/sculptmode_hlt.svg', link: '/lessons/sculpting' },
-      ]
-    },
-    rendering: {
-      title: 'Rendering',
-      icon: '/Icons/rendered.svg',
-      color: '#f59e0b',
-      description: 'Complete reference for render engines, lighting, and image output',
-      topics: [
-        { title: 'Render Engines', description: 'Eevee vs Cycles comparison', icon: '/Icons/render_still.svg', link: '/lessons/render-engines' },
-        { title: 'Lighting', description: 'Light types, HDRI, world settings', icon: '/Icons/light.svg', link: '/lessons/lighting' },
-        { title: 'Camera', description: 'Camera settings, depth of field, composition', icon: '/Icons/camera_data.svg', link: '/lessons/camera' },
-        { title: 'Materials', description: 'Shader nodes, PBR workflow', icon: '/Icons/material.svg', link: '/lessons/material' },
-        { title: 'Render Settings', description: 'Samples, resolution, output formats', icon: '/Icons/render_result.svg', link: '/lessons/render-settings' }
-      ]
-    },
-    animation: {
-      title: 'Animation',
-      icon: '/Icons/animation.svg',
-      color: '#8b5cf6',
-      description: 'Reference for keyframes, rigging, and motion systems in Blender',
-      topics: [
-        { title: 'Keyframes', description: 'Setting and editing keyframes', icon: '/Icons/keyframe.svg', link: '/lessons/keyframe' },
-        { title: 'Timeline', description: 'Playback controls and scrubbing', icon: '/Icons/anim.svg', link: '/lessons/timeline' },
-        { title: 'Graph Editor', description: 'Animation curves and interpolation', icon: '/Icons/graph.svg', link: '/lessons/graph-editor' },
-        { title: 'Rigging', description: 'Armatures, bones, constraints', icon: '/Icons/armature_data.svg', link: '/lessons/rigging' },
-        { title: 'Physics', description: 'Rigid body, soft body, cloth, fluid', icon: '/Icons/physics.svg', link: '/lessons/physics' }
-      ]
-    },
-    Texturing: {
-      title: 'Texturing',
-      icon: 'icons/material_data.svg',
-      color: '#a2d677ff',
-      description: 'UV mapping, texture painting, and material workflows',
-      topics: [
-        { title: 'UV Mapping', description: 'Unwrapping and UV layout techniques', icon: '/Icons/uv.svg', link: '/lessons/uv-mapping' },
-        { title: 'Texture Painting', description: 'Painting directly on 3D models', icon: '/Icons/keyframe.svg', link: '/lessons/texture-painting' },
-        { title: 'Image Textures', description: 'Using images in materials', icon: '/Icons/anim.svg', link: '/lessons/image-textures' },
-        { title: 'Procedural Textures', description: 'Node-based texture generation', icon: '/Icons/graph.svg', link: '/lessons/procedural-textures' },
-        { title: 'Baking', description: 'Baking textures and lighting information', icon: '/Icons/armature_data.svg', link: '/lessons/baking' }
-      ]
-    },
-    Lesson: {
-      title: 'Lesson Content',
-      icon: 'Icons/blender_icon_current_file.svg',
-      color: '#0bf5e2ff',
-      description: 'Step-by-step tutorials and guided learning paths',
-      topics: [
-        { title: 'First 3D Model', description: 'Creating your first object in Blender', icon: '/Icons/mesh_cube.svg', link: '/lessons/first-model' },
-        { title: 'Character Modeling', description: 'Creating character meshes and topology', icon: '/Icons/mesh_monkey.svg', link: '/lessons/character-modelling' },
-        { title: 'Hard Surface Modeling', description: 'Mechanical and architectural modeling', icon: '/Icons/mod_bevel.svg', link: '/lessons/hard-surface' },
-        { title: 'Product Design', description: 'Design workflows for product visualization', icon: '/Icons/mesh_torus.svg', link: '/lessons/product-design' },
-        { title: 'Topology', description: 'Digital sculpting tools and workflows', icon: '/Icons/mod_remesh.svg', link: '/lessons/topology' },
-        { title: 'Materials & Shading', description: 'Creating realistic materials with the Shader Editor', icon: '/Icons/material.svg', link: '/lessons/material' }
-      ]
-    },
-    printing: {
-      title: '3D Printing',
-      icon: '/Icons/mesh_cube.svg',
-      color: '#ec4899',
-      description: 'Preparing models for 3D printing and manufacturing',
-      topics: [
-        { title: 'Manifold Geometry', description: 'Creating watertight, printable meshes', icon: '/Icons/mesh_cube.svg', link: '/lessons/manifold-geometry' },
-        { title: 'Scale & Units', description: 'Setting correct dimensions for printing', icon: '/Icons/tool.svg', link: '/lessons/scale-units' },
-        { title: 'Support Structures', description: 'Planning for print supports', icon: '/Icons/modifier.svg', link: '/lessons/support-structures' },
-        { title: 'File Export', description: 'Exporting STL and other formats', icon: '/Icons/render_still.svg', link: '/lessons/file-export' }
-      ]
-    },
-    vfx: {
-      title: 'VFX Integration',
-      icon: '/Icons/render_result.svg',
-      color: '#f97316',
-      description: 'Integrating 3D elements with live-action footage',
-      topics: [
-        { title: 'Camera Tracking', description: 'Match-moving and camera solve', icon: '/Icons/camera_data.svg', link: '/lessons/camera-tracking' },
-        { title: 'Keying & Masking', description: 'Green screen and compositing', icon: '/Icons/render_result.svg', link: '/lessons/keying-masking' },
-        { title: 'Shadow Catcher', description: 'Realistic shadow integration', icon: '/Icons/light.svg', link: '/lessons/shadow-catcher' },
-        { title: 'Color Matching', description: 'Matching CG to footage', icon: '/Icons/material.svg', link: '/lessons/color-matching' }
-      ]
-    },
-    gameAssets: {
-      title: 'Game Asset Creation',
-      icon: '/Icons/mesh_torus.svg',
-      color: '#06b6d4',
-      description: 'Optimized modeling for game engines',
-      topics: [
-        { title: 'Low-Poly Modeling', description: 'Efficient geometry for real-time', icon: '/Icons/mesh_cube.svg', link: '/lessons/low-poly-modeling' },
-        { title: 'Texture Baking', description: 'Baking high-res details to textures', icon: '/Icons/material.svg', link: '/lessons/texture-baking' },
-        { title: 'LOD Creation', description: 'Level of detail optimization', icon: '/Icons/modifier.svg', link: '/lessons/lod-creation' },
-        { title: 'Engine Export', description: 'FBX, glTF export workflows', icon: '/Icons/render_still.svg', link: '/lessons/engine-export' }
-      ]
-    },
-    hairFur: {
-      title: 'Hair & Fur',
-      icon: '/Icons/armature_data.svg',
-      color: '#a855f7',
-      description: 'Particle systems and grooming workflows',
-      topics: [
-        { title: 'Particle Hair', description: 'Hair particle system basics', icon: '/Icons/physics.svg', link: '/lessons/particle-hair' },
-        { title: 'Grooming', description: 'Styling and combing techniques', icon: '/Icons/tool.svg', link: '/lessons/grooming' },
-        { title: 'Hair Shading', description: 'Realistic hair materials', icon: '/Icons/material.svg', link: '/lessons/hair-shading' },
-        { title: 'Dynamics', description: 'Hair physics and simulation', icon: '/Icons/anim.svg', link: '/lessons/dynamics' }
-      ]
-    },
-    greaseGencil: {
-      title: 'Grease Pencil',
-      icon: '/Icons/editmode_hlt.svg',
-      color: '#14b8a6',
-      description: '2D animation in 3D space',
-      topics: [
-        { title: 'Drawing Basics', description: 'Strokes, fills, and layers', icon: '/Icons/editmode_hlt.svg', link: '/lessons/drawing-basics' },
-        { title: 'GP Animation', description: 'Frame-by-frame animation', icon: '/Icons/anim.svg', link: '/lessons/gp-animation' },
-        { title: 'GP Modifiers', description: 'Grease Pencil modifiers', icon: '/Icons/modifier.svg', link: '/lessons/gp-modifiers' },
-        { title: 'Mixed Media', description: 'Combining 2D and 3D', icon: '/Icons/mesh_cube.svg', link: '/lessons/mixed-media' }
-      ]
-    },
-    geometryNodes: {
-      title: 'Geometry Nodes',
-      icon: '/Icons/graph.svg',
-      color: '#eab308',
-      description: 'Procedural modeling with node systems',
-      topics: [
-        { title: 'Node Basics', description: 'Understanding geometry nodes', icon: '/Icons/graph.svg', link: '/lessons/node-basics' },
-        { title: 'Procedural Modeling', description: 'Non-destructive workflows', icon: '/Icons/mesh_cube.svg', link: '/lessons/procedural-modeling' },
-        { title: 'Instances', description: 'Scattering and instancing', icon: '/Icons/modifier.svg', link: '/lessons/instances' },
-        { title: 'Fields & Attributes', description: 'Data-driven geometry', icon: '/Icons/tool.svg', link: '/lessons/fields-attributes' }
-      ]
-    },
-    projectManagement: {
-      title: 'Project Management',
-      icon: '/Icons/outliner.svg',
-      color: '#64748b',
-      description: 'Organization and workflow optimization',
-      topics: [
-        { title: 'File Organization', description: 'Naming conventions and structure', icon: '/Icons/outliner.svg', link: '/lessons/file-organization' },
-        { title: 'Collections', description: 'Scene organization', icon: '/Icons/mesh_cube.svg', link: '/lessons/collections' },
-        { title: 'Version Control', description: 'Managing file versions', icon: '/Icons/render_still.svg', link: '/lessons/version-control' },
-        { title: 'Asset Libraries', description: 'Reusable asset management', icon: '/Icons/material.svg', link: '/lessons/asset-libraries' }
-      ]
-    },
-    simulation: {
-      title: 'Simulation',
-      icon: '/Icons/physics.svg',
-      color: '#3b82f6',
-      description: 'Physics simulations and dynamics',
-      topics: [
-        { title: 'Rigid Body', description: 'Collision and dynamics', icon: '/Icons/physics.svg', link: '/lessons/rigid-body' },
-        { title: 'Cloth Simulation', description: 'Fabric and soft bodies', icon: '/Icons/modifier.svg', link: '/lessons/cloth-simulation' },
-        { title: 'Fluid Simulation', description: 'Liquids and gases', icon: '/Icons/render_result.svg', link: '/lessons/fluid-simulation' },
-        { title: 'Particle Systems', description: 'Fire, smoke, and effects', icon: '/Icons/anim.svg', link: '/lessons/particle-systems' }
-      ]
-    }
+  if (loading) {
+    return (
+      <div style={{ 
+        minHeight: '50vh', 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center',
+        color: '#8fa9bd'
+      }}>
+        Loading lessons...
+      </div>
+    )
   }
-
-  const currentCategory = categories[selectedCategory]
 
   return (
     <>
@@ -217,10 +239,18 @@ export default function BlenderCompendium() {
                 key={key}
                 className={`path-button ${selectedCategory === key ? 'active' : ''}`}
                 onClick={() => setSelectedCategory(key)}
-                style={selectedCategory === key ? { borderColor: categories[key].color, backgroundColor: `${categories[key].color}15` } : {}}
+                style={selectedCategory === key ? { 
+                  borderColor: categoryMetadata[key]?.color, 
+                  backgroundColor: `${categoryMetadata[key]?.color}15` 
+                } : {}}
               >
-                <Image src={categories[key].icon} alt={categories[key].title} width={50} height={50} />
-                <span>{categories[key].title}</span>
+                <Image 
+                  src={categoryMetadata[key]?.icon || '/Icons/blender_icon_current_file.svg'} 
+                  alt={categoryMetadata[key]?.title || key} 
+                  width={50} 
+                  height={50} 
+                />
+                <span>{categoryMetadata[key]?.title || key}</span>
               </button>
             ))}
 
@@ -262,7 +292,7 @@ export default function BlenderCompendium() {
                   backdropFilter: 'blur(10px)',
                   boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)'
                 }}>
-                  {['Texturing', 'Lesson', 'printing', 'vfx', 'gameAssets', 'hairFur', 'greaseGencil', 'geometryNodes', 'projectManagement', 'simulation'].map((key) => (
+                  {['texturing', 'Lesson', 'printing', 'vfx', 'gameAssets', 'hairFur', 'greaseGencil', 'geometryNodes', 'projectManagement', 'simulation'].map((key) => (
                     <button
                       key={key}
                       onClick={() => {
@@ -271,7 +301,7 @@ export default function BlenderCompendium() {
                       }}
                       style={{
                         width: '100%',
-                        background: selectedCategory === key ? `${categories[key].color}30` : 'transparent',
+                        background: selectedCategory === key ? `${categoryMetadata[key]?.color}30` : 'transparent',
                         border: 'none',
                         borderRadius: '8px',
                         padding: '1rem',
@@ -287,16 +317,22 @@ export default function BlenderCompendium() {
                         marginBottom: '0.25rem'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.background = `${categories[key].color}15`
+                        e.currentTarget.style.background = `${categoryMetadata[key]?.color}15`
                         if (selectedCategory !== key) e.currentTarget.style.color = '#fff'
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.background = selectedCategory === key ? `${categories[key].color}30` : 'transparent'
+                        e.currentTarget.style.background = selectedCategory === key ? `${categoryMetadata[key]?.color}30` : 'transparent'
                         e.currentTarget.style.color = selectedCategory === key ? '#0a0f14' : '#fff'
                       }}
                     >
-                      <Image src={categories[key].icon} alt={categories[key].title} width={24} height={24} style={{ filter: selectedCategory === key ? 'none' : 'brightness(0) invert(1)' }} />
-                      <span>{categories[key].title}</span>
+                      <Image 
+                        src={categoryMetadata[key]?.icon || '/Icons/blender_icon_current_file.svg'} 
+                        alt={categoryMetadata[key]?.title || key} 
+                        width={24} 
+                        height={24} 
+                        style={{ filter: selectedCategory === key ? 'none' : 'brightness(0) invert(1)' }} 
+                      />
+                      <span>{categoryMetadata[key]?.title || key}</span>
                     </button>
                   ))}
                 </div>
@@ -310,66 +346,83 @@ export default function BlenderCompendium() {
               <p>{currentCategory.description}</p>
             </div>
 
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', 
-              gap: '1.5rem' 
-            }}>
-              {currentCategory.topics.map((topic, index) => {
-                const TopicWrapper = topic.link ? Link : 'div'
-                const wrapperProps = topic.link ? { href: topic.link } : {}
-                
-                return (
-                  <TopicWrapper key={index} onMouseEnter={playHover} {...wrapperProps} style={{ textDecoration: 'none', color: 'inherit' }}>
-                    <div style={{
-                      background: 'rgba(21, 35, 47, 0.6)',
-                      border: '1px solid rgba(255, 255, 255, 0.05)',
-                      borderRadius: '12px',
-                      padding: '1.5rem',
-                      transition: 'all 0.3s ease',
-                      cursor: 'pointer',
-                      height: '100%',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '1rem'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = 'rgba(28, 45, 60, 0.8)'
-                      e.currentTarget.style.transform = 'translateY(-5px)'
-                      e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.4)'
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = 'rgba(21, 35, 47, 0.6)'
-                      e.currentTarget.style.transform = 'translateY(0)'
-                      e.currentTarget.style.boxShadow = 'none'
-                    }}
-                    >
-                      <div style={{ 
-                        width: '60px', 
-                        height: '60px',
-                        background: `${currentCategory.color}15`,
+            {currentCategory.topics && currentCategory.topics.length > 0 ? (
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', 
+                gap: '1.5rem' 
+              }}>
+                {currentCategory.topics.map((topic, index) => {
+                  const TopicWrapper = topic.link ? Link : 'div'
+                  const wrapperProps = topic.link ? { href: topic.link } : {}
+                  
+                  return (
+                    <TopicWrapper key={index} onMouseEnter={playHover} {...wrapperProps} style={{ textDecoration: 'none', color: 'inherit' }}>
+                      <div style={{
+                        background: 'rgba(21, 35, 47, 0.6)',
+                        border: '1px solid rgba(255, 255, 255, 0.05)',
                         borderRadius: '12px',
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'center',
-                      }}>
-                        <Image 
-                          src={topic.icon} 
-                          alt={topic.title}
-                          width={36}
-                          height={36}
-                          style={{ filter: 'brightness(0) invert(1)', opacity: 0.9 }}
-                        />
+                        padding: '1.5rem',
+                        transition: 'all 0.3s ease',
+                        cursor: 'pointer',
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '1rem'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(28, 45, 60, 0.8)'
+                        e.currentTarget.style.transform = 'translateY(-5px)'
+                        e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.4)'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(21, 35, 47, 0.6)'
+                        e.currentTarget.style.transform = 'translateY(0)'
+                        e.currentTarget.style.boxShadow = 'none'
+                      }}
+                      >
+                        <div style={{ 
+                          width: '60px', 
+                          height: '60px',
+                          background: `${currentCategory.color}15`,
+                          borderRadius: '12px',
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          justifyContent: 'center',
+                        }}>
+                          <Image 
+                            src={topic.icon} 
+                            alt={topic.title}
+                            width={36}
+                            height={36}
+                            style={{ filter: 'brightness(0) invert(1)', opacity: 0.9 }}
+                            onError={(e) => {
+                              console.error(`Failed to load icon for ${topic.title}:`, topic.icon)
+                              e.currentTarget.src = '/Icons/blender_icon_current_file.svg'
+                            }}
+                          />
+                        </div>
+                        <div>
+                          <h4 style={{ fontSize: '1.15rem', marginBottom: '0.5rem', fontWeight: 600 }}>{topic.title}</h4>
+                          <p style={{ color: '#8fa9bd', margin: 0, fontSize: '0.9rem', lineHeight: '1.5' }}>{topic.description}</p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 style={{ fontSize: '1.15rem', marginBottom: '0.5rem', fontWeight: 600 }}>{topic.title}</h4>
-                        <p style={{ color: '#8fa9bd', margin: 0, fontSize: '0.9rem', lineHeight: '1.5' }}>{topic.description}</p>
-                      </div>
-                    </div>
-                  </TopicWrapper>
-                )
-              })}
-            </div>
+                    </TopicWrapper>
+                  )
+                })}
+              </div>
+            ) : (
+              <div style={{
+                textAlign: 'center',
+                padding: '3rem',
+                color: '#8fa9bd'
+              }}>
+                <p>No lessons available in this category yet.</p>
+                <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>
+                  Create lessons in Sanity Studio and assign them to this category.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -382,8 +435,8 @@ export default function BlenderCompendium() {
           width: calc(100% + 4rem);
           background: transparent;
           min-height: 50vh;
-          display: flex;
-          align-items: center;
+          display: 'flex';
+          alignItems: 'center';
           overflow: hidden;
           margin-bottom: 3rem;
         }

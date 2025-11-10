@@ -50,20 +50,22 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
   }, [onClose, isFullscreen])
 
   // Sync fullscreen video time when entering fullscreen
-// Sync fullscreen video time when entering fullscreen
-useEffect(() => {
-  if (isFullscreen && fullscreenVideoRef.current) {
-    fullscreenVideoRef.current.currentTime = currentTime
-    if (isPlaying) {
-      fullscreenVideoRef.current.play()
-    } else {
-      fullscreenVideoRef.current.pause()
+  useEffect(() => {
+    if (isFullscreen && fullscreenVideoRef.current) {
+      fullscreenVideoRef.current.currentTime = currentTime
+      if (isPlaying) {
+        fullscreenVideoRef.current.play()
+      } else {
+        fullscreenVideoRef.current.pause()
+      }
     }
-  }
-}, [isFullscreen])
+  }, [isFullscreen])
 
   const page = item.detailedInfo.pages[currentPage]
   const totalPages = item.detailedInfo.pages.length
+  
+  // Get the media URL - use finalMediaUrl from processed data or fallback
+  const mediaUrl = page.finalMediaUrl || page.mediaUrl || page.image
 
   const toggleFullscreen = (e) => {
     if (e) {
@@ -306,7 +308,7 @@ useEffect(() => {
                 {page.title}
               </h3>
 
-              {page.image && (
+              {mediaUrl && (
                 <div 
                   ref={mediaContainerRef}
                   onMouseEnter={() => setShowControls(true)}
@@ -335,7 +337,7 @@ useEffect(() => {
                 >
                   <video
                     ref={videoRef}
-                    src={page.image}
+                    src={mediaUrl}
                     autoPlay
                     loop
                     muted
@@ -696,7 +698,7 @@ useEffect(() => {
         `}</style>
       </div>
 
-      {isFullscreen && (
+      {isFullscreen && mediaUrl && (
         <div 
           ref={fullscreenRef}
           onMouseMove={() => {
@@ -706,7 +708,7 @@ useEffect(() => {
             }
             window.fullscreenControlsTimer = setTimeout(() => {
               setShowFullscreenControls(false)
-            }, 3000)
+            }, 1000)
           }}
           onClick={(e) => {
             if (e.target === e.currentTarget || e.target.tagName === 'VIDEO') {
@@ -735,7 +737,7 @@ useEffect(() => {
           }}>
             <video
               ref={fullscreenVideoRef}
-              src={page.image}
+              src={mediaUrl}
               autoPlay
               loop
               muted
@@ -744,7 +746,7 @@ useEffect(() => {
               onLoadedMetadata={handleFullscreenLoadedMetadata}
               style={{
                 maxWidth: '100%',
-                maxHeight: '95vh',
+                maxHeight: '100vh',
                 objectFit: 'contain'
               }}
             />

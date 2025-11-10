@@ -8,30 +8,44 @@ import { useState } from 'react'
 // ============================================
 export function LessonHero({ title, gradientText, subtitle, gradientColors }) {
   return (
-    <section style={{ paddingTop: '2rem', paddingBottom: '3rem' }}>
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
-        <div style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
-          <h1 style={{ fontSize: '5rem', fontWeight: '800', marginBottom: '1.5rem', lineHeight: '1.1' }}>
-            {title}{' '}
-            <span
-              style={{
-                background: gradientColors,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-            >
-              {gradientText}
-            </span>
-          </h1>
+    <div style={{
+      padding: '4rem 2rem',
+      maxWidth: '1400px',
+      margin: '0 auto',
+      textAlign: 'center'
+    }}>
+      <h1 style={{
+        fontSize: 'clamp(2.5rem, 6vw, 5rem)',
+        fontWeight: '700',
+        marginBottom: '1.5rem',
+        lineHeight: '1.1'
+      }}>
+        {title}{' '}
+        <span style={{
+          background: gradientColors || 'linear-gradient(135deg, #3b82f6, #60a5fa, #93c5fd)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text'
+        }}>
+          {gradientText}
+        </span>
+      </h1>
 
-          <p style={{ fontSize: '1.5rem', color: '#b0c4d4', marginBottom: '3rem' }}>
-            {subtitle}
-          </p>
-        </div>
-      </div>
-    </section>
-  );
+      {subtitle && (
+        <p style={{
+          fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+          color: '#8fa9bd',
+          maxWidth: '800px',
+          margin: '0 auto',
+          lineHeight: '1.6'
+        }}>
+          {subtitle}
+        </p>
+      )}
+      
+      {/* ✅ REMOVED badges rendering completely */}
+    </div>
+  )
 }
 
 
@@ -496,22 +510,3 @@ export function DetailModal({ item, onClose, currentPage, onPageChange, onMouseE
   )
 }
 
-// ============================================
-// 6. SECTION HEADER (with colored border)
-// ============================================
-export function SectionHeader({ title, description, color }) {
-  return (
-    <div style={{ 
-      padding: '2rem', 
-      background: 'rgba(21, 35, 47, 0.6)', 
-      borderRadius: '16px', 
-      borderLeft: `4px solid ${color}`, 
-      marginBottom: '2rem' 
-    }}>
-      <h3 style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{title}</h3>
-      <p style={{ color: '#8fa9bd', fontSize: '1.1rem', margin: 0 }}>
-        {description}
-      </p>
-    </div>
-  )
-}

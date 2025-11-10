@@ -2,12 +2,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import dynamic from 'next/dynamic'
 import { loadLessonData } from '@/app/lib/lessonLoader'
-
-const LessonTemplate = dynamic(() => import('@/components/LessonTemplate'), {
-  loading: () => <LessonLoadingSkeleton />
-})
+import LessonTemplate from '@/components/LessonTemplate'
+import Header from '@/components/Header'
 
 function LessonLoadingSkeleton() {
   return (
@@ -20,13 +17,13 @@ function LessonLoadingSkeleton() {
     }}>
       <div style={{
         textAlign: 'center',
-        color: '#ffffffff'
+        color: '#fff'
       }}>
         <div style={{
           width: '60px',
           height: '60px',
-          border: '4px solid rgba(48, 48, 48, 0.2)',
-          borderTopColor: '#ffffffff',
+          border: '4px solid rgba(255, 255, 255, 0.2)',
+          borderTopColor: '#fff',
           borderRadius: '50%',
           margin: '0 auto 1rem',
           animation: 'spin 1s linear infinite'
@@ -50,9 +47,11 @@ export default function LessonPage({ params }) {
 
   // Unwrap params Promise (Next.js 15+)
   useEffect(() => {
-    Promise.resolve(params).then(unwrappedParams => {
+    const unwrapParams = async () => {
+      const unwrappedParams = await params
       setLessonId(unwrappedParams.lessonId)
-    })
+    }
+    unwrapParams()
   }, [params])
 
   // Load lesson data when lessonId is available
@@ -69,56 +68,71 @@ export default function LessonPage({ params }) {
 
   if (error) {
     return (
-      <div style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'linear-gradient(135deg, #0a1628 0%, #15232f 100%)',
-        padding: '2rem',
-        textAlign: 'center'
-      }}>
-        <div style={{
-          fontSize: '4rem',
-          marginBottom: '1rem'
-        }}>⚠️</div>
-        <h1 style={{
-          color: '#ef4444',
-          fontSize: '2rem',
-          marginBottom: '1rem'
-        }}>
-          Oops! Something went wrong
-        </h1>
-        <p style={{
-          color: '#8fa9bd',
-          fontSize: '1.2rem',
-          marginBottom: '2rem'
-        }}>
-          {error}
-        </p>
-        <button
-          onClick={() => window.location.href = '/lessons'}
-          style={{
-            background: '#fafafaff',
-            color: '#fff',
-            border: 'none',
-            padding: '1rem 2rem',
-            borderRadius: '10px',
-            fontSize: '1.1rem',
-            fontWeight: '600',
-            cursor: 'pointer'
-          }}
-        >
-          ← Back to Lessons
-        </button>
+      <div className="page-wrapper">
+        <Header />
+        <main>
+          <div style={{
+            minHeight: '60vh',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '2rem',
+            textAlign: 'center'
+          }}>
+            <div style={{
+              fontSize: '4rem',
+              marginBottom: '1rem'
+            }}>⚠️</div>
+            <h1 style={{
+              color: '#ef4444',
+              fontSize: '2rem',
+              marginBottom: '1rem'
+            }}>
+              Oops! Something went wrong
+            </h1>
+            <p style={{
+              color: '#8fa9bd',
+              fontSize: '1.2rem',
+              marginBottom: '2rem'
+            }}>
+              {error}
+            </p>
+            <button
+              onClick={() => window.location.href = '/learn'}
+              style={{
+                background: '#3b82f6',
+                color: '#fff',
+                border: 'none',
+                padding: '1rem 2rem',
+                borderRadius: '10px',
+                fontSize: '1.1rem',
+                fontWeight: '600',
+                cursor: 'pointer'
+              }}
+            >
+              ← Back to Lessons
+            </button>
+          </div>
+        </main>
       </div>
     )
   }
 
   if (!lessonData) {
-    return <LessonLoadingSkeleton />
+    return (
+      <div className="page-wrapper">
+        <Header />
+        <LessonLoadingSkeleton />
+      </div>
+    )
   }
 
-  return <LessonTemplate lessonData={lessonData} />
+  // ✅ Wrap everything in page-wrapper, Header goes BEFORE LessonTemplate
+  return (
+    <div className="page-wrapper">
+      <Header lessonData={lessonData} />
+      <LessonTemplate lessonData={lessonData} />
+    </div>
+  )
 }

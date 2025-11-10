@@ -1,102 +1,82 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { playHover } from '@/app/utils/sounds'
+import { client } from '@/sanity/lib/client'
 
 export default function Sidebar() {
   const [searchQuery, setSearchQuery] = useState('')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [allTopics, setAllTopics] = useState([])
+  const [loading, setLoading] = useState(true)
 
-  const allTopics = [
-    // 3D Modeling
-    { title: 'Interface Areas', category: '3D Modeling', icon: '/Icons/outliner.svg', link: '/lessons/interface', color: '#3b82c4' },
-    { title: 'Edit Mode', category: '3D Modeling', icon: '/Icons/editmode_hlt.svg', link: '/lessons/edit-mode', color: '#3b82c4' },
-    { title: 'Modifiers', category: '3D Modeling', icon: '/Icons/modifier.svg', link: '/lessons/modifier', color: '#3b82c4' },
-    { title: 'Sculpting', category: '3D Modeling', icon: '/Icons/sculptmode_hlt.svg', link: '/lessons/sculpting', color: '#3b82c4' },
-    
-    // Rendering
-    { title: 'Render Engines', category: 'Rendering', icon: '/Icons/render_still.svg', link: '/lessons/render-engines', color: '#f59e0b' },
-    { title: 'Lighting', category: 'Rendering', icon: '/Icons/light.svg', link: '/lessons/lighting', color: '#f59e0b' },
-    { title: 'Camera', category: 'Rendering', icon: '/Icons/camera_data.svg', link: '/lessons/camera', color: '#f59e0b' },
-    { title: 'Materials', category: 'Rendering', icon: '/Icons/material.svg', link: '/lessons/material', color: '#f59e0b' },
-    { title: 'Render Settings', category: 'Rendering', icon: '/Icons/render_result.svg', link: '/lessons/render-settings', color: '#f59e0b' },
-    
-    // Animation
-    { title: 'Keyframes', category: 'Animation', icon: '/Icons/keyframe.svg', link: '/lessons/keyframe', color: '#8b5cf6' },
-    { title: 'Timeline', category: 'Animation', icon: '/Icons/anim.svg', link: '/lessons/timeline', color: '#8b5cf6' },
-    { title: 'Graph Editor', category: 'Animation', icon: '/Icons/graph.svg', link: '/lessons/graph-editor', color: '#8b5cf6' },
-    { title: 'Rigging', category: 'Animation', icon: '/Icons/armature_data.svg', link: '/lessons/rigging', color: '#8b5cf6' },
-    { title: 'Physics', category: 'Animation', icon: '/Icons/physics.svg', link: '/lessons/physics', color: '#8b5cf6' },
-    
-    // Texturing
-    { title: 'UV Mapping', category: 'Texturing', icon: '/Icons/uv.svg', link: '/lessons/uv-mapping', color: '#a2d677' },
-    { title: 'Texture Painting', category: 'Texturing', icon: '/Icons/keyframe.svg', link: '/lessons/texture-painting', color: '#a2d677' },
-    { title: 'Image Textures', category: 'Texturing', icon: '/Icons/anim.svg', link: '/lessons/image-textures', color: '#a2d677' },
-    { title: 'Procedural Textures', category: 'Texturing', icon: '/Icons/graph.svg', link: '/lessons/procedural-textures', color: '#a2d677' },
-    { title: 'Baking', category: 'Texturing', icon: '/Icons/armature_data.svg', link: '/lessons/baking', color: '#a2d677' },
-    
-    // Lesson Content
-    { title: 'First 3D Model', category: 'Lessons', icon: '/Icons/mesh_cube.svg', link: '/lessons/first-model', color: '#0bf5e2' },
-    { title: 'Character Modeling', category: 'Lessons', icon: '/Icons/mesh_monkey.svg', link: '/lessons/character-modelling', color: '#0bf5e2' },
-    { title: 'Hard Surface Modeling', category: 'Lessons', icon: '/Icons/mod_bevel.svg', link: '/lessons/hard-surface', color: '#0bf5e2' },
-    { title: 'Product Design', category: 'Lessons', icon: '/Icons/mesh_torus.svg', link: '/lessons/product-design', color: '#0bf5e2' },
-    { title: 'Materials & Shading', category: 'Lessons', icon: '/Icons/material.svg', link: '/lessons/material', color: '#0bf5e2' },
-    { title: 'Topology', category: 'Lessons', icon: '/Icons/mod_remesh.svg', link: '/lessons/topology', color: '#0bf5e2' },
-    
-    // 3D Printing
-    { title: 'Manifold Geometry', category: '3D Printing', icon: '/Icons/mesh_cube.svg', link: '/lessons/manifold-geometry', color: '#ec4899' },
-    { title: 'Scale & Units', category: '3D Printing', icon: '/Icons/tool.svg', link: '/lessons/scale-units', color: '#ec4899' },
-    { title: 'Support Structures', category: '3D Printing', icon: '/Icons/modifier.svg', link: '/lessons/support-structures', color: '#ec4899' },
-    { title: 'File Export', category: '3D Printing', icon: '/Icons/render_still.svg', link: '/lessons/file-export', color: '#ec4899' },
-    
-    // VFX Integration
-    { title: 'Camera Tracking', category: 'VFX Integration', icon: '/Icons/camera_data.svg', link: '/lessons/camera-tracking', color: '#f97316' },
-    { title: 'Keying & Masking', category: 'VFX Integration', icon: '/Icons/render_result.svg', link: '/lessons/keying-masking', color: '#f97316' },
-    { title: 'Shadow Catcher', category: 'VFX Integration', icon: '/Icons/light.svg', link: '/lessons/shadow-catcher', color: '#f97316' },
-    { title: 'Color Matching', category: 'VFX Integration', icon: '/Icons/material.svg', link: '/lessons/color-matching', color: '#f97316' },
-    
-    // Game Assets
-    { title: 'Low-Poly Modeling', category: 'Game Assets', icon: '/Icons/mesh_cube.svg', link: '/lessons/low-poly-modeling', color: '#06b6d4' },
-    { title: 'Texture Baking', category: 'Game Assets', icon: '/Icons/material.svg', link: '/lessons/texture-baking', color: '#06b6d4' },
-    { title: 'LOD Creation', category: 'Game Assets', icon: '/Icons/modifier.svg', link: '/lessons/lod-creation', color: '#06b6d4' },
-    { title: 'Engine Export', category: 'Game Assets', icon: '/Icons/render_still.svg', link: '/lessons/engine-export', color: '#06b6d4' },
-    
-    // Hair & Fur
-    { title: 'Particle Hair', category: 'Hair & Fur', icon: '/Icons/physics.svg', link: '/lessons/particle-hair', color: '#a855f7' },
-    { title: 'Grooming', category: 'Hair & Fur', icon: '/Icons/tool.svg', link: '/lessons/grooming', color: '#a855f7' },
-    { title: 'Hair Shading', category: 'Hair & Fur', icon: '/Icons/material.svg', link: '/lessons/hair-shading', color: '#a855f7' },
-    { title: 'Dynamics', category: 'Hair & Fur', icon: '/Icons/anim.svg', link: '/lessons/dynamics', color: '#a855f7' },
-    
-    // Grease Pencil
-    { title: 'Drawing Basics', category: 'Grease Pencil', icon: '/Icons/editmode_hlt.svg', link: '/lessons/drawing-basics', color: '#14b8a6' },
-    { title: 'GP Animation', category: 'Grease Pencil', icon: '/Icons/anim.svg', link: '/lessons/gp-animation', color: '#14b8a6' },
-    { title: 'GP Modifiers', category: 'Grease Pencil', icon: '/Icons/modifier.svg', link: '/lessons/gp-modifiers', color: '#14b8a6' },
-    { title: 'Mixed Media', category: 'Grease Pencil', icon: '/Icons/mesh_cube.svg', link: '/lessons/mixed-media', color: '#14b8a6' },
-    
-    // Geometry Nodes
-    { title: 'Node Basics', category: 'Geometry Nodes', icon: '/Icons/graph.svg', link: '/lessons/node-basics', color: '#eab308' },
-    { title: 'Procedural Modeling', category: 'Geometry Nodes', icon: '/Icons/mesh_cube.svg', link: '/lessons/procedural-modeling', color: '#eab308' },
-    { title: 'Instances', category: 'Geometry Nodes', icon: '/Icons/modifier.svg', link: '/lessons/instances', color: '#eab308' },
-    { title: 'Fields & Attributes', category: 'Geometry Nodes', icon: '/Icons/tool.svg', link: '/lessons/fields-attributes', color: '#eab308' },
-    
-    // Project Management
-    { title: 'File Organization', category: 'Project Management', icon: '/Icons/outliner.svg', link: '/lessons/file-organization', color: '#64748b' },
-    { title: 'Collections', category: 'Project Management', icon: '/Icons/mesh_cube.svg', link: '/lessons/collections', color: '#64748b' },
-    { title: 'Version Control', category: 'Project Management', icon: '/Icons/render_still.svg', link: '/lessons/version-control', color: '#64748b' },
-    { title: 'Asset Libraries', category: 'Project Management', icon: '/Icons/material.svg', link: '/lessons/asset-libraries', color: '#64748b' },
-    
-    // Simulation
-    { title: 'Rigid Body', category: 'Simulation', icon: '/Icons/physics.svg', link: '/lessons/rigid-body', color: '#3b82f6' },
-    { title: 'Cloth Simulation', category: 'Simulation', icon: '/Icons/modifier.svg', link: '/lessons/cloth-simulation', color: '#3b82f6' },
-    { title: 'Fluid Simulation', category: 'Simulation', icon: '/Icons/render_result.svg', link: '/lessons/fluid-simulation', color: '#3b82f6' },
-    { title: 'Particle Systems', category: 'Simulation', icon: '/Icons/anim.svg', link: '/lessons/particle-systems', color: '#3b82f6' }
-  ]
+  // Category labels mapping - NO EMOJIS
+  const categoryLabels = {
+    modeling: '3D Modeling',
+    rendering: 'Rendering',
+    animation: 'Animation',
+    texturing: 'Texturing',
+    Lesson: 'Lesson Content',
+    printing: '3D Printing',
+    vfx: 'VFX Integration',
+    gameAssets: 'Game Assets',
+    hairFur: 'Hair & Fur',
+    greaseGencil: 'Grease Pencil',
+    geometryNodes: 'Geometry Nodes',
+    projectManagement: 'Project Management',
+    simulation: 'Simulation'
+  }
+
+  // Fetch lessons from Sanity on mount
+  useEffect(() => {
+    async function fetchLessons() {
+      try {
+        const query = `
+          *[_type == "lesson"] {
+            "id": lessonId.current,
+            "gradientText": heroConfig.gradientText,
+            "title": heroConfig.title,
+            "lessonCategory": category,
+            "themeColor": coalesce(themeColor, "#3b82f6"),
+            "icon": lessonIcon
+          }
+        `
+        const lessons = await client.fetch(query)
+        
+        console.log('📚 Fetched lessons with icons:', lessons)
+        
+        // Transform Sanity data to match sidebar format
+        const transformedTopics = lessons.map(lesson => {
+          const displayTitle = lesson.gradientText || lesson.title || 'Untitled'
+          const categoryKey = lesson.lessonCategory || 'Lesson'
+          const categoryLabel = categoryLabels[categoryKey] || categoryKey
+          
+          return {
+            title: displayTitle,
+            category: categoryLabel,
+            icon: lesson.icon || '/Icons/blender_icon_current_file.svg',
+            link: `/lessons/${lesson.id}`,
+            color: lesson.themeColor || '#3b82f6'
+          }
+        })
+
+        console.log('✅ Transformed topics:', transformedTopics)
+        setAllTopics(transformedTopics)
+        setLoading(false)
+      } catch (error) {
+        console.error('❌ Error fetching lessons:', error)
+        setLoading(false)
+      }
+    }
+
+    fetchLessons()
+  }, [])
 
   const filteredTopics = allTopics.filter(topic =>
-    topic.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    topic.category.toLowerCase().includes(searchQuery.toLowerCase())
+    (topic.title || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+    (topic.category || '').toLowerCase().includes(searchQuery.toLowerCase())
   )
 
   // Group by category
@@ -110,7 +90,6 @@ export default function Sidebar() {
 
   // Handle mouse leave with a small delay
   const handleMouseLeave = (e) => {
-    // Only close if mouse is leaving to the right side (not going up/down/left)
     const rect = e.currentTarget.getBoundingClientRect()
     if (e.clientX > rect.right) {
       setTimeout(() => {
@@ -119,14 +98,13 @@ export default function Sidebar() {
     }
   }
 
-  // Cancel delayed close when mouse re-enters
   const handleMouseEnter = () => {
     setIsSidebarOpen(true)
   }
 
   return (
     <>
-      {/* Overlay for touch devices - closes sidebar when tapped */}
+      {/* Overlay for touch devices */}
       {isSidebarOpen && (
         <div
           onClick={(e) => {
@@ -150,7 +128,7 @@ export default function Sidebar() {
         />
       )}
 
-      {/* Invisible buffer zone - helps prevent accidental closure on desktop */}
+      {/* Invisible buffer zone */}
       {isSidebarOpen && (
         <div
           onMouseEnter={handleMouseEnter}
@@ -210,86 +188,105 @@ export default function Sidebar() {
           />
         </div>
 
-        {/* Topics List */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', opacity: isSidebarOpen ? 1 : 0, transition: 'opacity 0.3s ease 0.1s' }}>
-          {Object.entries(groupedTopics).map(([category, topics]) => (
-            <div key={category}>
-              <h3 style={{
-                fontSize: '0.85rem',
-                fontWeight: '600',
-                color: topics[0].color,
-                textTransform: 'uppercase',
-                marginBottom: '0.75rem',
-                letterSpacing: '0.05em'
-              }}>
-                {category}
-              </h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                {topics.map((topic, idx) => {
-                  const TopicWrapper = topic.link ? Link : 'div'
-                  const wrapperProps = topic.link ? { href: topic.link } : {}
+        {/* Loading State */}
+        {loading && (
+          <div style={{ 
+            opacity: isSidebarOpen ? 1 : 0, 
+            transition: 'opacity 0.3s ease',
+            textAlign: 'center',
+            color: '#7a8c9e',
+            padding: '2rem'
+          }}>
+            Loading lessons...
+          </div>
+        )}
 
-                  return (
-                    <TopicWrapper key={idx} onMouseEnter={playHover} {...wrapperProps} style={{ textDecoration: 'none' }}>
-                      <div
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '0.75rem',
-                          padding: '0.625rem 0.875rem',
-                          background: 'rgba(13, 27, 42, 0.4)',
-                          borderRadius: '8px',
-                          cursor: topic.link ? 'pointer' : 'default',
-                          opacity: topic.link ? 1 : 0.5,
-                          transition: 'all 0.2s ease',
-                          border: '1px solid transparent'
-                        }}
-                        onMouseEnter={(e) => {
-                          if (topic.link) {
-                            e.currentTarget.style.background = 'rgba(28, 45, 60, 0.6)'
-                            e.currentTarget.style.borderColor = `${topic.color}40`
-                          }
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.background = 'rgba(13, 27, 42, 0.4)'
-                          e.currentTarget.style.borderColor = 'transparent'
-                        }}
-                      >
-                        <Image
-                          src={topic.icon}
-                          alt={topic.title}
-                          width={20}
-                          height={20}
-                          style={{ filter: 'brightness(0) invert(1)', opacity: 0.8 }}
-                        />
-                        <span style={{
-                          fontSize: '0.9rem',
-                          color: '#fff',
-                          fontWeight: '400'
-                        }}>
-                          {topic.title}
-                        </span>
-                        {!topic.link && (
+        {/* Topics List */}
+        {!loading && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', opacity: isSidebarOpen ? 1 : 0, transition: 'opacity 0.3s ease 0.1s' }}>
+            {Object.entries(groupedTopics).map(([category, topics]) => (
+              <div key={category}>
+                <h3 style={{
+                  fontSize: '0.85rem',
+                  fontWeight: '600',
+                  color: topics[0].color,
+                  textTransform: 'uppercase',
+                  marginBottom: '0.75rem',
+                  letterSpacing: '0.05em'
+                }}>
+                  {category}
+                </h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  {topics.map((topic, idx) => {
+                    const TopicWrapper = topic.link ? Link : 'div'
+                    const wrapperProps = topic.link ? { href: topic.link } : {}
+
+                    return (
+                      <TopicWrapper key={idx} onMouseEnter={playHover} {...wrapperProps} style={{ textDecoration: 'none' }}>
+                        <div
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.75rem',
+                            padding: '0.625rem 0.875rem',
+                            background: 'rgba(13, 27, 42, 0.4)',
+                            borderRadius: '8px',
+                            cursor: topic.link ? 'pointer' : 'default',
+                            opacity: topic.link ? 1 : 0.5,
+                            transition: 'all 0.2s ease',
+                            border: '1px solid transparent'
+                          }}
+                          onMouseEnter={(e) => {
+                            if (topic.link) {
+                              e.currentTarget.style.background = 'rgba(28, 45, 60, 0.6)'
+                              e.currentTarget.style.borderColor = `${topic.color}40`
+                            }
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = 'rgba(13, 27, 42, 0.4)'
+                            e.currentTarget.style.borderColor = 'transparent'
+                          }}
+                        >
+                          <Image
+                            src={topic.icon}
+                            alt={topic.title}
+                            width={20}
+                            height={20}
+                            style={{ filter: 'brightness(0) invert(1)', opacity: 0.8 }}
+                            onError={(e) => {
+                              console.error(`Failed to load icon for ${topic.title}:`, topic.icon)
+                              e.currentTarget.src = '/Icons/blender_icon_current_file.svg'
+                            }}
+                          />
                           <span style={{
-                            marginLeft: 'auto',
-                            fontSize: '0.75rem',
-                            color: '#7a8c9e',
-                            fontStyle: 'italic'
+                            fontSize: '0.9rem',
+                            color: '#fff',
+                            fontWeight: '400'
                           }}>
-                            Soon
+                            {topic.title}
                           </span>
-                        )}
-                      </div>
-                    </TopicWrapper>
-                  )
-                })}
+                          {!topic.link && (
+                            <span style={{
+                              marginLeft: 'auto',
+                              fontSize: '0.75rem',
+                              color: '#7a8c9e',
+                              fontStyle: 'italic'
+                            }}>
+                              Soon
+                            </span>
+                          )}
+                        </div>
+                      </TopicWrapper>
+                    )
+                  })}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* Invisible trigger zone - full left edge */}
+      {/* Invisible trigger zone */}
       <div
         onMouseEnter={handleMouseEnter}
         onClick={() => setIsSidebarOpen(true)}
@@ -305,7 +302,7 @@ export default function Sidebar() {
         }}
       />
 
-      {/* Hover Tab - Visual indicator */}
+      {/* Hover Tab */}
       <div
         onMouseEnter={handleMouseEnter}
         onClick={() => setIsSidebarOpen(true)}

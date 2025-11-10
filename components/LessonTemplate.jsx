@@ -3,7 +3,6 @@
 
 import { useState, useEffect, Suspense } from 'react'
 import dynamic from 'next/dynamic'
-import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import BackButton from '@/components/BackButton'
 import Sidebar from '@/components/Sidebar'
@@ -14,7 +13,6 @@ import {
   TabNavigation, 
   InfoCard,
   ClickableCard,
-  SectionHeader
 } from '@/components/shared/LessonComponents'
 
 // ✨ DYNAMIC IMPORTS - Load heavy components only when needed
@@ -55,7 +53,7 @@ const TabContentSkeleton = () => (
 )
 
 export default function LessonTemplate({ lessonData }) {
-  const [activeTab, setActiveTab] = useState(lessonData.tabs[1].id)
+  const [activeTab, setActiveTab] = useState(lessonData.tabs?.[0]?.id || 'overview')
   const [selectedItem, setSelectedItem] = useState(null)
   const [currentPage, setCurrentPage] = useState(0)
   const [tabContentLoaded, setTabContentLoaded] = useState(false)
@@ -86,7 +84,7 @@ export default function LessonTemplate({ lessonData }) {
     }
   }, [])
 
-  // Simulate tab content loading (remove this if your data is already loaded)
+  // Simulate tab content loading
   useEffect(() => {
     setTabContentLoaded(false)
     const timer = setTimeout(() => setTabContentLoaded(true), 100)
@@ -94,24 +92,26 @@ export default function LessonTemplate({ lessonData }) {
   }, [activeTab])
 
   const {
-    heroConfig,
-    tabs,
-    themeColor,
-    overviewCards,
+    heroConfig = {},
+    tabs = [],
+    themeColor = '#3b82f6',
+    overviewCards = [],
     overviewTitle,
     overviewDescription,
-    categories,
+    categories = [],
     contentTitle,
     contentDescription,
-    shortcuts,
-    practiceProjects,
+    techniques = [],
+    techniquesTitle,
+    techniquesDescription,
+    shortcuts = [],
+    practiceProjects = [],
     practiceTitle,
     practiceDescription,
-  } = lessonData
+  } = lessonData || {}
 
   return (
-    <div className="page-wrapper">
-      <Header />
+    <>
       <Sidebar />
       
       <main>
@@ -137,7 +137,7 @@ export default function LessonTemplate({ lessonData }) {
                 <BackButton />
                 <TabNavigation 
                   onMouseEnter={playHover}
-                  tabs={tabs}
+                  tabs={tabs || []}
                   activeTab={activeTab}
                   onTabChange={setActiveTab}
                   activeColor={themeColor}
@@ -151,16 +151,10 @@ export default function LessonTemplate({ lessonData }) {
         {!tabContentLoaded && <TabContentSkeleton />}
 
         {/* Overview Tab */}
-        {tabContentLoaded && activeTab === 'overview' && overviewCards && (
+        {tabContentLoaded && activeTab === 'overview' && overviewCards && overviewCards.length > 0 && (
           <section style={{ padding: '4rem 0' }}>
             <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
               <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-                <SectionHeader 
-                  title={overviewTitle || "Welcome to this lesson!"}
-                  description={overviewDescription || "Let's learn something amazing."}
-                  color={themeColor}
-                />
-
                 <div style={{ display: 'grid', gap: '2rem' }}>
                   {overviewCards.map((card, idx) => (
                     <InfoCard key={idx} {...card} onMouseEnter={playHover} />
@@ -172,7 +166,7 @@ export default function LessonTemplate({ lessonData }) {
         )}
 
         {/* Content Tab */}
-        {tabContentLoaded && activeTab === 'content' && categories && (
+        {tabContentLoaded && activeTab === 'content' && categories && categories.length > 0 && (
           <section style={{ padding: '4rem 0' }}>
             <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
               <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
@@ -185,19 +179,19 @@ export default function LessonTemplate({ lessonData }) {
               <div style={{ display: 'grid', gap: '3rem' }}>
                 {categories.map((category, idx) => (
                   <div key={idx}>
-                    <h3 style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1.5rem', color: category.color }}>
+                    <h3 style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1.5rem', color: category.color || themeColor }}>
                       {category.name}
                     </h3>
 
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-                      {(category.items || category.brushes || []).map((item, itemIdx) => (
+                      {(category.items || []).map((item, itemIdx) => (
                         <ClickableCard
                           onMouseEnter={playHover}
                           key={itemIdx}
                           item={item}
-                          color={category.color}
+                          color={category.color || themeColor}
                           onClick={() => {
-                            setSelectedItem({ ...item, color: category.color })
+                            setSelectedItem({ ...item, color: category.color || themeColor })
                             setCurrentPage(0)
                           }}
                         />
@@ -211,32 +205,32 @@ export default function LessonTemplate({ lessonData }) {
         )}
 
         {/* Techniques Tab */}
-        {tabContentLoaded && activeTab === 'techniques' && lessonData.techniques && (
+        {tabContentLoaded && activeTab === 'techniques' && techniques && techniques.length > 0 && (
           <section style={{ padding: '4rem 0' }}>
             <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
               <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
-                {lessonData.techniquesTitle || 'Techniques'}
+                {techniquesTitle || 'Techniques'}
               </h2>
               <p style={{ textAlign: 'center', color: '#8fa9bd', fontSize: '1.25rem', marginBottom: '3rem' }}>
-                {lessonData.techniquesDescription || 'Master essential workflows and methods'}
+                {techniquesDescription || 'Master essential workflows and methods'}
               </p>
 
               <div style={{ display: 'grid', gap: '3rem' }}>
-                {lessonData.techniques.map((category, idx) => (
+                {techniques.map((category, idx) => (
                   <div key={idx}>
-                    <h3 style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1.5rem', color: category.color }}>
+                    <h3 style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1.5rem', color: category.color || themeColor }}>
                       {category.name}
                     </h3>
 
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-                      {category.items.map((item, itemIdx) => (
+                      {(category.items || []).map((item, itemIdx) => (
                         <ClickableCard
                           onMouseEnter={playHover}
                           key={itemIdx}
                           item={item}
-                          color={category.color}
+                          color={category.color || themeColor}
                           onClick={() => {
-                            setSelectedItem({ ...item, color: category.color })
+                            setSelectedItem({ ...item, color: category.color || themeColor })
                             setCurrentPage(0)
                           }}
                         />
@@ -250,7 +244,7 @@ export default function LessonTemplate({ lessonData }) {
         )}
 
         {/* Shortcuts Tab */}
-        {tabContentLoaded && activeTab === 'shortcuts' && shortcuts && (
+        {tabContentLoaded && activeTab === 'shortcuts' && shortcuts && shortcuts.length > 0 && (
           <section style={{ padding: '4rem 0' }}>
             <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
               <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
@@ -267,7 +261,7 @@ export default function LessonTemplate({ lessonData }) {
                       {section.category}
                     </h3>
                     <div style={{ display: 'grid', gap: '0.75rem' }}>
-                      {section.items.map((shortcut, itemIdx) => (
+                      {(section.items || []).map((shortcut, itemIdx) => (
                         <div 
                           key={itemIdx} 
                           onMouseEnter={playHover}
@@ -288,7 +282,7 @@ export default function LessonTemplate({ lessonData }) {
         )}
 
         {/* Practice Tab */}
-        {tabContentLoaded && activeTab === 'practice' && practiceProjects && (
+        {tabContentLoaded && activeTab === 'practice' && practiceProjects && practiceProjects.length > 0 && (
           <section style={{ padding: '4rem 0' }}>
             <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
               <h2 style={{ fontSize: '3.5rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.75rem' }}>
@@ -321,7 +315,7 @@ export default function LessonTemplate({ lessonData }) {
                         </div>
 
                         <div style={{ marginTop: '1rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                          {project.skills.map((skill, idx) => (
+                          {(project.skills || []).map((skill, idx) => (
                             <span key={idx} style={{ fontSize: '0.85rem', padding: '0.4rem 0.8rem', background: `${themeColor}20`, color: themeColor, borderRadius: '8px', border: `1px solid ${themeColor}30` }}>
                               {skill}
                             </span>
@@ -374,6 +368,6 @@ export default function LessonTemplate({ lessonData }) {
           50% { opacity: 0.5; }
         }
       `}</style>
-    </div>
+    </>
   )
 }
