@@ -1,5 +1,4 @@
 // FILE: app/lib/lessonLoader.js
-// ✅ REMOVED: import {client} from '@/sanity/lib/client'
 
 const lessonCache = new Map()
 
@@ -15,7 +14,6 @@ const availableTabs = [
 export async function loadLessonData(lessonId) {
   if (lessonCache.has(lessonId)) return lessonCache.get(lessonId)
 
-  // ✅ FIXED: Use Next.js API route instead of direct Sanity call
   const response = await fetch(`/api/lessons/${lessonId}`)
   
   if (!response.ok) {
@@ -25,49 +23,45 @@ export async function loadLessonData(lessonId) {
   const data = await response.json()
 
   console.log('🎨 Fetched lessonIcon from API:', data.lessonIcon)
+  console.log('📦 Raw data has tabContents:', !!data.tabContents, 'Length:', data.tabContents?.length)
 
-  // 🔥 Detect which format this lesson uses
   const isOldFormat = !!data.heroConfig && !!data.categories?.[0]?.items?.[0]?.detailedInfo
   const isNewFormat = !!data.contentSections
 
   console.log(`📖 Loading "${lessonId}" - Format: ${isOldFormat ? 'OLD (migrated)' : 'NEW (Sanity)'}`);
 
-  // ✅ Transform enabledTabs to tabs format (for BOTH old and new formats)
+  // ✅ Transform enabledTabs to tabs format for FRONTEND ONLY
   if (data.enabledTabs && data.enabledTabs.length > 0) {
     data.tabs = data.enabledTabs.map(tab => {
-      const tabConfig = availableTabs.find(t => t.id === tab.tabId)
+      const baseTabId = tab.tabId.split('-')[0]  // Get base type (removes -2, -3, etc.)
+      const tabConfig = availableTabs.find(t => t.id === baseTabId)
       return {
-        id: tab.tabId,
+        id: tab.tabId,  // Use full tabId (includes -2, -3, etc.)
         label: tab.customLabel,
         icon: tabConfig?.icon || '/Icons/info.svg'
       }
     })
-    console.log('✅ Transformed enabledTabs:', data.tabs)
+    console.log('✅ Transformed enabledTabs to tabs for frontend:', data.tabs)
   }
 
-  // ✅ CRITICAL FIX: Ensure lessonIcon has a value (not null)
   data.lessonIcon = data.lessonIcon || '/Icons/blender_icon_current_file.svg'
   console.log('🎨 After null-check, lessonIcon:', data.lessonIcon)
 
-  // 🔥 If OLD FORMAT - return as-is (already correct structure)
+  // 🔥 If OLD FORMAT - process and return
   if (isOldFormat) {
-    // ✅ FIXED: Process media URLs for old format with proper mediaType handling
+    // ✅ Process media URLs for old format
     const processPages = (pages) => {
       if (!pages) return []
       return pages.map(page => {
-        // Determine the final media URL based on mediaType
         let finalMediaUrl = null
         
         if (page.mediaType === 'upload' && page.uploadedMediaUrl) {
-          // Use uploaded file from Sanity
           finalMediaUrl = page.uploadedMediaUrl
           console.log('📤 Using uploaded media:', finalMediaUrl)
         } else if (page.mediaType === 'url' && page.image) {
-          // Use direct URL/path
           finalMediaUrl = page.image
           console.log('🔗 Using URL path:', finalMediaUrl)
         } else {
-          // Fallback to any available media
           finalMediaUrl = page.uploadedMediaUrl || page.image
           console.log('🔄 Using fallback media:', finalMediaUrl)
         }
@@ -75,11 +69,12 @@ export async function loadLessonData(lessonId) {
         return {
           ...page,
           image: finalMediaUrl,
-          finalMediaUrl: finalMediaUrl  // Add explicit field for clarity
+          finalMediaUrl: finalMediaUrl
         }
       })
     }
 
+    // Process root-level categories (for base "content" tab)
     if (data.categories) {
       data.categories = data.categories.map(cat => ({
         ...cat,
@@ -93,6 +88,7 @@ export async function loadLessonData(lessonId) {
       }))
     }
 
+    // Process techniques
     if (data.techniques) {
       data.techniques = data.techniques.map(tech => ({
         ...tech,
@@ -106,13 +102,49 @@ export async function loadLessonData(lessonId) {
       }))
     }
 
+    // ✅ CRITICAL FIX: Process tabContents array for numbered tabs (content-2, shortcuts-2, etc.)
+    if (data.tabContents && Array.isArray(data.tabContents)) {
+      console.log('🔧 Processing tabContents array with', data.tabContents.length, 'entries')
+      
+      data.tabContents = data.tabContents.map(tabContent => {
+        const processed = { ...tabContent }
+        
+        // Process categories if this is a content-type tab
+        if (processed.categories) {
+          processed.categories = processed.categories.map(cat => ({
+            ...cat,
+            items: cat.items?.map(item => ({
+              ...item,
+              detailedInfo: item.detailedInfo ? {
+                ...item.detailedInfo,
+                pages: processPages(item.detailedInfo.pages)
+              } : undefined
+            }))
+          }))
+        }
+        
+        return processed
+      })
+      
+      console.log('✅ Processed tabContents:', data.tabContents.map(tc => tc.tabId))
+    } else {
+      console.warn('⚠️ No tabContents found in data')
+    }
+
     console.log('✅ Old format lesson loaded successfully')
     console.log('🔑 Tabs:', data.tabs?.length || 0)
+    console.log('📦 TabContents:', data.tabContents?.length || 0)
     console.log('⌨️ Shortcuts:', data.shortcuts?.length || 0, 'sections')
     console.log('🎨 lessonIcon:', data.lessonIcon)
-    if (data.shortcuts?.[0]) {
-      console.log('   First shortcut section:', data.shortcuts[0].category, '- Items:', data.shortcuts[0].items?.length || 0)
-    }
+    
+    // Final verification before caching
+    console.log('🔍 Final data structure check:', {
+      hasTabContents: !!data.tabContents,
+      isArray: Array.isArray(data.tabContents),
+      length: data.tabContents?.length,
+      tabIds: data.tabContents?.map(tc => tc.tabId)
+    })
+    
     lessonCache.set(lessonId, data)
     return data
   }
@@ -120,7 +152,7 @@ export async function loadLessonData(lessonId) {
   // 🔥 If NEW FORMAT - transform to match LessonTemplate expectations
   const transformed = {
     themeColor: data.themeColor || '#3b82f6',
-    lessonIcon: data.lessonIcon || '/Icons/blender_icon_current_file.svg', // ✅ FIXED: Added lessonIcon
+    lessonIcon: data.lessonIcon || '/Icons/blender_icon_current_file.svg',
     
     // Hero
     heroConfig: {
@@ -133,7 +165,7 @@ export async function loadLessonData(lessonId) {
       ].filter(Boolean)
     },
     
-    // ✅ Tabs - use transformed tabs from enabledTabs if available
+    // Tabs
     tabs: data.tabs || [
       data.overviewCards?.length > 0 && {id: 'overview', icon: '/Icons/info.svg', label: 'Overview'},
       data.contentSections?.length > 0 && {id: 'content', icon: data.icon || '/Icons/editmode_hlt.svg', label: 'Content'},
@@ -159,13 +191,12 @@ export async function loadLessonData(lessonId) {
         detailedInfo: {
           overview: lesson.overview,
           pages: (lesson.steps || []).map(step => {
-            // ✅ FIXED: Determine media URL based on what's available
             let mediaUrl = null
             if (step.videoUrl) {
-              mediaUrl = step.videoUrl  // Uploaded file from Sanity
+              mediaUrl = step.videoUrl
               console.log('📤 New format using uploaded:', mediaUrl)
             } else if (step.videoPath) {
-              mediaUrl = step.videoPath  // Direct path/URL
+              mediaUrl = step.videoPath
               console.log('🔗 New format using path:', mediaUrl)
             }
             
@@ -181,11 +212,11 @@ export async function loadLessonData(lessonId) {
       }))
     })),
     
-    // ✅ FIXED: Shortcuts - use 'items' instead of 'shortcutList'
+    // Shortcuts
     shortcuts: (data.shortcuts || []).map(cat => ({
       category: cat.category,
       icon: cat.icon,
-      items: cat.items || []  // ✅ Changed from shortcutList to items
+      items: cat.items || []
     })),
     
     // Practice
@@ -197,7 +228,10 @@ export async function loadLessonData(lessonId) {
       duration: p.duration,
       difficulty: p.difficulty,
       skills: p.skills || []
-    }))
+    })),
+    
+    // ✅ IMPORTANT: Pass through tabContents if it exists in new format too
+    tabContents: data.tabContents || []
   }
 
   console.log('✅ New format lesson transformed successfully')
@@ -206,6 +240,7 @@ export async function loadLessonData(lessonId) {
   console.log('⌨️ Shortcut groups:', transformed.shortcuts?.length || 0)
   console.log('💪 Practice projects:', transformed.practiceProjects?.length || 0)
   console.log('🔑 Tabs:', transformed.tabs?.length || 0)
+  console.log('📦 TabContents:', transformed.tabContents?.length || 0)
   console.log('🎨 lessonIcon:', transformed.lessonIcon)
 
   lessonCache.set(lessonId, transformed)

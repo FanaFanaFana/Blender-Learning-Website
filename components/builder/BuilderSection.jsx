@@ -1,4 +1,5 @@
 // FILE: components/builder/BuilderSection.jsx
+import { useState } from 'react'
 import IconPicker from '@/components/shared/IconPicker'
 import EditableText from '@/components/shared/EditableText'
 import { Plus, Settings, Link, Folder, Palette } from 'lucide-react'
@@ -84,7 +85,7 @@ export function SettingsPanel({ lesson, update }) {
           </div>
         </div>
 
-        {/* ✅ FIXED: Lesson Card Icon with IconPicker */}
+        {/* Lesson Card Icon with IconPicker */}
         <div className="builder-field">
           <label className="builder-label">
             <Palette size={16} style={{ display: 'inline', marginRight: '0.5rem' }} />
@@ -129,7 +130,7 @@ export function SettingsPanel({ lesson, update }) {
 }
 
 // ========================================
-// HERO SECTION (WITHOUT BADGES)
+// HERO SECTION
 // ========================================
 export function HeroSection({ lesson, update, add, remove, editMode }) {
   return (
@@ -166,65 +167,226 @@ export function HeroSection({ lesson, update, add, remove, editMode }) {
 }
 
 // ========================================
-// TABS SECTION
+// TABS SECTION WITH TYPE SELECTION & RENAMING
 // ========================================
-export function TabsSection({ lesson, activeTab, setActiveTab, add, remove, editMode }) {
-  const availableTabs = [
-    { tabId: 'overview', customLabel: 'Overview' },
-    { tabId: 'content', customLabel: 'Content' },
-    { tabId: 'shortcuts', customLabel: 'Shortcuts' },
-    { tabId: 'practice', customLabel: 'Practice' }
+export function TabsSection({ lesson, activeTab, setActiveTab, add, remove, update, editMode }) {
+  const [showAddMenu, setShowAddMenu] = useState(false)
+  const [editingTab, setEditingTab] = useState(null)
+
+  const availableTabTypes = [
+    { type: 'overview', label: 'Overview', icon: '👁️', description: 'Info cards section' },
+    { type: 'content', label: 'Content', icon: '📖', description: 'Main content categories' },
+    { type: 'shortcuts', label: 'Shortcuts', icon: '⌨️', description: 'Keyboard shortcuts' },
+    { type: 'practice', label: 'Practice', icon: '💪', description: 'Practice projects' }
   ]
 
-  const handleAddTab = () => {
-    const existingIds = (lesson.enabledTabs || []).map(t => t.tabId)
-    const nextTab = availableTabs.find(t => !existingIds.includes(t.tabId))
-
-    if (nextTab) {
-      add('enabledTabs', nextTab)
-    } else {
-      alert('All tabs already added!')
+  const handleAddTab = (type) => {
+    const existingCount = (lesson.enabledTabs || []).filter(t => t.tabId.startsWith(type)).length
+    const tabType = availableTabTypes.find(t => t.type === type)
+    
+    // Create unique tabId by appending index
+    const uniqueTabId = existingCount > 0 ? `${type}-${existingCount + 1}` : type
+    
+    const newTab = {
+      tabId: uniqueTabId,
+      tabType: type, // Store the original type
+      customLabel: existingCount > 0 ? `${tabType.label} ${existingCount + 1}` : tabType.label
     }
+    
+    add('enabledTabs', newTab)
+    setShowAddMenu(false)
   }
 
   return (
     <div className="builder-tabs">
       {(lesson.enabledTabs || []).map((tab, i) => (
         <div key={i} className="builder-tab-wrapper">
-          <button
-            onClick={() => setActiveTab(tab.tabId)}
+          <div
+            onClick={() => {
+              // Only switch tabs if not editing
+              if (editingTab !== i) {
+                setActiveTab(tab.tabId)
+              }
+            }}
             className={`builder-tab ${activeTab === tab.tabId ? 'active' : ''}`}
             style={{
               '--theme-color': lesson.themeColor || '#3b82f6',
-              background: activeTab === tab.tabId ? (lesson.themeColor || '#3b82f6') : undefined
+              background: activeTab === tab.tabId ? (lesson.themeColor || '#3b82f6') : undefined,
+              cursor: 'pointer'
             }}
           >
-            {tab.customLabel}
-          </button>
-
-          {editMode && lesson.enabledTabs.length > 1 && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation()
-                if (confirm(`Remove "${tab.customLabel}" tab?`)) {
-                  remove('enabledTabs', i)
-                  if (activeTab === tab.tabId && lesson.enabledTabs[0]) {
-                    setActiveTab(lesson.enabledTabs[0].tabId)
+            {editMode ? (
+              <span
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setEditingTab(i)
+                }}
+                onMouseEnter={(e) => {
+                  if (editingTab !== i) {
+                    e.currentTarget.style.borderBottom = '2px dashed rgba(255, 255, 255, 0.4)'
                   }
-                }
-              }}
-              className="builder-tab-remove"
-            >
-              ×
-            </button>
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderBottom = 'none'
+                }}
+                style={{
+                  cursor: 'text',
+                  display: 'inline-block',
+                  minWidth: '80px',
+                  textAlign: 'center',
+                  transition: 'border-bottom 0.2s',
+                  paddingBottom: '2px'
+                }}
+              >
+                {editingTab === i ? (
+                  <input
+                    autoFocus
+                    value={tab.customLabel}
+                    onChange={(e) => update(`enabledTabs[${i}].customLabel`, e.target.value)}
+                    onBlur={() => setEditingTab(null)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault()
+                        setEditingTab(null)
+                      }
+                      if (e.key === 'Escape') {
+                        setEditingTab(null)
+                      }
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                    style={{
+                      background: 'rgba(59, 130, 246, 0.2)',
+                      border: '2px solid #3b82f6',
+                      borderRadius: '4px',
+                      padding: '0.25rem 0.5rem',
+                      color: 'inherit',
+                      fontSize: 'inherit',
+                      fontWeight: 'inherit',
+                      fontFamily: 'inherit',
+                      outline: 'none',
+                      minWidth: '80px',
+                      textAlign: 'center'
+                    }}
+                  />
+                ) : (
+                  tab.customLabel
+                )}
+              </span>
+            ) : (
+              tab.customLabel
+            )}
+          </div>
+
+          {editMode && (
+            <div style={{ display: 'flex', gap: '0.25rem' }}>
+              {lesson.enabledTabs.length > 1 && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    if (confirm(`Remove "${tab.customLabel}" tab?`)) {
+                      remove('enabledTabs', i)
+                      if (activeTab === tab.tabId && lesson.enabledTabs[0]) {
+                        setActiveTab(lesson.enabledTabs[0].tabId)
+                      }
+                    }
+                  }}
+                  className="builder-tab-remove"
+                  title="Remove tab"
+                >
+                  ×
+                </button>
+              )}
+            </div>
           )}
         </div>
       ))}
 
-      {editMode && (
-        <button onClick={handleAddTab} className="builder-add-tab-btn">
-          <Plus size={16} /> Add Tab
-        </button>
+      {editMode && lesson.enabledTabs.length < 8 && (
+        <div style={{ position: 'relative' }}>
+          <button 
+            onClick={() => setShowAddMenu(!showAddMenu)} 
+            className="builder-add-tab-btn"
+          >
+            <Plus size={16} /> Add Tab ({lesson.enabledTabs.length}/8)
+          </button>
+
+          {showAddMenu && (
+            <>
+              <div 
+                onClick={() => setShowAddMenu(false)}
+                style={{
+                  position: 'fixed',
+                  inset: 0,
+                  zIndex: 99
+                }}
+              />
+              <div style={{
+                position: 'absolute',
+                top: '100%',
+                left: 0,
+                marginTop: '0.5rem',
+                background: 'rgba(21, 35, 47, 0.95)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                borderRadius: '12px',
+                padding: '0.5rem',
+                minWidth: '280px',
+                zIndex: 100,
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
+                backdropFilter: 'blur(10px)'
+              }}>
+                <div style={{
+                  fontSize: '0.75rem',
+                  color: '#7a8c9e',
+                  padding: '0.5rem',
+                  fontWeight: '600',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em'
+                }}>
+                  Choose Tab Type
+                </div>
+                {availableTabTypes.map(tabType => (
+                  <button
+                    key={tabType.type}
+                    onClick={() => handleAddTab(tabType.type)}
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      border: '1px solid rgba(255, 255, 255, 0.05)',
+                      borderRadius: '8px',
+                      color: '#e0e7ef',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease',
+                      textAlign: 'left',
+                      marginBottom: '0.5rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.75rem'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'
+                      e.currentTarget.style.borderColor = lesson.themeColor || '#3b82f6'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)'
+                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.05)'
+                    }}
+                  >
+                    <span style={{ fontSize: '1.5rem' }}>{tabType.icon}</span>
+                    <div>
+                      <div style={{ fontWeight: '600', marginBottom: '0.125rem' }}>
+                        {tabType.label}
+                      </div>
+                      <div style={{ fontSize: '0.75rem', color: '#7a8c9e' }}>
+                        {tabType.description}
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
       )}
     </div>
   )

@@ -8,7 +8,7 @@ export async function GET(request, { params }) {
     const { searchParams } = new URL(request.url)
     const includeDraft = searchParams.get('draft') === 'true'
     
-    // 🔒 Fetch published version by default
+    // 🔥 FIXED: Added tabContents to the query
     let query
     if (includeDraft) {
       // Check draft first, fallback to published
@@ -20,6 +20,42 @@ export async function GET(request, { params }) {
           lessonIcon,
           heroConfig,
           enabledTabs,
+          tabContents[] {
+            _key,
+            tabId,
+            _type,
+            contentTitle,
+            contentDescription,
+            categories[] {
+              name,
+              icon,
+              color,
+              items[] {
+                name,
+                description,
+                icon,
+                detailedInfo {
+                  overview,
+                  pages[] {
+                    title,
+                    content,
+                    mediaType,
+                    image,
+                    "uploadedMediaUrl": uploadedMedia.asset->url,
+                    tips
+                  }
+                }
+              }
+            },
+            shortcuts[] {
+              category,
+              icon,
+              items[] {
+                action,
+                key
+              }
+            }
+          },
           overviewTitle,
           overviewDescription,
           overviewCards,
@@ -61,6 +97,42 @@ export async function GET(request, { params }) {
           lessonIcon,
           heroConfig,
           enabledTabs,
+          tabContents[] {
+            _key,
+            tabId,
+            _type,
+            contentTitle,
+            contentDescription,
+            categories[] {
+              name,
+              icon,
+              color,
+              items[] {
+                name,
+                description,
+                icon,
+                detailedInfo {
+                  overview,
+                  pages[] {
+                    title,
+                    content,
+                    mediaType,
+                    image,
+                    "uploadedMediaUrl": uploadedMedia.asset->url,
+                    tips
+                  }
+                }
+              }
+            },
+            shortcuts[] {
+              category,
+              icon,
+              items[] {
+                action,
+                key
+              }
+            }
+          },
           overviewTitle,
           overviewDescription,
           overviewCards,
@@ -107,6 +179,42 @@ export async function GET(request, { params }) {
           lessonIcon,
           heroConfig,
           enabledTabs,
+          tabContents[] {
+            _key,
+            tabId,
+            _type,
+            contentTitle,
+            contentDescription,
+            categories[] {
+              name,
+              icon,
+              color,
+              items[] {
+                name,
+                description,
+                icon,
+                detailedInfo {
+                  overview,
+                  pages[] {
+                    title,
+                    content,
+                    mediaType,
+                    image,
+                    "uploadedMediaUrl": uploadedMedia.asset->url,
+                    tips
+                  }
+                }
+              }
+            },
+            shortcuts[] {
+              category,
+              icon,
+              items[] {
+                action,
+                key
+              }
+            }
+          },
           overviewTitle,
           overviewDescription,
           overviewCards,
@@ -156,7 +264,13 @@ export async function GET(request, { params }) {
     // Ensure lessonIcon has a default value if null
     lesson.lessonIcon = lesson.lessonIcon || '/Icons/blender_icon_current_file.svg'
 
-    // Process media URLs
+    console.log('✅ API: Fetched lesson with tabContents:', {
+      hasTabContents: !!lesson.tabContents,
+      tabContentsLength: lesson.tabContents?.length,
+      tabIds: lesson.tabContents?.map(tc => tc.tabId)
+    })
+
+    // Process media URLs for root-level categories
     if (lesson.categories) {
       lesson.categories = lesson.categories.map(cat => ({
         ...cat,
@@ -173,6 +287,35 @@ export async function GET(request, { params }) {
           } : undefined
         }))
       }))
+    }
+
+    // 🔥 FIXED: Process media URLs for tabContents categories
+    if (lesson.tabContents && Array.isArray(lesson.tabContents)) {
+      lesson.tabContents = lesson.tabContents.map(tabContent => {
+        const processed = { ...tabContent }
+        
+        if (processed.categories) {
+          processed.categories = processed.categories.map(cat => ({
+            ...cat,
+            items: (cat.items || []).map(item => ({
+              ...item,
+              detailedInfo: item.detailedInfo ? {
+                ...item.detailedInfo,
+                pages: (item.detailedInfo.pages || []).map(page => ({
+                  ...page,
+                  finalMediaUrl: page.mediaType === 'upload' 
+                    ? page.uploadedMediaUrl 
+                    : page.image
+                }))
+              } : undefined
+            }))
+          }))
+        }
+        
+        return processed
+      })
+      
+      console.log('✅ API: Processed tabContents media URLs')
     }
     
     return NextResponse.json(lesson)

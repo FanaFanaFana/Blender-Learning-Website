@@ -99,7 +99,8 @@ export default function IconPicker({ value, onChange, editMode, size = 'normal' 
   const [categorizedIcons, setCategorizedIcons] = useState([])
   const [activeCategory, setActiveCategory] = useState('All')
   const [searchQuery, setSearchQuery] = useState('')
-  const gridRef = useRef(null)
+  const modalRef = useRef(null)
+  const overlayRef = useRef(null)
 
   useEffect(() => {
     fetch('/Icons/icons.json')
@@ -151,6 +152,12 @@ export default function IconPicker({ value, onChange, editMode, size = 'normal' 
 
   const filteredIcons = getFilteredIcons()
 
+  const handleClose = () => {
+    setShowPicker(false)
+    setSearchQuery('')
+    setActiveCategory('All')
+  }
+
   if (!editMode) {
     return value?.startsWith('/') ? (
       <img src={value} alt="" style={{ width: iconSize, height: iconSize }} />
@@ -169,14 +176,27 @@ export default function IconPicker({ value, onChange, editMode, size = 'normal' 
         style={{
           width: iconSize,
           height: iconSize,
-          background: size === 'large' ? 'rgba(59, 130, 246, 0.1)' : undefined,
-          borderRadius: '8px',
+          background: size === 'large' ? 'rgba(59, 130, 246, 0.08)' : 'rgba(255, 255, 255, 0.03)',
+          borderRadius: '10px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
-          border: size === 'large' ? '2px solid rgba(59, 130, 246, 0.3)' : undefined,
-          transition: 'all 0.2s'
+          border: size === 'large' 
+            ? '2px dashed rgba(59, 130, 246, 0.4)' 
+            : '2px dashed rgba(255, 255, 255, 0.2)',
+          transition: 'all 0.3s ease',
+          position: 'relative'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.borderColor = size === 'large' ? '#3b82f6' : 'rgba(59, 130, 246, 0.6)'
+          e.currentTarget.style.background = size === 'large' ? 'rgba(59, 130, 246, 0.15)' : 'rgba(59, 130, 246, 0.08)'
+          e.currentTarget.style.transform = 'scale(1.05)'
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.borderColor = size === 'large' ? 'rgba(59, 130, 246, 0.4)' : 'rgba(255, 255, 255, 0.2)'
+          e.currentTarget.style.background = size === 'large' ? 'rgba(59, 130, 246, 0.08)' : 'rgba(255, 255, 255, 0.03)'
+          e.currentTarget.style.transform = 'scale(1)'
         }}
       >
         {value?.startsWith('/') ? (
@@ -184,20 +204,42 @@ export default function IconPicker({ value, onChange, editMode, size = 'normal' 
         ) : (
           <span style={{ fontSize: displaySize }}>{value || '✨'}</span>
         )}
+        {/* Click indicator */}
+        <div style={{
+          position: 'absolute',
+          bottom: '-4px',
+          right: '-4px',
+          width: '16px',
+          height: '16px',
+          background: '#3b82f6',
+          borderRadius: '50%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '10px',
+          color: '#fff',
+          fontWeight: '600',
+          border: '2px solid #1e293b'
+        }}>
+          ✎
+        </div>
       </div>
 
       {showPicker && (
         <>
           {/* Overlay */}
           <div
-            onClick={(e) => {
-              e.stopPropagation()
-              setShowPicker(false)
-              setSearchQuery('')
-              setActiveCategory('All')
+            ref={overlayRef}
+            onMouseDown={(e) => {
+              if (e.target === overlayRef.current) {
+                handleClose()
+              }
             }}
             onTouchStart={(e) => {
-              e.stopPropagation()
+              if (e.target === overlayRef.current) {
+                e.preventDefault()
+                handleClose()
+              }
             }}
             style={{
               position: 'fixed',
@@ -205,50 +247,81 @@ export default function IconPicker({ value, onChange, editMode, size = 'normal' 
               left: 0,
               right: 0,
               bottom: 0,
-              background: 'rgba(0, 0, 0, 0.7)',
+              background: 'rgba(0, 0, 0, 0.75)',
               zIndex: 998,
-              backdropFilter: 'blur(4px)'
+              backdropFilter: 'blur(8px)',
+              animation: 'fadeIn 0.2s ease-out'
             }}
           />
           
           {/* Modal container */}
           <div
-            ref={gridRef}
+            ref={modalRef}
             onClick={(e) => e.stopPropagation()}
-            onTouchStart={(e) => e.stopPropagation()}
-            onTouchMove={(e) => e.stopPropagation()}
             style={{
               position: 'fixed',
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
               maxWidth: '90vw',
-              maxHeight: '80vh',
+              maxHeight: '85vh',
               width: '700px',
-              background: '#1e293b',
+              background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
               border: '2px solid rgba(59, 130, 246, 0.3)',
-              borderRadius: '16px',
+              borderRadius: '20px',
               zIndex: 999,
               display: 'flex',
               flexDirection: 'column',
-              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)',
-              overflow: 'hidden'
+              boxShadow: '0 25px 70px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(59, 130, 246, 0.1)',
+              overflow: 'hidden',
+              animation: 'slideUpModal 0.3s ease-out'
             }}
           >
             {/* Header */}
             <div style={{
-              background: '#1e293b',
+              background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%)',
               padding: '1.5rem',
               borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
             }}>
-              <h3 style={{
-                margin: '0 0 0.5rem 0',
-                color: '#e0e7ef',
-                fontSize: '1.2rem',
-                fontWeight: '600'
-              }}>
-                Choose an Icon
-              </h3>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                <h3 style={{
+                  margin: 0,
+                  color: '#e0e7ef',
+                  fontSize: '1.3rem',
+                  fontWeight: '700'
+                }}>
+                   Choose an Icon
+                </h3>
+                <button
+                  onClick={handleClose}
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    color: '#94a3b8',
+                    fontSize: '1.2rem',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(239, 68, 68, 0.15)'
+                    e.currentTarget.style.borderColor = 'rgba(239, 68, 68, 0.3)'
+                    e.currentTarget.style.color = '#ef4444'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)'
+                    e.currentTarget.style.color = '#94a3b8'
+                  }}
+                >
+                  ✕
+                </button>
+              </div>
               <p style={{
                 margin: '0 0 1rem 0',
                 color: '#7a8c9e',
@@ -266,13 +339,23 @@ export default function IconPicker({ value, onChange, editMode, size = 'normal' 
                 onClick={(e) => e.stopPropagation()}
                 style={{
                   width: '100%',
-                  padding: '0.75rem',
+                  padding: '0.75rem 1rem',
                   background: 'rgba(255, 255, 255, 0.05)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
-                  borderRadius: '8px',
+                  borderRadius: '10px',
                   color: '#fff',
                   fontSize: '0.95rem',
-                  marginBottom: '1rem'
+                  marginBottom: '1rem',
+                  outline: 'none',
+                  transition: 'all 0.2s ease'
+                }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = 'rgba(59, 130, 246, 0.5)'
+                  e.target.style.background = 'rgba(59, 130, 246, 0.08)'
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)'
+                  e.target.style.background = 'rgba(255, 255, 255, 0.05)'
                 }}
               />
 
@@ -281,20 +364,35 @@ export default function IconPicker({ value, onChange, editMode, size = 'normal' 
                 display: 'flex',
                 gap: '0.5rem',
                 overflowX: 'auto',
-                paddingBottom: '0.5rem'
+                paddingBottom: '0.5rem',
+                scrollbarWidth: 'thin',
+                scrollbarColor: 'rgba(59, 130, 246, 0.3) transparent'
               }}>
                 <button
                   onClick={() => setActiveCategory('All')}
                   style={{
-                    padding: '0.5rem 1rem',
+                    padding: '0.6rem 1.2rem',
                     background: activeCategory === 'All' ? 'rgba(59, 130, 246, 0.2)' : 'rgba(255, 255, 255, 0.05)',
-                    border: activeCategory === 'All' ? '1px solid #3b82f6' : '1px solid rgba(255, 255, 255, 0.1)',
-                    borderRadius: '6px',
+                    border: activeCategory === 'All' ? '2px solid #3b82f6' : '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '8px',
                     color: activeCategory === 'All' ? '#60a5fa' : '#94a3b8',
                     cursor: 'pointer',
                     fontSize: '0.85rem',
+                    fontWeight: activeCategory === 'All' ? '600' : '500',
                     whiteSpace: 'nowrap',
-                    transition: 'all 0.2s'
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (activeCategory !== 'All') {
+                      e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)'
+                      e.currentTarget.style.color = '#60a5fa'
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (activeCategory !== 'All') {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
+                      e.currentTarget.style.color = '#94a3b8'
+                    }
                   }}
                 >
                   All ({icons.length})
@@ -304,15 +402,28 @@ export default function IconPicker({ value, onChange, editMode, size = 'normal' 
                     key={category}
                     onClick={() => setActiveCategory(category)}
                     style={{
-                      padding: '0.5rem 1rem',
+                      padding: '0.6rem 1.2rem',
                       background: activeCategory === category ? 'rgba(59, 130, 246, 0.2)' : 'rgba(255, 255, 255, 0.05)',
-                      border: activeCategory === category ? '1px solid #3b82f6' : '1px solid rgba(255, 255, 255, 0.1)',
-                      borderRadius: '6px',
+                      border: activeCategory === category ? '2px solid #3b82f6' : '1px solid rgba(255, 255, 255, 0.1)',
+                      borderRadius: '8px',
                       color: activeCategory === category ? '#60a5fa' : '#94a3b8',
                       cursor: 'pointer',
                       fontSize: '0.85rem',
+                      fontWeight: activeCategory === category ? '600' : '500',
                       whiteSpace: 'nowrap',
-                      transition: 'all 0.2s'
+                      transition: 'all 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (activeCategory !== category) {
+                        e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)'
+                        e.currentTarget.style.color = '#60a5fa'
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (activeCategory !== category) {
+                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
+                        e.currentTarget.style.color = '#94a3b8'
+                      }
                     }}
                   >
                     {category} ({categoryIcons.length})
@@ -321,18 +432,23 @@ export default function IconPicker({ value, onChange, editMode, size = 'normal' 
               </div>
             </div>
 
-            {/* Scrollable grid */}
-            <div style={{
-              flex: 1,
-              overflow: 'auto',
-              padding: '1.5rem',
-              WebkitOverflowScrolling: 'touch',
-              touchAction: 'pan-y'
-            }}>
+            {/* Scrollable grid - Fixed for touch devices */}
+            <div 
+              style={{
+                flex: 1,
+                overflow: 'auto',
+                padding: '1.5rem',
+                WebkitOverflowScrolling: 'touch',
+                overscrollBehavior: 'contain'
+              }}
+              onTouchMove={(e) => {
+                e.stopPropagation()
+              }}
+            >
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(60px, 1fr))',
-                gap: '0.75rem',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(70px, 1fr))',
+                gap: '0.875rem',
                 width: '100%'
               }}>
                 {filteredIcons.map((icon, i) => (
@@ -341,24 +457,20 @@ export default function IconPicker({ value, onChange, editMode, size = 'normal' 
                     onClick={(e) => {
                       e.stopPropagation()
                       onChange(icon)
-                      setShowPicker(false)
-                      setSearchQuery('')
-                      setActiveCategory('All')
+                      handleClose()
                     }}
                     onTouchEnd={(e) => {
                       e.stopPropagation()
                       e.preventDefault()
                       onChange(icon)
-                      setShowPicker(false)
-                      setSearchQuery('')
-                      setActiveCategory('All')
+                      handleClose()
                     }}
                     title={icon.split('/').pop()?.replace(/\.(svg|png|jpg|jpeg|gif|webp)$/i, '')}
                     style={{
-                      padding: '0.75rem',
-                      background: value === icon ? 'rgba(59, 130, 246, 0.2)' : 'rgba(255, 255, 255, 0.03)',
-                      border: value === icon ? '2px solid #3b82f6' : '1px solid rgba(255, 255, 255, 0.1)',
-                      borderRadius: '8px',
+                      padding: '0.875rem',
+                      background: value === icon ? 'rgba(59, 130, 246, 0.25)' : 'rgba(255, 255, 255, 0.04)',
+                      border: value === icon ? '2px solid #3b82f6' : '2px dashed rgba(255, 255, 255, 0.15)',
+                      borderRadius: '12px',
                       cursor: 'pointer',
                       transition: 'all 0.2s ease',
                       display: 'flex',
@@ -367,17 +479,22 @@ export default function IconPicker({ value, onChange, editMode, size = 'normal' 
                       aspectRatio: '1',
                       userSelect: 'none',
                       WebkitUserSelect: 'none',
-                      WebkitTouchCallout: 'none'
+                      WebkitTouchCallout: 'none',
+                      touchAction: 'manipulation'
                     }}
                     onMouseEnter={(e) => {
                       if (value !== icon) {
-                        e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)'
-                        e.currentTarget.style.transform = 'scale(1.05)'
+                        e.currentTarget.style.background = 'rgba(59, 130, 246, 0.15)'
+                        e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.5)'
+                        e.currentTarget.style.borderStyle = 'solid'
+                        e.currentTarget.style.transform = 'scale(1.08)'
                       }
                     }}
                     onMouseLeave={(e) => {
                       if (value !== icon) {
-                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)'
+                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)'
+                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)'
+                        e.currentTarget.style.borderStyle = 'dashed'
                         e.currentTarget.style.transform = 'scale(1)'
                       }
                     }}
@@ -386,10 +503,11 @@ export default function IconPicker({ value, onChange, editMode, size = 'normal' 
                       src={icon}
                       alt=""
                       style={{
-                        width: '32px',
-                        height: '32px',
+                        width: '36px',
+                        height: '36px',
                         objectFit: 'contain',
-                        pointerEvents: 'none'
+                        pointerEvents: 'none',
+                        filter: value === icon ? 'brightness(1.2)' : 'brightness(1)'
                       }}
                       draggable={false}
                     />
@@ -400,12 +518,13 @@ export default function IconPicker({ value, onChange, editMode, size = 'normal' 
               {filteredIcons.length === 0 && (
                 <div style={{
                   textAlign: 'center',
-                  padding: '3rem',
+                  padding: '4rem 2rem',
                   color: '#7a8c9e'
                 }}>
-                  <p>No icons found</p>
+                  <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🔍</div>
+                  <p style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>No icons found</p>
                   {searchQuery && (
-                    <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>
+                    <p style={{ fontSize: '0.9rem', marginTop: '0.5rem', color: '#64748b' }}>
                       Try a different search term
                     </p>
                   )}
@@ -413,6 +532,23 @@ export default function IconPicker({ value, onChange, editMode, size = 'normal' 
               )}
             </div>
           </div>
+
+          <style jsx>{`
+            @keyframes fadeIn {
+              from { opacity: 0; }
+              to { opacity: 1; }
+            }
+            @keyframes slideUpModal {
+              from {
+                opacity: 0;
+                transform: translate(-50%, -45%) scale(0.95);
+              }
+              to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+              }
+            }
+          `}</style>
         </>
       )}
     </div>

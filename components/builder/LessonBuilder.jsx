@@ -7,23 +7,22 @@ import { downloadLesson, copyLesson } from './BuilderUtils'
 import { SettingsPanel, HeroSection, TabsSection } from './BuilderSection'
 import { OverviewTab, ContentTab, ShortcutsTab, PracticeTab } from './BuilderTabs'
 import DetailModal from './DetailModal'
-import { Download, Copy, Eye, Edit3, Cloud, AlertCircle, FileText } from 'lucide-react'
+import { Download, Copy, Eye, Edit3, Cloud, AlertCircle } from 'lucide-react'
 
 export default function LessonBuilder({ lesson: initialLesson }) {
   const [lesson, setLesson] = useState(() => ({
     ...initialLesson,
     lessonIcon: initialLesson.lessonIcon || '/Icons/blender_icon_current_file.svg'
   }))
-  
+
   const [editMode, setEditMode] = useState(true)
   const [showJSON, setShowJSON] = useState(false)
   const [activeTab, setActiveTab] = useState('overview')
   const [selectedItem, setSelectedItem] = useState(null)
   const [committing, setCommitting] = useState(false)
   const [commitError, setCommitError] = useState(null)
-  
-  // Track all staged files across all items
-  const stagedFilesMapRef = useRef(new Map()) // key: "catIndex-itemIndex-pageIndex" -> file
+
+  const stagedFilesMapRef = useRef(new Map())
 
   const update = (path, value) => {
     setLesson(prev => {
@@ -49,7 +48,12 @@ export default function LessonBuilder({ lesson: initialLesson }) {
         obj = obj[keys[i]]
       }
       const key = keys[keys.length - 1]
-      if (!obj[key]) obj[key] = []
+      if (!obj[key]) {
+        obj[key] = []
+      }
+      if (!Array.isArray(obj[key])) {
+        obj[key] = []
+      }
       obj[key].push(JSON.parse(JSON.stringify(item)))
       return clone
     })
@@ -64,7 +68,10 @@ export default function LessonBuilder({ lesson: initialLesson }) {
         if (!obj[keys[i]]) obj[keys[i]] = {}
         obj = obj[keys[i]]
       }
-      obj[keys[keys.length - 1]].splice(idx, 1)
+      const finalKey = keys[keys.length - 1]
+      if (obj[finalKey] && Array.isArray(obj[finalKey])) {
+        obj[finalKey].splice(idx, 1)
+      }
       return clone
     })
   }
@@ -102,6 +109,132 @@ export default function LessonBuilder({ lesson: initialLesson }) {
     }
   }, [lesson.enabledTabs, activeTab])
 
+  const getTabType = (tabId) => {
+    return tabId.split('-')[0]
+  }
+
+  const activeTabType = getTabType(activeTab)
+
+  const getTabData = (tabId, baseKey, defaultValue = []) => {
+    if (!tabId.includes('-')) {
+      const data = lesson[baseKey]
+      if (Array.isArray(defaultValue)) {
+        return Array.isArray(data) ? data : defaultValue
+      }
+      return data !== undefined ? data : defaultValue
+    }
+    
+    const tabContents = lesson.tabContents || []
+    const tabContent = tabContents.find(tc => tc.tabId === tabId)
+    
+    if (!tabContent) {
+      return defaultValue
+    }
+    
+    const data = tabContent[baseKey]
+    if (Array.isArray(defaultValue)) {
+      return Array.isArray(data) ? data : defaultValue
+    }
+    return data !== undefined ? data : defaultValue
+  }
+
+  // ✅ FIXED: Better initialization that creates arrays when needed
+  const updateTabContent = (tabId, baseKey, value) => {
+    if (!tabId.includes('-')) {
+      update(baseKey, value)
+      return
+    }
+    
+    setLesson(prev => {
+      const clone = JSON.parse(JSON.stringify(prev))
+      if (!clone.tabContents) clone.tabContents = []
+      
+      let tabContent = clone.tabContents.find(tc => tc.tabId === tabId)
+      if (!tabContent) {
+        tabContent = { 
+          _key: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, 
+          tabId,
+          _type: 'object'
+        }
+        clone.tabContents.push(tabContent)
+      }
+      
+      const keys = baseKey.replace(/\[(\d+)\]/g, '.$1').split('.')
+      let obj = tabContent
+      for (let i = 0; i < keys.length - 1; i++) {
+        const key = keys[i]
+        if (!obj[key]) {
+          obj[key] = isNaN(key) ? {} : []
+        }
+        obj = obj[key]
+      }
+      obj[keys[keys.length - 1]] = value
+      
+      return clone
+    })
+  }
+
+  const addTabContent = (tabId, baseKey, item) => {
+    if (!tabId.includes('-')) {
+      add(baseKey, item)
+      return
+    }
+    
+    setLesson(prev => {
+      const clone = JSON.parse(JSON.stringify(prev))
+      if (!clone.tabContents) clone.tabContents = []
+      
+      let tabContent = clone.tabContents.find(tc => tc.tabId === tabId)
+      if (!tabContent) {
+        tabContent = { _key: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, tabId }
+        clone.tabContents.push(tabContent)
+      }
+      
+      const keys = baseKey.replace(/\[(\d+)\]/g, '.$1').split('.')
+      let obj = tabContent
+      for (let i = 0; i < keys.length - 1; i++) {
+        if (!obj[keys[i]]) obj[keys[i]] = {}
+        obj = obj[keys[i]]
+      }
+      
+      const finalKey = keys[keys.length - 1]
+      if (!obj[finalKey]) obj[finalKey] = []
+      if (!Array.isArray(obj[finalKey])) obj[finalKey] = []
+      obj[finalKey].push(JSON.parse(JSON.stringify(item)))
+      
+      return clone
+    })
+  }
+
+  const removeTabContent = (tabId, baseKey, idx) => {
+    if (!tabId.includes('-')) {
+      remove(baseKey, idx)
+      return
+    }
+    
+    setLesson(prev => {
+      const clone = JSON.parse(JSON.stringify(prev))
+      if (!clone.tabContents) return clone
+      
+      const tabContent = clone.tabContents.find(tc => tc.tabId === tabId)
+      if (!tabContent) return clone
+      
+      const keys = baseKey.replace(/\[(\d+)\]/g, '.$1').split('.')
+      let obj = tabContent
+      for (let i = 0; i < keys.length - 1; i++) {
+        if (!obj[keys[i]]) return clone
+        obj = obj[keys[i]]
+      }
+      
+      const finalKey = keys[keys.length - 1]
+      if (obj[finalKey] && Array.isArray(obj[finalKey])) {
+        obj[finalKey].splice(idx, 1)
+      }
+      
+      return clone
+    })
+  }
+
   const handleDownload = () => {
     downloadLesson(lesson)
     alert('✅ JSON downloaded!')
@@ -112,7 +245,6 @@ export default function LessonBuilder({ lesson: initialLesson }) {
     alert('✅ Copied to clipboard!')
   }
 
-  // 🚀 NEW: Commit to Sanity (as DRAFT)
   const handleCommitToSanity = async () => {
     if (!client.config().token) {
       setCommitError('Missing Sanity token. Add NEXT_PUBLIC_SANITY_TOKEN to .env.local')
@@ -122,19 +254,18 @@ export default function LessonBuilder({ lesson: initialLesson }) {
     const confirmMsg = stagedFilesMapRef.current.size > 0
       ? `This will upload ${stagedFilesMapRef.current.size} file(s) and save as DRAFT. You can review in Sanity Studio before publishing. Continue?`
       : 'Save this lesson as DRAFT to Sanity?'
-    
+
     if (!confirm(confirmMsg)) return
 
     setCommitting(true)
     setCommitError(null)
 
     try {
-      // Step 1: Upload all staged files
       const uploadedUrls = new Map()
-      
+
       for (const [key, file] of stagedFilesMapRef.current.entries()) {
         console.log(`📤 Uploading ${file.name}...`)
-        
+
         const asset = await client.assets.upload(
           file.type.startsWith('video/') ? 'file' : 'image',
           file,
@@ -143,14 +274,13 @@ export default function LessonBuilder({ lesson: initialLesson }) {
             contentType: file.type
           }
         )
-        
+
         uploadedUrls.set(key, asset.url)
         console.log(`✅ Uploaded: ${asset.url}`)
       }
 
-      // Step 2: Update lesson with uploaded URLs
       const lessonWithUrls = JSON.parse(JSON.stringify(lesson))
-      
+
       lessonWithUrls.categories?.forEach((cat, ci) => {
         cat.items?.forEach((item, ii) => {
           item.detailedInfo?.pages?.forEach((page, pi) => {
@@ -165,7 +295,15 @@ export default function LessonBuilder({ lesson: initialLesson }) {
         })
       })
 
-      // Step 3: Add _key to all arrays
+      // ✅ CRITICAL: Remove any stray numbered fields
+      const cleanLesson = {...lessonWithUrls}
+      Object.keys(cleanLesson).forEach(key => {
+        if (key.includes('_content-') || key.includes('_overview-') || key.includes('_shortcuts-') || key.includes('_practice-')) {
+          console.log(`🗑️ Removing stray field: ${key}`)
+          delete cleanLesson[key]
+        }
+      })
+
       const addKeys = (obj) => {
         if (Array.isArray(obj)) {
           return obj.map(item => {
@@ -180,7 +318,6 @@ export default function LessonBuilder({ lesson: initialLesson }) {
         } else if (obj && typeof obj === 'object') {
           const newObj = {}
           for (const key in obj) {
-            // Skip internal properties
             if (!key.startsWith('_staged')) {
               newObj[key] = addKeys(obj[key])
             }
@@ -190,11 +327,11 @@ export default function LessonBuilder({ lesson: initialLesson }) {
         return obj
       }
 
-      const lessonWithKeys = addKeys(lessonWithUrls)
+      const lessonWithKeys = addKeys(cleanLesson)
 
-      // Step 4: Check for existing lesson (published or draft)
       console.log('💾 Committing to Sanity as DRAFT...')
-      
+      console.log('📦 TabContents:', lessonWithKeys.tabContents?.length || 0)
+
       const existingDraft = await client.fetch(
         `*[_type == "lesson" && lessonId.current == $id && _id in path("drafts.**")][0]`,
         { id: lessonWithKeys.lessonId.current }
@@ -209,7 +346,6 @@ export default function LessonBuilder({ lesson: initialLesson }) {
       let draftId
 
       if (existingDraft) {
-        // Update existing draft
         draftId = existingDraft._id
         result = await client
           .patch(draftId)
@@ -217,7 +353,6 @@ export default function LessonBuilder({ lesson: initialLesson }) {
           .commit()
         console.log('✅ Updated existing draft:', draftId)
       } else if (existingPublished) {
-        // Create draft version of published document
         draftId = `drafts.${existingPublished._id}`
         result = await client.create({
           ...lessonWithKeys,
@@ -226,7 +361,6 @@ export default function LessonBuilder({ lesson: initialLesson }) {
         })
         console.log('✅ Created draft from published lesson:', draftId)
       } else {
-        // Create new draft
         draftId = `drafts.${lessonWithKeys.lessonId.current}`
         result = await client.create({
           ...lessonWithKeys,
@@ -236,15 +370,14 @@ export default function LessonBuilder({ lesson: initialLesson }) {
         console.log('✅ Created new draft:', draftId)
       }
 
-      // Clear staged files
       stagedFilesMapRef.current.clear()
-      
+
       const studioUrl = `${window.location.origin}/studio/structure/lesson;${result._id.replace('drafts.', '')}`
-      
+
       if (confirm('🎉 Draft saved! Open in Sanity Studio to review and publish?')) {
         window.open(studioUrl, '_blank')
       }
-      
+
     } catch (err) {
       console.error('❌ Commit failed:', err)
       setCommitError(err.message || 'Failed to commit to Sanity')
@@ -255,20 +388,19 @@ export default function LessonBuilder({ lesson: initialLesson }) {
 
   return (
     <div>
-      {/* Builder Toolbar */}
       <div className="builder-toolbar">
         <div className="builder-toolbar-inner">
           <div className="builder-toolbar-left">
-            <button 
-              onClick={() => setEditMode(!editMode)} 
+            <button
+              onClick={() => setEditMode(!editMode)}
               className={editMode ? 'btn-edit-mode' : 'btn-view-mode'}
             >
               {editMode ? <Edit3 size={16} /> : <Eye size={16} />}
               {editMode ? 'Edit Mode' : 'View Mode'}
             </button>
 
-            <button 
-              onClick={() => setShowJSON(!showJSON)} 
+            <button
+              onClick={() => setShowJSON(!showJSON)}
               className={`btn-toggle-json ${showJSON ? 'active' : ''}`}
             >
               {showJSON ? <Eye size={16} /> : '{ }'}
@@ -285,9 +417,8 @@ export default function LessonBuilder({ lesson: initialLesson }) {
               <Copy size={16} /> Copy JSON
             </button>
 
-            {/* 🚀 NEW: Commit to Sanity Button */}
-            <button 
-              onClick={handleCommitToSanity} 
+            <button
+              onClick={handleCommitToSanity}
               disabled={committing}
               className="btn-commit"
               style={{
@@ -302,7 +433,6 @@ export default function LessonBuilder({ lesson: initialLesson }) {
         </div>
       </div>
 
-      {/* Show staged files notice */}
       {stagedFilesMapRef.current.size > 0 && (
         <div style={{
           maxWidth: '1400px',
@@ -318,13 +448,12 @@ export default function LessonBuilder({ lesson: initialLesson }) {
         }}>
           <AlertCircle size={20} />
           <span>
-            📁 {stagedFilesMapRef.current.size} file(s) ready to upload.
-            Click "Commit to Sanity" to upload and save.
+            📎 {stagedFilesMapRef.current.size} file(s) ready to upload.
+            Click "Save as Draft" to upload and save.
           </span>
         </div>
       )}
 
-      {/* Show commit error */}
       {commitError && (
         <div style={{
           maxWidth: '1400px',
@@ -343,7 +472,6 @@ export default function LessonBuilder({ lesson: initialLesson }) {
         </div>
       )}
 
-      {/* Main Content */}
       <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
         {showJSON ? (
           <pre className="builder-json-view">
@@ -353,61 +481,174 @@ export default function LessonBuilder({ lesson: initialLesson }) {
           <>
             {editMode && <SettingsPanel lesson={lesson} update={update} />}
             <HeroSection lesson={lesson} update={update} add={add} remove={remove} editMode={editMode} />
-            <TabsSection 
-              lesson={lesson} 
+            <TabsSection
+              lesson={lesson}
               activeTab={activeTab}
               setActiveTab={setActiveTab}
               add={add}
               remove={remove}
+              update={update}
               editMode={editMode}
             />
 
             <div style={{ marginTop: '2rem' }}>
-              {activeTab === 'overview' && (
-                <OverviewTab lesson={lesson} update={update} add={add} remove={remove} editMode={editMode} />
+              {activeTabType === 'overview' && (
+                <OverviewTab 
+                  lesson={{
+                    overviewTitle: getTabData(activeTab, 'overviewTitle', `Overview - ${activeTab}`),
+                    overviewDescription: getTabData(activeTab, 'overviewDescription', ''),
+                    overviewCards: getTabData(activeTab, 'overviewCards', [])
+                  }}
+                  update={(path, value) => {
+                    if (path.startsWith('overviewTitle')) {
+                      updateTabContent(activeTab, 'overviewTitle', value)
+                    } else if (path.startsWith('overviewDescription')) {
+                      updateTabContent(activeTab, 'overviewDescription', value)
+                    } else if (path.startsWith('overviewCards')) {
+                      updateTabContent(activeTab, path, value)
+                    } else {
+                      update(path, value)
+                    }
+                  }}
+                  add={(path, item) => {
+                    if (path === 'overviewCards') {
+                      addTabContent(activeTab, 'overviewCards', item)
+                    } else {
+                      add(path, item)
+                    }
+                  }}
+                  remove={(path, idx) => {
+                    if (path === 'overviewCards') {
+                      removeTabContent(activeTab, 'overviewCards', idx)
+                    } else {
+                      remove(path, idx)
+                    }
+                  }}
+                  editMode={editMode}
+                />
               )}
 
-              {activeTab === 'content' && (
-                <ContentTab 
-                  lesson={lesson} 
-                  update={update} 
-                  add={add} 
-                  remove={remove} 
+              {activeTabType === 'content' && (
+                <ContentTab
+                  lesson={{
+                    categories: getTabData(activeTab, 'categories', []),
+                    contentTitle: getTabData(activeTab, 'contentTitle', `Content - ${activeTab}`),
+                    contentDescription: getTabData(activeTab, 'contentDescription', '')
+                  }}
+                  update={(path, value) => {
+                    if (path.startsWith('contentTitle')) {
+                      updateTabContent(activeTab, 'contentTitle', value)
+                    } else if (path.startsWith('contentDescription')) {
+                      updateTabContent(activeTab, 'contentDescription', value)
+                    } else if (path.startsWith('categories')) {
+                      updateTabContent(activeTab, path, value)
+                    } else {
+                      update(path, value)
+                    }
+                  }}
+                  add={(path, item) => {
+                    if (path === 'categories' || path.startsWith('categories[')) {
+                      addTabContent(activeTab, path, item)
+                    } else {
+                      add(path, item)
+                    }
+                  }}
+                  remove={(path, idx) => {
+                    if (path === 'categories' || path.startsWith('categories[')) {
+                      removeTabContent(activeTab, path, idx)
+                    } else {
+                      remove(path, idx)
+                    }
+                  }}
                   editMode={editMode}
                   setSelectedItem={setSelectedItem}
                 />
               )}
 
-              {activeTab === 'shortcuts' && (
-                <ShortcutsTab lesson={lesson} update={update} add={add} remove={remove} editMode={editMode} />
+              {activeTabType === 'shortcuts' && (
+                <ShortcutsTab 
+                  lesson={{
+                    shortcuts: getTabData(activeTab, 'shortcuts', [])
+                  }}
+                  update={(path, value) => {
+                    if (path.startsWith('shortcuts')) {
+                      updateTabContent(activeTab, path, value)
+                    } else {
+                      update(path, value)
+                    }
+                  }}
+                  add={(path, item) => {
+                    if (path === 'shortcuts' || path.startsWith('shortcuts[')) {
+                      addTabContent(activeTab, path, item)
+                    } else {
+                      add(path, item)
+                    }
+                  }}
+                  remove={(path, idx) => {
+                    if (path === 'shortcuts' || path.startsWith('shortcuts[')) {
+                      removeTabContent(activeTab, path, idx)
+                    } else {
+                      remove(path, idx)
+                    }
+                  }}
+                  editMode={editMode}
+                />
               )}
 
-              {activeTab === 'practice' && (
-                <PracticeTab lesson={lesson} update={update} add={add} remove={remove} editMode={editMode} />
+              {activeTabType === 'practice' && (
+                <PracticeTab 
+                  lesson={{
+                    practiceTitle: getTabData(activeTab, 'practiceTitle', `Practice - ${activeTab}`),
+                    practiceDescription: getTabData(activeTab, 'practiceDescription', ''),
+                    practiceProjects: getTabData(activeTab, 'practiceProjects', [])
+                  }}
+                  update={(path, value) => {
+                    if (path.startsWith('practiceTitle')) {
+                      updateTabContent(activeTab, 'practiceTitle', value)
+                    } else if (path.startsWith('practiceDescription')) {
+                      updateTabContent(activeTab, 'practiceDescription', value)
+                    } else if (path.startsWith('practiceProjects')) {
+                      updateTabContent(activeTab, path, value)
+                    } else {
+                      update(path, value)
+                    }
+                  }}
+                  add={(path, item) => {
+                    if (path === 'practiceProjects' || path.startsWith('practiceProjects[')) {
+                      addTabContent(activeTab, path, item)
+                    } else {
+                      add(path, item)
+                    }
+                  }}
+                  remove={(path, idx) => {
+                    if (path === 'practiceProjects' || path.startsWith('practiceProjects[')) {
+                      removeTabContent(activeTab, path, idx)
+                    } else {
+                      remove(path, idx)
+                    }
+                  }}
+                  editMode={editMode}
+                />
               )}
             </div>
           </>
         )}
       </div>
 
-      {/* Detail Modal */}
       {selectedItem && (
         <DetailModal
           item={selectedItem}
           themeColor={selectedItem.color}
           onClose={() => setSelectedItem(null)}
           onSave={(updatedItem) => {
-            // Extract staged files from the updated item
             if (updatedItem._stagedFiles) {
               updatedItem._stagedFiles.forEach(({ pageIndex, file }) => {
                 const key = `${selectedItem.categoryIndex}-${selectedItem.itemIndex}-${pageIndex}`
                 stagedFilesMapRef.current.set(key, file)
               })
-              
-              // Remove the temporary property
               delete updatedItem._stagedFiles
             }
-            
+
             update(
               `categories[${selectedItem.categoryIndex}].items[${selectedItem.itemIndex}]`,
               updatedItem

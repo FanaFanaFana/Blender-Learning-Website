@@ -27,24 +27,11 @@ export const cleanObject = (obj) => {
   if (Array.isArray(obj)) return obj.map(cleanObject)
   if (obj && typeof obj === 'object') {
     const cleaned = Object.entries(obj).reduce((acc, [key, value]) => {
-      // ✅ Debug log for lessonIcon
-      if (key === 'lessonIcon') {
-        console.log('🧹 cleanObject processing lessonIcon:', value)
-      }
-      
       if (value !== undefined && value !== null) {
         acc[key] = cleanObject(value)
-      } else if (key === 'lessonIcon') {
-        console.log('❌ lessonIcon was undefined/null, skipping!')
       }
       return acc
     }, {})
-    
-    // ✅ Check if lessonIcon survived
-    if (obj.lessonIcon && !cleaned.lessonIcon) {
-      console.error('⚠️ lessonIcon was REMOVED by cleanObject!')
-    }
-    
     return cleaned
   }
   return obj
@@ -54,6 +41,122 @@ export const cleanObject = (obj) => {
 export const sanitizeLesson = (lesson) => {
   console.log('🧹 SANITIZE START - lessonIcon:', lesson.lessonIcon)
   
+  // ✅ First, organize tab content data
+  const tabContentsArray = []
+  
+  // Process each enabled tab
+  if (lesson.enabledTabs) {
+    lesson.enabledTabs.forEach(tab => {
+      const tabId = tab.tabId
+      const tabType = tabId.split('-')[0] // Get base type (overview, content, shortcuts, practice)
+      
+      // Skip the main tabs (they use the root fields)
+      if (!tabId.includes('-')) return
+      
+      // Find existing tab content or create new
+      let tabContent = lesson.tabContents?.find(tc => tc.tabId === tabId)
+      if (!tabContent) {
+        tabContent = { tabId }
+      }
+      
+      // Based on tab type, include the relevant fields
+      const content = {
+        _key: tabContent._key || generateKey(),
+        tabId: tabId,
+        _type: 'object'
+      }
+      
+      if (tabType === 'overview') {
+        content.overviewTitle = tabContent.overviewTitle || `Overview - ${tab.customLabel}`
+        content.overviewDescription = tabContent.overviewDescription || ''
+        content.overviewCards = (tabContent.overviewCards || []).map(card => ({
+          _key: card._key || generateKey(),
+          _type: 'object',
+          icon: card.icon || '✨',
+          title: card.title || 'Card Title',
+          content: card.content || 'Card content'
+        }))
+      }
+      
+      if (tabType === 'content') {
+        content.contentTitle = tabContent.contentTitle || `Content - ${tab.customLabel}`
+        content.contentDescription = tabContent.contentDescription || ''
+        content.categories = (tabContent.categories || []).map(cat => ({
+          _key: cat._key || generateKey(),
+          _type: 'object',
+          name: cat.name || 'Category',
+          icon: cat.icon || '📁',
+          color: cat.color || '#3b82f6',
+          items: (cat.items || []).map(item => ({
+            _key: item._key || generateKey(),
+            _type: 'object',
+            name: item.name || 'Item',
+            description: item.description || 'Description',
+            icon: item.icon || '📄',
+            detailedInfo: {
+              _type: 'object',
+              overview: item.detailedInfo?.overview || '',
+              pages: (item.detailedInfo?.pages || []).map(page => ({
+                _key: page._key || generateKey(),
+                _type: 'object',
+                title: page.title || 'Page Title',
+                content: page.content || 'Page content',
+                mediaType: page.mediaType || 'url',
+                image: page.mediaType === 'url' ? (page.image || page.finalMediaUrl || '') : '',
+                tips: (page.tips || []).filter(t => t && t.trim())
+              }))
+            }
+          }))
+        }))
+      }
+      
+     if (tabType === 'shortcuts') {
+  const shortcutsData = tabContent.shortcuts || []
+  
+  // Only add shortcuts field if there's actual data
+  if (shortcutsData.length > 0) {
+    content.shortcuts = shortcutsData.map(section => ({
+      _key: section._key || generateKey(),
+      _type: 'object',
+      category: section.category || 'Category',
+      icon: section.icon || '', // ✅ Add icon field
+      items: (section.items || []).map(shortcut => ({
+        _key: shortcut._key || generateKey(),
+        _type: 'object',
+        action: shortcut.action || 'Action',
+        key: shortcut.key || 'Key'
+      }))
+    }))
+  }
+}
+
+if (tabType === 'practice') {
+  const practiceProjects = tabContent.practiceProjects || []
+  
+  // Only add if there's actual data
+  if (practiceProjects.length > 0 || tabContent.practiceTitle || tabContent.practiceDescription) {
+    if (tabContent.practiceTitle) content.practiceTitle = tabContent.practiceTitle
+    if (tabContent.practiceDescription) content.practiceDescription = tabContent.practiceDescription
+    
+    content.practiceProjects = practiceProjects.map(proj => ({
+      _key: proj._key || generateKey(),
+      _type: 'object',
+      title: proj.title || 'Practice Project',
+      desc: proj.desc || 'Complete this exercise',
+      duration: proj.duration || '30 min',
+      difficulty: proj.difficulty || 'Beginner',
+      skills: proj.skills || []
+    }))
+  }
+}
+      
+      // Only add if there's actual content
+      if (Object.keys(content).length > 3) { // More than just _key, tabId, _type
+        tabContentsArray.push(content)
+      }
+    })
+  }
+
   const sanitized = {
     _type: 'lesson',
     lessonId: lesson.lessonId || { current: 'untitled-lesson' },
@@ -69,9 +172,14 @@ export const sanitizeLesson = (lesson) => {
     },
     
     enabledTabs: (lesson.enabledTabs || []).map(tab => ({
+      _key: tab._key || generateKey(),
+      _type: 'object',
       tabId: tab.tabId || tab.id || 'overview',
       customLabel: tab.customLabel || tab.label || 'Tab'
     })),
+    
+    // ✅ Include the organized tab contents
+    tabContents: tabContentsArray,
     
     overviewTitle: lesson.overviewTitle || 'What You\'ll Learn',
     overviewDescription: lesson.overviewDescription || 'This lesson covers the fundamentals',
@@ -131,18 +239,19 @@ export const sanitizeLesson = (lesson) => {
   }
 
   console.log('✅ SANITIZE DONE - lessonIcon:', sanitized.lessonIcon)
+  console.log('📦 TabContents count:', sanitized.tabContents?.length || 0)
   console.log('🔍 Full sanitized object keys:', Object.keys(sanitized))
   
   const cleaned = cleanObject(sanitized)
   console.log('🧹 AFTER CLEAN - lessonIcon:', cleaned.lessonIcon)
-  console.log('🔍 Full cleaned object keys:', Object.keys(cleaned))
+  console.log('📦 After clean - TabContents count:', cleaned.tabContents?.length || 0)
   
   return cleaned
 }
 
 // Download lesson as JSON
 export const downloadLesson = (lesson) => {
-  console.log('📥 DOWNLOAD START - lessonIcon:', lesson.lessonIcon)
+  console.log('💾 DOWNLOAD START - lessonIcon:', lesson.lessonIcon)
   const sanitized = sanitizeLesson(lesson)
   console.log('🧹 AFTER SANITIZE - lessonIcon:', sanitized.lessonIcon)
   const withKeys = addKeys(sanitized)
