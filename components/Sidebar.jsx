@@ -20,18 +20,18 @@ export default function Sidebar() {
         const response = await fetch('/api/lessons')
         if (!response.ok) throw new Error('Failed to fetch')
         const lessons = await response.json()
-        
+
         console.log('📚 Fetched lessons with icons:', lessons)
-        
+
         // Transform API data to match sidebar format
         const transformedTopics = lessons.map(lesson => {
-          const displayTitle = lesson.title && lesson.gradientText 
-  ? `${lesson.title} ${lesson.gradientText}` 
-  : lesson.gradientText || lesson.title || 'Untitled'
+          const displayTitle = lesson.title && lesson.gradientText
+            ? `${lesson.title} ${lesson.gradientText}`
+            : lesson.gradientText || lesson.title || 'Untitled'
           const categoryKey = lesson.lessonCategory || 'Lesson'
           // ✅ Use centralized category labels
           const categoryLabel = getCategoryLabel(categoryKey)
-          
+
           return {
             title: displayTitle,
             category: categoryLabel,
@@ -169,8 +169,8 @@ export default function Sidebar() {
 
         {/* Loading State */}
         {loading && (
-          <div style={{ 
-            opacity: isSidebarOpen ? 1 : 0, 
+          <div style={{
+            opacity: isSidebarOpen ? 1 : 0,
             transition: 'opacity 0.3s ease',
             textAlign: 'center',
             color: '#7a8c9e',
