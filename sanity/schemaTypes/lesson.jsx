@@ -2,6 +2,8 @@
 import {defineType, defineField} from 'sanity'
 import {EyeOpenIcon, BookIcon, RocketIcon, TerminalIcon} from '@sanity/icons'
 import {LessonImporter} from '../components/LessonImporter'
+// ✅ Import centralized categories
+import { getSanityCategories, CATEGORIES } from '@/app/config/categories'
 
 // Keep color options as dropdown (these work fine)
 const colorOptions = [
@@ -151,6 +153,7 @@ export default defineType({
       validation: Rule => Rule.required()
     }),
 
+    // ✅ UPDATED: Now uses centralized categories
     defineField({
       name: 'category',
       title: '📁 Category (for Compendium page)',
@@ -158,21 +161,7 @@ export default defineType({
       group: 'hero',
       description: 'Where this lesson appears in the main compendium',
       options: {
-        list: [
-          { title: '🎨 3D Modeling', value: 'modeling' },
-          { title: '💡 Rendering', value: 'rendering' },
-          { title: '🎬 Animation', value: 'animation' },
-          { title: '🖼️ Texturing', value: 'texturing' },
-          { title: '📝 Lesson Content', value: 'Lesson' },
-          { title: '🖨️ 3D Printing', value: 'printing' },
-          { title: '🎥 VFX Integration', value: 'vfx' },
-          { title: '🎮 Game Assets', value: 'gameAssets' },
-          { title: '✨ Hair & Fur', value: 'hairFur' },
-          { title: '✏️ Grease Pencil', value: 'greasePencil' },
-          { title: '🔷 Geometry Nodes', value: 'geometryNodes' },
-          { title: '📋 Project Management', value: 'projectManagement' },
-          { title: '💧 Simulation', value: 'simulation' },
-        ],
+        list: getSanityCategories(), // ✅ Uses centralized config
         layout: 'dropdown'
       },
       validation: Rule => Rule.required()
@@ -201,314 +190,308 @@ export default defineType({
       ]
     }),
 
-    // In lesson.jsx, find the enabledTabs field and update it:
-
-defineField({
-  name: 'enabledTabs',
-  title: '🔖 Select Which Tabs to Show',
-  type: 'array',
-  group: 'hero',
-  description: '⚠️ Select tabs and customize their labels. You can add multiple tabs of the same type!',
-  initialValue: [
-    { tabId: 'overview', customLabel: 'Overview' },
-    { tabId: 'content', customLabel: 'Content' }
-  ],
-  of: [{
-    type: 'object',
-    fields: [
-      { 
-        name: 'tabId', 
-        type: 'string', 
-        title: '🔖 Tab Type',
-        description: 'The tab identifier (can be base type or numbered like content-2)',
-        placeholder: 'e.g., content, content-2, shortcuts-3',
-        validation: Rule => Rule.required().custom((value) => {
-          // ✅ Allow base types and numbered variants
-          const validPattern = /^(overview|content|techniques|shortcuts|practice)(-\d+)?$/
-          if (!value || !validPattern.test(value)) {
-            return 'Tab ID must be a valid type (overview, content, shortcuts, practice) with optional number (e.g., content-2)'
-          }
-          return true
-        })
-      },
-      { 
-        name: 'customLabel', 
-        type: 'string', 
-        title: '🏷️ Custom Label (What Users See)',
-        description: 'This is what appears on the button',
-        placeholder: 'e.g., "Sculpting Brushes", "Essential Tools"',
-        validation: Rule => Rule.required()
-      }
-    ],
-    preview: {
-      select: { tabId: 'tabId', customLabel: 'customLabel' },
-      prepare({tabId, customLabel}) {
-        const baseType = tabId?.split('-')[0] || 'unknown'
-        const icons = {
-          overview: '👁️',
-          content: '📖',
-          techniques: '🛠️',
-          shortcuts: '⌨️',
-          practice: '💪'
-        }
-        
-        return {
-          title: customLabel || 'Unnamed Tab',
-          subtitle: `${icons[baseType] || '📄'} ${tabId || 'unknown'}`,
-          media: () => (
-            <div style={{
-              width: '100%',
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '20px'
-            }}>
-              {icons[baseType] || '📄'}
-            </div>
-          )
-        }
-      }
-    }
-  }],
-  validation: Rule => Rule.min(1).max(8).error('You must have between 1 and 8 tabs')
-}),
-
-    // ✅ NEW: Tab Contents Array (stores content for numbered tabs)
-defineField({
-  name: 'tabContents',
-  title: '📦 Additional Tab Contents',
-  type: 'array',
-  group: 'hero',
-  description: '🔒 Contains content for numbered tabs (content-2, shortcuts-2, etc.). Managed by the builder.',
-  hidden: false,
-  readOnly: true,
-  of: [{
-    type: 'object',
-    name: 'tabContent',
-    fields: [
-      { 
-        name: 'tabId', 
-        type: 'string', 
-        title: 'Tab ID', 
-        readOnly: true,
-        validation: Rule => Rule.required()
-      },
-      
-      // Overview fields (all optional)
-      { 
-        name: 'overviewTitle', 
-        type: 'string', 
-        title: 'Overview Title',
-        hidden: ({parent}) => !parent?.tabId?.includes('overview')
-      },
-      { 
-        name: 'overviewDescription', 
-        type: 'text', 
-        title: 'Overview Description',
-        hidden: ({parent}) => !parent?.tabId?.includes('overview')
-      },
-      { 
-        name: 'overviewCards', 
-        type: 'array', 
-        title: 'Overview Cards',
-        hidden: ({parent}) => !parent?.tabId?.includes('overview'),
-        of: [{
-          type: 'object',
-          fields: [
-            { name: 'icon', type: 'string', title: 'Icon' },
-            { name: 'title', type: 'string', title: 'Card Title' },
-            { name: 'content', type: 'text', title: 'Card Content', rows: 4 }
-          ],
-          preview: {
-            select: { title: 'title', icon: 'icon' },
-            prepare({title, icon}) {
-              return {
-                title: title || 'Untitled Card',
-                subtitle: icon || '✨'
+    defineField({
+      name: 'enabledTabs',
+      title: '🔖 Select Which Tabs to Show',
+      type: 'array',
+      group: 'hero',
+      description: '⚠️ Select tabs and customize their labels. You can add multiple tabs of the same type!',
+      initialValue: [
+        { tabId: 'overview', customLabel: 'Overview' },
+        { tabId: 'content', customLabel: 'Content' }
+      ],
+      of: [{
+        type: 'object',
+        fields: [
+          { 
+            name: 'tabId', 
+            type: 'string', 
+            title: '🔖 Tab Type',
+            description: 'The tab identifier (can be base type or numbered like content-2)',
+            placeholder: 'e.g., content, content-2, shortcuts-3',
+            validation: Rule => Rule.required().custom((value) => {
+              const validPattern = /^(overview|content|techniques|shortcuts|practice)(-\d+)?$/
+              if (!value || !validPattern.test(value)) {
+                return 'Tab ID must be a valid type (overview, content, shortcuts, practice) with optional number (e.g., content-2)'
               }
+              return true
+            })
+          },
+          { 
+            name: 'customLabel', 
+            type: 'string', 
+            title: '🏷️ Custom Label (What Users See)',
+            description: 'This is what appears on the button',
+            placeholder: 'e.g., "Sculpting Brushes", "Essential Tools"',
+            validation: Rule => Rule.required()
+          }
+        ],
+        preview: {
+          select: { tabId: 'tabId', customLabel: 'customLabel' },
+          prepare({tabId, customLabel}) {
+            const baseType = tabId?.split('-')[0] || 'unknown'
+            const icons = {
+              overview: '👁️',
+              content: '📖',
+              techniques: '🛠️',
+              shortcuts: '⌨️',
+              practice: '💪'
+            }
+            
+            return {
+              title: customLabel || 'Unnamed Tab',
+              subtitle: `${icons[baseType] || '📄'} ${tabId || 'unknown'}`,
+              media: () => (
+                <div style={{
+                  width: '100%',
+                  height: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '20px'
+                }}>
+                  {icons[baseType] || '📄'}
+                </div>
+              )
             }
           }
-        }]
-      },
-      
-      // Content fields (all optional)
-      { 
-        name: 'contentTitle', 
-        type: 'string', 
-        title: 'Content Title',
-        hidden: ({parent}) => !parent?.tabId?.includes('content')
-      },
-      { 
-        name: 'contentDescription', 
-        type: 'text', 
-        title: 'Content Description',
-        hidden: ({parent}) => !parent?.tabId?.includes('content')
-      },
-      { 
-        name: 'categories', 
-        type: 'array', 
-        title: 'Categories',
-        hidden: ({parent}) => !parent?.tabId?.includes('content'),
-        of: [{
-          type: 'object',
-          fields: [
-            { name: 'name', type: 'string', title: 'Category Name' },
-            { name: 'icon', type: 'string', title: 'Icon' },
-            { name: 'color', type: 'string', title: 'Color', options: {list: colorOptions} },
-            {
-              name: 'items',
-              type: 'array',
-              of: [{
-                type: 'object',
-                fields: categoryItemFields
-              }]
-            }
-          ],
-          preview: {
-            select: { name: 'name', icon: 'icon', items: 'items' },
-            prepare({name, icon, items}) {
-              return {
-                title: name || 'Untitled Category',
-                subtitle: `${icon || '📁'} • ${items?.length || 0} items`
-              }
-            }
-          }
-        }]
-      },
-      
-      // Shortcuts fields (all optional)
-      { 
-        name: 'shortcuts', 
-        type: 'array', 
-        title: 'Shortcuts',
-        hidden: ({parent}) => !parent?.tabId?.includes('shortcuts'),
-        of: [{
-          type: 'object',
-          fields: [
-            { name: 'category', type: 'string', title: 'Category Name' },
-            { 
-              name: 'icon', 
-              type: 'string', 
-              title: 'Icon',
-              description: '🎨 Optional icon for this shortcut category'
-            },
-            {
-              name: 'items',
-              type: 'array',
-              of: [{
-                type: 'object',
-                fields: [
-                  { name: 'action', type: 'string', title: 'Action' },
-                  { name: 'key', type: 'string', title: 'Key Combination' }
-                ],
-                preview: {
-                  select: { action: 'action', key: 'key' },
-                  prepare({action, key}) {
-                    return {
-                      title: action || 'Untitled Action',
-                      subtitle: key || 'No key'
-                    }
+        }
+      }],
+      validation: Rule => Rule.min(1).max(8).error('You must have between 1 and 8 tabs')
+    }),
+
+    defineField({
+      name: 'tabContents',
+      title: '📦 Additional Tab Contents',
+      type: 'array',
+      group: 'hero',
+      description: '🔒 Contains content for numbered tabs (content-2, shortcuts-2, etc.). Managed by the builder.',
+      hidden: false,
+      readOnly: true,
+      of: [{
+        type: 'object',
+        name: 'tabContent',
+        fields: [
+          { 
+            name: 'tabId', 
+            type: 'string', 
+            title: 'Tab ID', 
+            readOnly: true,
+            validation: Rule => Rule.required()
+          },
+          
+          // Overview fields
+          { 
+            name: 'overviewTitle', 
+            type: 'string', 
+            title: 'Overview Title',
+            hidden: ({parent}) => !parent?.tabId?.includes('overview')
+          },
+          { 
+            name: 'overviewDescription', 
+            type: 'text', 
+            title: 'Overview Description',
+            hidden: ({parent}) => !parent?.tabId?.includes('overview')
+          },
+          { 
+            name: 'overviewCards', 
+            type: 'array', 
+            title: 'Overview Cards',
+            hidden: ({parent}) => !parent?.tabId?.includes('overview'),
+            of: [{
+              type: 'object',
+              fields: [
+                { name: 'icon', type: 'string', title: 'Icon' },
+                { name: 'title', type: 'string', title: 'Card Title' },
+                { name: 'content', type: 'text', title: 'Card Content', rows: 4 }
+              ],
+              preview: {
+                select: { title: 'title', icon: 'icon' },
+                prepare({title, icon}) {
+                  return {
+                    title: title || 'Untitled Card',
+                    subtitle: icon || '✨'
                   }
                 }
-              }]
-            }
-          ],
-          preview: {
-            select: { category: 'category', items: 'items' },
-            prepare({category, items}) {
-              return {
-                title: category || 'Untitled Category',
-                subtitle: `${items?.length || 0} shortcuts`
               }
+            }]
+          },
+          
+          // Content fields
+          { 
+            name: 'contentTitle', 
+            type: 'string', 
+            title: 'Content Title',
+            hidden: ({parent}) => !parent?.tabId?.includes('content')
+          },
+          { 
+            name: 'contentDescription', 
+            type: 'text', 
+            title: 'Content Description',
+            hidden: ({parent}) => !parent?.tabId?.includes('content')
+          },
+          { 
+            name: 'categories', 
+            type: 'array', 
+            title: 'Categories',
+            hidden: ({parent}) => !parent?.tabId?.includes('content'),
+            of: [{
+              type: 'object',
+              fields: [
+                { name: 'name', type: 'string', title: 'Category Name' },
+                { name: 'icon', type: 'string', title: 'Icon' },
+                { name: 'color', type: 'string', title: 'Color', options: {list: colorOptions} },
+                {
+                  name: 'items',
+                  type: 'array',
+                  of: [{
+                    type: 'object',
+                    fields: categoryItemFields
+                  }]
+                }
+              ],
+              preview: {
+                select: { name: 'name', icon: 'icon', items: 'items' },
+                prepare({name, icon, items}) {
+                  return {
+                    title: name || 'Untitled Category',
+                    subtitle: `${icon || '📁'} • ${items?.length || 0} items`
+                  }
+                }
+              }
+            }]
+          },
+          
+          // Shortcuts fields
+          { 
+            name: 'shortcuts', 
+            type: 'array', 
+            title: 'Shortcuts',
+            hidden: ({parent}) => !parent?.tabId?.includes('shortcuts'),
+            of: [{
+              type: 'object',
+              fields: [
+                { name: 'category', type: 'string', title: 'Category Name' },
+                { 
+                  name: 'icon', 
+                  type: 'string', 
+                  title: 'Icon',
+                  description: '🎨 Optional icon for this shortcut category'
+                },
+                {
+                  name: 'items',
+                  type: 'array',
+                  of: [{
+                    type: 'object',
+                    fields: [
+                      { name: 'action', type: 'string', title: 'Action' },
+                      { name: 'key', type: 'string', title: 'Key Combination' }
+                    ],
+                    preview: {
+                      select: { action: 'action', key: 'key' },
+                      prepare({action, key}) {
+                        return {
+                          title: action || 'Untitled Action',
+                          subtitle: key || 'No key'
+                        }
+                      }
+                    }
+                  }]
+                }
+              ],
+              preview: {
+                select: { category: 'category', items: 'items' },
+                prepare({category, items}) {
+                  return {
+                    title: category || 'Untitled Category',
+                    subtitle: `${items?.length || 0} shortcuts`
+                  }
+                }
+              }
+            }]
+          },
+          
+          // Practice fields
+          { 
+            name: 'practiceTitle', 
+            type: 'string', 
+            title: 'Practice Title',
+            hidden: ({parent}) => !parent?.tabId?.includes('practice')
+          },
+          { 
+            name: 'practiceDescription', 
+            type: 'text', 
+            title: 'Practice Description',
+            hidden: ({parent}) => !parent?.tabId?.includes('practice')
+          },
+          { 
+            name: 'practiceProjects', 
+            type: 'array', 
+            title: 'Practice Projects',
+            hidden: ({parent}) => !parent?.tabId?.includes('practice'),
+            of: [{
+              type: 'object',
+              fields: [
+                { name: 'title', type: 'string', title: 'Project Title' },
+                { name: 'desc', type: 'text', title: 'Description', rows: 3 },
+                { name: 'duration', type: 'string', title: 'Duration' },
+                { name: 'difficulty', type: 'string', title: 'Difficulty', options: {list: ['Beginner', 'Intermediate', 'Advanced']} },
+                { name: 'skills', type: 'array', title: 'Skills', of: [{type: 'string'}] }
+              ],
+              preview: {
+                select: { title: 'title', difficulty: 'difficulty', duration: 'duration' },
+                prepare({title, difficulty, duration}) {
+                  return {
+                    title: title || 'Untitled Project',
+                    subtitle: `${difficulty || 'Beginner'} • ${duration || '30 min'}`
+                  }
+                }
+              }
+            }]
+          }
+        ],
+        preview: {
+          select: { 
+            tabId: 'tabId',
+            overviewCards: 'overviewCards',
+            categories: 'categories',
+            shortcuts: 'shortcuts',
+            practiceProjects: 'practiceProjects'
+          },
+          prepare({tabId, overviewCards, categories, shortcuts, practiceProjects}) {
+            const tabType = tabId?.split('-')[0] || 'unknown'
+            let contentSummary = []
+            
+            if (overviewCards?.length) contentSummary.push(`${overviewCards.length} cards`)
+            if (categories?.length) contentSummary.push(`${categories.length} categories`)
+            if (shortcuts?.length) contentSummary.push(`${shortcuts.length} shortcut groups`)
+            if (practiceProjects?.length) contentSummary.push(`${practiceProjects.length} projects`)
+            
+            const icons = {
+              overview: '👁️',
+              content: '📖',
+              shortcuts: '⌨️',
+              practice: '💪'
+            }
+            
+            return {
+              title: `${icons[tabType] || '📄'} ${tabId || 'Unknown Tab'}`,
+              subtitle: contentSummary.join(', ') || '⚠️ Empty - add content in builder'
             }
           }
-        }]
-      },
-      
-      // Practice fields (all optional)
-      { 
-        name: 'practiceTitle', 
-        type: 'string', 
-        title: 'Practice Title',
-        hidden: ({parent}) => !parent?.tabId?.includes('practice')
-      },
-      { 
-        name: 'practiceDescription', 
-        type: 'text', 
-        title: 'Practice Description',
-        hidden: ({parent}) => !parent?.tabId?.includes('practice')
-      },
-      { 
-        name: 'practiceProjects', 
-        type: 'array', 
-        title: 'Practice Projects',
-        hidden: ({parent}) => !parent?.tabId?.includes('practice'),
-        of: [{
-          type: 'object',
-          fields: [
-            { name: 'title', type: 'string', title: 'Project Title' },
-            { name: 'desc', type: 'text', title: 'Description', rows: 3 },
-            { name: 'duration', type: 'string', title: 'Duration' },
-            { name: 'difficulty', type: 'string', title: 'Difficulty', options: {list: ['Beginner', 'Intermediate', 'Advanced']} },
-            { name: 'skills', type: 'array', title: 'Skills', of: [{type: 'string'}] }
-          ],
-          preview: {
-            select: { title: 'title', difficulty: 'difficulty', duration: 'duration' },
-            prepare({title, difficulty, duration}) {
-              return {
-                title: title || 'Untitled Project',
-                subtitle: `${difficulty || 'Beginner'} • ${duration || '30 min'}`
-              }
-            }
-          }
-        }]
-      }
-    ],
-    preview: {
-      select: { 
-        tabId: 'tabId',
-        overviewCards: 'overviewCards',
-        categories: 'categories',
-        shortcuts: 'shortcuts',
-        practiceProjects: 'practiceProjects'
-      },
-      prepare({tabId, overviewCards, categories, shortcuts, practiceProjects}) {
-        const tabType = tabId?.split('-')[0] || 'unknown'
-        let contentSummary = []
+        }
+      }],
+      validation: Rule => Rule.custom((tabContents) => {
+        if (!tabContents || tabContents.length === 0) return true
         
-        if (overviewCards?.length) contentSummary.push(`${overviewCards.length} cards`)
-        if (categories?.length) contentSummary.push(`${categories.length} categories`)
-        if (shortcuts?.length) contentSummary.push(`${shortcuts.length} shortcut groups`)
-        if (practiceProjects?.length) contentSummary.push(`${practiceProjects.length} projects`)
-        
-        const icons = {
-          overview: '👁️',
-          content: '📖',
-          shortcuts: '⌨️',
-          practice: '💪'
+        const invalidTabs = tabContents.filter(tab => !tab.tabId)
+        if (invalidTabs.length > 0) {
+          return 'All tabs must have a tabId'
         }
         
-        return {
-          title: `${icons[tabType] || '📄'} ${tabId || 'Unknown Tab'}`,
-          subtitle: contentSummary.join(', ') || '⚠️ Empty - add content in builder'
-        }
-      }
-    }
-  }],
-  validation: Rule => Rule.custom((tabContents) => {
-    // ✅ Allow empty array or valid array of objects
-    if (!tabContents || tabContents.length === 0) return true
-    
-    // Check each tab has required fields
-    const invalidTabs = tabContents.filter(tab => !tab.tabId)
-    if (invalidTabs.length > 0) {
-      return 'All tabs must have a tabId'
-    }
-    
-    return true
-  })
-}),
+        return true
+      })
+    }),
 
     // OVERVIEW SECTION (for main overview tab)
     defineField({
@@ -609,7 +592,7 @@ defineField({
       }]
     }),
 
-  // SHORTCUTS (for main shortcuts tab)
+    // SHORTCUTS (for main shortcuts tab)
     defineField({
       name: 'shortcuts',
       title: '⌨️ Keyboard Shortcuts',
@@ -677,24 +660,12 @@ defineField({
       icon: 'lessonIcon'
     },
     prepare({slug, gradientText, category, color, icon}) {
-      const categoryLabels = {
-        modeling: '🎨 3D Modeling',
-        rendering: '💡 Rendering',
-        animation: '🎬 Animation',
-        texturing: '🖼️ Texturing',
-        Lesson: '📝 Lesson Content',
-        printing: '🖨️ 3D Printing',
-        vfx: '🎥 VFX Integration',
-        gameAssets: '🎮 Game Assets',
-        hairFur: '✨ Hair & Fur',
-        greasePencil: '✏️ Grease Pencil',
-        geometryNodes: '🔷 Geometry Nodes',
-        projectManagement: '📋 Project Management',
-        simulation: '💧 Simulation'
-      }
+      // ✅ UPDATED: Now uses centralized categories for labels
+      const categoryLabel = CATEGORIES[category] 
+        ? `${CATEGORIES[category].emoji} ${CATEGORIES[category].label}` 
+        : category || 'No category'
       
       const mainTitle = slug || gradientText || 'Untitled Lesson'
-      const categoryLabel = categoryLabels[category] || category || 'No category'
       
       return {
         title: mainTitle,

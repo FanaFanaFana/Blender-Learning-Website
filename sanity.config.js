@@ -5,7 +5,9 @@ import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { schema } from './sanity/schemaTypes'
 import { media } from 'sanity-plugin-media'
-import { BookOpen, Folder, Layers, ChartBar } from 'lucide-react'
+import { BookOpen, Folder, ChartBar } from 'lucide-react'
+// ✅ Import centralized categories
+import { CATEGORIES, getCategoryKeys } from '@/app/config/categories'
 
 export default defineConfig({
   // ------------------------------------------------------------------
@@ -14,11 +16,11 @@ export default defineConfig({
   name: 'blender-platform',
   title: 'Blender Learning Platform',
   basePath: '/studio',
-  studioHost: 'blender-learning-platform', // helps "Open in Studio" links work
+  studioHost: 'blender-learning-platform',
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: 'production',
   apiVersion: '2025-11-03',
-  useCdn: false, // 👈 required to see drafts in Studio and API
+  useCdn: false,
 
   // ------------------------------------------------------------------
   // ✅ Schema definitions
@@ -36,7 +38,6 @@ export default defineConfig({
     // ------------------------------------------------------------------
     structureTool({
       defaultDocumentNode: (S, { schemaType }) => {
-        // Enable document view for lessons
         if (schemaType === 'lesson') {
           return S.document().views([S.view.form()])
         }
@@ -60,122 +61,26 @@ export default defineConfig({
 
             S.divider(),
 
-            // Browse by Category
+            // Browse by Category - ✅ Now uses centralized config
             S.listItem()
               .title('📁 Browse by Category')
               .icon(Folder)
               .child(
                 S.list()
                   .title('Select a Category')
-                  .items([
-                    // Modeling
-                    S.listItem()
-                      .title('🎨 3D Modeling')
-                      .child(
-                        S.documentTypeList('lesson')
-                          .title('3D Modeling Lessons')
-                          .filter('_type == "lesson" && category == "modeling"')
-                      ),
-
-                    // Rendering
-                    S.listItem()
-                      .title('💡 Rendering')
-                      .child(
-                        S.documentTypeList('lesson')
-                          .title('Rendering Lessons')
-                          .filter('_type == "lesson" && category == "rendering"')
-                      ),
-
-                    // Animation
-                    S.listItem()
-                      .title('🎬 Animation')
-                      .child(
-                        S.documentTypeList('lesson')
-                          .title('Animation Lessons')
-                          .filter('_type == "lesson" && category == "animation"')
-                      ),
-
-                    // Texturing
-                    S.listItem()
-                      .title('🖼️ Texturing')
-                      .child(
-                        S.documentTypeList('lesson')
-                          .title('Texturing Lessons')
-                          .filter('_type == "lesson" && category == "texturing"')
-                      ),
-
-                    // 3D Printing
-                    S.listItem()
-                      .title('🖨️ 3D Printing')
-                      .child(
-                        S.documentTypeList('lesson')
-                          .title('3D Printing Lessons')
-                          .filter('_type == "lesson" && category == "printing"')
-                      ),
-
-                    // VFX
-                    S.listItem()
-                      .title('🎥 VFX Integration')
-                      .child(
-                        S.documentTypeList('lesson')
-                          .title('VFX Lessons')
-                          .filter('_type == "lesson" && category == "vfx"')
-                      ),
-
-                    // Game Assets
-                    S.listItem()
-                      .title('🎮 Game Assets')
-                      .child(
-                        S.documentTypeList('lesson')
-                          .title('Game Asset Lessons')
-                          .filter('_type == "lesson" && category == "gameAssets"')
-                      ),
-
-                    // Hair & Fur
-                    S.listItem()
-                      .title('✨ Hair & Fur')
-                      .child(
-                        S.documentTypeList('lesson')
-                          .title('Hair & Fur Lessons')
-                          .filter('_type == "lesson" && category == "hairFur"')
-                      ),
-
-                    // Grease Pencil
-                    S.listItem()
-                      .title('✏️ Grease Pencil')
-                      .child(
-                        S.documentTypeList('lesson')
-                          .title('Grease Pencil Lessons')
-                          .filter('_type == "lesson" && category == "greasePencil"') // ✅ fixed typo
-                      ),
-
-                    // Geometry Nodes
-                    S.listItem()
-                      .title('🔷 Geometry Nodes')
-                      .child(
-                        S.documentTypeList('lesson')
-                          .title('Geometry Nodes Lessons')
-                          .filter('_type == "lesson" && category == "geometryNodes"')
-                      ),
-
-                    // Project Management
-                    S.listItem()
-                      .title('📋 Project Management')
-                      .child(
-                        S.documentTypeList('lesson')
-                          .title('Project Management Lessons')
-                          .filter('_type == "lesson" && category == "projectManagement"')
-                      ),
-
-                    // Simulation
-                    S.listItem()
-                      .title('💧 Simulation')
-                      .child(
-                        S.documentTypeList('lesson')
-                          .title('Simulation Lessons')
-                          .filter('_type == "lesson" && category == "simulation"')
-                      ),
-                  ])
+                  .items(
+                    // ✅ Dynamically generate category list items
+                    getCategoryKeys().map(key => {
+                      const cat = CATEGORIES[key]
+                      return S.listItem()
+                        .title(`${cat.emoji} ${cat.label}`)
+                        .child(
+                          S.documentTypeList('lesson')
+                            .title(`${cat.label} Lessons`)
+                            .filter(`_type == "lesson" && category == "${key}"`)
+                        )
+                    })
+                  )
               ),
 
             S.divider(),
@@ -218,6 +123,45 @@ export default defineConfig({
                             Upload media files directly in the <strong>Media</strong> fields.
                           </li>
                         </ul>
+                      </div>
+
+                      {/* ✅ Show category count from centralized config */}
+                      <div
+                        style={{
+                          background: '#f0fdf4',
+                          padding: '1rem',
+                          borderRadius: '8px',
+                          marginTop: '1rem',
+                        }}
+                      >
+                        <h3 style={{ marginBottom: '0.5rem' }}>📊 Categories:</h3>
+                        <p style={{ color: '#666' }}>
+                          Total categories: <strong>{getCategoryKeys().length}</strong>
+                        </p>
+                        <div style={{ 
+                          display: 'grid', 
+                          gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
+                          gap: '0.5rem',
+                          marginTop: '0.75rem'
+                        }}>
+                          {getCategoryKeys().map(key => {
+                            const cat = CATEGORIES[key]
+                            return (
+                              <div 
+                                key={key}
+                                style={{
+                                  padding: '0.5rem',
+                                  background: `${cat.color}15`,
+                                  borderRadius: '6px',
+                                  fontSize: '0.9rem',
+                                  color: cat.color
+                                }}
+                              >
+                                {cat.emoji} {cat.label}
+                              </div>
+                            )
+                          })}
+                        </div>
                       </div>
                     </div>
                   ))

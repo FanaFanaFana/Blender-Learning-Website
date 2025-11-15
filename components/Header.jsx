@@ -1,21 +1,39 @@
-// FILE: components/Header.jsx
 'use client'
 
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import SearchComponent from '@/components/SearchComponent'
 import BuilderModal from '@/components/builder/BuilderModal'
 import { playHover } from '@/app/utils/sounds'
 import { Settings } from 'lucide-react'
+// ✅ Import from centralized config
+import { getVisibleCategories, getDropdownCategories } from '@/app/config/categories'
 
 export default function Header({ lessonData = null }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showBuilder, setShowBuilder] = useState(false)
+  const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false)
+  const router = useRouter()
 
   const handleBuilderClick = () => {
     setShowBuilder(true)
     setMobileMenuOpen(false)
+  }
+
+  // ✅ Use centralized config
+  const visibleCategories = getVisibleCategories()
+  const dropdownCategories = getDropdownCategories()
+
+  const handleCategoryClick = (categoryKey) => {
+    setCategoryDropdownOpen(false)
+    router.replace(`/learn#${categoryKey}`)
+    setTimeout(() => {
+      if (window.location.pathname === '/learn') {
+        window.dispatchEvent(new HashChangeEvent('hashchange'))
+      }
+    }, 100)
   }
 
   return (
@@ -36,7 +54,7 @@ export default function Header({ lessonData = null }) {
               </Link>
             </div>
 
-            <SearchComponent />
+            <SearchComponent  />
 
             <nav className={`nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
               <Link
@@ -99,36 +117,68 @@ export default function Header({ lessonData = null }) {
           </div>
         </div>
 
-        <style jsx>{`
-          .builder-trigger {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6) !important;
-            border: none;
-            border-radius: 8px;
-            padding: 0.75rem 1.25rem !important;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: white;
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            font-weight: 600;
-          }
+        {/* Category Navigation Bar */}
+        <div className="category-bar">
+          <div className="container">
+            <div className="category-links">
+              {visibleCategories.map((cat) => (
+                <button
+                  key={cat.key}
+                  className="category-link"
+                  onMouseEnter={playHover}
+                  onClick={() => handleCategoryClick(cat.key)}
+                >
+                  <span>{cat.label}</span>
+                </button>
+              ))}
+              
+              {/* More dropdown */}
+              <div style={{ position: 'relative' }}>
+                <button
+                  className="category-link category-more"
+                  onMouseEnter={playHover}
+                  onClick={() => setCategoryDropdownOpen(!categoryDropdownOpen)}
+                >
+                  <span style={{ 
+                    fontSize: '0.7rem',
+                    transform: categoryDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                    transition: 'transform 0.2s ease',
+                    display: 'inline-block'
+                  }}>▼</span>
+                  <span>More</span>
+                </button>
 
-          .builder-trigger:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
-          }
-
-          @media (max-width: 768px) {
-            .builder-trigger {
-              width: 100%;
-              justify-content: center;
-              margin-top: 1rem;
-              padding: 1rem !important;
-            }
-          }
-        `}</style>
+                {categoryDropdownOpen && (
+                  <>
+                    <div 
+                      className="category-dropdown-overlay"
+                      onClick={() => setCategoryDropdownOpen(false)}
+                    />
+                    <div 
+                      className="category-dropdown"
+                      style={{
+                        position: 'fixed',
+                        top: '120px',
+                        right: '2rem'
+                      }}
+                    >
+                      {dropdownCategories.map((cat) => (
+                        <button
+                          key={cat.key}
+                          className="category-dropdown-item"
+                          onMouseEnter={playHover}
+                          onClick={() => handleCategoryClick(cat.key)}
+                        >
+                          <span>{cat.label}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
       </header>
 
       {showBuilder && (

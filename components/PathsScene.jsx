@@ -200,8 +200,8 @@ export default function PathsScene() {
   }
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-      <canvas ref={canvasRef} id="paths-canvas" style={{ width: '100%', height: '100%' }} />
+  <div style={{ position: 'relative', width: '100%', height: '100%', zIndex: 1 }}>
+    <canvas ref={canvasRef} id="paths-canvas" style={{ width: '100%', height: '100%', position: 'relative', zIndex: 1 }} />
       <button
         onClick={toggleTopology}
         style={{

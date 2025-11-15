@@ -1,5 +1,5 @@
 // FILE: sanity/schemaTypes/index.js
-import lesson from './lesson'
+import lesson from './lesson.jsx'
 
 // Export both formats for compatibility
 export const schemaTypes = [lesson]

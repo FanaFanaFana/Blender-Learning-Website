@@ -1,3 +1,5 @@
+'use client'
+
 // FILE: sanity/components/LessonImporter.jsx
 import React, { useState } from 'react'
 import { Stack, Button, Card, Text, Box } from '@sanity/ui'

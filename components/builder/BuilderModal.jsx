@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import { X, Wrench } from 'lucide-react'
 import LessonBuilder from './LessonBuilder'
 import LessonPicker from './LessonPicker'
+import './builder.css'
 
 // Template lesson for new projects
 function getTemplateLesson() {
@@ -12,7 +13,7 @@ function getTemplateLesson() {
     lessonId: { current: 'new-lesson' },
     category: 'Lesson',
     themeColor: '#3b82f6',
-    lessonIcon: '/Icons/blender_icon_current_file.svg', // ✅ FIXED: Added lessonIcon
+    lessonIcon: '/Icons/blender_icon_current_file.svg',
     heroConfig: {
       title: 'Working with',
       gradientText: 'New Topic',
@@ -150,52 +151,56 @@ export default function BuilderModal({ currentLesson, onClose }) {
 
   return (
     <div className="builder-modal-overlay">
-      {/* Sticky Top Bar */}
-      <div className="builder-modal-header">
-        <div className="builder-modal-title">
-          <h3>
-            <Wrench size={20} style={{ display: 'inline', marginRight: '0.5rem' }} />
-            Lesson Builder
-          </h3>
-          {selectedLesson && !showPicker && (
-            <span className="builder-lesson-badge">
-              {selectedLesson.heroConfig?.gradientText || 'Untitled'}
-            </span>
-          )}
-        </div>
+      <div className="builder-page-wrapper">
+        {/* Unified Top Bar with everything */}
+        <div className="builder-unified-header">
+          <div className="builder-header-left">
+            <div className="builder-modal-title">
+              <Wrench size={20} />
+              <span>Lesson Builder</span>
+            </div>
+            {selectedLesson && !showPicker && (
+              <span className="builder-lesson-badge">
+                {selectedLesson.heroConfig?.gradientText || 'Untitled'}
+              </span>
+            )}
+          </div>
 
-        <div className="builder-modal-actions">
-          {selectedLesson && !showPicker && (
-            <button onClick={handleChangeLesson} className="btn-change-lesson">
-              Change Lesson
+          <div className="builder-header-right">
+            {selectedLesson && !showPicker && (
+              <button onClick={handleChangeLesson} className="btn-change-lesson">
+                Change Lesson
+              </button>
+            )}
+            <button onClick={onClose} className="btn-close-builder">
+              <X size={16} /> Close
             </button>
-          )}
-
-          <button onClick={onClose} className="btn-close-builder">
-            <X size={16} /> Close
-          </button>
+          </div>
         </div>
-      </div>
 
-      {/* Content Area */}
-      <div className="builder-modal-content">
-        {loading ? (
-          <div className="builder-loading">
-            <div className="spinner" />
-            <p>Loading...</p>
-          </div>
-        ) : showPicker ? (
-          <LessonPicker
-            lessons={availableLessons}
-            onSelect={loadLesson}
-          />
-        ) : selectedLesson ? (
-          <LessonBuilder lesson={selectedLesson} />
-        ) : (
-          <div className="builder-empty">
-            <p>No lesson selected</p>
-          </div>
-        )}
+        {/* Content Area */}
+        <div className="builder-modal-content">
+          {loading ? (
+            <div className="builder-loading">
+              <div className="spinner" />
+              <p>Loading...</p>
+            </div>
+          ) : showPicker ? (
+            <LessonPicker
+              lessons={availableLessons}
+              onSelect={loadLesson}
+            />
+          ) : selectedLesson ? (
+            <LessonBuilder 
+              lesson={selectedLesson}
+              onClose={onClose}
+            />
+          ) : (
+            <div className="builder-empty">
+              <p>No lesson selected</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

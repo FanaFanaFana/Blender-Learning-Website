@@ -3,11 +3,16 @@ import { useState } from 'react'
 import IconPicker from '@/components/shared/IconPicker'
 import EditableText from '@/components/shared/EditableText'
 import { Plus, Settings, Link, Folder, Palette } from 'lucide-react'
+// ✅ Import from centralized config
+import { getSanityCategories } from '@/app/config/categories'
 
 // ========================================
 // SETTINGS PANEL
 // ========================================
 export function SettingsPanel({ lesson, update }) {
+  // ✅ Get categories from centralized config
+  const categoryOptions = getSanityCategories()
+  
   return (
     <section className="builder-settings-panel">
       <h3 className="builder-section-title">
@@ -30,7 +35,7 @@ export function SettingsPanel({ lesson, update }) {
           />
         </div>
 
-        {/* Category Dropdown */}
+        {/* Category Dropdown - ✅ Now uses centralized config */}
         <div className="builder-field">
           <label className="builder-label">
             <Folder size={16} style={{ display: 'inline', marginRight: '0.5rem' }} />
@@ -41,19 +46,11 @@ export function SettingsPanel({ lesson, update }) {
             onChange={(e) => update('category', e.target.value)}
             className="builder-select"
           >
-            <option value="modeling">3D Modeling</option>
-            <option value="rendering">Rendering</option>
-            <option value="animation">Animation</option>
-            <option value="texturing">Texturing</option>
-            <option value="Lesson">Lesson Content</option>
-            <option value="printing">3D Printing</option>
-            <option value="vfx">VFX Integration</option>
-            <option value="gameAssets">Game Assets</option>
-            <option value="hairFur">Hair & Fur</option>
-            <option value="greaseGencil">Grease Pencil</option>
-            <option value="geometryNodes">Geometry Nodes</option>
-            <option value="projectManagement">Project Management</option>
-            <option value="simulation">Simulation</option>
+            {categoryOptions.map(cat => (
+              <option key={cat.value} value={cat.value}>
+                {cat.title}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -132,35 +129,42 @@ export function SettingsPanel({ lesson, update }) {
 // ========================================
 // HERO SECTION
 // ========================================
+// Updated HeroSection component - replace in BuilderSection.jsx
+
 export function HeroSection({ lesson, update, add, remove, editMode }) {
+  // Just use the theme color directly for the text
+  const textColor = lesson.themeColor || '#f97316'
+
   return (
     <section className="builder-hero-section">
-      <h1 className="builder-hero-title">
-        <EditableText
-          value={lesson.heroConfig?.title}
-          onChange={(v) => update('heroConfig.title', v)}
-          editMode={editMode}
-          placeholder="Title"
-        />
-        {' '}
-        <span className="builder-hero-gradient">
+      <div className="builder-hero-content">
+        <h1 className="builder-hero-title">
           <EditableText
-            value={lesson.heroConfig?.gradientText}
-            onChange={(v) => update('heroConfig.gradientText', v)}
+            value={lesson.heroConfig?.title}
+            onChange={(v) => update('heroConfig.title', v)}
             editMode={editMode}
-            placeholder="Main Text"
+            placeholder="Title"
           />
-        </span>
-      </h1>
+          {' '}
+          <span style={{ color: textColor }}>
+            <EditableText
+              value={lesson.heroConfig?.gradientText}
+              onChange={(v) => update('heroConfig.gradientText', v)}
+              editMode={editMode}
+              placeholder="Main Text"
+            />
+          </span>
+        </h1>
 
-      <div className="builder-hero-subtitle">
-        <EditableText
-          value={lesson.heroConfig?.subtitle}
-          onChange={(v) => update('heroConfig.subtitle', v)}
-          multiline
-          editMode={editMode}
-          placeholder="Subtitle description"
-        />
+        <div className="builder-hero-subtitle">
+          <EditableText
+            value={lesson.heroConfig?.subtitle}
+            onChange={(v) => update('heroConfig.subtitle', v)}
+            multiline
+            editMode={editMode}
+            placeholder="Subtitle description"
+          />
+        </div>
       </div>
     </section>
   )

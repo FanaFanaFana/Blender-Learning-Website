@@ -4,29 +4,14 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { playHover } from '@/app/utils/sounds'
+// ✅ Import from centralized config
+import { getCategoryLabel } from '@/app/config/categories'
 
 export default function Sidebar() {
   const [searchQuery, setSearchQuery] = useState('')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [allTopics, setAllTopics] = useState([])
   const [loading, setLoading] = useState(true)
-
-  // Category labels mapping - NO EMOJIS
-  const categoryLabels = {
-    modeling: '3D Modeling',
-    rendering: 'Rendering',
-    animation: 'Animation',
-    texturing: 'Texturing',
-    Lesson: 'Lesson Content',
-    printing: '3D Printing',
-    vfx: 'VFX Integration',
-    gameAssets: 'Game Assets',
-    hairFur: 'Hair & Fur',
-    greaseGencil: 'Grease Pencil',
-    geometryNodes: 'Geometry Nodes',
-    projectManagement: 'Project Management',
-    simulation: 'Simulation'
-  }
 
   // Fetch lessons from API route on mount
   useEffect(() => {
@@ -40,9 +25,12 @@ export default function Sidebar() {
         
         // Transform API data to match sidebar format
         const transformedTopics = lessons.map(lesson => {
-          const displayTitle = lesson.gradientText || lesson.title || 'Untitled'
+          const displayTitle = lesson.title && lesson.gradientText 
+  ? `${lesson.title} ${lesson.gradientText}` 
+  : lesson.gradientText || lesson.title || 'Untitled'
           const categoryKey = lesson.lessonCategory || 'Lesson'
-          const categoryLabel = categoryLabels[categoryKey] || categoryKey
+          // ✅ Use centralized category labels
+          const categoryLabel = getCategoryLabel(categoryKey)
           
           return {
             title: displayTitle,
