@@ -82,7 +82,7 @@ export default function LessonCard({ lesson }) {
         marginBottom: '0.75rem',
         color: '#fff'
       }}>
-        {lesson.title}
+       {lesson.fullTitle}
       </h3>
 
       {/* Description */}

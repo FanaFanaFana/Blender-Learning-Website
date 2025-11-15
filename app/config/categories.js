@@ -119,6 +119,7 @@ export const CATEGORIES = {
     description: 'Scripting and automation with Python',
     emoji: ''
   },
+  
   simulation: {
     key: 'simulation',
     label: 'Simulation',

@@ -40,11 +40,11 @@ export default function BlenderCompendium() {
             }
           }
           acc[cat].topics.push({
-            title: lesson.gradientText || lesson.title || 'Untitled',
-            description: 'Click to view lesson details',
-            icon: lesson.icon || '/Icons/blender_icon_current_file.svg',
-            link: `/lessons/${lesson.id}`
-          })
+  title: lesson.fullTitle || 'Untitled',  // ✅ Changed from lesson.gradientText || lesson.title
+  description: 'Click to view lesson details',
+  icon: lesson.icon || '/Icons/blender_icon_current_file.svg',
+  link: `/lessons/${lesson.id}`
+})
           return acc
         }, {})
 
@@ -106,17 +106,17 @@ export default function BlenderCompendium() {
     <>
       {/* Hero section with 3D scene background */}
       <section className="paths-hero-section">
-        <div className="paths-scene-background">
-          <PathsScene />
-        </div>
+  <div className="paths-scene-background">
+    <PathsScene />
+  </div>
 
-        <div className="container">
-          <div className="paths-text-overlay">
-            <h2>Documentation</h2>
-            <p>Explore comprehensive guides and references</p>
-          </div>
-        </div>
-      </section>
+  <div className="container">
+    <div className="paths-text-overlay">
+      <h2>{currentCategory.title || 'Documentation'}</h2>
+      <p>{currentCategory.description || 'Explore comprehensive guides and references'}</p>
+    </div>
+  </div>
+</section>
 
       {/* Main content */}
       <section className="learning-paths">

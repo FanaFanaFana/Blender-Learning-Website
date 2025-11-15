@@ -134,7 +134,7 @@ export default function Sidebar() {
           left: 0,
           top: 0,
           bottom: 0,
-          width: isSidebarOpen ? '320px' : '0px',
+          width: isSidebarOpen ? '370px' : '0px',
           background: 'rgba(21, 35, 47, 0.95)',
           borderRight: '1px solid rgba(255, 255, 255, 0.1)',
           backdropFilter: 'blur(10px)',

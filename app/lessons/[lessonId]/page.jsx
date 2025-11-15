@@ -10,7 +10,7 @@ function LessonLoadingSkeleton() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #0a1628 0%, #15232f 100%)',
+      background: 'rgb(27, 40, 56)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center'

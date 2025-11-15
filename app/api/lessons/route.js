@@ -29,7 +29,15 @@ export async function GET(request) {
     
     const lessons = await client.fetch(query)
     
-    return NextResponse.json(lessons)
+    // ✅ Add computed fullTitle to each lesson
+    const lessonsWithFullTitle = lessons.map(lesson => ({
+      ...lesson,
+      fullTitle: lesson.title && lesson.gradientText 
+        ? `${lesson.title} ${lesson.gradientText}`
+        : lesson.gradientText || lesson.title || 'Untitled'
+    }))
+    
+    return NextResponse.json(lessonsWithFullTitle)
   } catch (error) {
     console.error('Error fetching lessons:', error)
     return NextResponse.json(
