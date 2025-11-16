@@ -43,7 +43,7 @@ export default function Header({ lessonData = null }) {
             <div className="logo">
               <Link href="/" className="logo" onMouseEnter={playHover}>
                 <Image
-                  src="/icons/logo.png"
+                  src="/Icons/logo.png"
                   alt="Blender Logo"
                   width={50}
                   height={50}
