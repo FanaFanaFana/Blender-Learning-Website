@@ -1,19 +1,18 @@
 import Header from '@/components/Header'
-import Hero from '@/components/Hero'
-import Features from '@/components/Features'
+import MainPage from '@/components/MainPage'  // New combined import
 import Footer from '@/components/Footer'
-import Sidebar from '@/components/Sidebar'  // Add this import
+import Sidebar from '@/components/Sidebar'
 
 export default function Home() {
   return (
     <div className="page-wrapper">
-      <Sidebar />  {/* Add this */}
+      <Sidebar />
       <Header />
       
       <main>
-        <Hero />
-        <Features />
+        <MainPage />  
       </main>
+      
       <Footer />
     </div>
   )

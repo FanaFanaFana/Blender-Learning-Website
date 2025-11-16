@@ -1,9 +1,157 @@
-// FILE: components/shared/DetailModal.jsx
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import './DetailModal.css'
 
-export default function DetailModal({ item, currentPage, onPageChange, onClose, onMouseEnter }) {
+// ============================================
+// CROSS-LESSON LINKING HELPER
+// ============================================
+function createLinkedText(text, allItems, currentItemName, themeColor, onItemClick) {
+  if (!text || !allItems || allItems.length === 0) return text;
+  
+  const keywordMap = {};
+  allItems.forEach(item => {
+    if (item.name && item.name !== currentItemName) {
+      keywordMap[item.name.toLowerCase()] = item;
+    }
+  });
+  
+  const keywords = Object.keys(keywordMap);
+  if (keywords.length === 0) return text;
+  
+  const sortedKeywords = keywords.sort((a, b) => b.length - a.length);
+  const escapedKeywords = sortedKeywords.map(k => 
+    k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  );
+  const pattern = new RegExp(`\\b(${escapedKeywords.join('|')})\\b`, 'gi');
+  
+  const parts = [];
+  let lastIndex = 0;
+  const matches = [];
+  
+  let match;
+  while ((match = pattern.exec(text)) !== null) {
+    matches.push({
+      keyword: match[0],
+      index: match.index,
+      length: match[0].length,
+      endIndex: match.index + match[0].length
+    });
+  }
+  
+  const validMatches = [];
+  const sortedMatches = [...matches].sort((a, b) => {
+    if (a.index !== b.index) return a.index - b.index;
+    return b.length - a.length;
+  });
+  
+  for (const match of sortedMatches) {
+    const overlaps = validMatches.some(valid => 
+      (match.index >= valid.index && match.index < valid.endIndex) ||
+      (match.endIndex > valid.index && match.endIndex <= valid.endIndex) ||
+      (match.index <= valid.index && match.endIndex >= valid.endIndex)
+    );
+    
+    if (!overlaps) {
+      validMatches.push(match);
+    }
+  }
+  
+  validMatches.sort((a, b) => a.index - b.index);
+  
+  validMatches.forEach((match) => {
+    const keywordLower = match.keyword.toLowerCase();
+    const linkedItem = keywordMap[keywordLower];
+    
+    if (match.index > lastIndex) {
+      parts.push({
+        type: 'text',
+        content: text.slice(lastIndex, match.index),
+        key: `text-${lastIndex}`
+      });
+    }
+    
+    if (linkedItem) {
+      parts.push({
+        type: 'link',
+        content: match.keyword,
+        item: linkedItem,
+        key: `link-${match.index}`
+      });
+    }
+    
+    lastIndex = match.endIndex;
+  });
+  
+  if (lastIndex < text.length) {
+    parts.push({
+      type: 'text',
+      content: text.slice(lastIndex),
+      key: `text-${lastIndex}`
+    });
+  }
+  
+  return parts.map(part => {
+    if (part.type === 'text') {
+      return <span key={part.key}>{part.content}</span>;
+    }
+    
+    const isCrossLesson = part.item.lessonId !== undefined;
+    
+    return (
+      <a
+        key={part.key}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          onItemClick(part.item);
+        }}
+        style={{
+          color: themeColor,
+          textDecoration: 'none',
+          borderBottom: `1px dotted ${themeColor}80`,
+          cursor: 'pointer',
+          transition: 'all 0.2s ease',
+          fontWeight: '500',
+          padding: '0 2px'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.borderBottom = `1px solid ${themeColor}`;
+          e.currentTarget.style.backgroundColor = `${themeColor}15`;
+          e.currentTarget.style.borderRadius = '3px';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.borderBottom = `1px dotted ${themeColor}80`;
+          e.currentTarget.style.backgroundColor = 'transparent';
+        }}
+        title={isCrossLesson 
+          ? `From ${part.item.lessonTitle} lesson - Click to learn more` 
+          : `Learn about ${part.content}`
+        }
+      >
+        {part.content}
+        {isCrossLesson && (
+          <sup style={{ 
+            fontSize: '0.65em', 
+            marginLeft: '2px',
+            opacity: 0.6 
+          }}>
+            ↗
+          </sup>
+        )}
+      </a>
+    );
+  });
+}
+
+export default function DetailModal({ 
+  item, 
+  currentPage, 
+  onPageChange, 
+  onClose, 
+  onMouseEnter,
+  allItems = []
+}) {
   const modalRef = useRef(null)
   const videoRef = useRef(null)
   const fullscreenVideoRef = useRef(null)
@@ -18,6 +166,32 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
   const [fullscreenTime, setFullscreenTime] = useState(0)
   const [fullscreenDuration, setFullscreenDuration] = useState(0)
   const [showFullscreenControls, setShowFullscreenControls] = useState(false)
+  
+  const [itemHistory, setItemHistory] = useState([item])
+  const [currentItem, setCurrentItem] = useState(item)
+  
+  useEffect(() => {
+    setCurrentItem(item)
+    setItemHistory([item])
+  }, [item])
+  
+  const handleLinkedItemClick = (linkedItem) => {
+    setItemHistory(prev => [...prev, linkedItem])
+    setCurrentItem({
+      ...linkedItem,
+      color: linkedItem.categoryColor || currentItem.color
+    })
+    onPageChange(0)
+  }
+  
+  const handleBack = () => {
+    const newHistory = [...itemHistory]
+    newHistory.pop()
+    const previousItem = newHistory[newHistory.length - 1]
+    setItemHistory(newHistory)
+    setCurrentItem(previousItem)
+    onPageChange(0)
+  }
   
   useEffect(() => {
     const handleEscape = (e) => {
@@ -49,7 +223,6 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
     }
   }, [onClose, isFullscreen])
 
-  // Sync fullscreen video time when entering fullscreen
   useEffect(() => {
     if (isFullscreen && fullscreenVideoRef.current) {
       fullscreenVideoRef.current.currentTime = currentTime
@@ -61,10 +234,8 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
     }
   }, [isFullscreen])
 
-  const page = item.detailedInfo.pages[currentPage]
-  const totalPages = item.detailedInfo.pages.length
-  
-  // Get the media URL - use finalMediaUrl from processed data or fallback
+  const page = currentItem.detailedInfo.pages[currentPage]
+  const totalPages = currentItem.detailedInfo.pages.length
   const mediaUrl = page.finalMediaUrl || page.mediaUrl || page.image
 
   const toggleFullscreen = (e) => {
@@ -166,168 +337,90 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
 
   return (
     <>
-      <div style={{
-        position: 'fixed',
-        inset: 0,
-        background: 'rgba(13, 27, 42, 0.55)',
-        backdropFilter: 'blur(12px)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 1000,
-        padding: '2rem',
-        animation: 'fadeIn 0.2s ease-out'
-      }}>
-        <div 
-          ref={modalRef}
-          style={{
-            background: 'rgb(27, 40, 56)',
-            borderRadius: '24px',
-            maxWidth: '1000px',
-            width: '100%',
-            maxHeight: '90vh',
-            overflow: 'hidden',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)',
-            display: 'flex',
-            flexDirection: 'column',
-            animation: 'slideUp 0.3s ease-out'
-          }}
-        >
-          <div style={{
-            padding: '2rem 2.5rem',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '2rem',
-            flexShrink: 0
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flex: 1 }}>
-              {item.icon && (
+      <div className="detail-modal-overlay">
+        <div ref={modalRef} className="detail-modal-container">
+          {/* Header */}
+          <div className="detail-modal-header">
+            <div className="detail-modal-header-content">
+              {itemHistory.length > 1 && (
+                <button
+                  className="detail-modal-back-button"
+                  onMouseEnter={onMouseEnter}
+                  onClick={handleBack}
+                >
+                  ← Back
+                </button>
+              )}
+              
+              {currentItem.icon && (
                 <img 
-                  src={item.icon} 
+                  src={currentItem.icon} 
                   alt="" 
                   width={48}
                   height={48}
-                  style={{ flexShrink: 0 }}
+                  className="detail-modal-icon"
                 />
               )}
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <h2 style={{ 
-                  fontSize: 'clamp(1.5rem, 3vw, 2rem)', 
-                  marginBottom: '0.25rem',
-                  color: '#fff',
-                  fontWeight: '700'
-                }}>
-                  {item.name}
+              <div className="detail-modal-info">
+                <h2 className="detail-modal-title">
+                  {currentItem.name}
                 </h2>
-                <p style={{ 
-                  color: 'rgb(143, 169, 189)', 
-                  fontSize: 'clamp(0.9rem, 1.5vw, 1rem)',
-                  margin: 0
-                }}>
-                  {item.description}
+                <p className="detail-modal-description">
+                  {currentItem.description}
                 </p>
+                {currentItem.lessonTitle && (
+                  <p className="detail-modal-lesson-source">
+                    From: {currentItem.lessonTitle}
+                  </p>
+                )}
               </div>
             </div>
 
             <button 
+              className="detail-modal-close-button"
               onMouseEnter={onMouseEnter}
               onClick={onClose}
-              style={{
-                background: 'rgba(255, 255, 255, 0.05)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                width: '40px',
-                height: '40px',
-                borderRadius: '10px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                fontSize: '1.25rem',
-                color: 'rgb(143, 169, 189)',
-                transition: 'all 0.2s ease',
-                flexShrink: 0
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.background = 'rgba(239, 68, 68, 0.15)'
-                e.currentTarget.style.borderColor = 'rgba(239, 68, 68, 0.3)'
-                e.currentTarget.style.color = '#ef4444'
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)'
-                e.currentTarget.style.color = 'rgb(143, 169, 189)'
-              }}
             >
               ✕
             </button>
           </div>
 
-          <div style={{
-            flex: 1,
-            overflowY: 'auto',
-            overflowX: 'hidden'
-          }}>
-            <div style={{ padding: '2.5rem' }}>
+          {/* Body */}
+          <div className="detail-modal-body">
+            <div className="detail-modal-content">
               {currentPage === 0 && (
-                <div style={{
-                  marginBottom: '2.5rem',
-                  padding: '2rem',
-                  background: 'rgba(21, 35, 47, 0.6)',
-                  borderRadius: '16px',
-                  border: '1px solid rgba(255, 255, 255, 0.05)',
-                  backdropFilter: 'blur(10px)'
-                }}>
-                  <h3 style={{ 
-                    color: item.color, 
-                    fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
-                    marginBottom: '1rem',
-                    fontWeight: '700'
-                  }}>
+                <div className="detail-modal-overview">
+                  <h3 
+                    className="detail-modal-overview-title"
+                    style={{ color: currentItem.color }}
+                  >
                     Overview
                   </h3>
-                  <p style={{ 
-                    color: 'rgb(176, 196, 212)',
-                    fontSize: 'clamp(0.95rem, 1.5vw, 1.05rem)',
-                    lineHeight: '1.8',
-                    margin: 0
-                  }}>
-                    {item.detailedInfo.overview}
+                  <p className="detail-modal-overview-text">
+                    {createLinkedText(
+                      currentItem.detailedInfo.overview,
+                      allItems,
+                      currentItem.name,
+                      currentItem.color,
+                      handleLinkedItemClick
+                    )}
                   </p>
                 </div>
               )}
 
-              <h3 style={{ 
-                fontSize: 'clamp(1.5rem, 2.5vw, 1.8rem)',
-                marginBottom: '2rem',
-                color: '#fff',
-                fontWeight: '700'
-              }}>
+              <h3 className="detail-modal-page-title">
                 {page.title}
               </h3>
 
               {mediaUrl && (
                 <div 
                   ref={mediaContainerRef}
+                  className="detail-modal-media-container"
                   onMouseEnter={() => setShowControls(true)}
                   onMouseLeave={() => setShowControls(false)}
                   onClick={toggleFullscreen}
-                  style={{
-                    position: 'relative',
-                    width: '100%',
-                    aspectRatio: '16/10',
-                    marginBottom: '2rem',
-                    borderRadius: '16px',
-                    overflow: 'hidden',
-                    background: 'rgba(0, 0, 0, 0.4)',
-                    border: '2px solid rgba(255, 255, 255, 0.08)',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease'
-                  }}
                   onMouseOver={(e) => {
-                    e.currentTarget.style.borderColor = `${item.color}`
+                    e.currentTarget.style.borderColor = currentItem.color
                     e.currentTarget.style.borderWidth = '1.8px'
                   }}
                   onMouseOut={(e) => {
@@ -344,162 +437,52 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
                     playsInline
                     onTimeUpdate={handleTimeUpdate}
                     onLoadedMetadata={handleLoadedMetadata}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover'
-                    }}
+                    className="detail-modal-video"
                   />
                   
-                  <div style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    background: 'linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 50%, transparent 100%)',
-                    padding: '2.5rem 1.25rem 1rem',
-                    opacity: showControls ? 1 : 0,
-                    transition: 'opacity 0.3s ease',
-                    pointerEvents: showControls ? 'auto' : 'none'
-                  }}>
+                  <div className={`detail-modal-controls-overlay ${showControls ? 'visible' : 'hidden'}`}>
                     <div 
+                      className="detail-modal-progress-bar"
                       onClick={handleSeek}
-                      style={{
-                        width: '100%',
-                        height: '4px',
-                        background: 'rgba(255, 255, 255, 0.2)',
-                        borderRadius: '2px',
-                        cursor: 'pointer',
-                        marginBottom: '0.75rem',
-                        position: 'relative'
-                      }}
                     >
-                      <div style={{
-                        height: '100%',
-                        background: item.color,
-                        borderRadius: '2px',
-                        width: `${(currentTime / duration) * 100}%`,
-                        transition: 'width 0.1s linear'
-                      }} />
+                      <div 
+                        className="detail-modal-progress-fill"
+                        style={{ 
+                          background: currentItem.color,
+                          width: `${(currentTime / duration) * 100}%` 
+                        }}
+                      />
                     </div>
 
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.75rem'
-                    }}>
+                    <div className="detail-modal-controls">
                       <button
+                        className="detail-modal-control-button"
                         onClick={(e) => skipTime(-5, e)}
-                        style={{
-                          background: 'rgba(255, 255, 255, 0.1)',
-                          border: 'none',
-                          borderRadius: '6px',
-                          width: '32px',
-                          height: '32px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          cursor: 'pointer',
-                          color: 'rgba(255, 255, 255, 0.8)',
-                          fontSize: '11px',
-                          fontWeight: '600',
-                          transition: 'all 0.2s ease'
-                        }}
-                        onMouseOver={(e) => {
-                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'
-                        }}
-                        onMouseOut={(e) => {
-                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
-                        }}
                       >
                         -5s
                       </button>
 
                       <button
+                        className="detail-modal-play-button"
                         onClick={togglePlayPause}
-                        style={{
-                          background: 'rgba(255, 255, 255, 0.15)',
-                          border: 'none',
-                          borderRadius: '50%',
-                          width: '36px',
-                          height: '36px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          cursor: 'pointer',
-                          color: 'white',
-                          fontSize: '14px',
-                          transition: 'all 0.2s ease'
-                        }}
-                        onMouseOver={(e) => {
-                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.25)'
-                          e.currentTarget.style.transform = 'scale(1.05)'
-                        }}
-                        onMouseOut={(e) => {
-                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)'
-                          e.currentTarget.style.transform = 'scale(1)'
-                        }}
                       >
                         {isPlaying ? '⏸' : '▶'}
                       </button>
 
                       <button
+                        className="detail-modal-control-button"
                         onClick={(e) => skipTime(5, e)}
-                        style={{
-                          background: 'rgba(255, 255, 255, 0.1)',
-                          border: 'none',
-                          borderRadius: '6px',
-                          width: '32px',
-                          height: '32px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          cursor: 'pointer',
-                          color: 'rgba(255, 255, 255, 0.8)',
-                          fontSize: '11px',
-                          fontWeight: '600',
-                          transition: 'all 0.2s ease'
-                        }}
-                        onMouseOver={(e) => {
-                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'
-                        }}
-                        onMouseOut={(e) => {
-                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
-                        }}
                       >
                         +5s
                       </button>
 
-                      <span style={{
-                        color: 'rgba(255, 255, 255, 0.8)',
-                        fontSize: '12px',
-                        fontWeight: '500',
-                        marginLeft: '0.25rem'
-                      }}>
+                      <span className="detail-modal-time-display">
                         {formatTime(currentTime)} / {formatTime(duration)}
                       </span>
 
                       <button
+                        className="detail-modal-fullscreen-button"
                         onClick={toggleFullscreen}
-                        style={{
-                          background: 'rgba(255, 255, 255, 0.1)',
-                          border: 'none',
-                          borderRadius: '6px',
-                          width: '32px',
-                          height: '32px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          cursor: 'pointer',
-                          marginLeft: 'auto',
-                          transition: 'all 0.2s ease'
-                        }}
-                        onMouseOver={(e) => {
-                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'
-                        }}
-                        onMouseOut={(e) => {
-                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
-                        }}
                       >
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" opacity="0.8">
                           <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
@@ -510,57 +493,42 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
                 </div>
               )}
 
-              <p style={{
-                color: 'rgb(176, 196, 212)',
-                fontSize: 'clamp(0.95rem, 1.5vw, 1.05rem)',
-                lineHeight: '1.8',
-                marginBottom: '2rem'
-              }}>
-                {page.content}
+              <p className="detail-modal-page-content">
+                {createLinkedText(
+                  page.content,
+                  allItems,
+                  currentItem.name,
+                  currentItem.color,
+                  handleLinkedItemClick
+                )}
               </p>
 
               {page.tips && page.tips.length > 0 && (
-                <div style={{
-                  background: 'rgba(21, 35, 47, 0.6)',
-                  padding: '1.75rem',
-                  borderRadius: '16px',
-                  border: '1px solid rgba(255, 255, 255, 0.05)',
-                  backdropFilter: 'blur(10px)'
-                }}>
-                  <h4 style={{
-                    fontSize: 'clamp(1.1rem, 2vw, 1.25rem)',
-                    marginBottom: '1.25rem',
-                    color: item.color,
-                    fontWeight: '600'
-                  }}>
+                <div className="detail-modal-tips">
+                  <h4 
+                    className="detail-modal-tips-title"
+                    style={{ color: currentItem.color }}
+                  >
                     Pro Tips
                   </h4>
-                  <ul style={{
-                    listStyle: 'none',
-                    padding: 0,
-                    margin: 0,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '0.875rem'
-                  }}>
+                  <ul className="detail-modal-tips-list">
                     {page.tips.map((tip, idx) => (
-                      <li key={idx} style={{
-                        display: 'flex',
-                        gap: '0.875rem',
-                        color: 'rgb(143, 169, 189)',
-                        fontSize: 'clamp(0.9rem, 1.5vw, 0.95rem)',
-                        lineHeight: '1.6',
-                        paddingLeft: '0.5rem'
-                      }}>
-                        <span style={{ 
-                          color: item.color,
-                          flexShrink: 0,
-                          fontWeight: '700',
-                          fontSize: '1.1rem'
-                        }}>
+                      <li key={idx} className="detail-modal-tip-item">
+                        <span 
+                          className="detail-modal-tip-bullet"
+                          style={{ color: currentItem.color }}
+                        >
                           •
                         </span>
-                        <span>{tip}</span>
+                        <span>
+                          {createLinkedText(
+                            tip,
+                            allItems,
+                            currentItem.name,
+                            currentItem.color,
+                            handleLinkedItemClick
+                          )}
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -569,37 +537,18 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
             </div>
           </div>
 
-          <div style={{
-            padding: '1.5rem 2.5rem',
-            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '2rem',
-            flexShrink: 0,
-            background: 'rgba(21, 35, 47, 0.4)'
-          }}>
+          {/* Footer */}
+          <div className="detail-modal-footer">
             <button
+              className={`detail-modal-nav-button ${currentPage === 0 ? 'disabled' : 'enabled'}`}
+              style={currentPage > 0 ? { background: currentItem.color } : {}}
               onMouseEnter={onMouseEnter}
               disabled={currentPage === 0}
               onClick={() => onPageChange(currentPage - 1)}
-              style={{
-                background: currentPage === 0 ? 'rgba(255, 255, 255, 0.03)' : item.color,
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                padding: '0.75rem 1.5rem',
-                borderRadius: '10px',
-                color: currentPage === 0 ? 'rgb(122, 140, 158)' : '#fff',
-                fontSize: 'clamp(0.9rem, 1.5vw, 1rem)',
-                fontWeight: '600',
-                cursor: currentPage === 0 ? 'not-allowed' : 'pointer',
-                transition: 'all 0.2s ease',
-                opacity: currentPage === 0 ? 0.5 : 1,
-                minWidth: '120px'
-              }}
               onMouseOver={(e) => {
                 if (currentPage > 0) {
                   e.currentTarget.style.transform = 'translateX(-3px)'
-                  e.currentTarget.style.boxShadow = `0 4px 12px ${item.color}40`
+                  e.currentTarget.style.boxShadow = `0 4px 12px ${currentItem.color}40`
                 }
               }}
               onMouseOut={(e) => {
@@ -610,64 +559,32 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
               ← Previous
             </button>
 
-            <div style={{
-              display: 'flex',
-              gap: '0.5rem',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flex: 1
-            }}>
+            <div className="detail-modal-pagination">
               {Array.from({ length: totalPages }).map((_, idx) => (
                 <button
                   key={idx}
+                  className={`detail-modal-page-indicator ${idx === currentPage ? 'active' : 'inactive'}`}
+                  style={{
+                    background: idx === currentPage ? currentItem.color : undefined,
+                    boxShadow: idx === currentPage ? `0 0 12px ${currentItem.color}80` : 'none'
+                  }}
                   onMouseEnter={onMouseEnter}
                   onClick={() => onPageChange(idx)}
                   aria-label={`Go to page ${idx + 1}`}
-                  style={{
-                    width: idx === currentPage ? '28px' : '8px',
-                    height: '8px',
-                    borderRadius: '4px',
-                    background: idx === currentPage ? item.color : 'rgba(255, 255, 255, 0.15)',
-                    border: 'none',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    boxShadow: idx === currentPage ? `0 0 12px ${item.color}80` : 'none'
-                  }}
-                  onMouseOver={(e) => {
-                    if (idx !== currentPage) {
-                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.3)'
-                    }
-                  }}
-                  onMouseOut={(e) => {
-                    if (idx !== currentPage) {
-                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)'
-                    }
-                  }}
                 />
               ))}
             </div>
 
             <button
+              className={`detail-modal-nav-button ${currentPage === totalPages - 1 ? 'disabled' : 'enabled'}`}
+              style={currentPage < totalPages - 1 ? { background: currentItem.color } : {}}
               onMouseEnter={onMouseEnter}
               disabled={currentPage === totalPages - 1}
               onClick={() => onPageChange(currentPage + 1)}
-              style={{
-                background: currentPage === totalPages - 1 ? 'rgba(255, 255, 255, 0.03)' : item.color,
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                padding: '0.75rem 1.5rem',
-                borderRadius: '10px',
-                color: currentPage === totalPages - 1 ? 'rgb(122, 140, 158)' : '#fff',
-                fontSize: 'clamp(0.9rem, 1.5vw, 1rem)',
-                fontWeight: '600',
-                cursor: currentPage === totalPages - 1 ? 'not-allowed' : 'pointer',
-                transition: 'all 0.2s ease',
-                opacity: currentPage === totalPages - 1 ? 0.5 : 1,
-                minWidth: '120px'
-              }}
               onMouseOver={(e) => {
                 if (currentPage < totalPages - 1) {
                   e.currentTarget.style.transform = 'translateX(3px)'
-                  e.currentTarget.style.boxShadow = `0 4px 12px ${item.color}40`
+                  e.currentTarget.style.boxShadow = `0 4px 12px ${currentItem.color}40`
                 }
               }}
               onMouseOut={(e) => {
@@ -679,28 +596,13 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
             </button>
           </div>
         </div>
-
-        <style jsx>{`
-          @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-          }
-          @keyframes slideUp {
-            from {
-              opacity: 0;
-              transform: translateY(20px) scale(0.98);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0) scale(1);
-            }
-          }
-        `}</style>
       </div>
 
+      {/* Fullscreen Mode */}
       {isFullscreen && mediaUrl && (
         <div 
           ref={fullscreenRef}
+          className="detail-modal-fullscreen"
           onMouseMove={() => {
             setShowFullscreenControls(true)
             if (window.fullscreenControlsTimer) {
@@ -715,17 +617,6 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
               toggleFullscreen(e)
             }
           }}
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: 'black',
-            zIndex: 10000,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            animation: 'fadeIn 0.2s ease-out'
-          }}
         >
           <video
             ref={fullscreenVideoRef}
@@ -736,164 +627,52 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
             playsInline
             onTimeUpdate={handleFullscreenTimeUpdate}
             onLoadedMetadata={handleFullscreenLoadedMetadata}
-            style={{
-              width: '100vw',
-              height: '100vh',
-              objectFit: 'contain'
-            }}
+            className="detail-modal-fullscreen-video"
           />
-          <div style={{
-            position: 'absolute',
-            bottom: '2rem',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: 'calc(100% - 4rem)',
-            maxWidth: '800px',
-            background: 'rgba(0, 0, 0, 0.7)',
-            backdropFilter: 'blur(12px)',
-            padding: '1rem 1.5rem',
-            borderRadius: '12px',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            opacity: showFullscreenControls ? 1 : 0,
-            transition: 'opacity 0.3s ease',
-            pointerEvents: showFullscreenControls ? 'auto' : 'none'
-          }}>
+          
+          <div className={`detail-modal-fullscreen-controls ${showFullscreenControls ? 'visible' : 'hidden'}`}>
             <div 
+              className="detail-modal-progress-bar"
               onClick={handleFullscreenSeek}
-              style={{
-                width: '100%',
-                height: '4px',
-                background: 'rgba(255, 255, 255, 0.2)',
-                borderRadius: '2px',
-                cursor: 'pointer',
-                marginBottom: '0.75rem',
-                position: 'relative'
-              }}
             >
-              <div style={{
-                height: '100%',
-                background: item.color,
-                borderRadius: '2px',
-                width: `${(fullscreenTime / fullscreenDuration) * 100}%`,
-                transition: 'width 0.1s linear'
-              }} />
+              <div 
+                className="detail-modal-progress-fill"
+                style={{
+                  background: currentItem.color,
+                  width: `${(fullscreenTime / fullscreenDuration) * 100}%`
+                }}
+              />
             </div>
 
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem'
-            }}>
-              <button onClick={(e) => skipFullscreenTime(-5, e)}
-                style={{
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  border: 'none',
-                  borderRadius: '6px',
-                  width: '36px',
-                  height: '36px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  color: 'rgba(255, 255, 255, 0.9)',
-                  fontSize: '11px',
-                  fontWeight: '600',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
-                }}
+            <div className="detail-modal-controls">
+              <button 
+                className="detail-modal-fullscreen-control-button"
+                onClick={(e) => skipFullscreenTime(-5, e)}
               >
                 -5s
               </button>
 
               <button
+                className="detail-modal-fullscreen-play-button"
                 onClick={toggleFullscreenPlayPause}
-                style={{
-                  background: 'rgba(255, 255, 255, 0.15)',
-                  border: 'none',
-                  borderRadius: '50%',
-                  width: '42px',
-                  height: '42px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  color: 'white',
-                  fontSize: '16px',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.25)'
-                  e.currentTarget.style.transform = 'scale(1.05)'
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)'
-                  e.currentTarget.style.transform = 'scale(1)'
-                }}
               >
                 {fullscreenPlaying ? '⏸' : '▶'}
               </button>
 
               <button
+                className="detail-modal-fullscreen-control-button"
                 onClick={(e) => skipFullscreenTime(5, e)}
-                style={{
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  border: 'none',
-                  borderRadius: '6px',
-                  width: '36px',
-                  height: '36px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  color: 'rgba(255, 255, 255, 0.9)',
-                  fontSize: '11px',
-                  fontWeight: '600',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
-                }}
               >
                 +5s
               </button>
 
-              <span style={{
-                color: 'rgba(255, 255, 255, 0.9)',
-                fontSize: '13px',
-                fontWeight: '500',
-                marginLeft: '0.25rem'
-              }}>
+              <span className="detail-modal-fullscreen-time">
                 {formatTime(fullscreenTime)} / {formatTime(fullscreenDuration)}
               </span>
             </div>
           </div>
 
-          <div style={{
-            position: 'absolute',
-            top: '2rem',
-            right: '2rem',
-            background: 'rgba(0, 0, 0, 0.7)',
-            backdropFilter: 'blur(12px)',
-            padding: '0.75rem 1.25rem',
-            borderRadius: '10px',
-            color: 'white',
-            fontSize: '14px',
-            fontWeight: '500',
-            border: '1px solid rgba(255, 255, 255, 0.15)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            opacity: showFullscreenControls ? 1 : 0,
-            transition: 'opacity 0.3s ease'
-          }}>
+          <div className={`detail-modal-fullscreen-exit-hint ${showFullscreenControls ? 'visible' : 'hidden'}`}>
             <span style={{ fontSize: '16px' }}>✕</span>
             Click or press ESC to exit
           </div>

@@ -13,6 +13,7 @@ export async function GET(request) {
           "id": lessonId.current,
           "gradientText": heroConfig.gradientText,
           "title": heroConfig.title,
+          "subtitle": heroConfig.subtitle,
           "lessonCategory": category,
           "themeColor": coalesce(themeColor, "#3b82f6"),
           "icon": lessonIcon,
@@ -22,6 +23,7 @@ export async function GET(request) {
           "id": lessonId.current,
           "gradientText": heroConfig.gradientText,
           "title": heroConfig.title,
+          "subtitle": heroConfig.subtitle,
           "lessonCategory": category,
           "themeColor": coalesce(themeColor, "#3b82f6"),
           "icon": lessonIcon

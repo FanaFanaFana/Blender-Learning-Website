@@ -1,0 +1,242 @@
+/* Overlay for touch devices */
+.sidebar-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9998;
+  background: rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
+}
+
+/* Invisible buffer zone */
+.sidebar-buffer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 340px;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: auto;
+}
+
+/* Sidebar container */
+.documentation-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(21, 35, 47, 0.95);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 10000;
+  transition: all 0.3s ease;
+}
+
+.documentation-sidebar.closed {
+  width: 0;
+  padding: 0;
+}
+
+.documentation-sidebar.open {
+  width: 370px;
+  padding: 1.5rem;
+}
+
+/* Search bar container */
+.sidebar-search {
+  margin-bottom: 1.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-search.hidden {
+  opacity: 0;
+}
+
+.sidebar-search.visible {
+  opacity: 1;
+}
+
+.sidebar-search input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(13, 27, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+/* Loading state */
+.sidebar-loading {
+  transition: opacity 0.3s ease;
+  text-align: center;
+  color: #7a8c9e;
+  padding: 2rem;
+}
+
+.sidebar-loading.hidden {
+  opacity: 0;
+}
+
+.sidebar-loading.visible {
+  opacity: 1;
+}
+
+/* Topics list */
+.sidebar-topics {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: opacity 0.3s ease 0.1s;
+}
+
+.sidebar-topics.hidden {
+  opacity: 0;
+}
+
+.sidebar-topics.visible {
+  opacity: 1;
+}
+
+/* Category header */
+.sidebar-category-header {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+/* Category topics container */
+.sidebar-category-topics {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Topic item */
+.sidebar-topic-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  background: rgba(13, 27, 42, 0.4);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  text-decoration: none;
+  color : inherit;
+}
+
+.sidebar-topic-item.clickable {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.sidebar-topic-item.disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.sidebar-topic-item.clickable:hover {
+  background: rgba(28, 45, 60, 0.6);
+}
+
+/* Topic icon */
+.sidebar-topic-icon {
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+}
+
+/* Topic title */
+.sidebar-topic-title {
+  font-size: 0.9rem;
+  color: #fff;
+  font-weight: 400;
+}
+
+/* Soon badge */
+.sidebar-topic-soon {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: #7a8c9e;
+  font-style: italic;
+}
+
+/* Invisible trigger zone */
+.sidebar-trigger {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 100vh;
+  z-index: 9998;
+  cursor: pointer;
+}
+
+/* Hover tab */
+.sidebar-tab {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 80px;
+  background: rgba(21, 35, 47, 0.95);
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9999;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.sidebar-tab:hover {
+  background: rgba(28, 45, 60, 0.95);
+}
+
+.sidebar-tab-icon {
+  font-size: 1.5rem;
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-tab-icon.rotated {
+  transform: rotate(180deg);
+}
+
+/* Scrollbar styles */
+.documentation-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.documentation-sidebar::-webkit-scrollbar-track {
+  background: rgba(13, 27, 42, 0.4);
+}
+
+.documentation-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.documentation-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .sidebar-tab {
+    display: none;
+  }
+}

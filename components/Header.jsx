@@ -8,8 +8,8 @@ import SearchComponent from '@/components/SearchComponent'
 import BuilderModal from '@/components/builder/BuilderModal'
 import { playHover } from '@/app/utils/sounds'
 import { Settings } from 'lucide-react'
-// ✅ Import from centralized config
 import { getVisibleCategories, getDropdownCategories } from '@/app/config/categories'
+import './styles/Header.css' // ✅ Import dedicated CSS file
 
 export default function Header({ lessonData = null }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -22,15 +22,14 @@ export default function Header({ lessonData = null }) {
     setMobileMenuOpen(false)
   }
 
-  // ✅ Use centralized config
   const visibleCategories = getVisibleCategories()
   const dropdownCategories = getDropdownCategories()
 
   const handleCategoryClick = (categoryKey) => {
     setCategoryDropdownOpen(false)
-    router.replace(`/learn#${categoryKey}`)
+    router.replace(`/pages/learn#${categoryKey}`)
     setTimeout(() => {
-      if (window.location.pathname === '/learn') {
+      if (window.location.pathname === '/pages/learn') {
         window.dispatchEvent(new HashChangeEvent('hashchange'))
       }
     }, 100)
@@ -44,7 +43,7 @@ export default function Header({ lessonData = null }) {
             <div className="logo">
               <Link href="/" className="logo" onMouseEnter={playHover}>
                 <Image
-                  src="/logo.png"
+                  src="/icons/logo.png"
                   alt="Blender Logo"
                   width={50}
                   height={50}
@@ -54,7 +53,7 @@ export default function Header({ lessonData = null }) {
               </Link>
             </div>
 
-            <SearchComponent  />
+            <SearchComponent />
 
             <nav className={`nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
               <Link
@@ -68,7 +67,7 @@ export default function Header({ lessonData = null }) {
               </Link>
               <Link
                 onMouseEnter={playHover}
-                href="/learn"
+                href="/pages/learn"
                 className="nav-link"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -77,7 +76,7 @@ export default function Header({ lessonData = null }) {
               </Link>
               <Link
                 onMouseEnter={playHover}
-                href="/about"
+                href="/pages/about"
                 className="nav-link"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -86,7 +85,7 @@ export default function Header({ lessonData = null }) {
               </Link>
               <Link
                 onMouseEnter={playHover}
-                href="/contact"
+                href="/pages/contact"
                 className="nav-link"
                 onClick={() => setMobileMenuOpen(false)}
               >

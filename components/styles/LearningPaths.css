@@ -1,0 +1,344 @@
+/* LearningPaths.css */
+
+/* ========================================
+   PATHS HERO SECTION WITH 3D BACKGROUND
+   ======================================== */
+.paths-hero-section {
+  position: relative;
+  padding: 0;
+  margin: 0 -2rem;
+  width: calc(100% + 4rem);
+  background: transparent;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.paths-scene-background {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.paths-scene-background > * {
+  pointer-events: auto;
+}
+
+.paths-scene-background #paths-canvas {
+  position: relative !important;
+  z-index: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  opacity: 0.5;
+  display: block !important;
+  object-fit: cover;
+}
+
+.paths-text-overlay {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.paths-text-overlay h2 {
+  font-size: clamp(3.5rem, 8vw, 5.5rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+}
+
+.paths-text-overlay p {
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  color: rgb(176, 196, 212);
+  line-height: 1.5;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* ========================================
+   LEARNING PATHS MAIN SECTION
+   ======================================== */
+.learning-paths {
+  padding: 3rem 0;
+  background: transparent;
+}
+
+/* ========================================
+   PATH SELECTOR (CATEGORY BUTTONS)
+   ======================================== */
+.path-selector {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.path-button {
+  display: flex;
+  align-items: center;
+  gap: 0.53rem;
+  padding: clamp(0.75rem, 2vw, 2rem) clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.path-button img {
+  max-width: clamp(30px, 8vw, 50px);
+  max-height: clamp(30px, 8vw, 50px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.path-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.path-button.active {
+  border-width: 2px;
+}
+
+/* ========================================
+   CATEGORY DROPDOWN
+   ======================================== */
+.category-dropdown-wrapper {
+  position: relative;
+  z-index: 9999999;
+  isolation: isolate;
+}
+
+.category-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(21, 35, 47, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 0.5rem;
+  min-width: 250px;
+  max-height: 60vh;
+  overflow-y: auto;
+  z-index: 99999999;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.category-dropdown-btn {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+  font-family: inherit;
+}
+
+.category-dropdown-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.category-dropdown-btn.active {
+  font-weight: 600;
+}
+
+.category-dropdown-btn img {
+  width: 24px;
+  height: 24px;
+}
+
+/* ========================================
+   PATH CONTENT
+   ======================================== */
+.path-content {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.path-header {
+  padding: 2rem;
+  background: rgba(21, 35, 47, 0.6);
+  border-radius: 16px;
+  border-left: 4px solid;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.path-header h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 0.5rem;
+}
+
+.path-header p {
+  color: rgb(143, 169, 189);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+}
+
+/* ========================================
+   TOPIC CARDS GRID
+   ======================================== */
+.topic-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.topic-card {
+  background: rgba(21, 35, 47, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.topic-card:hover {
+  background: rgba(28, 45, 60, 0.8);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.topic-card-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topic-card-icon img {
+  width: 36px;
+  height: 36px;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+.topic-card h4 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.topic-card p {
+  color: rgb(143, 169, 189);
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* ========================================
+   EMPTY STATE
+   ======================================== */
+.empty-category-state {
+  text-align: center;
+  padding: 3rem;
+  color: rgb(143, 169, 189);
+}
+
+.empty-category-state p {
+  margin-bottom: 0.5rem;
+}
+
+.empty-category-state p:last-child {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  color: rgb(122, 140, 158);
+}
+
+/* ========================================
+   LOADING STATE
+   ======================================== */
+.learning-paths-loading {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(143, 169, 189);
+  font-size: 1.1rem;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+  .paths-hero-section {
+    min-height: 40vh;
+    margin: 0 -1.5rem;
+    width: calc(100% + 3rem);
+  }
+
+  .paths-scene-background #paths-canvas {
+    opacity: 0.4;
+  }
+
+  .paths-text-overlay {
+    padding: 1.5rem;
+  }
+
+  .path-selector {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .path-button {
+    justify-content: center;
+  }
+
+  .topic-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .paths-hero-section {
+    margin: 0 -1rem;
+    width: calc(100% + 2rem);
+  }
+
+  .category-dropdown-menu {
+    left: 0;
+    right: 0;
+    transform: none;
+    min-width: 100%;
+  }
+}

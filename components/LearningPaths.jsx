@@ -3,10 +3,10 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import PathsScene from './PathsScene'
+import PathsScene from './scenes/PathsScene'
 import { playHover } from '@/app/utils/sounds'
-// ✅ Import from centralized config
 import { CATEGORIES, getCategoryKeys } from '@/app/config/categories'
+import './styles/LearningPaths.css' // ✅ Import dedicated CSS file
 
 export default function BlenderCompendium() {
   const [selectedCategory, setSelectedCategory] = useState('modeling')
@@ -14,10 +14,7 @@ export default function BlenderCompendium() {
   const [categories, setCategories] = useState({})
   const [loading, setLoading] = useState(true)
 
-  // ✅ Use centralized config for main categories
   const mainCategories = ['modeling', 'rendering', 'animation']
-  
-  // ✅ Get dropdown categories dynamically (everything after the first 3)
   const dropdownCategories = getCategoryKeys().slice(3)
 
   // Fetch lessons from API route
@@ -30,28 +27,26 @@ export default function BlenderCompendium() {
         
         console.log('📚 Fetched lessons with icons:', lessons)
         
-        // Group lessons by category
         const groupedLessons = lessons.reduce((acc, lesson) => {
           const cat = lesson.lessonCategory || 'Lesson'
           if (!acc[cat]) {
             acc[cat] = {
-              ...CATEGORIES[cat], // ✅ Use centralized config
+              ...CATEGORIES[cat],
               topics: []
             }
           }
           acc[cat].topics.push({
-  title: lesson.fullTitle || 'Untitled',  // ✅ Changed from lesson.gradientText || lesson.title
-  description: 'Click to view lesson details',
-  icon: lesson.icon || '/Icons/blender_icon_current_file.svg',
-  link: `/lessons/${lesson.id}`
-})
+            title: lesson.fullTitle || 'Untitled',
+            description: lesson.subtitle || 'Click to view lesson details',
+            icon: lesson.icon || '/Icons/blender_icon_current_file.svg',
+            link: `/lessons/${lesson.id}`
+          })
           return acc
         }, {})
 
-        // Merge with metadata for categories without lessons
         const mergedCategories = getCategoryKeys().reduce((acc, key) => {
           acc[key] = groupedLessons[key] || {
-            ...CATEGORIES[key], // ✅ Use centralized config
+            ...CATEGORIES[key],
             topics: []
           }
           return acc
@@ -72,7 +67,7 @@ export default function BlenderCompendium() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '')
-      if (hash && CATEGORIES[hash]) { // ✅ Use centralized config
+      if (hash && CATEGORIES[hash]) {
         setSelectedCategory(hash)
         window.scrollTo({ top: 0, behavior: 'smooth' })
       }
@@ -80,23 +75,14 @@ export default function BlenderCompendium() {
 
     handleHashChange()
     window.addEventListener('hashchange', handleHashChange)
-
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange)
-    }
+    return () => window.removeEventListener('hashchange', handleHashChange)
   }, [])
 
   const currentCategory = categories[selectedCategory] || {}
 
   if (loading) {
     return (
-      <div style={{ 
-        minHeight: '50vh', 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center',
-        color: '#8fa9bd'
-      }}>
+      <div className="learning-paths-loading">
         Loading lessons...
       </div>
     )
@@ -106,17 +92,17 @@ export default function BlenderCompendium() {
     <>
       {/* Hero section with 3D scene background */}
       <section className="paths-hero-section">
-  <div className="paths-scene-background">
-    <PathsScene />
-  </div>
+        <div className="paths-scene-background">
+          <PathsScene />
+        </div>
 
-  <div className="container">
-    <div className="paths-text-overlay">
-      <h2>{currentCategory.title || 'Documentation'}</h2>
-      <p>{currentCategory.description || 'Explore comprehensive guides and references'}</p>
-    </div>
-  </div>
-</section>
+        <div className="container">
+          <div className="paths-text-overlay">
+            <h2>{currentCategory.title || 'Documentation'}</h2>
+            <p>{currentCategory.description || 'Explore comprehensive guides and references'}</p>
+          </div>
+        </div>
+      </section>
 
       {/* Main content */}
       <section className="learning-paths">
@@ -164,7 +150,7 @@ export default function BlenderCompendium() {
                 </span>
               </button>
 
-              {/* Dropdown Menu - ✅ Now uses centralized config */}
+              {/* Dropdown Menu */}
               {isDropdownOpen && (
                 <div className="category-dropdown-menu">
                   {dropdownCategories.map((key) => (

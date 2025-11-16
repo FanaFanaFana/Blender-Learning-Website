@@ -1,0 +1,366 @@
+/* LessonTemplate.css */
+
+/* Hero Section */
+.lesson-hero-section {
+  position: relative;
+  padding: 0;
+  margin: 0 -2rem;
+  width: calc(100% + 4rem);
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.lesson-hero-background {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.3;
+}
+
+.lesson-hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+/* Tabs Section */
+.lesson-tabs-container {
+  max-width: 1400px;
+  margin: 0 auto 3rem;
+  padding: 0 2rem;
+}
+
+.tabs-layout {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.tabs-centered {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Content Sections */
+.lesson-section {
+  padding: 4rem 0;
+}
+
+.lesson-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.lesson-narrow-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Section Headers */
+.section-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.section-description {
+  text-align: center;
+  color: #8fa9bd;
+  font-size: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+/* Overview Cards Grid */
+.overview-cards-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+/* Content Categories */
+.categories-grid {
+  display: grid;
+  gap: 3rem;
+}
+
+.category-header {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.category-items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Shortcuts Section */
+.shortcuts-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.shortcut-category {
+  background: rgba(21, 35, 47, 0.6);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.shortcut-category-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.shortcut-items {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.shortcut-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: default;
+  transition: background 0.2s ease;
+}
+
+.shortcut-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.shortcut-action {
+  color: #b0c4d4;
+  font-size: 1rem;
+}
+
+.shortcut-key {
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+}
+
+/* Practice Projects */
+.practice-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.practice-card {
+  background: rgba(21, 35, 47, 0.6);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.practice-content {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.practice-details {
+  flex: 1;
+}
+
+.practice-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.practice-number {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.practice-title {
+  font-size: 1.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.practice-description {
+  color: #8fa9bd;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.practice-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.practice-duration {
+  font-size: 0.9rem;
+  color: #7a8c9e;
+}
+
+.practice-difficulty {
+  font-size: 0.9rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+}
+
+.practice-difficulty.beginner {
+  background: #10b98120;
+  color: #10b981;
+}
+
+.practice-difficulty.intermediate {
+  background: #f59e0b20;
+  color: #f59e0b;
+}
+
+.practice-difficulty.advanced {
+  background: #ef444420;
+  color: #ef4444;
+}
+
+.practice-skills {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.practice-skill-tag {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+}
+
+.practice-start-button {
+  border: none;
+  padding: 0.875rem 2rem;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.practice-start-button:hover {
+  transform: translateY(-2px);
+}
+
+/* Loading Skeleton */
+.tab-content-skeleton {
+  padding: 4rem 0;
+}
+
+.skeleton-header {
+  height: 60px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.skeleton-card {
+  height: 200px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Error State */
+.error-state {
+  padding: 4rem;
+  text-align: center;
+}
+
+.error-title {
+  color: #ef4444;
+}
+
+.error-description {
+  color: #9ca3af;
+}
+
+/* Empty State */
+.empty-state {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.empty-state-title {
+  font-size: 2rem;
+  color: #8fa9bd;
+}
+
+.empty-state-description {
+  color: #6b7280;
+  margin-top: 1rem;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .lesson-hero-section {
+    margin: 0 -1.5rem;
+    width: calc(100% + 3rem);
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .section-description {
+    font-size: 1.1rem;
+  }
+
+  .practice-content {
+    flex-direction: column;
+  }
+
+  .practice-start-button {
+    width: 100%;
+  }
+}

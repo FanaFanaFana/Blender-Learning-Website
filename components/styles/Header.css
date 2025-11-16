@@ -1,0 +1,302 @@
+/* Header.css */
+
+/* ========================================
+   HEADER & NAVIGATION
+   ======================================== */
+.header {
+  background: transparent;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ========================================
+   LOGO
+   ======================================== */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+  font-size: clamp(1.2rem, 3vw, 1.9rem);
+  font-weight: 600;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo-img {
+  width: clamp(50px, 10vw, 70px);
+  height: clamp(50px, 10vw, 70px);
+  object-fit: contain;
+}
+
+/* ========================================
+   NAVIGATION
+   ======================================== */
+.nav {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: rgb(245, 146, 31);
+}
+
+/* ========================================
+   MOBILE MENU BUTTON
+   ======================================== */
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.mobile-menu-btn span {
+  width: 25px;
+  height: 3px;
+  background: rgb(255, 255, 255);
+  border-radius: 2px;
+}
+
+/* ========================================
+   BUILDER TRIGGER BUTTON
+   ======================================== */
+.builder-trigger {
+  background: linear-gradient(135deg, #213047, #41719ec0) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 0.75rem 1.25rem !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgb(255, 255, 255);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 600;
+}
+
+.builder-trigger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 196, 0.4);
+}
+
+/* ========================================
+   CATEGORY BAR
+   ======================================== */
+.category-bar {
+  background: transparent;
+  padding: 0.5rem 0 0.75rem 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  position: relative;
+  z-index: 10001;
+}
+
+.category-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.category-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.category-link {
+  display: flex !important;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  color: rgba(176, 196, 212, 0.7) !important;
+  text-decoration: none !important;
+  font-size: 0.8rem !important;
+  font-weight: 400 !important;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.category-link:hover,
+.category-link:active {
+  color: rgb(245, 146, 31) !important;
+  background: transparent !important;
+  text-decoration: none !important;
+}
+
+.category-link:focus {
+  outline: none !important;
+  text-decoration: none !important;
+}
+
+.category-more {
+  gap: 0.35rem !important;
+}
+
+/* ========================================
+   CATEGORY DROPDOWN
+   ======================================== */
+.category-dropdown-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100050;
+}
+
+.category-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: rgba(21, 35, 47, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 0.5rem;
+  min-width: 200px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 100051;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.category-dropdown-item {
+  display: flex !important;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  width: 100%;
+  color: rgba(176, 196, 212, 0.9) !important;
+  text-decoration: none !important;
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  margin-bottom: 0.25rem;
+}
+
+.category-dropdown-item:hover {
+  color: rgb(245, 146, 31) !important;
+  background: rgba(245, 146, 31, 0.1) !important;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(13, 27, 42, 0.98);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 0;
+    flex-direction: column;
+    gap: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav.mobile-open {
+    display: flex;
+  }
+
+  .nav-link {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    transition: background 0.2s ease;
+  }
+
+  .nav-link:hover {
+    background: rgba(59, 130, 246, 0.2);
+  }
+
+  .header {
+    position: relative;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .builder-trigger {
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+    padding: 1rem !important;
+  }
+
+  .category-bar {
+    padding: 0.5rem 0;
+  }
+
+  .category-links {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 0 1rem;
+  }
+
+  .category-link {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .category-link span {
+    display: inline;
+  }
+
+  .category-more span:last-child {
+    display: inline !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .category-links {
+    gap: 1.25rem;
+  }
+}

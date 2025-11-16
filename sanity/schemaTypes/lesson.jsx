@@ -167,6 +167,20 @@ export default defineType({
       validation: Rule => Rule.required()
     }),
 
+    // ✅ NEW: Add themeColor field
+    defineField({
+      name: 'themeColor',
+      title: '🎨 Theme Color',
+      type: 'string',
+      group: 'hero',
+      description: 'Primary color for this lesson (hex code)',
+      options: {
+        list: colorOptions,
+        layout: 'dropdown'
+      },
+      initialValue: '#3b82f6'
+    }),
+
     defineField({
       name: 'lessonIcon',
       title: '🎨 Lesson Card Icon',
@@ -188,6 +202,24 @@ export default defineType({
         { name: 'subtitle', type: 'text', title: 'Subtitle', rows: 2 },
         { name: 'gradientColors', type: 'string', title: 'CSS Gradient', initialValue: 'linear-gradient(135deg, #3b82f6, #60a5fa, #93c5fd)' }
       ]
+    }),
+
+    // ✅ NEW: Add legacy tabs field (hidden, for backward compatibility)
+    defineField({
+      name: 'tabs',
+      title: '🔖 Tabs (Legacy)',
+      type: 'array',
+      group: 'hero',
+      description: '⚠️ Deprecated: Use "enabledTabs" instead. This field exists for backward compatibility with imported JSON.',
+      hidden: true,
+      of: [{
+        type: 'object',
+        fields: [
+          { name: 'id', type: 'string', title: 'Tab ID' },
+          { name: 'icon', type: 'string', title: 'Icon' },
+          { name: 'label', type: 'string', title: 'Label' }
+        ]
+      }]
     }),
 
     defineField({
@@ -586,9 +618,20 @@ export default defineType({
       type: 'array',
       group: 'content',
       of: [{
-        type: 'reference',
-        to: [{ type: 'lesson' }],
-        weak: true
+        type: 'object',
+        fields: [
+          { name: 'name', type: 'string', title: 'Category Name', validation: Rule => Rule.required() },
+          { name: 'icon', type: 'string', title: 'Icon', placeholder: '✨' },
+          { name: 'color', type: 'string', title: 'Color', options: {list: colorOptions} },
+          {
+            name: 'items',
+            type: 'array',
+            of: [{
+              type: 'object',
+              fields: categoryItemFields
+            }]
+          }
+        ]
       }]
     }),
 
