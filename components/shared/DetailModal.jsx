@@ -708,7 +708,7 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
             }
             window.fullscreenControlsTimer = setTimeout(() => {
               setShowFullscreenControls(false)
-            }, 1000)
+            }, 2000)
           }}
           onClick={(e) => {
             if (e.target === e.currentTarget || e.target.tagName === 'VIDEO') {
@@ -718,7 +718,7 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
           style={{
             position: 'fixed',
             inset: 0,
-            background: 'rgba(0, 0, 0, 0.98)',
+            background: 'black',
             zIndex: 10000,
             display: 'flex',
             alignItems: 'center',
@@ -727,178 +727,172 @@ export default function DetailModal({ item, currentPage, onPageChange, onClose, 
             animation: 'fadeIn 0.2s ease-out'
           }}
         >
-          <div style={{
-            position: 'relative',
-            maxWidth: '95%',
-            maxHeight: '95%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <video
-              ref={fullscreenVideoRef}
-              src={mediaUrl}
-              autoPlay
-              loop
-              muted
-              playsInline
-              onTimeUpdate={handleFullscreenTimeUpdate}
-              onLoadedMetadata={handleFullscreenLoadedMetadata}
-              style={{
-                maxWidth: '100%',
-                maxHeight: '100vh',
-                objectFit: 'contain'
-              }}
-            />
-            <div style={{
-              position: 'absolute',
-              bottom: '1rem',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: '80%',
-              maxWidth: '600px',
-              background: 'rgba(0, 0, 0, 0.5)',
-              backdropFilter: 'blur(8px)',
-              padding: '0.75rem 1rem',
-              borderRadius: '8px',
-              border: '1px solid rgba(255, 255, 255, 0.05)',
-              opacity: showFullscreenControls ? 1 : 0,
-              transition: 'opacity 0.2s ease',
-              pointerEvents: showFullscreenControls ? 'auto' : 'none'
-            }}>
-              <div 
-                onClick={handleFullscreenSeek}
-                style={{
-                  width: '100%',
-                  height: '3px',
-                  background: 'rgba(255, 255, 255, 0.15)',
-                  borderRadius: '1.5px',
-                  cursor: 'pointer',
-                  marginBottom: '0.6rem',
-                  position: 'relative'
-                }}
-              >
-                <div style={{
-                  height: '100%',
-                  background: item.color,
-                  borderRadius: '1.5px',
-                  width: `${(fullscreenTime / fullscreenDuration) * 100}%`,
-                  transition: 'width 0.1s linear'
-                }} />
-              </div>
-
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.6rem'
-              }}>
-                <button onClick={(e) => skipFullscreenTime(-5, e)}
-                  style={{
-                    background: 'rgba(255, 255, 255, 0.08)',
-                    border: 'none',
-                    borderRadius: '5px',
-                    width: '32px',
-                    height: '32px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
-                    color: 'rgba(255, 255, 255, 0.85)',
-                    fontSize: '10px',
-                    fontWeight: '600',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)'
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'
-                  }}
-                >
-                  -5s
-                </button>
-
-                <button
-                  onClick={toggleFullscreenPlayPause}
-                  style={{
-                    background: 'rgba(255, 255, 255, 0.12)',
-                    border: 'none',
-                    borderRadius: '50%',
-                    width: '38px',
-                    height: '38px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
-                    color: 'white',
-                    fontSize: '15px',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'
-                    e.currentTarget.style.transform = 'scale(1.05)'
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.12)'
-                    e.currentTarget.style.transform = 'scale(1)'
-                  }}
-                >
-                  {fullscreenPlaying ? '⏸' : '▶'}
-                </button>
-
-                <button
-                  onClick={(e) => skipFullscreenTime(5, e)}
-                  style={{
-                    background: 'rgba(255, 255, 255, 0.08)',
-                    border: 'none',
-                    borderRadius: '5px',
-                    width: '32px',
-                    height: '32px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
-                    color: 'rgba(255, 255, 255, 0.85)',
-                    fontSize: '10px',
-                    fontWeight: '600',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)'
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'
-                  }}
-                >
-                  +5s
-                </button>
-
-                <span style={{
-                  color: 'rgba(255, 255, 255, 0.85)',
-                  fontSize: '12px',
-                  fontWeight: '500',
-                  marginLeft: '0.2rem'
-                }}>
-                  {formatTime(fullscreenTime)} / {formatTime(fullscreenDuration)}
-                </span>
-              </div>
-            </div>
-          </div>
+          <video
+            ref={fullscreenVideoRef}
+            src={mediaUrl}
+            autoPlay
+            loop
+            muted
+            playsInline
+            onTimeUpdate={handleFullscreenTimeUpdate}
+            onLoadedMetadata={handleFullscreenLoadedMetadata}
+            style={{
+              width: '100vw',
+              height: '100vh',
+              objectFit: 'contain'
+            }}
+          />
           <div style={{
             position: 'absolute',
-            top: '24px',
-            right: '24px',
-            background: 'rgba(0, 0, 0, 0.75)',
-            backdropFilter: 'blur(8px)',
-            padding: '12px 18px',
-            borderRadius: '8px',
+            bottom: '2rem',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: 'calc(100% - 4rem)',
+            maxWidth: '800px',
+            background: 'rgba(0, 0, 0, 0.7)',
+            backdropFilter: 'blur(12px)',
+            padding: '1rem 1.5rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            opacity: showFullscreenControls ? 1 : 0,
+            transition: 'opacity 0.3s ease',
+            pointerEvents: showFullscreenControls ? 'auto' : 'none'
+          }}>
+            <div 
+              onClick={handleFullscreenSeek}
+              style={{
+                width: '100%',
+                height: '4px',
+                background: 'rgba(255, 255, 255, 0.2)',
+                borderRadius: '2px',
+                cursor: 'pointer',
+                marginBottom: '0.75rem',
+                position: 'relative'
+              }}
+            >
+              <div style={{
+                height: '100%',
+                background: item.color,
+                borderRadius: '2px',
+                width: `${(fullscreenTime / fullscreenDuration) * 100}%`,
+                transition: 'width 0.1s linear'
+              }} />
+            </div>
+
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem'
+            }}>
+              <button onClick={(e) => skipFullscreenTime(-5, e)}
+                style={{
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  border: 'none',
+                  borderRadius: '6px',
+                  width: '36px',
+                  height: '36px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  color: 'rgba(255, 255, 255, 0.9)',
+                  fontSize: '11px',
+                  fontWeight: '600',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
+                }}
+              >
+                -5s
+              </button>
+
+              <button
+                onClick={toggleFullscreenPlayPause}
+                style={{
+                  background: 'rgba(255, 255, 255, 0.15)',
+                  border: 'none',
+                  borderRadius: '50%',
+                  width: '42px',
+                  height: '42px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  color: 'white',
+                  fontSize: '16px',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.25)'
+                  e.currentTarget.style.transform = 'scale(1.05)'
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)'
+                  e.currentTarget.style.transform = 'scale(1)'
+                }}
+              >
+                {fullscreenPlaying ? '⏸' : '▶'}
+              </button>
+
+              <button
+                onClick={(e) => skipFullscreenTime(5, e)}
+                style={{
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  border: 'none',
+                  borderRadius: '6px',
+                  width: '36px',
+                  height: '36px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  color: 'rgba(255, 255, 255, 0.9)',
+                  fontSize: '11px',
+                  fontWeight: '600',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
+                }}
+              >
+                +5s
+              </button>
+
+              <span style={{
+                color: 'rgba(255, 255, 255, 0.9)',
+                fontSize: '13px',
+                fontWeight: '500',
+                marginLeft: '0.25rem'
+              }}>
+                {formatTime(fullscreenTime)} / {formatTime(fullscreenDuration)}
+              </span>
+            </div>
+          </div>
+
+          <div style={{
+            position: 'absolute',
+            top: '2rem',
+            right: '2rem',
+            background: 'rgba(0, 0, 0, 0.7)',
+            backdropFilter: 'blur(12px)',
+            padding: '0.75rem 1.25rem',
+            borderRadius: '10px',
             color: 'white',
             fontSize: '14px',
             fontWeight: '500',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
+            border: '1px solid rgba(255, 255, 255, 0.15)',
             display: 'flex',
             alignItems: 'center',
-            gap: '8px'
+            gap: '0.5rem',
+            opacity: showFullscreenControls ? 1 : 0,
+            transition: 'opacity 0.3s ease'
           }}>
             <span style={{ fontSize: '16px' }}>✕</span>
             Click or press ESC to exit

@@ -887,14 +887,15 @@ body {
 
 .category-dropdown-menu {
   position: absolute;
-  top: calc(100% + 0.5rem);
+  top: 30%;
   right: 0;
+  left : 50%;
   background: rgba(21, 35, 47, 0.98);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-md);
   padding: 0.5rem;
   min-width: 250px;
-  max-height: 70vh;
+  max-height: 60vh;
   overflow-y: auto;
   z-index: 99999999;
   backdrop-filter: blur(10px);

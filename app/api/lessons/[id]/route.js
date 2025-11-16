@@ -8,7 +8,7 @@ export async function GET(request, { params }) {
     const { searchParams } = new URL(request.url)
     const includeDraft = searchParams.get('draft') === 'true'
     
-    // 🔥 FIXED: Added tabContents to the query
+    // ✅ FIXED: Corrected media URL fetching
     let query
     if (includeDraft) {
       // Check draft first, fallback to published
@@ -41,7 +41,7 @@ export async function GET(request, { params }) {
                     content,
                     mediaType,
                     image,
-                    "uploadedMediaUrl": uploadedMedia.asset->url,
+                    uploadedMediaUrl,
                     tips
                   }
                 }
@@ -54,6 +54,15 @@ export async function GET(request, { params }) {
                 action,
                 key
               }
+            },
+            practiceTitle,
+            practiceDescription,
+            practiceProjects[] {
+              title,
+              desc,
+              duration,
+              difficulty,
+              skills
             }
           },
           overviewTitle,
@@ -76,7 +85,7 @@ export async function GET(request, { params }) {
                   content,
                   mediaType,
                   image,
-                  "uploadedMediaUrl": uploadedMedia.asset->url,
+                  uploadedMediaUrl,
                   tips
                 }
               }
@@ -85,10 +94,23 @@ export async function GET(request, { params }) {
           techniquesTitle,
           techniquesDescription,
           techniques,
-          shortcuts,
+          shortcuts[] {
+            category,
+            icon,
+            items[] {
+              action,
+              key
+            }
+          },
           practiceTitle,
           practiceDescription,
-          practiceProjects,
+          practiceProjects[] {
+            title,
+            desc,
+            duration,
+            difficulty,
+            skills
+          },
           "_isDraft": true
         } ?? *[_type == "lesson" && lessonId.current == $id && !(_id in path("drafts.**"))][0] {
           lessonId,
@@ -118,7 +140,7 @@ export async function GET(request, { params }) {
                     content,
                     mediaType,
                     image,
-                    "uploadedMediaUrl": uploadedMedia.asset->url,
+                    uploadedMediaUrl,
                     tips
                   }
                 }
@@ -131,6 +153,15 @@ export async function GET(request, { params }) {
                 action,
                 key
               }
+            },
+            practiceTitle,
+            practiceDescription,
+            practiceProjects[] {
+              title,
+              desc,
+              duration,
+              difficulty,
+              skills
             }
           },
           overviewTitle,
@@ -153,7 +184,7 @@ export async function GET(request, { params }) {
                   content,
                   mediaType,
                   image,
-                  "uploadedMediaUrl": uploadedMedia.asset->url,
+                  uploadedMediaUrl,
                   tips
                 }
               }
@@ -162,10 +193,23 @@ export async function GET(request, { params }) {
           techniquesTitle,
           techniquesDescription,
           techniques,
-          shortcuts,
+          shortcuts[] {
+            category,
+            icon,
+            items[] {
+              action,
+              key
+            }
+          },
           practiceTitle,
           practiceDescription,
-          practiceProjects,
+          practiceProjects[] {
+            title,
+            desc,
+            duration,
+            difficulty,
+            skills
+          },
           "_isDraft": false
         }
       `
@@ -200,7 +244,7 @@ export async function GET(request, { params }) {
                     content,
                     mediaType,
                     image,
-                    "uploadedMediaUrl": uploadedMedia.asset->url,
+                    uploadedMediaUrl,
                     tips
                   }
                 }
@@ -213,6 +257,15 @@ export async function GET(request, { params }) {
                 action,
                 key
               }
+            },
+            practiceTitle,
+            practiceDescription,
+            practiceProjects[] {
+              title,
+              desc,
+              duration,
+              difficulty,
+              skills
             }
           },
           overviewTitle,
@@ -235,7 +288,7 @@ export async function GET(request, { params }) {
                   content,
                   mediaType,
                   image,
-                  "uploadedMediaUrl": uploadedMedia.asset->url,
+                  uploadedMediaUrl,
                   tips
                 }
               }
@@ -244,10 +297,23 @@ export async function GET(request, { params }) {
           techniquesTitle,
           techniquesDescription,
           techniques,
-          shortcuts,
+          shortcuts[] {
+            category,
+            icon,
+            items[] {
+              action,
+              key
+            }
+          },
           practiceTitle,
           practiceDescription,
-          practiceProjects
+          practiceProjects[] {
+            title,
+            desc,
+            duration,
+            difficulty,
+            skills
+          }
         }
       `
     }
@@ -270,7 +336,7 @@ export async function GET(request, { params }) {
       tabIds: lesson.tabContents?.map(tc => tc.tabId)
     })
 
-    // Process media URLs for root-level categories
+    // ✅ Process media URLs for root-level categories
     if (lesson.categories) {
       lesson.categories = lesson.categories.map(cat => ({
         ...cat,
@@ -278,18 +344,29 @@ export async function GET(request, { params }) {
           ...item,
           detailedInfo: item.detailedInfo ? {
             ...item.detailedInfo,
-            pages: (item.detailedInfo.pages || []).map(page => ({
-              ...page,
-              finalMediaUrl: page.mediaType === 'upload' 
+            pages: (item.detailedInfo.pages || []).map(page => {
+              const finalUrl = page.mediaType === 'upload' 
                 ? page.uploadedMediaUrl 
                 : page.image
-            }))
+              
+              console.log('📹 Processing page media:', {
+                mediaType: page.mediaType,
+                uploadedMediaUrl: page.uploadedMediaUrl,
+                image: page.image,
+                finalUrl
+              })
+              
+              return {
+                ...page,
+                finalMediaUrl: finalUrl
+              }
+            })
           } : undefined
         }))
       }))
     }
 
-    // 🔥 FIXED: Process media URLs for tabContents categories
+    // ✅ Process media URLs for tabContents categories
     if (lesson.tabContents && Array.isArray(lesson.tabContents)) {
       lesson.tabContents = lesson.tabContents.map(tabContent => {
         const processed = { ...tabContent }
@@ -301,12 +378,24 @@ export async function GET(request, { params }) {
               ...item,
               detailedInfo: item.detailedInfo ? {
                 ...item.detailedInfo,
-                pages: (item.detailedInfo.pages || []).map(page => ({
-                  ...page,
-                  finalMediaUrl: page.mediaType === 'upload' 
+                pages: (item.detailedInfo.pages || []).map(page => {
+                  const finalUrl = page.mediaType === 'upload' 
                     ? page.uploadedMediaUrl 
                     : page.image
-                }))
+                  
+                  console.log('📹 Processing tabContent page media:', {
+                    tabId: processed.tabId,
+                    mediaType: page.mediaType,
+                    uploadedMediaUrl: page.uploadedMediaUrl,
+                    image: page.image,
+                    finalUrl
+                  })
+                  
+                  return {
+                    ...page,
+                    finalMediaUrl: finalUrl
+                  }
+                })
               } : undefined
             }))
           }))

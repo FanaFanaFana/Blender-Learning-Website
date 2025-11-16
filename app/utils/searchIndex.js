@@ -19,9 +19,9 @@ function extractSearchableItems(lessonData, lessonInfo) {
     detailedInfo,
     tabId,
     fullItem,
-    // NEW: Flag if this item can open a detail modal
+    // Flag if this item can open a detail modal
     isClickableItem: detailedInfo && fullItem ? true : false,
-    // NEW: Include item data for modal opening
+    // Include item data for modal opening
     itemData: (detailedInfo && fullItem) ? {
       name: title,
       description: description,
@@ -48,7 +48,7 @@ function extractSearchableItems(lessonData, lessonInfo) {
     })
   }
 
-  // Index categories and their items
+  // Index ROOT categories and their items
   if (lessonData.categories) {
     lessonData.categories.forEach(category => {
       const categoryItems = category.items || []
@@ -58,17 +58,42 @@ function extractSearchableItems(lessonData, lessonInfo) {
           item.description,
           'tool',
           `${lessonInfo.title} → ${category.name}`,
-          item.detailedInfo, // This is what makes it clickable
+          item.detailedInfo,
           category.color,
           ['tool', item.name.toLowerCase()],
           'content',
-          { ...item, color: category.color } // Full item for modal
+          { ...item, color: category.color }
         ))
       })
     })
   }
 
-  // NEW: Index techniques tab items
+  // ✅ NEW: Index TABCONTENTS categories and their items
+  if (lessonData.tabContents && Array.isArray(lessonData.tabContents)) {
+    lessonData.tabContents.forEach(tabContent => {
+      const tabId = tabContent.tabId
+      const tabCategories = tabContent.categories || []
+      
+      tabCategories.forEach(category => {
+        const categoryItems = category.items || []
+        categoryItems.forEach(item => {
+          items.push(createItem(
+            item.name,
+            item.description,
+            'tool',
+            `${lessonInfo.title} → ${category.name}`,
+            item.detailedInfo,
+            category.color,
+            ['tool', item.name.toLowerCase()],
+            tabId, // Use the actual tab ID from tabContents
+            { ...item, color: category.color }
+          ))
+        })
+      })
+    })
+  }
+
+  // Index techniques tab items
   if (lessonData.techniques) {
     lessonData.techniques.forEach(category => {
       const categoryItems = category.items || []
@@ -118,22 +143,21 @@ export async function buildSearchIndex(forceRefresh = false) {
   if (!forceRefresh && searchIndexCache && cacheTimestamp) {
     const now = Date.now()
     if (now - cacheTimestamp < CACHE_DURATION) {
-      console.log('Returning cached search index')
+      console.log('✅ Returning cached search index')
       return searchIndexCache
     }
   }
 
   try {
     const query = `
-      *[_type == "lesson"] {
+      *[_type == "lesson" && !(_id in path("drafts.**"))] {
         "id": lessonId.current,
-        title,
-        subtitle,
+        "title": heroConfig.gradientText,
+        "subtitle": heroConfig.subtitle,
         themeColor,
-        tabs[] {
-          id,
-          icon,
-          label
+        enabledTabs[] {
+          tabId,
+          customLabel
         },
         overviewTitle,
         overviewDescription,
@@ -157,7 +181,30 @@ export async function buildSearchIndex(forceRefresh = false) {
                 tips[],
                 mediaType,
                 image,
-                "uploadedMediaUrl": uploadedMedia.asset->url
+                uploadedMediaUrl
+              }
+            }
+          }
+        },
+        tabContents[] {
+          tabId,
+          categories[] {
+            name,
+            color,
+            items[] {
+              name,
+              icon,
+              description,
+              detailedInfo {
+                overview,
+                pages[] {
+                  title,
+                  content,
+                  tips[],
+                  mediaType,
+                  image,
+                  uploadedMediaUrl
+                }
               }
             }
           }
@@ -177,7 +224,7 @@ export async function buildSearchIndex(forceRefresh = false) {
                 tips[],
                 mediaType,
                 image,
-                "uploadedMediaUrl": uploadedMedia.asset->url
+                uploadedMediaUrl
               }
             }
           }
@@ -190,14 +237,20 @@ export async function buildSearchIndex(forceRefresh = false) {
     
     lessons.forEach(lesson => {
       // Determine difficulty based on lesson content complexity
-      const difficulty = lesson.categories?.length > 5 ? 'Advanced' : 
-                        lesson.categories?.length > 2 ? 'Intermediate' : 
+      const totalCategories = (lesson.categories?.length || 0) + 
+                             (lesson.tabContents?.reduce((sum, tc) => sum + (tc.categories?.length || 0), 0) || 0)
+      
+      const difficulty = totalCategories > 5 ? 'Advanced' : 
+                        totalCategories > 2 ? 'Intermediate' : 
                         'Beginner'
       
       // Generate base tags from title and categories
       const baseTags = [
         (lesson.title || '').toLowerCase(),
-        ...(lesson.categories?.map(c => c.name.toLowerCase()) || [])
+        ...(lesson.categories?.map(c => c.name.toLowerCase()) || []),
+        ...(lesson.tabContents?.flatMap(tc => 
+          tc.categories?.map(c => c.name.toLowerCase()) || []
+        ) || [])
       ]
       
       const lessonInfo = {
@@ -216,10 +269,10 @@ export async function buildSearchIndex(forceRefresh = false) {
     searchIndexCache = allItems
     cacheTimestamp = Date.now()
     
-    console.log(`Search index built: ${allItems.length} items from ${lessons.length} lessons`)
+    console.log(`🔍 Search index built: ${allItems.length} items from ${lessons.length} lessons`)
     return allItems
   } catch (error) {
-    console.error('Error building search index:', error)
+    console.error('❌ Error building search index:', error)
     return searchIndexCache || [] // Return cached version if available
   }
 }
@@ -236,7 +289,7 @@ export async function getSearchIndex() {
 export function clearSearchCache() {
   searchIndexCache = null
   cacheTimestamp = null
-  console.log('Search index cache cleared')
+  console.log('🗑️ Search index cache cleared')
 }
 
 // Search function

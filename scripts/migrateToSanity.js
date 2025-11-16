@@ -62,10 +62,10 @@ import { particleSystemsLessonData } from '../data/lessons/particleSystemsLesson
 
 // Initialize Sanity client
 const client = createClient({
-  projectId: 'l9y29z8y',
+  projectId: NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: 'production',
   useCdn: false,
-  token: 'sk1vd24uVdWdjwFf01MPOLmcXcH5z5uU3GkBBSpPCCR8LvGf56uf8bequDlXFr7jDsEOSLLubuAFK2OJ4iNpUWPpsrVlMA0dzf33zX3sA56Gk3l9Ifgtvfh2mxyrV0BmvyMVuxZzilHKqHZVxIEXDrskkyQ8Sc9BS40yg8J692pxUFnLr07C',
+  token: SANITY_TOKEN,
   apiVersion: '2024-01-01'
 });
 

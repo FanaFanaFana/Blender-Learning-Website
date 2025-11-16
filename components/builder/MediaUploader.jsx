@@ -2,15 +2,16 @@
 'use client'
 
 import { useState } from 'react'
-import { Upload, X, AlertCircle, File } from 'lucide-react'
+import { Upload, X, File } from 'lucide-react'
 
 export default function MediaUploader({ 
   currentUrl, 
   onUrlChange, 
   editMode,
-  onFileStaged, // NEW: Callback when user selects a file (doesn't upload yet)
+  onFileStaged, // Callback to pass File object to parent
 }) {
   const [stagedFile, setStagedFile] = useState(null)
+  const [previewUrl, setPreviewUrl] = useState(null)
   const [error, setError] = useState(null)
 
   const handleFileSelect = (e) => {
@@ -24,42 +25,48 @@ export default function MediaUploader({
       return
     }
 
-    // Validate file size (5MB max)
-    if (file.size > 5 * 1024 * 1024) {
-      setError('File too large. Maximum size is 5MB.')
+    // Validate file size (50MB max)
+    if (file.size > 50 * 1024 * 1024) {
+      setError('File too large. Maximum size is 50MB.')
       return
     }
 
     setError(null)
     
-    // Create a preview URL
-    const previewUrl = URL.createObjectURL(file)
-    setStagedFile({ file, previewUrl })
+    // Create preview URL for display only
+    const preview = URL.createObjectURL(file)
+    setPreviewUrl(preview)
+    setStagedFile(file)
     
-    // Pass the file object to parent (NOT uploaded yet)
+    // Pass the actual File object to parent (NOT the blob URL)
     if (onFileStaged) {
-      onFileStaged(file, previewUrl)
+      onFileStaged(file)
     }
     
-    // Set the preview URL in the lesson data
-    onUrlChange(previewUrl)
+    // Set a placeholder URL in the lesson data to indicate there's a file
+    onUrlChange(`__STAGED_FILE__:${file.name}`)
   }
 
   const clearMedia = () => {
-    if (stagedFile?.previewUrl) {
-      URL.revokeObjectURL(stagedFile.previewUrl)
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl)
     }
     setStagedFile(null)
+    setPreviewUrl(null)
     onUrlChange('')
     setError(null)
   }
 
+  // Check if current URL is a staged file placeholder
+  const isStagedFile = currentUrl?.startsWith('__STAGED_FILE__:')
+  const stagedFileName = isStagedFile ? currentUrl.split(':')[1] : null
+
   if (!editMode) {
-    if (!currentUrl) return null
+    if (!currentUrl || isStagedFile) return null
     
     return (
       <div className="media-preview">
-        {currentUrl.match(/\.(mp4|webm|mov)$/i) || currentUrl.startsWith('blob:') ? (
+        {currentUrl.match(/\.(mp4|webm|mov)$/i) ? (
           <video src={currentUrl} controls style={{ maxWidth: '100%', borderRadius: '8px' }} />
         ) : (
           <img src={currentUrl} alt="Media" style={{ maxWidth: '100%', borderRadius: '8px' }} />
@@ -73,16 +80,26 @@ export default function MediaUploader({
       {stagedFile && (
         <div className="staged-file-notice">
           <File size={16} />
-          <span>📁 Staged: {stagedFile.file.name} (will upload when you commit)</span>
+          <span>📁 Staged: {stagedFile.name} ({(stagedFile.size / 1024 / 1024).toFixed(2)} MB)</span>
+          <span style={{ marginLeft: 'auto', fontSize: '0.85rem', color: '#fbbf24' }}>
+            ⚠️ Will upload on commit
+          </span>
         </div>
       )}
 
-      {currentUrl ? (
+      {(previewUrl || (currentUrl && !isStagedFile)) ? (
         <div className="media-uploader-preview">
           <div className="media-preview-container">
-            {currentUrl.match(/\.(mp4|webm|mov)$/i) || currentUrl.startsWith('blob:') ? (
+            {previewUrl ? (
+              // Show preview for staged files
+              previewUrl.match(/\.(mp4|webm|mov)$/i) || stagedFile?.type.startsWith('video') ? (
+                <video src={previewUrl} controls style={{ maxWidth: '100%', borderRadius: '8px' }} />
+              ) : (
+                <img src={previewUrl} alt="Preview" style={{ maxWidth: '100%', borderRadius: '8px' }} />
+              )
+            ) : currentUrl.match(/\.(mp4|webm|mov)$/i) ? (
               <video src={currentUrl} controls style={{ maxWidth: '100%', borderRadius: '8px' }} />
-            ) : currentUrl.startsWith('http') || currentUrl.startsWith('/') || currentUrl.startsWith('blob:') ? (
+            ) : currentUrl.startsWith('http') || currentUrl.startsWith('/') ? (
               <img src={currentUrl} alt="Media" style={{ maxWidth: '100%', borderRadius: '8px' }} />
             ) : (
               <div style={{ 
@@ -133,7 +150,7 @@ export default function MediaUploader({
                 MP4, WebM, MOV, or images (max 50MB)
               </p>
               <p style={{ fontSize: '0.8rem', color: '#60a5fa', marginTop: '0.5rem' }}>
-                💡 Files won't upload until you click "Commit to Sanity"
+                💡 Files stage locally, upload only when you commit
               </p>
             </div>
           </label>

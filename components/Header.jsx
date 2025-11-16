@@ -159,7 +159,7 @@ export default function Header({ lessonData = null }) {
                       style={{
                         position: 'fixed',
                         top: '120px',
-                        right: '2rem'
+                        right: '10%'
                       }}
                     >
                       {dropdownCategories.map((cat) => (
