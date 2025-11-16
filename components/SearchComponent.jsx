@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { buildSearchIndex, searchLessons } from '@/app/utils/searchIndex'
-import './styles/searchComponent.css'
+import './styles/SearchComponent.css'
 
 export default function SearchComponent() {
   const [query, setQuery] = useState('')
