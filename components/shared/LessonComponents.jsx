@@ -13,8 +13,25 @@ export function BackButton() {
       className="back-button"
       onClick={() => window.history.back()}
       onMouseEnter={playHover}
+      style={{
+        padding: '1rem 0.75rem',
+        background: 'rgba(21, 35, 47, 0.6)',
+        border: '2px solid rgba(255, 255, 255, 0.08)',
+        borderRadius: '12px',
+        color: '#ffffff',
+        fontSize: '0.9rem',
+        fontWeight: '600',
+        cursor: 'pointer',
+        transition: 'all 0.3s ease',
+        display: 'flex',
+        flexDirection: 'column',  /* ⬅️ Stack vertically */
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '0.5rem'
+      }}
     >
-      ← Back
+      <span style={{ fontSize: '1.5rem' }}>←</span>
+      <span>Back</span>
     </button>
   )
 }
@@ -66,41 +83,116 @@ export function LessonHero({ title, gradientText, subtitle, gradientColors }) {
 // ============================================
 // 3. TAB NAVIGATION
 // ============================================
+// ============================================
+// 3. TAB NAVIGATION
+// ============================================
 export function TabNavigation({ tabs, activeTab, onTabChange, activeColor, onMouseEnter }) {
+  const tabCount = tabs.length;
+
+  // Different grid layouts based on tab count
+  const getGridStyle = () => {
+    switch(tabCount) {
+      case 1:
+        return {
+          gridTemplateColumns: '1fr',
+          maxWidth: '400px',
+          gap: '0'
+        };
+      case 2:
+        return {
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          maxWidth: '700px',
+          gap: '1rem'
+        };
+      case 3:
+        return {
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          maxWidth: '900px',
+          gap: '1rem'
+        };
+      case 4:
+        return {
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          maxWidth: '1000px',
+          gap: '1rem'
+        };
+      default: // 5+ tabs
+        return {
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          gridTemplateRows: 'repeat(2, 1fr)',
+          maxWidth: '1000px',
+          gap: '1rem'
+        };
+    }
+  };
+
+  // Different padding based on tab count
+  const getTabPadding = () => {
+    if (tabCount === 1) return '2rem 1.5rem';  // Bigger for single tab
+    if (tabCount === 2) return '1.5rem 1.25rem';  // Bigger for 2 tabs
+    if (tabCount === 3) return '1.5rem 1.25rem';  // Bigger for 3 tabs
+    return '1.25rem 1rem';  // Standard for 4+ tabs
+  };
+
+  // Different icon size based on tab count
+  const getIconSize = () => {
+    if (tabCount <= 3) return '42px';  // Bigger icons for 1-3 tabs
+    return '36px';  // Standard for 4+ tabs
+  };
+
+  // Different font size based on tab count
+  const getFontSize = () => {
+    if (tabCount === 1) return '1.2rem';  // Bigger for single tab
+    if (tabCount <= 3) return '1.1rem';  // Slightly bigger for 2-3 tabs
+    return '1rem';  // Standard for 4+ tabs
+  };
+
+  const gridStyle = getGridStyle();
+
   return (
-    <section style={{ padding: '0rem 0', background: 'transparent' }}>
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => onTabChange(tab.id)}
-              onMouseEnter={onMouseEnter}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                padding: '1rem 2rem',
-                background: 'rgba(21, 35, 47, 0.6)',
-                border: activeTab === tab.id ? `2px solid ${activeColor}` : '2px solid rgba(255, 255, 255, 0.08)',
-                borderRadius: '12px',
-                color: '#ffffff',
-                fontSize: '1.1rem',
-                fontWeight: '600',
-                cursor: 'pointer',
-                backgroundColor: activeTab === tab.id ? `${activeColor}15` : 'rgba(21, 35, 47, 0.6)',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseMove={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-            >
-              <img src={tab.icon} alt={tab.label} style={{ width: '40px', height: '40px' }} />
-              <span>{tab.label}</span>
-            </button>
-          ))}
-        </div>
-      </div>
-    </section>
+    <div style={{ 
+      display: 'grid',
+      ...gridStyle,
+      width: '100%',
+      margin: '0 auto',
+      justifyItems: 'stretch'
+    }}>
+      {tabs.map((tab) => (
+        <button
+          key={tab.id}
+          onClick={() => onTabChange(tab.id)}
+          onMouseEnter={onMouseEnter}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '0.5rem',
+            padding: getTabPadding(),
+            background: 'rgba(21, 35, 47, 0.6)',
+            border: activeTab === tab.id ? `2px solid ${activeColor}` : '2px solid rgba(255, 255, 255, 0.08)',
+            borderRadius: '12px',
+            color: '#ffffff',
+            fontSize: getFontSize(),
+            fontWeight: '600',
+            cursor: 'pointer',
+            backgroundColor: activeTab === tab.id ? `${activeColor}15` : 'rgba(21, 35, 47, 0.6)',
+            transition: 'all 0.3s ease',
+            textAlign: 'center',
+            minHeight: tabCount <= 3 ? '120px' : '100px'  // Taller for 1-3 tabs
+          }}
+          onMouseMove={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+          onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+        >
+          <img 
+            src={tab.icon} 
+            alt={tab.label} 
+            style={{ width: getIconSize(), height: getIconSize() }} 
+          />
+          <span>{tab.label}</span>
+        </button>
+      ))}
+    </div>
   )
 }
 

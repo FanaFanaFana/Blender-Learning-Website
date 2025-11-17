@@ -178,11 +178,31 @@ export function TabsSection({ lesson, activeTab, setActiveTab, add, remove, upda
   const [editingTab, setEditingTab] = useState(null)
 
   const availableTabTypes = [
-    { type: 'overview', label: 'Overview', icon: '👁️', description: 'Info cards section' },
-    { type: 'content', label: 'Content', icon: '📖', description: 'Main content categories' },
-    { type: 'shortcuts', label: 'Shortcuts', icon: '⌨️', description: 'Keyboard shortcuts' },
-    { type: 'practice', label: 'Practice', icon: '💪', description: 'Practice projects' }
-  ]
+  { 
+    type: 'overview', 
+    label: 'Overview', 
+    icon: '', // Grid layout for overview
+    description: 'Info cards section' 
+  },
+  { 
+    type: 'content', 
+    label: 'Content', 
+    icon: '', // Documents for content/learning materials
+    description: 'Main content categories' 
+  },
+  { 
+    type: 'shortcuts', 
+    label: 'Shortcuts', 
+    icon: '', // Properties/settings icon for shortcuts
+    description: 'Keyboard shortcuts' 
+  },
+  { 
+    type: 'practice', 
+    label: 'Practice', 
+    icon: '', // Tool settings for practice/hands-on
+    description: 'Practice projects' 
+  }
+]
 
   const handleAddTab = (type) => {
     const existingCount = (lesson.enabledTabs || []).filter(t => t.tabId.startsWith(type)).length

@@ -35,7 +35,7 @@ export default function MainPage() {
       </div>
       
       {/* Content container */}
-      <div className="container">
+      <div className="hero-container">
         {/* Hero Text */}
         <div className="hero-text-overlay">
           <h1>Blender Visual Documentation</h1>
@@ -43,11 +43,11 @@ export default function MainPage() {
         </div>
 
         {/* Feature Cards */}
-        <div className="features-grid">
+        <div className="hero-features-grid">
           {features.map((feature, index) => (
             <Link key={index} href={feature.link} onMouseEnter={playHover}>
-              <div className="feature-card">
-                <div className="feature-icon">
+              <div className="hero-feature-card">
+                <div className="hero-feature-icon">
                   <Image 
                     src={feature.icon} 
                     alt={feature.alt}
@@ -96,7 +96,7 @@ export default function MainPage() {
           object-fit: cover;
         }
 
-        .container {
+        .hero-container {
           position: relative;
           z-index: 2;
           width: 100%;
@@ -127,7 +127,7 @@ export default function MainPage() {
           text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
         }
 
-        .features-grid {
+        .hero-features-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
           gap: 2rem;
@@ -135,13 +135,13 @@ export default function MainPage() {
           margin: 0 auto;
         }
 
-        .features-grid :global(a) {
+        .hero-features-grid :global(a) {
           text-decoration: none;
           color: inherit;
           display: block;
         }
 
-        .feature-card {
+        .hero-feature-card {
           background: rgba(21, 35, 47, 0.85);
           backdrop-filter: blur(10px);
           border: 1px solid rgba(255, 255, 255, 0.1);
@@ -152,14 +152,14 @@ export default function MainPage() {
           cursor: pointer;
         }
 
-        .feature-card:hover {
+        .hero-feature-card:hover {
           transform: translateY(-8px);
           background: rgba(28, 45, 60, 0.9);
           border-color: rgba(59, 130, 246, 0.5);
           box-shadow: 0 12px 40px rgba(59, 130, 246, 0.2);
         }
 
-        .feature-icon {
+        .hero-feature-icon {
           margin-bottom: 1.5rem;
           display: flex;
           justify-content: center;
@@ -167,7 +167,7 @@ export default function MainPage() {
           height: 120px;
         }
 
-        .feature-card h3 {
+        .hero-feature-card h3 {
           font-size: 1.75rem;
           font-weight: 600;
           color: #ffffff;
@@ -185,7 +185,7 @@ export default function MainPage() {
             opacity: 0.4;
           }
 
-          .container {
+          .hero-container {
             padding: 3rem 1.5rem;
           }
 
@@ -194,12 +194,13 @@ export default function MainPage() {
             margin-bottom: 3rem;
           }
 
-          .features-grid {
+          .hero-features-grid {
             grid-template-columns: 1fr;
             gap: 1.5rem;
+            max-width: 400px;
           }
 
-          .feature-card {
+          .hero-feature-card {
             padding: 2.5rem 1.5rem;
           }
         }
@@ -211,15 +212,16 @@ export default function MainPage() {
             min-height: 75vh;
           }
 
-          .container {
+          .hero-container {
             padding: 2rem 1rem;
           }
 
-          .features-grid {
+          .hero-features-grid {
             gap: 1rem;
+            max-width: 350px;
           }
 
-          .feature-card {
+          .hero-feature-card {
             padding: 2rem 1rem;
           }
         }

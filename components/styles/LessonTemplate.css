@@ -1,6 +1,11 @@
-/* LessonTemplate.css */
+/* ========================================
+   LESSON TEMPLATE CSS
+   Complete organized stylesheet
+   ======================================== */
 
-/* Hero Section */
+/* ========================================
+   HERO SECTION
+   ======================================== */
 .lesson-hero-section {
   position: relative;
   padding: 0;
@@ -31,33 +36,76 @@
   width: 100%;
 }
 
-/* Tabs Section */
+/* ========================================
+   TABS NAVIGATION
+   ======================================== */
 .lesson-tabs-container {
   max-width: 1400px;
   margin: 0 auto 3rem;
-  padding: 0 2rem;
+  padding: 0 4rem;
+  margin-top: 2rem;
 }
 
-.tabs-layout {
-  display: flex;
+.tabs-layout-horizontal {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
   align-items: center;
-  gap: 1.5rem;
-  position: relative;
+  justify-items: center;
+}
+
+.back-button-wrapper {
+  display: flex;
+  align-items: stretch;
+  margin-right: 0rem;
+}
+
+.back-button-wrapper .back-button {
+  height: 100%;
+  min-height: 100px;
+  writing-mode: horizontal-tb;
+  padding: 1rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  margin-left: 0;
+}
+
+/* Dynamic height based on tab count */
+.back-button-wrapper[data-tab-count="1"] .back-button,
+.back-button-wrapper[data-tab-count="2"] .back-button,
+.back-button-wrapper[data-tab-count="3"] .back-button,
+.back-button-wrapper[data-tab-count="4"] .back-button {
+  min-height: 105px;
+}
+
+.back-button-wrapper[data-tab-count="5"] .back-button,
+.back-button-wrapper[data-tab-count="6"] .back-button,
+.back-button-wrapper[data-tab-count="7"] .back-button,
+.back-button-wrapper[data-tab-count="8"] .back-button {
+  min-height: 230px;
 }
 
 .tabs-centered {
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-top: 0rem;
 }
 
-/* Content Sections */
+/* ========================================
+   CONTENT SECTIONS
+   ======================================== */
 .lesson-section {
   padding: 4rem 0;
 }
 
 .lesson-container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -67,7 +115,9 @@
   margin: 0 auto;
 }
 
-/* Section Headers */
+/* ========================================
+   SECTION HEADERS
+   ======================================== */
 .section-title {
   font-size: 3.5rem;
   font-weight: 700;
@@ -82,13 +132,17 @@
   margin-bottom: 3rem;
 }
 
-/* Overview Cards Grid */
+/* ========================================
+   OVERVIEW CARDS
+   ======================================== */
 .overview-cards-grid {
   display: grid;
   gap: 2rem;
 }
 
-/* Content Categories */
+/* ========================================
+   CONTENT CATEGORIES
+   ======================================== */
 .categories-grid {
   display: grid;
   gap: 3rem;
@@ -106,7 +160,9 @@
   gap: 1.5rem;
 }
 
-/* Shortcuts Section */
+/* ========================================
+   SHORTCUTS SECTION
+   ======================================== */
 .shortcuts-grid {
   display: grid;
   gap: 2rem;
@@ -159,7 +215,9 @@
   font-family: 'Courier New', monospace;
 }
 
-/* Practice Projects */
+/* ========================================
+   PRACTICE PROJECTS
+   ======================================== */
 .practice-grid {
   display: grid;
   gap: 2rem;
@@ -174,7 +232,7 @@
 
 .practice-content {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 2rem;
 }
@@ -275,7 +333,9 @@
   transform: translateY(-2px);
 }
 
-/* Loading Skeleton */
+/* ========================================
+   LOADING STATES
+   ======================================== */
 .tab-content-skeleton {
   padding: 4rem 0;
 }
@@ -301,7 +361,9 @@
   animation: pulse 1.5s ease-in-out infinite;
 }
 
-/* Error State */
+/* ========================================
+   ERROR & EMPTY STATES
+   ======================================== */
 .error-state {
   padding: 4rem;
   text-align: center;
@@ -315,7 +377,6 @@
   color: #9ca3af;
 }
 
-/* Empty State */
 .empty-state {
   padding: 4rem 0;
   text-align: center;
@@ -331,7 +392,9 @@
   margin-top: 1rem;
 }
 
-/* Animations */
+/* ========================================
+   ANIMATIONS
+   ======================================== */
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
@@ -341,7 +404,30 @@
   }
 }
 
-/* Responsive */
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Tablet & Below */
+@media (max-width: 1200px) {
+  .lesson-tabs-container {
+    padding: 0 2rem;
+  }
+  
+  .tabs-layout-horizontal {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .back-button-wrapper .back-button {
+    flex-direction: row;
+    padding: 0.75rem 1.5rem;
+    min-height: auto !important;
+    height: auto;
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .lesson-hero-section {
     margin: 0 -1.5rem;
@@ -362,5 +448,43 @@
 
   .practice-start-button {
     width: 100%;
+  }
+
+  .lesson-tabs-container {
+    padding: 0 1rem;
+  }
+  
+  /* Force back button to horizontal on mobile */
+  .back-button-wrapper .back-button {
+    flex-direction: row !important;
+    padding: 0.75rem 1rem !important;
+    min-height: auto !important;
+    height: auto !important;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Reset any tab count specific heights on mobile */
+  .back-button-wrapper[data-tab-count] .back-button {
+    min-height: auto !important;
+  }
+  
+  /* Mobile tab grid - always 2 columns */
+  .tabs-centered > div {
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: auto !important;
+    max-width: 100% !important;
+    gap: 0.75rem !important;
+  }
+}
+
+/* Very small mobile */
+@media (max-width: 480px) {
+  .lesson-tabs-container {
+    padding: 0 0.75rem;
+  }
+  
+  .tabs-centered > div {
+    gap: 0.5rem !important;
   }
 }

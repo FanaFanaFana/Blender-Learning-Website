@@ -547,31 +547,230 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .detail-modal-overlay {
+    padding: 0;
+  }
+
+  .detail-modal-container {
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+    height: 100%;
+  }
+
   .detail-modal-header {
-    padding: 1.5rem;
+    padding: 1rem;
+    flex-wrap: wrap;
+    position: relative;
   }
 
   .detail-modal-header-content {
-    gap: 1rem;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding-right: 2.5rem;
+  }
+
+  .detail-modal-back-button {
+    width: 100%;
+    order: -1;
+    margin-bottom: 0.5rem;
   }
 
   .detail-modal-icon {
-    width: 48px;
-    height: 48px;
-    padding: 10px;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+  }
+
+  .detail-modal-title {
+    font-size: 1.25rem;
+  }
+
+  .detail-modal-description {
+    font-size: 0.875rem;
+  }
+
+  .detail-modal-close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
   }
 
   .detail-modal-content {
-    padding: 1.5rem;
+    padding: 1rem;
+  }
+
+  .detail-modal-overview {
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .detail-modal-overview-title {
+    font-size: 1.15rem;
+  }
+
+  .detail-modal-overview-text {
+    font-size: 0.9rem;
+  }
+
+  .detail-modal-page-title {
+    font-size: 1.2rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .detail-modal-media-container {
+    aspect-ratio: 16/9;
+    margin-bottom: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .detail-modal-controls-overlay {
+    padding: 1.5rem 0.75rem 0.75rem;
+  }
+
+  .detail-modal-controls {
+    gap: 0.5rem;
+  }
+
+  .detail-modal-control-button {
+    width: 28px;
+    height: 28px;
+    font-size: 10px;
+  }
+
+  .detail-modal-play-button {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .detail-modal-time-display {
+    font-size: 11px;
+  }
+
+  .detail-modal-fullscreen-button {
+    width: 28px;
+    height: 28px;
+  }
+
+  .detail-modal-page-content {
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .detail-modal-tips {
+    padding: 1.25rem;
+  }
+
+  .detail-modal-tips-title {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .detail-modal-tip-item {
+    font-size: 0.875rem;
+    gap: 0.75rem;
   }
 
   .detail-modal-footer {
-    padding: 1rem 1.5rem;
+    padding: 1rem;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.75rem;
+  }
+
+  .detail-modal-nav-button {
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    min-width: unset;
   }
 
   .detail-modal-pagination {
     order: -1;
+    width: 100%;
+    justify-content: center;
+    padding: 0.5rem 0;
+  }
+
+  .detail-modal-page-indicator.active {
+    width: 24px;
+  }
+
+  .detail-modal-page-indicator.inactive {
+    width: 7px;
+  }
+
+  /* Fullscreen mobile adjustments */
+  .detail-modal-fullscreen-controls {
+    bottom: 1rem;
+    width: calc(100% - 2rem);
+    max-width: 100%;
+    padding: 0.75rem 1rem;
+  }
+
+  .detail-modal-fullscreen-play-button {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .detail-modal-fullscreen-control-button {
+    width: 32px;
+    height: 32px;
+    font-size: 10px;
+  }
+
+  .detail-modal-fullscreen-time {
+    font-size: 12px;
+  }
+
+  .detail-modal-fullscreen-exit-hint {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 0.875rem;
+    font-size: 13px;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 480px) {
+  .detail-modal-header {
+    padding: 0.875rem;
+  }
+
+  .detail-modal-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .detail-modal-title {
+    font-size: 1.1rem;
+  }
+
+  .detail-modal-description {
+    font-size: 0.8rem;
+  }
+
+  .detail-modal-content {
+    padding: 0.875rem;
+  }
+
+  .detail-modal-overview,
+  .detail-modal-tips {
+    padding: 1rem;
+  }
+
+  .detail-modal-page-title {
+    font-size: 1.1rem;
+  }
+
+  .detail-modal-controls {
+    gap: 0.375rem;
+  }
+
+  .detail-modal-time-display {
+    display: none;
   }
 }

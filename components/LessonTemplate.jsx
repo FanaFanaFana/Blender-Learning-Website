@@ -192,24 +192,24 @@ export default function LessonTemplate({ lessonData }) {
           </div>
         </section>
         
-        {/* Tabs Navigation */}
-        <div className="lesson-tabs-container">
-          <div className="tabs-layout">
-            <div className="tabs-centered">
-              <div className="tabs-wrapper">
-                <BackButton />  {/* ✅ No changes needed here - it still works the same */}
-                <TabNavigation 
-                  onMouseEnter={playHover}
-                  tabs={tabs || []}
-                  activeTab={activeTab}
-                  onTabChange={setActiveTab}
-                  activeColor={themeColor}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
+       {/* Tabs Navigation */}
+<div className="lesson-tabs-container">
+  <div className="tabs-layout-horizontal">
+    <div className="back-button-wrapper" data-tab-count={tabs.length}>  {/* ⬅️ ADDED: Pass tab count */}
+      <BackButton />
+    </div>
+    <div className="tabs-centered">
+      <TabNavigation 
+        onMouseEnter={playHover}
+        tabs={tabs || []}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        activeColor={themeColor}
+      />
+    </div>
+  </div>
+</div>
+       
         {/* Loading State */}
         {!tabContentLoaded && <TabContentSkeleton />}
 
@@ -439,13 +439,7 @@ export default function LessonTemplate({ lessonData }) {
                             </div>
                           </div>
                           
-                          <button 
-                            className="practice-start-button"
-                            style={{ background: themeColor }}
-                            onMouseEnter={playHover}
-                          >
-                            Start →
-                          </button>
+                          
                         </div>
                       </div>
                     ))}

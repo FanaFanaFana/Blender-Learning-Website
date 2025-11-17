@@ -55,6 +55,13 @@ export default function Header({ lessonData = null }) {
 
             <SearchComponent />
 
+            {mobileMenuOpen && (
+              <div 
+                className="mobile-nav-overlay"
+                onClick={() => setMobileMenuOpen(false)}
+              />
+            )}
+
             <nav className={`nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
               <Link
                 onMouseEnter={playHover}
@@ -160,24 +167,26 @@ export default function Header({ lessonData = null }) {
                       >
                         ✕ Close
                       </button>
-                      {Array.from(
-                        new Map(
-                          [...visibleCategories, ...dropdownCategories].map(cat => [cat.key, cat])
-                        ).values()
-                      ).map((cat) => (
-                        <button
-                          key={cat.key}
-                          className="category-dropdown-item"
-                          onMouseEnter={playHover}
-                          onClick={() => {
-                            handleCategoryClick(cat.key)
-                            setCategoryDropdownOpen(false)
-                            setMobileMenuOpen(false)
-                          }}
-                        >
-                          <span>{cat.label}</span>
-                        </button>
-                      ))}
+                      <div className="category-dropdown-items-container">
+                        {Array.from(
+                          new Map(
+                            [...visibleCategories, ...dropdownCategories].map(cat => [cat.key, cat])
+                          ).values()
+                        ).map((cat) => (
+                          <button
+                            key={cat.key}
+                            className="category-dropdown-item"
+                            onMouseEnter={playHover}
+                            onClick={() => {
+                              handleCategoryClick(cat.key)
+                              setCategoryDropdownOpen(false)
+                              setMobileMenuOpen(false)
+                            }}
+                          >
+                            <span>{cat.label}</span>
+                          </button>
+                        ))}
+                      </div>
                     </div>
                   </>
                 )}
