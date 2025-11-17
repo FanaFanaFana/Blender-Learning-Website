@@ -236,7 +236,65 @@
 
 /* Mobile responsive */
 @media (max-width: 768px) {
+  /* Make sidebar narrower on mobile */
+  .documentation-sidebar.open {
+    width: 85vw;
+    max-width: 320px;
+    padding: 1rem;
+  }
+
+  /* Show the tab on mobile */
   .sidebar-tab {
-    display: none;
+    display: flex;
+    width: 32px;
+    height: 60px;
+    top: 20px;
+    transform: none;
+  }
+
+  .sidebar-tab-icon {
+    font-size: 1.2rem;
+  }
+
+  /* Adjust buffer zone for mobile */
+  .sidebar-buffer {
+    width: 85vw;
+    max-width: 320px;
+  }
+
+  /* Make search smaller */
+  .sidebar-search input {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  /* Compact topic items */
+  .sidebar-topic-item {
+    padding: 0.5rem 0.7rem;
+    gap: 0.6rem;
+  }
+
+  .sidebar-topic-title {
+    font-size: 0.85rem;
+  }
+
+  .sidebar-topic-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Smaller category headers */
+  .sidebar-category-header {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Reduce gaps */
+  .sidebar-topics {
+    gap: 1rem;
+  }
+
+  .sidebar-category-topics {
+    gap: 0.4rem;
   }
 }

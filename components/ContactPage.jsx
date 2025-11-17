@@ -50,11 +50,11 @@ export default function ContactPage() {
   }
 
   const handleDiscordClick = () => {
-    window.open('https://discord.gg/blenddocs', '_blank')
+    window.open('https://discord.gg/A5yYmxVXuP', '_blank')
   }
 
   const handleDocsClick = () => {
-    window.location.href = '/learn'
+    window.location.href = '/pages/learn'
   }
 
   const contactMethods = [

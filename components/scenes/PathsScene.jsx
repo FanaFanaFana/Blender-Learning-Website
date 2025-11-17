@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
@@ -11,8 +11,6 @@ export default function PathsScene() {
   const modelRef = useRef(null)
   const mixerRef = useRef(null)
   const mouseRef = useRef({ x: 0, y: 0 })
-  const edgesRef = useRef([])
-  const [showTopology, setShowTopology] = useState(false)
 
   useEffect(() => {
     if (!canvasRef.current) return
@@ -90,17 +88,15 @@ export default function PathsScene() {
         console.log('Applied scale:', scale)
         console.log('Final position:', model.position)
         
-        // Create wireframe geometry for topology view (shows all triangles/quads)
+        // Add orange outlines to all meshes
         model.traverse((child) => {
           if (child.isMesh) {
-            const wireframe = new THREE.WireframeGeometry(child.geometry)
+            const edges = new THREE.EdgesGeometry(child.geometry)
             const line = new THREE.LineSegments(
-              wireframe,
-              new THREE.LineBasicMaterial({ color: 0x000000, linewidth: 1 })
+              edges,
+              new THREE.LineBasicMaterial({ color: 0xff6600, linewidth: 2 })
             )
-            line.visible = false
             child.add(line)
-            edgesRef.current.push(line)
           }
         })
         
@@ -188,47 +184,9 @@ export default function PathsScene() {
     }
   }, [])
 
-  // Toggle topology visibility
-  useEffect(() => {
-    edgesRef.current.forEach((line) => {
-      line.visible = showTopology
-    })
-  }, [showTopology])
-
-  const toggleTopology = () => {
-    setShowTopology(!showTopology)
-  }
-
   return (
-  <div style={{ position: 'relative', width: '100%', height: '100%', zIndex: 1 }}>
-    <canvas ref={canvasRef} id="paths-canvas" style={{ width: '100%', height: '100%', position: 'relative', zIndex: 1 }} />
-      <button
-        onClick={toggleTopology}
-        style={{
-          position: 'absolute',
-          top: '20px',
-          right: '20px',
-          padding: '12px 24px',
-          backgroundColor: showTopology ? '#4a9fd8' : '#ffffff',
-          color: showTopology ? '#ffffff' : '#000000',
-          border: '2px solid #4a9fd8',
-          borderRadius: '8px',
-          cursor: 'pointer',
-          fontWeight: '600',
-          fontSize: '14px',
-          transition: 'all 0.3s ease',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-          zIndex: 10
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = 'scale(1.05)'
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = 'scale(1)'
-        }}
-      >
-        {showTopology ? 'Hide Topology' : 'Show Topology'}
-      </button>
+    <div style={{ position: 'relative', width: '100%', height: '100%', zIndex: 1 }}>
+      <canvas ref={canvasRef} id="paths-canvas" style={{ width: '100%', height: '100%', position: 'relative', zIndex: 1 }} />
     </div>
   )
 }

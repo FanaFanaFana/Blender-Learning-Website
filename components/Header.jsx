@@ -9,7 +9,7 @@ import BuilderModal from '@/components/builder/BuilderModal'
 import { playHover } from '@/app/utils/sounds'
 import { Settings } from 'lucide-react'
 import { getVisibleCategories, getDropdownCategories } from '@/app/config/categories'
-import './styles/Header.css' // ✅ Import dedicated CSS file
+import './styles/Header.css'
 
 export default function Header({ lessonData = null }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -153,20 +153,27 @@ export default function Header({ lessonData = null }) {
                       className="category-dropdown-overlay"
                       onClick={() => setCategoryDropdownOpen(false)}
                     />
-                    <div 
-                      className="category-dropdown"
-                      style={{
-                        position: 'fixed',
-                        top: '120px',
-                        right: '10%'
-                      }}
-                    >
-                      {dropdownCategories.map((cat) => (
+                    <div className="category-dropdown">
+                      <button 
+                        className="category-dropdown-close"
+                        onClick={() => setCategoryDropdownOpen(false)}
+                      >
+                        ✕ Close
+                      </button>
+                      {Array.from(
+                        new Map(
+                          [...visibleCategories, ...dropdownCategories].map(cat => [cat.key, cat])
+                        ).values()
+                      ).map((cat) => (
                         <button
                           key={cat.key}
                           className="category-dropdown-item"
                           onMouseEnter={playHover}
-                          onClick={() => handleCategoryClick(cat.key)}
+                          onClick={() => {
+                            handleCategoryClick(cat.key)
+                            setCategoryDropdownOpen(false)
+                            setMobileMenuOpen(false)
+                          }}
                         >
                           <span>{cat.label}</span>
                         </button>

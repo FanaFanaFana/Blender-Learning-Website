@@ -89,9 +89,9 @@
 .path-button {
   display: flex;
   align-items: center;
-  gap: 0.53rem;
-  padding: clamp(0.75rem, 2vw, 2rem) clamp(1.5rem, 3vw, 2rem);
-  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  gap: 0.75rem;
+  padding: clamp(1.8rem, 2.5vw, 1.9rem) clamp(4rem, 4vw, 2.5rem);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
@@ -103,8 +103,8 @@
 }
 
 .path-button img {
-  max-width: clamp(30px, 8vw, 50px);
-  max-height: clamp(30px, 8vw, 50px);
+  max-width: clamp(40px, 10vw, 60px);
+  max-height: clamp(40px, 10vw, 60px);
   width: auto;
   height: auto;
   object-fit: contain;
@@ -125,7 +125,7 @@
    ======================================== */
 .category-dropdown-wrapper {
   position: relative;
-  z-index: 9999999;
+  z-index: 100;
   isolation: isolate;
 }
 
@@ -142,7 +142,7 @@
   min-width: 250px;
   max-height: 60vh;
   overflow-y: auto;
-  z-index: 99999999;
+  z-index: 100;
   backdrop-filter: blur(10px);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }

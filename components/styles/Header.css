@@ -41,6 +41,17 @@
   object-fit: contain;
 }
 
+.logo span {
+  display: inline;
+}
+
+/* Hide logo text on small screens */
+@media (max-width: 576px) {
+  .logo span {
+    display: none;
+  }
+}
+
 /* ========================================
    NAVIGATION
    ======================================== */
@@ -116,7 +127,7 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   position: relative;
-  z-index: 10001;
+  z-index: 100;
 }
 
 .category-bar::-webkit-scrollbar {
@@ -166,6 +177,51 @@
   gap: 0.35rem !important;
 }
 
+/* Responsive category visibility */
+@media (max-width: 1200px) {
+  .category-link:not(.category-more):nth-child(n+7) {
+    display: none !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .category-link:not(.category-more):nth-child(n+5) {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .category-link:not(.category-more):nth-child(n+3) {
+    display: none !important;
+  }
+  
+  .category-bar {
+    padding: 0.5rem 0;
+    z-index: 50;
+  }
+}
+
+@media (max-width: 576px) {
+  .category-link:not(.category-more):nth-child(n+2) {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-link:not(.category-more) {
+    display: none !important;
+  }
+  
+  .category-links {
+    justify-content: center;
+  }
+  
+  /* Make sure More button is always visible */
+  .category-more {
+    display: flex !important;
+  }
+}
+
 /* ========================================
    CATEGORY DROPDOWN
    ======================================== */
@@ -175,13 +231,13 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 100050;
+  z-index: 200;
 }
 
 .category-dropdown {
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  right: 0;
+  position: fixed;
+  top: 120px;
+  right: 10%;
   background: rgba(21, 35, 47, 0.98);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
@@ -189,7 +245,7 @@
   min-width: 200px;
   max-height: 400px;
   overflow-y: auto;
-  z-index: 100051;
+  z-index: 201;
   backdrop-filter: blur(10px);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
 }
@@ -221,24 +277,30 @@
   background: rgba(245, 146, 31, 0.1) !important;
 }
 
+.category-dropdown-close {
+  display: none;
+}
+
 /* ========================================
    RESPONSIVE
    ======================================== */
 @media (max-width: 768px) {
   .nav {
     display: none;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 70px;
     left: 0;
     right: 0;
+    bottom: 0;
     background: rgba(13, 27, 42, 0.98);
     backdrop-filter: blur(20px);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 1rem 0;
+    padding: 0.5rem 0;
     flex-direction: column;
     gap: 0;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    z-index: 9000;
   }
 
   .nav.mobile-open {
@@ -246,8 +308,8 @@
   }
 
   .nav-link {
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
     transition: background 0.2s ease;
   }
 
@@ -256,47 +318,109 @@
   }
 
   .header {
-    position: relative;
+    position: sticky;
+    top: 0;
+    background: transparent;
+    backdrop-filter: none;
+    padding: 0.75rem 0;
   }
 
   .mobile-menu-btn {
     display: flex;
+    z-index: 9001;
   }
 
   .builder-trigger {
-    width: 100%;
+    width: calc(100% - 3rem);
     justify-content: center;
-    margin-top: 1rem;
+    margin: 0.75rem 1.5rem;
+    padding: 0.75rem !important;
+    font-size: 1rem !important;
+  }
+
+  /* Smaller logo on mobile */
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .logo-img {
+    width: 45px;
+    height: 45px;
+  }
+
+  /* Make search component smaller on mobile - targets the search wrapper */
+  .nav-wrapper > :nth-child(2) {
+    max-width: 220px;
+  }
+
+  /* Mobile-specific category dropdown - full screen */
+  .category-dropdown-overlay {
+    background: rgba(0, 0, 0, 0.95) !important;
+    z-index: 10000 !important;
+  }
+
+  .category-dropdown {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    border-radius: 0 !important;
+    padding: 2rem 1rem !important;
+    max-height: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    overflow-y: auto !important;
+    z-index: 10001 !important;
+    border: none !important;
+    min-width: auto !important;
+  }
+
+  .category-dropdown-close {
+    position: sticky !important;
+    display: block !important;
+    top: 0;
+    background: rgba(245, 146, 31, 0.2) !important;
+    color: rgb(245, 146, 31) !important;
+    border: 1px solid rgb(245, 146, 31) !important;
     padding: 1rem !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    border-radius: 8px !important;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    z-index: 10;
   }
 
-  .category-bar {
-    padding: 0.5rem 0;
+  .category-dropdown-item {
+    font-size: 1.05rem !important;
+    padding: 1.25rem 1.5rem !important;
+    width: 100% !important;
+    min-width: auto !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    margin-bottom: 0 !important;
+    white-space: normal !important;
   }
 
-  .category-links {
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding: 0 1rem;
-  }
-
-  .category-link {
-    font-size: 0.75rem;
-    padding: 0.3rem 0.6rem;
-  }
-
-  .category-link span {
-    display: inline;
-  }
-
-  .category-more span:last-child {
-    display: inline !important;
+  /* Hide mobile more button - not needed */
+  .mobile-more-btn {
+    display: none !important;
   }
 }
 
 @media (min-width: 769px) {
   .category-links {
     gap: 1.25rem;
+  }
+
+  /* Hide close button on desktop */
+  .category-dropdown-close {
+    display: none;
   }
 }
