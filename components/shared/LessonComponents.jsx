@@ -3,6 +3,7 @@
 
 import { useState } from 'react'
 import { playHover } from '@/app/utils/sounds'
+import BookmarkButton from '@/components/BookmarkButton'
 
 // ============================================
 // 1. BACK BUTTON
@@ -48,7 +49,7 @@ export function LessonHero({ title, gradientText, subtitle, gradientColors }) {
       textAlign: 'center'
     }}>
       <h1 style={{
-        fontSize: 'clamp(2.5rem, 6vw, 5rem)',
+        fontSize: 'clamp(3.5rem, 7vw, 7rem)',
         fontWeight: '700',
         marginBottom: '1.5rem',
         lineHeight: '1.1'
@@ -80,9 +81,6 @@ export function LessonHero({ title, gradientText, subtitle, gradientColors }) {
 }
 
 
-// ============================================
-// 3. TAB NAVIGATION
-// ============================================
 // ============================================
 // 3. TAB NAVIGATION
 // ============================================
@@ -217,9 +215,11 @@ export function InfoCard({ icon, title, content, onMouseEnter }) {
 }
 
 // ============================================
-// 5. CLICKABLE CARD (with hover effect)
+// 5. CLICKABLE CARD (with hover effect + bookmark)
 // ============================================
-export function ClickableCard({ item, color, onClick, onMouseEnter }) {
+
+
+export function ClickableCard({ item, color, onClick, onMouseEnter, lessonData, favorites, onFavoritesChange }) {
   const [isHovered, setIsHovered] = useState(false)
   
   return (
@@ -237,9 +237,42 @@ export function ClickableCard({ item, color, onClick, onMouseEnter }) {
         border: '1px solid rgba(255, 255, 255, 0.05)',
         transition: 'all 0.3s ease',
         cursor: 'pointer',
-        transform: isHovered ? 'translateY(-5px)' : 'translateY(0)'
+        transform: isHovered ? 'translateY(-5px)' : 'translateY(0)',
+        position: 'relative'
       }}
     >
+      {/* ✅ Pass item data to bookmark button */}
+      {lessonData && (
+        <div 
+          onClick={(e) => e.stopPropagation()}
+          style={{
+            position: 'absolute',
+            top: '0.75rem',
+            right: '0.75rem',
+            zIndex: 10
+          }}
+        >
+          <BookmarkButton
+            lesson={{
+              id: lessonData.lessonId?.current || lessonData.id,
+              title: lessonData.heroConfig?.title || '',
+              gradientText: lessonData.heroConfig?.gradientText || '',
+              subtitle: lessonData.heroConfig?.subtitle || '',
+              themeColor: color,
+              icon: lessonData.lessonIcon || '/Icons/blender_icon_current_file.svg',
+              lessonCategory: lessonData.category || lessonData.lessonCategory
+            }}
+            item={{  // ✅ Pass the item data
+              ...item,
+              color: color
+            }}
+            size="small"
+            favorites={favorites}
+            onFavoritesChange={onFavoritesChange}
+          />
+        </div>
+      )}
+
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
         <img src={item.icon} alt={item.name} style={{ width: '30px', height: '30px', borderRadius: '8px' }} />
         <h4 style={{ fontSize: '1.25rem', margin: 0, color }}>{item.name}</h4>

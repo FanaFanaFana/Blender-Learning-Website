@@ -2,21 +2,23 @@
 'use client'
 
 import { useState, useEffect, Suspense, useCallback, useMemo } from 'react'
+import { useSession } from 'next-auth/react'
 import dynamic from 'next/dynamic'
 import Footer from '@/components/Footer'
 import Sidebar from '@/components/Sidebar'
+import BookmarkButton from '@/components/BookmarkButton'
 import { playHover } from '@/app/utils/sounds'
 import './styles/LessonTemplate.css'
 
 import { 
-  BackButton,        // ✅ Now imported from LessonComponents
+  BackButton,
   LessonHero, 
   TabNavigation, 
   InfoCard,
   ClickableCard,
 } from '@/components/shared/LessonComponents'
 
-// ✨ DYNAMIC IMPORTS - Load heavy components only when needed
+// ✨ DYNAMIC IMPORTS
 const LessonScene = dynamic(() => import('@/components/scenes/LessonScene'), {
   ssr: false,
   loading: () => <div style={{ width: '100%', height: '100%', background: 'rgba(16, 185, 129, 0.05)' }} />
@@ -58,6 +60,8 @@ const TabContentSkeleton = () => (
 )
 
 export default function LessonTemplate({ lessonData }) {
+  const { data: session } = useSession()
+  
   // Safety check
   if (!lessonData || typeof lessonData !== 'object') {
     console.error('❌ Invalid lessonData received:', lessonData)
@@ -78,12 +82,46 @@ export default function LessonTemplate({ lessonData }) {
   const [currentPage, setCurrentPage] = useState(0)
   const [tabContentLoaded, setTabContentLoaded] = useState(false)
   const [allLessonItems, setAllLessonItems] = useState([])
+  
+  // ✅ Favorites management
+  const [favorites, setFavorites] = useState([])
+  const [favoritesLoaded, setFavoritesLoaded] = useState(false)
 
   const {
     heroConfig = {},
     tabs = lessonData.enabledTabs || [],
     themeColor = '#3b82f6',
   } = lessonData || {}
+
+  // ✅ Fetch favorites once when user logs in
+  useEffect(() => {
+    if (session?.user) {
+      fetchFavorites()
+    } else {
+      setFavoritesLoaded(true)
+      setFavorites([])
+    }
+  }, [session])
+
+  const fetchFavorites = async () => {
+  if (!session?.user) {
+    setFavoritesLoaded(true)
+    setFavorites([])
+    return
+  }
+  
+  try {
+    const response = await fetch('/api/favorites')
+    if (response.ok) {
+      const data = await response.json()
+      setFavorites(data)
+    }
+  } catch (error) {
+    console.error('Error fetching favorites:', error)
+  } finally {
+    setFavoritesLoaded(true)
+  }
+}
 
   // Debug logging
   useEffect(() => {
@@ -179,7 +217,7 @@ export default function LessonTemplate({ lessonData }) {
       <Sidebar />
       
       <main>
-        {/* Hero Section */}
+        {/* Hero Section with Bookmark Button */}
         <section className="lesson-hero-section">
           <div className="lesson-hero-background">
             <Suspense fallback={<div style={{ width: '100%', height: '100%', background: 'rgba(16, 185, 129, 0.05)' }} />}>
@@ -188,27 +226,51 @@ export default function LessonTemplate({ lessonData }) {
           </div>
 
           <div className="lesson-hero-content">
+            {/* ✅ Bookmark button with favorites */}
+            <div style={{ 
+              position: 'absolute', 
+              top: '2rem', 
+              right: '2rem',
+              zIndex: 10
+            }}>
+              <BookmarkButton 
+                lesson={{
+                  id: lessonData.lessonId?.current || lessonData.id,
+                  title: heroConfig.title,
+                  gradientText: heroConfig.gradientText,
+                  fullTitle: `${heroConfig.title} ${heroConfig.gradientText}`,
+                  subtitle: heroConfig.subtitle,
+                  themeColor: themeColor,
+                  icon: lessonData.lessonIcon || '/Icons/blender_icon_current_file.svg',
+                  lessonCategory: lessonData.category || lessonData.lessonCategory
+                }}
+                size="large"
+                showLabel={true}
+                favorites={favorites}
+                onFavoritesChange={fetchFavorites}
+              />
+            </div>
             <LessonHero {...heroConfig} />
           </div>
         </section>
         
-       {/* Tabs Navigation */}
-<div className="lesson-tabs-container">
-  <div className="tabs-layout-horizontal">
-    <div className="back-button-wrapper" data-tab-count={tabs.length}>  {/* ⬅️ ADDED: Pass tab count */}
-      <BackButton />
-    </div>
-    <div className="tabs-centered">
-      <TabNavigation 
-        onMouseEnter={playHover}
-        tabs={tabs || []}
-        activeTab={activeTab}
-        onTabChange={setActiveTab}
-        activeColor={themeColor}
-      />
-    </div>
-  </div>
-</div>
+        {/* Tabs Navigation */}
+        <div className="lesson-tabs-container">
+          <div className="tabs-layout-horizontal">
+            <div className="back-button-wrapper" data-tab-count={tabs.length}>
+              <BackButton />
+            </div>
+            <div className="tabs-centered">
+              <TabNavigation 
+                onMouseEnter={playHover}
+                tabs={tabs || []}
+                activeTab={activeTab}
+                onTabChange={setActiveTab}
+                activeColor={themeColor}
+              />
+            </div>
+          </div>
+        </div>
        
         {/* Loading State */}
         {!tabContentLoaded && <TabContentSkeleton />}
@@ -257,34 +319,37 @@ export default function LessonTemplate({ lessonData }) {
               </p>
 
               {activeTabContent.categories?.length > 0 && (
-                <div className="categories-grid">
-                  {activeTabContent.categories.map((category, idx) => (
-                    <div key={idx}>
-                      <h3 
-                        className="category-header"
-                        style={{ color: category.color || themeColor }}
-                      >
-                        {category.name}
-                      </h3>
+  <div className="categories-grid">
+    {activeTabContent.categories.map((category, idx) => (
+      <div key={idx}>
+        <h3 
+          className="category-header"
+          style={{ color: category.color || themeColor }}
+        >
+          {category.name}
+        </h3>
 
-                      <div className="category-items-grid">
-                        {(category.items || []).map((item, itemIdx) => (
-                          <ClickableCard
-                            onMouseEnter={playHover}
-                            key={itemIdx}
-                            item={item}
-                            color={category.color || themeColor}
-                            onClick={() => {
-                              setSelectedItem({ ...item, color: category.color || themeColor })
-                              setCurrentPage(0)
-                            }}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
+        <div className="category-items-grid">
+          {(category.items || []).map((item, itemIdx) => (
+            <ClickableCard
+              onMouseEnter={playHover}
+              key={itemIdx}
+              item={item}
+              color={category.color || themeColor}
+              lessonData={lessonData}
+              favorites={favorites}  // ✅ Already passing this
+              onFavoritesChange={() => fetchFavorites()}  // ✅ Already passing this
+              onClick={() => {
+                setSelectedItem({ ...item, color: category.color || themeColor })
+                setCurrentPage(0)
+              }}
+            />
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+)}
             </div>
           </section>
         )}
@@ -317,6 +382,9 @@ export default function LessonTemplate({ lessonData }) {
                           key={itemIdx}
                           item={item}
                           color={category.color || themeColor}
+                          lessonData={lessonData}
+                          favorites={favorites}
+                           onFavoritesChange={() => fetchFavorites()}
                           onClick={() => {
                             setSelectedItem({ ...item, color: category.color || themeColor })
                             setCurrentPage(0)
@@ -438,8 +506,6 @@ export default function LessonTemplate({ lessonData }) {
                               ))}
                             </div>
                           </div>
-                          
-                          
                         </div>
                       </div>
                     ))}

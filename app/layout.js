@@ -1,6 +1,8 @@
+// app/layout.jsx
 import './globals.css'
 import { customFont } from './fonts'
 import { IconProvider } from '@/components/shared/IconContext'
+import SessionProvider from '@/components/SessionProvider'
 
 export const metadata = {
   title: 'Blender Visual Documentation - Master 3D Modeling, Animation, and Rendering',
@@ -17,9 +19,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={customFont.variable}>
       <body className={customFont.className}>
-        <IconProvider>
-          {children}
-        </IconProvider>
+        <SessionProvider>
+          <IconProvider>
+            {children}
+          </IconProvider>
+        </SessionProvider>
       </body>
     </html>
   )

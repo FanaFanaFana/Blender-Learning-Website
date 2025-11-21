@@ -1,0 +1,380 @@
+/* ========================================
+   LEGAL PAGES STYLES
+   Privacy Policy, Terms of Use, FAQ
+   ======================================== */
+
+.legal-page {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  background: var(--bg-primary, #0a1628);
+  position: relative;
+}
+
+.legal-close-button {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  background: rgba(21, 35, 47, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary, #ffffff);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+}
+
+.legal-close-button:hover {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.5);
+  color: #3b82f6;
+  transform: rotate(90deg);
+}
+
+.legal-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.legal-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.legal-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--text-primary, #ffffff);
+  margin-bottom: 0.75rem;
+}
+
+.last-updated {
+  font-size: 1rem;
+  color: var(--text-muted, #8fa9bd);
+  margin: 0;
+}
+
+.legal-content {
+  color: var(--text-secondary, #b0c4d4);
+  line-height: 1.8;
+}
+
+.legal-content h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary, #ffffff);
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.legal-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary, #ffffff);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.legal-content h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary, #ffffff);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.legal-content p {
+  margin-bottom: 1.25rem;
+  font-size: 1.05rem;
+}
+
+.legal-content ul {
+  margin: 1.5rem 0;
+  padding-left: 2rem;
+}
+
+.legal-content li {
+  margin-bottom: 0.75rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.legal-content li strong {
+  color: var(--text-primary, #ffffff);
+}
+
+.legal-content a {
+  color: #3b82f6;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.legal-content a:hover {
+  color: #60a5fa;
+  text-decoration: underline;
+}
+
+/* ========================================
+   FAQ SPECIFIC STYLES
+   ======================================== */
+
+.faq-content {
+  margin-top: 2rem;
+}
+
+.faq-item {
+  background: rgba(21, 35, 47, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1.5rem;
+  background: transparent;
+  border: none;
+  color: var(--text-primary, #ffffff);
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.2s;
+}
+
+.faq-question:hover {
+  color: #3b82f6;
+}
+
+.faq-question.active {
+  color: #3b82f6;
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.faq-answer {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  padding: 0 1.5rem;
+}
+
+.faq-answer p {
+  padding-bottom: 1.5rem;
+  color: var(--text-secondary, #b0c4d4);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.faq-contact {
+  margin-top: 4rem;
+  padding: 3rem;
+  background: rgba(21, 35, 47, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.faq-contact h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary, #ffffff);
+  margin-bottom: 1rem;
+}
+
+.faq-contact p {
+  color: var(--text-secondary, #b0c4d4);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.contact-button {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: #3b82f6;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.contact-button:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+  .legal-page {
+    padding: 3rem 1.5rem;
+  }
+
+  .legal-close-button {
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
+  }
+
+  .legal-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .legal-content h2 {
+    font-size: 1.75rem;
+    margin-top: 2.5rem;
+  }
+
+  .legal-content h3 {
+    font-size: 1.35rem;
+  }
+
+  .legal-content h4 {
+    font-size: 1.15rem;
+  }
+
+  .legal-content p,
+  .legal-content li {
+    font-size: 1rem;
+  }
+
+  .faq-question {
+    padding: 1.25rem;
+    font-size: 1.05rem;
+  }
+
+  .faq-answer p {
+    font-size: 1rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .faq-contact {
+    padding: 2rem 1.5rem;
+  }
+
+  .faq-contact h2 {
+    font-size: 1.75rem;
+  }
+
+  .faq-contact p {
+    font-size: 1rem;
+  }
+
+  .contact-button {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .legal-page {
+    padding: 2rem 1rem;
+  }
+
+  .legal-close-button {
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+  }
+
+  .legal-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .legal-header h1 {
+    font-size: 2rem;
+  }
+
+  .last-updated {
+    font-size: 0.9rem;
+  }
+
+  .legal-content h2 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .legal-content h3 {
+    font-size: 1.25rem;
+  }
+
+  .legal-content h4 {
+    font-size: 1.1rem;
+  }
+
+  .legal-content p,
+  .legal-content li {
+    font-size: 0.95rem;
+  }
+
+  .legal-content ul {
+    padding-left: 1.5rem;
+  }
+
+  .faq-question {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .faq-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .faq-answer p {
+    font-size: 0.95rem;
+    padding-bottom: 1rem;
+  }
+
+  .faq-contact {
+    padding: 1.5rem 1rem;
+    margin-top: 3rem;
+  }
+
+  .faq-contact h2 {
+    font-size: 1.5rem;
+  }
+
+  .faq-contact p {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-button {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}

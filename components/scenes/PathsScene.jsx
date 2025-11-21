@@ -94,7 +94,7 @@ export default function PathsScene() {
               const edges = new THREE.EdgesGeometry(child.geometry)
               const line = new THREE.LineSegments(
                 edges,
-                new THREE.LineBasicMaterial({ color: 0x00000, linewidth: 3 })
+                new THREE.LineBasicMaterial({ color: 0x00000, linewidth: 2 })
               )
               child.add(line)
             }

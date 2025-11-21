@@ -25,8 +25,8 @@ export default function MediaUploader({
       return
     }
 
-    // Validate file size (50MB max)
-    if (file.size > 50 * 1024 * 1024) {
+    // Validate file size (5MB max)
+    if (file.size > 5 * 1024 * 1024) {
       setError('File too large. Maximum size is 50MB.')
       return
     }
@@ -147,7 +147,7 @@ export default function MediaUploader({
               <Upload size={32} />
               <p><strong>Click to select file</strong> or drag and drop</p>
               <p style={{ fontSize: '0.85rem', color: '#7a8c9e' }}>
-                MP4, WebM, MOV, or images (max 50MB)
+                MP4, WebM, MOV, or images (max 5MB)
               </p>
               <p style={{ fontSize: '0.8rem', color: '#60a5fa', marginTop: '0.5rem' }}>
                 💡 Files stage locally, upload only when you commit

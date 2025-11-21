@@ -1,4 +1,3 @@
-// FILE: components/shared/IconPicker.jsx
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
@@ -12,6 +11,8 @@ export default function IconPicker({ value, onChange, editMode, size = 'normal' 
   const [searchQuery, setSearchQuery] = useState('')
   const [mounted, setMounted] = useState(false)
   const modalRef = useRef(null)
+  const isScrollingRef = useRef(false)  // ⬅️ ADDED: Track if user is scrolling
+  const touchStartY = useRef(0)  // ⬅️ ADDED: Track touch start position
 
   useEffect(() => {
     setMounted(true)
@@ -73,6 +74,24 @@ export default function IconPicker({ value, onChange, editMode, size = 'normal' 
       {/* Overlay */}
       <div
         onClick={handleClose}
+        onTouchStart={(e) => {
+          touchStartY.current = e.touches[0].clientY
+          isScrollingRef.current = false
+        }}
+        onTouchMove={(e) => {
+          // If touch moved more than 10px, consider it scrolling
+          const deltaY = Math.abs(e.touches[0].clientY - touchStartY.current)
+          if (deltaY > 10) {
+            isScrollingRef.current = true
+          }
+        }}
+        onTouchEnd={(e) => {
+          // Only close if NOT scrolling and touching overlay directly
+          if (!isScrollingRef.current && e.target === e.currentTarget) {
+            handleClose()
+          }
+          isScrollingRef.current = false
+        }}
         style={{
           position: 'fixed',
           top: 0,
@@ -91,9 +110,22 @@ export default function IconPicker({ value, onChange, editMode, size = 'normal' 
         ref={modalRef}
         onClick={(e) => e.stopPropagation()}
         onMouseDown={(e) => e.stopPropagation()}
-        onTouchStart={(e) => e.stopPropagation()}
-        onTouchMove={(e) => e.stopPropagation()}
-        onTouchEnd={(e) => e.stopPropagation()}
+        onTouchStart={(e) => {
+          e.stopPropagation()
+          touchStartY.current = e.touches[0].clientY
+          isScrollingRef.current = false
+        }}
+        onTouchMove={(e) => {
+          e.stopPropagation()
+          const deltaY = Math.abs(e.touches[0].clientY - touchStartY.current)
+          if (deltaY > 10) {
+            isScrollingRef.current = true
+          }
+        }}
+        onTouchEnd={(e) => {
+          e.stopPropagation()
+          isScrollingRef.current = false
+        }}
         style={{
           position: 'fixed',
           top: '50%',
@@ -284,7 +316,21 @@ export default function IconPicker({ value, onChange, editMode, size = 'normal' 
         <div 
           onClick={(e) => e.stopPropagation()}
           onMouseDown={(e) => e.stopPropagation()}
-          onTouchStart={(e) => e.stopPropagation()}
+          onTouchStart={(e) => {
+            e.stopPropagation()
+            touchStartY.current = e.touches[0].clientY
+            isScrollingRef.current = false
+          }}
+          onTouchMove={(e) => {
+            e.stopPropagation()
+            const deltaY = Math.abs(e.touches[0].clientY - touchStartY.current)
+            if (deltaY > 10) {
+              isScrollingRef.current = true
+            }
+          }}
+          onTouchEnd={(e) => {
+            e.stopPropagation()
+          }}
           style={{
             flex: 1,
             overflow: 'auto',
@@ -318,13 +364,17 @@ export default function IconPicker({ value, onChange, editMode, size = 'normal' 
                   key={i}
                   onClick={(e) => {
                     e.stopPropagation()
-                    handleIconSelect(icon)
+                    if (!isScrollingRef.current) {
+                      handleIconSelect(icon)
+                    }
                   }}
                   onMouseDown={(e) => e.stopPropagation()}
                   onTouchEnd={(e) => {
                     e.stopPropagation()
                     e.preventDefault()
-                    handleIconSelect(icon)
+                    if (!isScrollingRef.current) {
+                      handleIconSelect(icon)
+                    }
                   }}
                   title={icon.split('/').pop()?.replace(/\.(svg|png|jpg|jpeg|gif|webp)$/i, '')}
                   style={{

@@ -158,7 +158,11 @@
 /* Mobile responsive */
 @media (max-width: 768px) {
   .search-container {
-    flex: 1 1 100%;
+    flex: 1 1 300px;
+    padding-left: 1.3rem ;
+    padding-right: 1.5rem;
+   
+    
   }
 
   .search-dropdown {

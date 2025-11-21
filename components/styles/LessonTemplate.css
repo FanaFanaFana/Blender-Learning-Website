@@ -36,6 +36,14 @@
   width: 100%;
 }
 
+/* ✅ NEW: Bookmark button in hero */
+.hero-bookmark-wrapper {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 10;
+}
+
 /* ========================================
    TABS NAVIGATION
    ======================================== */
@@ -405,7 +413,8 @@
 }
 
 /* ========================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN - MOBILE FIXES
+   Add these to your existing Lesson CSS
    ======================================== */
 
 /* Tablet & Below */
@@ -425,6 +434,23 @@
     min-height: auto !important;
     height: auto;
   }
+
+  .hero-bookmark-wrapper {
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .lesson-container {
+    padding: 0 1.5rem;
+  }
+
+  .overview-cards-grid {
+    padding: 0 0.5rem;
+  }
+
+  .category-items-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
 }
 
 /* Mobile */
@@ -432,14 +458,76 @@
   .lesson-hero-section {
     margin: 0 -1.5rem;
     width: calc(100% + 3rem);
+    min-height: 45vh;
+  }
+
+  .lesson-container {
+    padding: 0 1rem;
+    max-width: 100%;
+  }
+
+  .lesson-narrow-container {
+    padding: 0 1rem;
+    max-width: 100%;
   }
 
   .section-title {
     font-size: 2.5rem;
+    line-height: 1.2;
+    padding: 0 0.5rem;
   }
 
   .section-description {
     font-size: 1.1rem;
+    padding: 0 0.5rem;
+  }
+
+  /* Fix overview cards overflow */
+  .overview-cards-grid {
+    padding: 0;
+    gap: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .overview-cards-grid > * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Fix category items overflow */
+  .category-items-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .category-items-grid > * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Shortcuts section */
+  .shortcuts-grid {
+    gap: 1.5rem;
+  }
+
+  .shortcut-category {
+    padding: 1.5rem;
+  }
+
+  .shortcut-category-title {
+    font-size: 1.5rem;
+  }
+
+  /* Practice projects */
+  .practice-grid {
+    gap: 1.5rem;
+  }
+
+  .practice-card {
+    padding: 1.5rem;
   }
 
   .practice-content {
@@ -450,11 +538,20 @@
     width: 100%;
   }
 
+  .practice-header {
+    flex-wrap: wrap;
+  }
+
+  .practice-title {
+    font-size: 1.25rem;
+  }
+
+  /* Tabs */
   .lesson-tabs-container {
     padding: 0 1rem;
+    margin-bottom: 2rem;
   }
   
-  /* Force back button to horizontal on mobile */
   .back-button-wrapper .back-button {
     flex-direction: row !important;
     padding: 0.75rem 1rem !important;
@@ -464,27 +561,188 @@
     justify-content: center;
   }
   
-  /* Reset any tab count specific heights on mobile */
   .back-button-wrapper[data-tab-count] .back-button {
     min-height: auto !important;
   }
   
-  /* Mobile tab grid - always 2 columns */
   .tabs-centered > div {
     grid-template-columns: repeat(2, 1fr) !important;
     grid-template-rows: auto !important;
     max-width: 100% !important;
     gap: 0.75rem !important;
   }
+
+  .hero-bookmark-wrapper {
+    top: 1rem;
+    right: 1rem;
+  }
 }
 
 /* Very small mobile */
 @media (max-width: 480px) {
+  .lesson-hero-section {
+    margin: 0 -1rem;
+    width: calc(100% + 2rem);
+    min-height: 40vh;
+  }
+
+  .lesson-container {
+    padding: 0 0.75rem;
+    max-width: 100%;
+  }
+
+  .lesson-narrow-container {
+    padding: 0 0.75rem;
+    max-width: 100%;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    padding: 0 0.25rem;
+  }
+
+  .section-description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    padding: 0 0.25rem;
+  }
+
+  /* Overview and category cards */
+  .overview-cards-grid,
+  .categories-grid {
+    gap: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .overview-cards-grid > *,
+  .categories-grid > *,
+  .category-items-grid > * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .category-header {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .category-items-grid {
+    gap: 1rem;
+  }
+
+  /* Shortcuts */
+  .shortcut-category {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .shortcut-category-title {
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+  }
+
+  .shortcut-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.875rem;
+  }
+
+  .shortcut-action {
+    font-size: 0.95rem;
+  }
+
+  .shortcut-key {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  /* Practice projects */
+  .practice-card {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .practice-number {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+
+  .practice-title {
+    font-size: 1.15rem;
+  }
+
+  .practice-description {
+    font-size: 0.95rem;
+  }
+
+  .practice-meta {
+    gap: 0.5rem;
+  }
+
+  .practice-duration,
+  .practice-difficulty {
+    font-size: 0.85rem;
+  }
+
+  .practice-skills {
+    gap: 0.4rem;
+  }
+
+  .practice-skill-tag {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.7rem;
+  }
+
+  .practice-start-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  /* Tabs */
   .lesson-tabs-container {
     padding: 0 0.75rem;
+    margin-bottom: 1.5rem;
   }
   
   .tabs-centered > div {
     gap: 0.5rem !important;
+  }
+
+  .hero-bookmark-wrapper {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  /* Skeleton loading */
+  .skeleton-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .skeleton-card {
+    height: 180px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .section-description {
+    font-size: 0.95rem;
+  }
+
+  .category-header {
+    font-size: 1.5rem;
+  }
+
+  .shortcut-category-title {
+    font-size: 1.25rem;
   }
 }

@@ -1,0 +1,255 @@
+/* ========================================
+   MAIN PAGE HERO WITH 3D BACKGROUND
+   ======================================== */
+
+.hero-features-section {
+  position: relative;
+  padding: 0;
+  margin: 0 -2rem;
+  width: calc(100% + 4rem);
+  background: transparent;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.scene-background {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.scene-background #monitor-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  opacity: 0.6;
+  display: block !important;
+  object-fit: cover;
+}
+
+.content-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.text-overlay {
+  text-align: center;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto 4rem;
+}
+
+.text-overlay h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.text-overlay p {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* ========================================
+   FEATURE CARDS GRID
+   ======================================== */
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.features-grid a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.feature-card {
+  background: rgba(21, 35, 47, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  background: rgba(28, 45, 60, 0.9);
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.2);
+}
+
+.feature-icon {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+}
+
+.feature-card h3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+  .hero-features-section {
+    min-height: 80vh;
+    margin: 0 -1.5rem;
+    width: calc(100% + 3rem);
+  }
+
+  .scene-background #monitor-canvas {
+    opacity: 0.4;
+  }
+
+  .content-container {
+    padding: 3rem 1.5rem;
+  }
+
+  .text-overlay {
+    padding: 1.5rem 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .text-overlay h1 {
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .text-overlay p {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  .feature-card {
+    padding: 2.5rem 1.5rem;
+    max-width: 100%;
+  }
+
+  .feature-icon {
+    height: 100px;
+  }
+
+  .feature-card h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-features-section {
+    margin: 0 -1rem;
+    width: calc(100% + 2rem);
+    min-height: 75vh;
+  }
+
+  .content-container {
+    padding: 2rem 1rem;
+  }
+
+  .text-overlay {
+    padding: 1rem 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .text-overlay h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+
+  .text-overlay p {
+    font-size: clamp(0.95rem, 2vw, 1.25rem);
+    line-height: 1.4;
+  }
+
+  .features-grid {
+    gap: 1.25rem;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .feature-card {
+    padding: 2rem 1.25rem;
+    border-radius: 12px;
+  }
+
+  .feature-icon {
+    height: 80px;
+    margin-bottom: 1rem;
+  }
+
+  .feature-icon img {
+    max-width: 80px;
+    max-height: 80px;
+  }
+
+  .feature-card h3 {
+    font-size: 1.35rem;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+  .text-overlay h1 {
+    font-size: clamp(1.75rem, 5.5vw, 3rem);
+  }
+
+  .text-overlay p {
+    font-size: clamp(0.9rem, 1.8vw, 1.15rem);
+  }
+
+  .feature-card {
+    padding: 1.75rem 1rem;
+  }
+
+  .feature-icon {
+    height: 70px;
+  }
+
+  .feature-icon img {
+    max-width: 70px;
+    max-height: 70px;
+  }
+
+  .feature-card h3 {
+    font-size: 1.25rem;
+  }
+}

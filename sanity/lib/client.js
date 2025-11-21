@@ -6,6 +6,7 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: false, // Set to false for mutations (uploads, updates)
-  token: process.env.NEXT_PUBLIC_SANITY_TOKEN, // ✅ ADD THIS
+  useCdn: false,
+  // Only available server-side (no NEXT_PUBLIC_ prefix)
+  token: process.env.NEXT_PUBLIC_SANITY_TOKEN,
 })

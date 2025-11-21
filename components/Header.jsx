@@ -1,13 +1,14 @@
 'use client'
 
 import { useState } from 'react'
+import { useSession, signIn, signOut } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import SearchComponent from '@/components/SearchComponent'
 import BuilderModal from '@/components/builder/BuilderModal'
 import { playHover } from '@/app/utils/sounds'
-import { Settings } from 'lucide-react'
+import { Settings, LogIn, LogOut, User, Bookmark, Lock } from 'lucide-react'
 import { getVisibleCategories, getDropdownCategories } from '@/app/config/categories'
 import './styles/Header.css'
 
@@ -15,9 +16,15 @@ export default function Header({ lessonData = null }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showBuilder, setShowBuilder] = useState(false)
   const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false)
+  const [userMenuOpen, setUserMenuOpen] = useState(false)
   const router = useRouter()
+  const { data: session, status } = useSession()
 
   const handleBuilderClick = () => {
+    if (!session) {
+      signIn('google')
+      return
+    }
     setShowBuilder(true)
     setMobileMenuOpen(false)
   }
@@ -33,6 +40,16 @@ export default function Header({ lessonData = null }) {
         window.dispatchEvent(new HashChangeEvent('hashchange'))
       }
     }, 100)
+  }
+
+  const handleSignIn = () => {
+    signIn('google')
+  }
+
+  const handleSignOut = () => {
+    signOut()
+    setUserMenuOpen(false)
+    setMobileMenuOpen(false)
   }
 
   return (
@@ -103,13 +120,158 @@ export default function Header({ lessonData = null }) {
               <button
                 onClick={handleBuilderClick}
                 onMouseEnter={playHover}
-                className="nav-link builder-trigger"
-                title="Open Lesson Builder"
+                className={`nav-link builder-trigger ${!session ? 'builder-disabled' : ''}`}
+                title={!session ? 'Sign in to access Builder' : 'Open Lesson Builder'}
               >
                 <Settings size={24} />
                 <span>Builder</span>
               </button>
+
+              {/* Authentication inside mobile menu */}
+              <div className="auth-corner">
+                {status === 'loading' ? (
+                  <div className="auth-loading">
+                    <div className="auth-spinner"></div>
+                  </div>
+                ) : session ? (
+                  <div className="user-menu-container">
+                    <button
+                      onClick={() => setUserMenuOpen(!userMenuOpen)}
+                      onMouseEnter={playHover}
+                      className="user-button-compact"
+                      title={session.user?.name || 'User Profile'}
+                    >
+                      {session.user?.image ? (
+                        <Image
+                          src={session.user.image}
+                          alt={session.user.name || 'User'}
+                          width={36}
+                          height={36}
+                          className="user-avatar-compact"
+                        />
+                      ) : (
+                        <User size={20} />
+                      )}
+                    </button>
+
+                    {userMenuOpen && (
+                      <>
+                        <div 
+                          className="user-menu-overlay"
+                          onClick={() => setUserMenuOpen(false)}
+                        />
+                        <div className="user-dropdown">
+                          <div className="user-info">
+                            <p className="user-name-display">{session.user?.name}</p>
+                            <p className="user-email">{session.user?.email}</p>
+                          </div>
+                          <Link
+                            href="/pages/favorites"
+                            onClick={() => {
+                              setUserMenuOpen(false)
+                              setMobileMenuOpen(false)
+                            }}
+                            onMouseEnter={playHover}
+                            className="user-dropdown-item"
+                          >
+                            <Bookmark size={18} />
+                            <span>My Favorites</span>
+                          </Link>
+                          <button
+                            onClick={handleSignOut}
+                            onMouseEnter={playHover}
+                            className="user-dropdown-item sign-out"
+                          >
+                            <LogOut size={18} />
+                            <span>Sign Out</span>
+                          </button>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                ) : (
+                  <button
+                    onClick={handleSignIn}
+                    onMouseEnter={playHover}
+                    className="sign-in-button-compact"
+                    title="Sign in with Google"
+                  >
+                    <LogIn size={18} />
+                  </button>
+                )}
+              </div>
             </nav>
+
+            {/* Desktop auth button in corner */}
+            <div className="auth-corner auth-desktop">
+              {status === 'loading' ? (
+                <div className="auth-loading">
+                  <div className="auth-spinner"></div>
+                </div>
+              ) : session ? (
+                <div className="user-menu-container">
+                  <button
+                    onClick={() => setUserMenuOpen(!userMenuOpen)}
+                    onMouseEnter={playHover}
+                    className="user-button-compact"
+                    title={session.user?.name || 'User Profile'}
+                  >
+                    {session.user?.image ? (
+                      <Image
+                        src={session.user.image}
+                        alt={session.user.name || 'User'}
+                        width={36}
+                        height={36}
+                        className="user-avatar-compact"
+                      />
+                    ) : (
+                      <User size={20} />
+                    )}
+                  </button>
+
+                  {userMenuOpen && (
+                    <>
+                      <div 
+                        className="user-menu-overlay"
+                        onClick={() => setUserMenuOpen(false)}
+                      />
+                      <div className="user-dropdown">
+                        <div className="user-info">
+                          <p className="user-name-display">{session.user?.name}</p>
+                          <p className="user-email">{session.user?.email}</p>
+                        </div>
+                        <Link
+                          href="/pages/favorites"
+                          onClick={() => setUserMenuOpen(false)}
+                          onMouseEnter={playHover}
+                          className="user-dropdown-item"
+                        >
+                          <Bookmark size={18} />
+                          <span>My Favorites</span>
+                        </Link>
+                        <button
+                          onClick={handleSignOut}
+                          onMouseEnter={playHover}
+                          className="user-dropdown-item sign-out"
+                        >
+                          <LogOut size={18} />
+                          <span>Sign Out</span>
+                        </button>
+                      </div>
+                    </>
+                  )}
+                </div>
+              ) : (
+                <button
+                  onClick={handleSignIn}
+                  onMouseEnter={playHover}
+                  className="sign-in-button-compact"
+                  title="Sign in with Google"
+                >
+                  <LogIn size={18} />
+                </button>
+              )}
+            </div>
 
             <button
               className="mobile-menu-btn"
@@ -196,7 +358,7 @@ export default function Header({ lessonData = null }) {
         </div>
       </header>
 
-      {showBuilder && (
+      {showBuilder && session && (
         <BuilderModal
           currentLesson={lessonData}
           onClose={() => setShowBuilder(false)}

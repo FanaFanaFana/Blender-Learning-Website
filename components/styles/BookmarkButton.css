@@ -1,0 +1,128 @@
+/* FILE: components/styles/BookmarkButton.css */
+
+.bookmark-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-family: inherit;
+}
+
+.bookmark-button:hover:not(:disabled) {
+  background: rgba(251, 191, 36, 0.15);
+  border-color: rgba(251, 191, 36, 0.3);
+  color: #fbbf24;
+  transform: translateY(-1px);
+}
+
+.bookmark-button.favorited {
+  background: rgba(251, 191, 36, 0.2);
+  border-color: rgba(251, 191, 36, 0.4);
+  color: #fbbf24;
+}
+
+.bookmark-button.favorited:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.bookmark-button:disabled,
+.bookmark-button.loading {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.bookmark-button.loading .bookmark-icon {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Size variants */
+.bookmark-button.bookmark-small {
+  padding: 0.4rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+.bookmark-button.bookmark-large {
+  padding: 0.75rem 1.25rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.bookmark-icon {
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.bookmark-label {
+  white-space: nowrap;
+}
+
+/* Toast notification */
+.bookmark-toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: rgba(21, 35, 47, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  z-index: 10000;
+  animation: slideInUp 0.3s ease-out, fadeOut 0.3s ease-in 2.7s;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .bookmark-toast {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+  
+  .bookmark-button.bookmark-large {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+  }
+}
