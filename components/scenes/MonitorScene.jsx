@@ -11,7 +11,6 @@ export default function MonitorScene() {
   const modelRef = useRef(null)
   const mixerRef = useRef(null)
   const mouseRef = useRef({ x: 0, y: 0 })
-  const snowflakesRef = useRef([])
 
   useEffect(() => {
     if (!canvasRef.current) return
@@ -91,71 +90,6 @@ export default function MonitorScene() {
       }
     )
     
-    // Load snowflake model and create instances
-    loader.load(
-      '/assets/Snowflake.glb',
-      (gltf) => {
-        console.log('Snowflake model loaded successfully!')
-        const snowflakeTemplate = gltf.scene
-        const numSnowflakes = 100
-        
-        // Make snowflakes visible with emissive material
-        snowflakeTemplate.traverse((child) => {
-          if (child.isMesh) {
-            child.material = new THREE.MeshStandardMaterial({
-              color: 0xffffff,
-              emissive: 0xaaaaff,
-              emissiveIntensity: 0.5,
-              metalness: 0.3,
-              roughness: 0.4
-            })
-          }
-        })
-        
-        for (let i = 0; i < numSnowflakes; i++) {
-          const snowflake = snowflakeTemplate.clone()
-          
-          // Random starting position - closer to camera
-          snowflake.position.x = (Math.random() - 0.5) * 15
-          snowflake.position.y = Math.random() * 10 + 3
-          snowflake.position.z = (Math.random() - 0.5) * 10 - 2
-          
-          // Larger scale for visibility
-          const scale = Math.random() * 1.5 + 2.2
-          snowflake.scale.set(scale, scale, scale)
-          
-          // Random rotation
-          snowflake.rotation.set(
-            Math.random() * Math.PI * 2,
-            Math.random() * Math.PI * 2,
-            Math.random() * Math.PI * 2
-          )
-          
-          // Store animation data
-          snowflake.userData = {
-            speed: Math.random() * 0.002 + 0.001,
-            drift: (Math.random() - 0.5) * 0.008,
-            rotationSpeed: {
-              x: (Math.random() - 0.5) * 0.01,
-              y: (Math.random() - 0.5) * 0.02,
-              z: (Math.random() - 0.5) * 0.01
-            }
-          }
-          
-          scene.add(snowflake)
-          snowflakesRef.current.push(snowflake)
-        }
-        
-        console.log(`Added ${numSnowflakes} snowflakes to scene`)
-      },
-      (progress) => {
-        console.log('Loading snowflakes: ' + (progress.loaded / progress.total * 100) + '%')
-      },
-      (error) => {
-        console.error('Error loading snowflake GLB:', error)
-      }
-    )
-    
     // Mouse interaction
     const handleMouseMove = (e) => {
       const rect = canvas.getBoundingClientRect()
@@ -175,7 +109,7 @@ export default function MonitorScene() {
         mixerRef.current.update(clock.getDelta())
       }
       
-      // Animate main monitor model
+      // Animate main monitor model with mouse interaction
       if (modelRef.current) {
         const targetRotationY = mouseRef.current.x * 0.3
         const targetRotationX = mouseRef.current.y * -0.3
@@ -183,27 +117,6 @@ export default function MonitorScene() {
         modelRef.current.rotation.y += (targetRotationY - modelRef.current.rotation.y) * 0.005
         modelRef.current.rotation.x += (targetRotationX - modelRef.current.rotation.x) * 0.005
       }
-      
-      // Animate snowflakes
-      snowflakesRef.current.forEach((snowflake) => {
-        // Fall down
-        snowflake.position.y -= snowflake.userData.speed
-        
-        // Drift sideways
-        snowflake.position.x += snowflake.userData.drift
-        
-        // Rotate
-        snowflake.rotation.x += snowflake.userData.rotationSpeed.x
-        snowflake.rotation.y += snowflake.userData.rotationSpeed.y
-        snowflake.rotation.z += snowflake.userData.rotationSpeed.z
-        
-        // Reset to top when it falls below view
-        if (snowflake.position.y < -3) {
-          snowflake.position.y = Math.random() * 5 + 8
-          snowflake.position.x = (Math.random() - 0.5) * 15
-          snowflake.position.z = (Math.random() - 0.5) * 10 - 2
-        }
-      })
       
       renderer.render(scene, camera)
     }

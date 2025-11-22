@@ -123,6 +123,16 @@
    RESPONSIVE DESIGN
    ======================================== */
 
+   @media (max-width: 1444px) {
+
+    .features-grid {
+    
+    gap: 1.5rem;
+    max-width: 100%;
+    padding: 0 1.5rem;
+  }
+   }
+
 @media (max-width: 768px) {
   .hero-features-section {
     min-height: 80vh;
@@ -156,7 +166,7 @@
     grid-template-columns: 1fr;
     gap: 1.5rem;
     max-width: 100%;
-    padding: 0 0.5rem;
+    padding: 0 1.5rem;
   }
 
   .feature-card {
@@ -203,7 +213,7 @@
   .features-grid {
     gap: 1.25rem;
     max-width: 100%;
-    padding: 0;
+    padding: 1 0.75rem;
   }
 
   .feature-card {

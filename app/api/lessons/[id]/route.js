@@ -8,12 +8,9 @@ export async function GET(request, { params }) {
     const { searchParams } = new URL(request.url)
     const includeDraft = searchParams.get('draft') === 'true'
     
-    // ✅ FIXED: Corrected media URL fetching
-    let query
-    if (includeDraft) {
-      // Check draft first, fallback to published
-      query = `
-        *[_type == "lesson" && lessonId.current == $id && _id in path("drafts.**")][0] {
+    // ✅ Keep all lesson data, just skip detailedInfo.pages
+    const query = includeDraft
+      ? `*[_type == "lesson" && lessonId.current == $id && _id in path("drafts.**")][0] {
           lessonId,
           category,
           themeColor,
@@ -33,18 +30,7 @@ export async function GET(request, { params }) {
               items[] {
                 name,
                 description,
-                icon,
-                detailedInfo {
-                  overview,
-                  pages[] {
-                    title,
-                    content,
-                    mediaType,
-                    image,
-                    uploadedMediaUrl,
-                    tips
-                  }
-                }
+                icon
               }
             },
             shortcuts[] {
@@ -77,23 +63,21 @@ export async function GET(request, { params }) {
             items[] {
               name,
               description,
-              icon,
-              detailedInfo {
-                overview,
-                pages[] {
-                  title,
-                  content,
-                  mediaType,
-                  image,
-                  uploadedMediaUrl,
-                  tips
-                }
-              }
+              icon
             }
           },
           techniquesTitle,
           techniquesDescription,
-          techniques,
+          techniques[] {
+            name,
+            icon,
+            color,
+            items[] {
+              name,
+              description,
+              icon
+            }
+          },
           shortcuts[] {
             category,
             icon,
@@ -132,18 +116,7 @@ export async function GET(request, { params }) {
               items[] {
                 name,
                 description,
-                icon,
-                detailedInfo {
-                  overview,
-                  pages[] {
-                    title,
-                    content,
-                    mediaType,
-                    image,
-                    uploadedMediaUrl,
-                    tips
-                  }
-                }
+                icon
               }
             },
             shortcuts[] {
@@ -176,23 +149,21 @@ export async function GET(request, { params }) {
             items[] {
               name,
               description,
-              icon,
-              detailedInfo {
-                overview,
-                pages[] {
-                  title,
-                  content,
-                  mediaType,
-                  image,
-                  uploadedMediaUrl,
-                  tips
-                }
-              }
+              icon
             }
           },
           techniquesTitle,
           techniquesDescription,
-          techniques,
+          techniques[] {
+            name,
+            icon,
+            color,
+            items[] {
+              name,
+              description,
+              icon
+            }
+          },
           shortcuts[] {
             category,
             icon,
@@ -211,12 +182,8 @@ export async function GET(request, { params }) {
             skills
           },
           "_isDraft": false
-        }
-      `
-    } else {
-      // Only fetch published
-      query = `
-        *[_type == "lesson" && lessonId.current == $id && !(_id in path("drafts.**"))][0] {
+        }`
+      : `*[_type == "lesson" && lessonId.current == $id && !(_id in path("drafts.**"))][0] {
           lessonId,
           category,
           themeColor,
@@ -236,18 +203,7 @@ export async function GET(request, { params }) {
               items[] {
                 name,
                 description,
-                icon,
-                detailedInfo {
-                  overview,
-                  pages[] {
-                    title,
-                    content,
-                    mediaType,
-                    image,
-                    uploadedMediaUrl,
-                    tips
-                  }
-                }
+                icon
               }
             },
             shortcuts[] {
@@ -280,23 +236,21 @@ export async function GET(request, { params }) {
             items[] {
               name,
               description,
-              icon,
-              detailedInfo {
-                overview,
-                pages[] {
-                  title,
-                  content,
-                  mediaType,
-                  image,
-                  uploadedMediaUrl,
-                  tips
-                }
-              }
+              icon
             }
           },
           techniquesTitle,
           techniquesDescription,
-          techniques,
+          techniques[] {
+            name,
+            icon,
+            color,
+            items[] {
+              name,
+              description,
+              icon
+            }
+          },
           shortcuts[] {
             category,
             icon,
@@ -314,9 +268,7 @@ export async function GET(request, { params }) {
             difficulty,
             skills
           }
-        }
-      `
-    }
+        }`
     
     const lesson = await client.fetch(query, { id })
     
@@ -327,85 +279,17 @@ export async function GET(request, { params }) {
       )
     }
 
-    // Ensure lessonIcon has a default value if null
     lesson.lessonIcon = lesson.lessonIcon || '/Icons/blender_icon_current_file.svg'
 
-    console.log('✅ API: Fetched lesson with tabContents:', {
-      hasTabContents: !!lesson.tabContents,
-      tabContentsLength: lesson.tabContents?.length,
-      tabIds: lesson.tabContents?.map(tc => tc.tabId)
+    console.log('✅ API: Fetched lesson structure:', {
+      hasHeroConfig: !!lesson.heroConfig,
+      heroTitle: lesson.heroConfig?.title,
+      heroGradient: lesson.heroConfig?.gradientText,
+      hasCategories: !!lesson.categories,
+      categoriesCount: lesson.categories?.length,
+      hasTechniques: !!lesson.techniques,
+      techniquesCount: lesson.techniques?.length
     })
-
-    // ✅ Process media URLs for root-level categories
-    if (lesson.categories) {
-      lesson.categories = lesson.categories.map(cat => ({
-        ...cat,
-        items: (cat.items || []).map(item => ({
-          ...item,
-          detailedInfo: item.detailedInfo ? {
-            ...item.detailedInfo,
-            pages: (item.detailedInfo.pages || []).map(page => {
-              const finalUrl = page.mediaType === 'upload' 
-                ? page.uploadedMediaUrl 
-                : page.image
-              
-              console.log('📹 Processing page media:', {
-                mediaType: page.mediaType,
-                uploadedMediaUrl: page.uploadedMediaUrl,
-                image: page.image,
-                finalUrl
-              })
-              
-              return {
-                ...page,
-                finalMediaUrl: finalUrl
-              }
-            })
-          } : undefined
-        }))
-      }))
-    }
-
-    // ✅ Process media URLs for tabContents categories
-    if (lesson.tabContents && Array.isArray(lesson.tabContents)) {
-      lesson.tabContents = lesson.tabContents.map(tabContent => {
-        const processed = { ...tabContent }
-        
-        if (processed.categories) {
-          processed.categories = processed.categories.map(cat => ({
-            ...cat,
-            items: (cat.items || []).map(item => ({
-              ...item,
-              detailedInfo: item.detailedInfo ? {
-                ...item.detailedInfo,
-                pages: (item.detailedInfo.pages || []).map(page => {
-                  const finalUrl = page.mediaType === 'upload' 
-                    ? page.uploadedMediaUrl 
-                    : page.image
-                  
-                  console.log('📹 Processing tabContent page media:', {
-                    tabId: processed.tabId,
-                    mediaType: page.mediaType,
-                    uploadedMediaUrl: page.uploadedMediaUrl,
-                    image: page.image,
-                    finalUrl
-                  })
-                  
-                  return {
-                    ...page,
-                    finalMediaUrl: finalUrl
-                  }
-                })
-              } : undefined
-            }))
-          }))
-        }
-        
-        return processed
-      })
-      
-      console.log('✅ API: Processed tabContents media URLs')
-    }
     
     return NextResponse.json(lesson)
   } catch (error) {

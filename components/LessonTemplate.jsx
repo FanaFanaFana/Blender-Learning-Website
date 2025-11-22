@@ -18,7 +18,6 @@ import {
   ClickableCard,
 } from '@/components/shared/LessonComponents'
 
-// ✨ DYNAMIC IMPORTS
 const LessonScene = dynamic(() => import('@/components/scenes/LessonScene'), {
   ssr: false,
   loading: () => <div style={{ width: '100%', height: '100%', background: 'rgba(16, 185, 129, 0.05)' }} />
@@ -41,7 +40,6 @@ const DetailModal = dynamic(() => import('@/components/shared/DetailModal'), {
   )
 })
 
-// Loading skeleton component
 const TabContentSkeleton = () => (
   <div className="tab-content-skeleton">
     <div className="lesson-container">
@@ -62,7 +60,6 @@ const TabContentSkeleton = () => (
 export default function LessonTemplate({ lessonData }) {
   const { data: session } = useSession()
   
-  // Safety check
   if (!lessonData || typeof lessonData !== 'object') {
     console.error('❌ Invalid lessonData received:', lessonData)
     return (
@@ -82,8 +79,6 @@ export default function LessonTemplate({ lessonData }) {
   const [currentPage, setCurrentPage] = useState(0)
   const [tabContentLoaded, setTabContentLoaded] = useState(false)
   const [allLessonItems, setAllLessonItems] = useState([])
-  
-  // ✅ Favorites management
   const [favorites, setFavorites] = useState([])
   const [favoritesLoaded, setFavoritesLoaded] = useState(false)
 
@@ -93,7 +88,42 @@ export default function LessonTemplate({ lessonData }) {
     themeColor = '#3b82f6',
   } = lessonData || {}
 
-  // ✅ Fetch favorites once when user logs in
+  // 🔍 DEBUG: Check what heroConfig contains
+  console.log('🎨 Hero Config:', heroConfig)
+
+  // ✅ NEW: Fetch item details on demand
+  const fetchItemDetails = async (item, categoryName, tabId = null) => {
+    try {
+      console.log('🔍 Fetching details for:', item.name, 'from category:', categoryName)
+      
+      const response = await fetch(`/api/lessons/${lessonData.lessonId?.current || lessonData.id}/item`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          itemName: item.name,
+          categoryName: categoryName,
+          tabId: tabId
+        })
+      })
+
+      if (!response.ok) {
+        const errorText = await response.text()
+        console.error('❌ API returned error:', response.status, errorText)
+        throw new Error(`Failed to fetch item details: ${response.status}`)
+      }
+
+      const itemDetails = await response.json()
+      console.log('✅ Fetched item details successfully:', {
+        hasDetailedInfo: !!itemDetails.detailedInfo,
+        pagesCount: itemDetails.detailedInfo?.pages?.length
+      })
+      return itemDetails
+    } catch (error) {
+      console.error('❌ Error fetching item details:', error)
+      return null
+    }
+  }
+
   useEffect(() => {
     if (session?.user) {
       fetchFavorites()
@@ -104,35 +134,25 @@ export default function LessonTemplate({ lessonData }) {
   }, [session])
 
   const fetchFavorites = async () => {
-  if (!session?.user) {
-    setFavoritesLoaded(true)
-    setFavorites([])
-    return
-  }
-  
-  try {
-    const response = await fetch('/api/favorites')
-    if (response.ok) {
-      const data = await response.json()
-      setFavorites(data)
+    if (!session?.user) {
+      setFavoritesLoaded(true)
+      setFavorites([])
+      return
     }
-  } catch (error) {
-    console.error('Error fetching favorites:', error)
-  } finally {
-    setFavoritesLoaded(true)
+    
+    try {
+      const response = await fetch('/api/favorites')
+      if (response.ok) {
+        const data = await response.json()
+        setFavorites(data)
+      }
+    } catch (error) {
+      console.error('Error fetching favorites:', error)
+    } finally {
+      setFavoritesLoaded(true)
+    }
   }
-}
 
-  // Debug logging
-  useEffect(() => {
-    console.log('📦 LessonData structure:', {
-      hasTabContents: !!lessonData?.tabContents,
-      tabContentsLength: lessonData?.tabContents?.length,
-      enabledTabs: lessonData?.enabledTabs?.map(t => t.tabId)
-    })
-  }, [lessonData])
-
-  // Get tab content helper
   const getTabContent = useCallback((tabId) => {
     const baseTabs = ['overview', 'content', 'shortcuts', 'practice', 'techniques']
     
@@ -141,35 +161,19 @@ export default function LessonTemplate({ lessonData }) {
     }
     
     if (!lessonData?.tabContents || !Array.isArray(lessonData.tabContents)) {
-      console.warn(`⚠️ No tabContents array found for tab: ${tabId}`)
       return null
     }
     
     const tabContent = lessonData.tabContents.find(tc => tc?.tabId === tabId)
-    
-    if (!tabContent) {
-      console.warn(`⚠️ No content found for tab: ${tabId}`)
-      return null
-    }
-    
-    return tabContent
+    return tabContent || null
   }, [lessonData])
 
-  // Auto-open modal from URL hash
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash
       if (hash.startsWith('#item=')) {
         try {
           const itemData = JSON.parse(decodeURIComponent(hash.substring(6)))
-          
-          if (itemData.detailedInfo?.pages) {
-            itemData.detailedInfo.pages = itemData.detailedInfo.pages.map(page => ({
-              ...page,
-              finalMediaUrl: page.mediaType === 'upload' ? page.uploadedMediaUrl : page.image
-            }))
-          }
-          
           setSelectedItem(itemData)
           setCurrentPage(0)
           if (itemData.tab) setActiveTab(itemData.tab)
@@ -184,26 +188,22 @@ export default function LessonTemplate({ lessonData }) {
     return () => window.removeEventListener('hashchange', handleHashChange)
   }, [])
 
-  // Tab content loading simulation
   useEffect(() => {
     setTabContentLoaded(false)
     const timer = setTimeout(() => setTabContentLoaded(true), 100)
     return () => clearTimeout(timer)
   }, [activeTab])
 
-  // Fetch all items for cross-lesson linking
   useEffect(() => {
     async function fetchAllItems() {
       try {
-        console.log('🔍 Fetching all lesson items...')
         const response = await fetch('/api/lessons/items')
         if (response.ok) {
           const items = await response.json()
           setAllLessonItems(items)
-          console.log(`✅ Loaded ${items.length} items`)
         }
       } catch (error) {
-        console.error('❌ Failed to fetch items:', error)
+        console.error('Failed to fetch items:', error)
       }
     }
     fetchAllItems()
@@ -217,7 +217,6 @@ export default function LessonTemplate({ lessonData }) {
       <Sidebar />
       
       <main>
-        {/* Hero Section with Bookmark Button */}
         <section className="lesson-hero-section">
           <div className="lesson-hero-background">
             <Suspense fallback={<div style={{ width: '100%', height: '100%', background: 'rgba(16, 185, 129, 0.05)' }} />}>
@@ -226,7 +225,6 @@ export default function LessonTemplate({ lessonData }) {
           </div>
 
           <div className="lesson-hero-content">
-            {/* ✅ Bookmark button with favorites */}
             <div style={{ 
               position: 'absolute', 
               top: '2rem', 
@@ -254,7 +252,6 @@ export default function LessonTemplate({ lessonData }) {
           </div>
         </section>
         
-        {/* Tabs Navigation */}
         <div className="lesson-tabs-container">
           <div className="tabs-layout-horizontal">
             <div className="back-button-wrapper" data-tab-count={tabs.length}>
@@ -272,10 +269,8 @@ export default function LessonTemplate({ lessonData }) {
           </div>
         </div>
        
-        {/* Loading State */}
         {!tabContentLoaded && <TabContentSkeleton />}
 
-        {/* No Content State */}
         {tabContentLoaded && !activeTabContent && (
           <section className="empty-state">
             <h2 className="empty-state-title">No content available for this tab</h2>
@@ -319,37 +314,82 @@ export default function LessonTemplate({ lessonData }) {
               </p>
 
               {activeTabContent.categories?.length > 0 && (
-  <div className="categories-grid">
-    {activeTabContent.categories.map((category, idx) => (
-      <div key={idx}>
-        <h3 
-          className="category-header"
-          style={{ color: category.color || themeColor }}
-        >
-          {category.name}
-        </h3>
+                <div className="categories-grid">
+                  {activeTabContent.categories.map((category, idx) => (
+                    <div key={idx}>
+                      <h3 
+                        className="category-header"
+                        style={{ color: category.color || themeColor }}
+                      >
+                        {category.name}
+                      </h3>
 
-        <div className="category-items-grid">
-          {(category.items || []).map((item, itemIdx) => (
-            <ClickableCard
-              onMouseEnter={playHover}
-              key={itemIdx}
-              item={item}
-              color={category.color || themeColor}
-              lessonData={lessonData}
-              favorites={favorites}  // ✅ Already passing this
-              onFavoritesChange={() => fetchFavorites()}  // ✅ Already passing this
-              onClick={() => {
-                setSelectedItem({ ...item, color: category.color || themeColor })
-                setCurrentPage(0)
-              }}
-            />
-          ))}
-        </div>
-      </div>
-    ))}
-  </div>
-)}
+                      <div className="category-items-grid">
+                        {(category.items || []).map((item, itemIdx) => (
+                          <ClickableCard
+                            onMouseEnter={playHover}
+                            key={itemIdx}
+                            item={item}
+                            color={category.color || themeColor}
+                            lessonData={lessonData}
+                            favorites={favorites}
+                            onFavoritesChange={() => fetchFavorites()}
+                            onClick={async () => {
+                              // If already has details, open immediately
+                              if (item.detailedInfo) {
+                                setSelectedItem({ 
+                                  ...item, 
+                                  color: category.color || themeColor 
+                                })
+                                setCurrentPage(0)
+                                return
+                              }
+                              
+                              // Show loading state
+                              setSelectedItem({ 
+                                ...item, 
+                                color: category.color || themeColor,
+                                loading: true 
+                              })
+                              setCurrentPage(0)
+                              
+                              // Fetch details
+                              const details = await fetchItemDetails(item, category.name, null)
+                              
+                              console.log('📦 Details received:', details)
+                              
+                              if (details) {
+                                const finalItem = { 
+                                  ...item, 
+                                  ...details,
+                                  color: category.color || themeColor,
+                                  loading: false
+                                }
+                                console.log('✅ Setting final item with details:', {
+                                  name: finalItem.name,
+                                  hasDetailedInfo: !!finalItem.detailedInfo,
+                                  pagesCount: finalItem.detailedInfo?.pages?.length
+                                })
+                                setSelectedItem(finalItem)
+                              } else {
+                                console.warn('⚠️ No details returned, showing error state')
+                                setSelectedItem({ 
+                                  ...item, 
+                                  color: category.color || themeColor,
+                                  loading: false,
+                                  error: true
+                                })
+                              }
+                            }}
+                            categoryName={category.name}
+                            fetchItemDetails={fetchItemDetails}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </section>
         )}
@@ -384,11 +424,56 @@ export default function LessonTemplate({ lessonData }) {
                           color={category.color || themeColor}
                           lessonData={lessonData}
                           favorites={favorites}
-                           onFavoritesChange={() => fetchFavorites()}
-                          onClick={() => {
-                            setSelectedItem({ ...item, color: category.color || themeColor })
+                          onFavoritesChange={() => fetchFavorites()}
+                          onClick={async () => {
+                            // If already has details, open immediately
+                            if (item.detailedInfo) {
+                              setSelectedItem({ 
+                                ...item, 
+                                color: category.color || themeColor 
+                              })
+                              setCurrentPage(0)
+                              return
+                            }
+                            
+                            // Show loading state
+                            setSelectedItem({ 
+                              ...item, 
+                              color: category.color || themeColor,
+                              loading: true 
+                            })
                             setCurrentPage(0)
+                            
+                            // Fetch details
+                            const details = await fetchItemDetails(item, category.name, null)
+                            
+                            console.log('📦 Details received:', details)
+                            
+                            if (details) {
+                              const finalItem = { 
+                                ...item, 
+                                ...details,
+                                color: category.color || themeColor,
+                                loading: false
+                              }
+                              console.log('✅ Setting final item with details:', {
+                                name: finalItem.name,
+                                hasDetailedInfo: !!finalItem.detailedInfo,
+                                pagesCount: finalItem.detailedInfo?.pages?.length
+                              })
+                              setSelectedItem(finalItem)
+                            } else {
+                              console.warn('⚠️ No details returned, showing error state')
+                              setSelectedItem({ 
+                                ...item, 
+                                color: category.color || themeColor,
+                                loading: false,
+                                error: true
+                              })
+                            }
                           }}
+                          categoryName={category.name}
+                          fetchItemDetails={fetchItemDetails}
                         />
                       ))}
                     </div>
@@ -516,10 +601,10 @@ export default function LessonTemplate({ lessonData }) {
           </section>
         )}
 
-        {/* Modal */}
         {selectedItem && (
           <Suspense fallback={null}>
             <DetailModal
+              key={`${selectedItem.name}-${selectedItem.loading ? 'loading' : 'loaded'}`}
               item={selectedItem}
               currentPage={currentPage}
               onPageChange={setCurrentPage}

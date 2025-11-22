@@ -170,6 +170,99 @@ export default function DetailModal({
   const [itemHistory, setItemHistory] = useState([item])
   const [currentItem, setCurrentItem] = useState(item)
   
+  // ✅ SAFETY CHECK: Wait for detailed info to load
+  if (!currentItem?.detailedInfo?.pages || currentItem.detailedInfo.pages.length === 0) {
+    return (
+      <div style={{
+        position: 'fixed',
+        inset: 0,
+        background: 'rgba(0, 0, 0, 0.9)',
+        backdropFilter: 'blur(10px)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 1000
+      }}>
+        <div style={{
+          background: 'rgba(21, 35, 47, 0.95)',
+          padding: '3rem',
+          borderRadius: '20px',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          textAlign: 'center',
+          maxWidth: '400px'
+        }}>
+          {currentItem?.loading ? (
+            <>
+              <div style={{
+                width: '60px',
+                height: '60px',
+                border: '4px solid rgba(255, 255, 255, 0.1)',
+                borderTop: '4px solid #3b82f6',
+                borderRadius: '50%',
+                animation: 'spin 0.8s linear infinite',
+                margin: '0 auto 1.5rem'
+              }} />
+              <h3 style={{ 
+                fontSize: '1.5rem', 
+                marginBottom: '0.5rem',
+                color: '#fff'
+              }}>
+                Loading Details...
+              </h3>
+              <p style={{ color: '#8fa9bd', margin: 0 }}>
+                Please wait while we fetch the content
+              </p>
+              <style jsx>{`
+                @keyframes spin {
+                  to { transform: rotate(360deg); }
+                }
+              `}</style>
+            </>
+          ) : (
+            <>
+              <div style={{ 
+                fontSize: '3rem', 
+                marginBottom: '1rem',
+                opacity: 0.5
+              }}>⚠️</div>
+              <h3 style={{ 
+                fontSize: '1.5rem', 
+                marginBottom: '0.5rem',
+                color: '#fff'
+              }}>
+                No Details Available
+              </h3>
+              <p style={{ 
+                color: '#8fa9bd', 
+                marginBottom: '1.5rem' 
+              }}>
+                This item doesn't have detailed information yet.
+              </p>
+              <button
+                onClick={onClose}
+                style={{
+                  padding: '0.75rem 1.5rem',
+                  background: '#3b82f6',
+                  border: 'none',
+                  borderRadius: '8px',
+                  color: '#fff',
+                  fontSize: '1rem',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+                onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+              >
+                Close
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    )
+  }
+  
   useEffect(() => {
     setCurrentItem(item)
     setItemHistory([item])

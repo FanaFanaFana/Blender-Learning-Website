@@ -215,16 +215,56 @@ export function InfoCard({ icon, title, content, onMouseEnter }) {
 }
 
 // ============================================
-// 5. CLICKABLE CARD (with hover effect + bookmark)
+// IMPROVED CLICKABLE CARD with Lazy Loading
 // ============================================
+// Replace ONLY the ClickableCard function in LessonComponents.jsx with this:
+// (Don't add the imports - they're already at the top of your file)
 
-
-export function ClickableCard({ item, color, onClick, onMouseEnter, lessonData, favorites, onFavoritesChange }) {
+export function ClickableCard({ 
+  item, 
+  color, 
+  onClick, 
+  onMouseEnter, 
+  lessonData, 
+  favorites, 
+  onFavoritesChange,
+  categoryName,
+  fetchItemDetails
+}) {
   const [isHovered, setIsHovered] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  
+  const handleClick = async () => {
+    if (isLoading) return // Prevent multiple clicks
+    
+    // If there's a custom onClick handler, use it
+    if (onClick) {
+      onClick()
+      return
+    }
+    
+    // Otherwise handle lazy loading internally
+    if (!item.detailedInfo && fetchItemDetails && categoryName) {
+      setIsLoading(true)
+      try {
+        const details = await fetchItemDetails(item, categoryName, null)
+        // You'll need to pass the result back somehow, 
+        // or handle it via a callback
+        if (details) {
+          // Merge details into item for display
+          Object.assign(item, details)
+        }
+      } catch (error) {
+        console.error('Failed to load details:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+  }
   
   return (
     <div
-      onClick={onClick}
+      onClick={handleClick}
       onMouseEnter={(e) => {
         setIsHovered(true)
         if (onMouseEnter) onMouseEnter(e)
@@ -236,12 +276,33 @@ export function ClickableCard({ item, color, onClick, onMouseEnter, lessonData, 
         borderRadius: '12px',
         border: '1px solid rgba(255, 255, 255, 0.05)',
         transition: 'all 0.3s ease',
-        cursor: 'pointer',
+        cursor: isLoading ? 'wait' : 'pointer',
         transform: isHovered ? 'translateY(-5px)' : 'translateY(0)',
-        position: 'relative'
+        position: 'relative',
+        opacity: isLoading ? 0.7 : 1
       }}
     >
-      {/* ✅ Pass item data to bookmark button */}
+      {/* Loading Spinner */}
+      {isLoading && (
+        <div style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 20
+        }}>
+          <div style={{
+            width: '30px',
+            height: '30px',
+            border: '3px solid rgba(255, 255, 255, 0.2)',
+            borderTop: `3px solid ${color}`,
+            borderRadius: '50%',
+            animation: 'spin 0.8s linear infinite'
+          }} />
+        </div>
+      )}
+
+      {/* Bookmark Button */}
       {lessonData && (
         <div 
           onClick={(e) => e.stopPropagation()}
@@ -262,7 +323,7 @@ export function ClickableCard({ item, color, onClick, onMouseEnter, lessonData, 
               icon: lessonData.lessonIcon || '/Icons/blender_icon_current_file.svg',
               lessonCategory: lessonData.category || lessonData.lessonCategory
             }}
-            item={{  // ✅ Pass the item data
+            item={{
               ...item,
               color: color
             }}
@@ -273,11 +334,44 @@ export function ClickableCard({ item, color, onClick, onMouseEnter, lessonData, 
         </div>
       )}
 
+      {/* Card Content */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
-        <img src={item.icon} alt={item.name} style={{ width: '30px', height: '30px', borderRadius: '8px' }} />
-        <h4 style={{ fontSize: '1.25rem', margin: 0, color }}>{item.name}</h4>
+        <img 
+          src={item.icon} 
+          alt={item.name} 
+          style={{ 
+            width: '30px', 
+            height: '30px', 
+            borderRadius: '8px',
+            opacity: isLoading ? 0.5 : 1,
+            transition: 'opacity 0.3s ease'
+          }} 
+        />
+        <h4 style={{ 
+          fontSize: '1.25rem', 
+          margin: 0, 
+          color,
+          opacity: isLoading ? 0.5 : 1,
+          transition: 'opacity 0.3s ease'
+        }}>
+          {item.name}
+        </h4>
       </div>
-      <p style={{ color: '#8fa9bd', margin: 0 }}>{item.description}</p>
+      <p style={{ 
+        color: '#8fa9bd', 
+        margin: 0,
+        opacity: isLoading ? 0.5 : 1,
+        transition: 'opacity 0.3s ease'
+      }}>
+        {item.description}
+      </p>
+
+      {/* Add keyframes for spinner animation in your CSS */}
+      <style jsx>{`
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   )
 }

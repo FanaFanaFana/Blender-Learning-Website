@@ -160,7 +160,8 @@
   gap: 1rem;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow: hidden;
 }
 
 .category-link {
@@ -681,7 +682,7 @@
   }
 
   .nav-wrapper > :nth-child(2) {
-    max-width: 150px;
+    max-width: 250px;
   }
 
   .category-bar {
@@ -869,7 +870,7 @@
   
   /* Make search bar smaller to free up space */
   .nav-wrapper > :nth-child(2) {
-    max-width: 180px;
+    max-width: 280px;
   }
 }
 
@@ -883,7 +884,7 @@
   }
   
   .nav-wrapper > :nth-child(2) {
-    max-width: 150px;
+    max-width: 250px;
   }
   
   /* Further reduce nav link spacing */
